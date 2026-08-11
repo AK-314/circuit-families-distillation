@@ -1,0 +1,576 @@
+schema_version: 1
+experiment_type: stage14_random_label_circuit_analysis
+freeze_status: frozen_before_random_label_circuit_results
+analysis_run_id: stage14-random-label-analysis-s0-7b472aa5163a
+analysis_identity_sha256: 7b472aa5163a6b771ea15cb4bfb0d5ea11871ec3cbc1591865cb22bc2ecae270
+source:
+  stage14_training_run_id: stage14-random-label-training-s0-df790c07a988
+  model_seed: 0
+  random_label_seed: 1
+  control_classification: memorisation_control
+  training_implementation_commit: 83ac9bdf42b79cf097b7cfc1b6843bd274b7dbcb
+  training_manifest:
+    path: manifests/training_stage14-random-label-training-s0-df790c07a988.json
+    sha256: bd6ad49d7b501500b270c91239b47ab119f28220e3b31bca10183ad8cafc85bc
+  foundation_manifest:
+    path: manifests/stage14_random_label_stage14-random-label-training-s0-df790c07a988.json
+    sha256: 212a1fd58f131aa68773e375e1e5316d56b3730a01432c2cd6c8d6ffc7aa1e2e
+  checkpoint_selection_manifest:
+    path: manifests/stage14_random_label_checkpoints.json
+    sha256: 60df86dc9b8159f9f774d12bab19da0d0422e6de0ad30e6cdd4be456ee79741d
+  checkpoint_table:
+    path: results/tables/seed_0_stage14_random_label_checkpoints.csv
+    sha256: d62326f96a67b7f5313191625a41f6d8f0c9caf32c021618ac1e56eedba1e39c
+  masking_validation_table:
+    path: results/tables/seed_0_stage14_random_label_masking_validation.csv
+    sha256: 6ab805a2257568d2ed44a77efa44f2bcd34494ec441ae6430e1ec16a5305dc0c
+  primary_threshold_manifest:
+    path: manifests/primary_fidelity_threshold.json
+    sha256: b4f7d2b536cbe2dde5961a4c634a0d42fb0d5c3af62812340849e6a3abedb8e7
+  stage12_search_configuration:
+    path: configs/search.yaml
+    sha256: 0e4f494f36f71bd8aac42ccf32b80f1e150103c2649ecab937a1025b0b860d80
+  stage12_compute_projection:
+    path: results/tables/stage12_compute_projection.csv
+    sha256: f6a5de609480ee96831218e9b22f3af6b6a09cd7b0215454223377c40ea2394a
+  experimental_protocol:
+    path: experimental_protocol.md
+    sha256: b2df441e46c09d99144e50c044faf4e078560958eabb097e35e73fe35bb996c1
+  implementation_order:
+    path: implementation_order.md
+    sha256: 822715a93bdc68d398fabdb2086bb35f5ba05d7f7f80c17a5656c4070ebcbe8b
+  dataset_archive:
+    path: data/generated/modular_addition_m113.npz
+    sha256: 76c499f9d90d8561d12186f8cc7080f8c5cf7460c9f471c1e7b327b0b15337c5
+  protocol_section_hashes:
+    section_20: f6bb5e34e7fd829f91b079ac7985a33cee73ab8a93a57eb9cf4bf4ffa24130cf
+    section_22: 6f639e2763ad256a76bd9fb275a7061f95ee5abf44e0363facdc7b41ec51d22a
+    section_29: cc7a5822e1ca0ddc6ef433e90f394929fc42f953097502348c3f203e7b5f286e
+    section_30: 943be467553314314499dc46b31d6da46e51c03d39e81e9fc158e99be78c0524
+  implementation_section_hashes:
+    stage_14: 915797e2d5dc10dc8ec800bd9e1dd01d974846894d04e1f37b0f9a897ba4b55e
+    stage_16: 9ca9c0cc323b9c09f4107dbc41a21d3a80190d629d7c1528dfc2e21cb75f099c
+component_universe:
+  total_searchable_components: 516
+  attention_head_identifiers:
+  - H0
+  - H1
+  - H2
+  - H3
+  mlp_neuron_identifier_range: N0-N511
+  meaningfully_sparse_max_components: 258
+  mask_representation: existing_ComponentMask_only
+fidelity:
+  primary_metric: exact_prediction_agreement_with_corresponding_full_random_label_model
+  primary_threshold:
+    numerator: 99
+    denominator: 100
+    decimal: '0.990000'
+    float: 0.99
+  sensitivity_grid:
+  - numerator: 4
+    denominator: 5
+    decimal: '0.800000'
+    float: 0.8
+  - numerator: 17
+    denominator: 20
+    decimal: '0.850000'
+    float: 0.85
+  - numerator: 9
+    denominator: 10
+    decimal: '0.900000'
+    float: 0.9
+  - numerator: 19
+    denominator: 20
+    decimal: '0.950000'
+    float: 0.95
+  - numerator: 39
+    denominator: 40
+    decimal: '0.975000'
+    float: 0.975
+  - numerator: 99
+    denominator: 100
+    decimal: '0.990000'
+    float: 0.99
+  acceptance_arithmetic: exact_integer_agreement_count_against_exact_rational_threshold
+  evaluated_examples: 12769
+  output_classes: 0-112
+  equals_token_output_excluded: true
+  evaluated_token_position: final
+  true_task_accuracy_role: descriptive_only
+  true_task_cross_entropy_role: descriptive_only
+distinctness:
+  metric: jaccard_similarity
+  decision_statistic: maximum_pairwise_overlap
+  acceptance_comparison: less_than_or_equal_to_cutoff
+  primary_cutoff:
+    numerator: 1
+    denominator: 2
+    decimal: '0.500000'
+    float: 0.5
+  sensitivity_grid:
+  - numerator: 1
+    denominator: 4
+    decimal: '0.250000'
+    float: 0.25
+  - numerator: 1
+    denominator: 2
+    decimal: '0.500000'
+    float: 0.5
+  - numerator: 3
+    denominator: 4
+    decimal: '0.750000'
+    float: 0.75
+  definitive_execution_order:
+  - numerator: 1
+    denominator: 2
+    decimal: '0.500000'
+    float: 0.5
+  - numerator: 1
+    denominator: 4
+    decimal: '0.250000'
+    float: 0.25
+  - numerator: 3
+    denominator: 4
+    decimal: '0.750000'
+    float: 0.75
+search:
+  sparse_engine: run_checkpoint_sparse_search
+  diversity_engine: run_checkpoint_family_search
+  overlap_engine: overlap_constraints
+  initial_mask: all_retained
+  candidate_batch_size: 16
+  ranking_batch_size: 256
+  evaluation_batch_size: 256
+  family_target: 10
+  maximum_restarts_per_requested_alternative: 5
+  per_requested_circuit_exact_evaluations: 10000
+  per_cell_exact_evaluations: 50000
+  reuse_coefficient: 0.5
+  terminal_single_deletion_check_required: true
+  approximate_ranking_cannot_bypass_exact_fidelity: true
+  c1_regenerated_for_every_family_cell: true
+  invalid_restarts_count_as_members: false
+  unused_restart_slots_recorded: true
+  unused_budget_transfer:
+    between_members: false
+    between_checkpoints: false
+    between_thresholds: false
+    between_cutoffs: false
+    between_transfer_subsets: false
+  seed_derivation:
+    function: derive_search_seed
+    canonical_material_template: circuit-families|stage12-diversity-search|model_seed={model_seed}|checkpoint_index={checkpoint_index}|family_member_index={family_member_index}|restart_index={restart_index}
+    digest_algorithm: sha256
+    bit_generator: numpy.random.PCG64
+execution_matrix:
+  primary_dynamics:
+    checkpoint_count: 7
+    cells:
+    - checkpoint_index: 0
+      checkpoint_step: 200
+      main_model_reference_label: pre-grokking
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00000200.pt
+      checkpoint_sha256: a55c731765d2050ca918f905fd1a1ebeba2444ed86071194a905349bf7e3cdda
+      model_state_sha256: 5d3d174238158f63837d110c3d47d59469e2a40e9cc97c5edc4b27dcb7f0e29d
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 1
+      checkpoint_step: 3400
+      main_model_reference_label: 10%
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00003400.pt
+      checkpoint_sha256: d23b723dde1eab1166e4c889e3db46b36438ee850294e12d62f2b99f439528f2
+      model_state_sha256: 9f6a9cd09b191229b4f99bedbb7a55ffb1e8f606e30da9ee2415270032a9430b
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 2
+      checkpoint_step: 7450
+      main_model_reference_label: 25%
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00007450.pt
+      checkpoint_sha256: 603935a863d5668fa54d38b9a971c0b3e45abb942a3762d75501dd6e2e71da02
+      model_state_sha256: bd5c63e0c374f92f4333b0bfded482a04c823570aa55bdcbc2980644940c7b7d
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 3
+      checkpoint_step: 8150
+      main_model_reference_label: 50%
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00008150.pt
+      checkpoint_sha256: f8ae2f048c8ab9d77a1ff77e13f2f348a2095423cbe6a4d5b78059ebce9f8e45
+      model_state_sha256: cadd73a0923b1808a683a584810a65f9d9b0b9ff4fd6839ace5a8208a0394c3a
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 4
+      checkpoint_step: 8500
+      main_model_reference_label: 75%
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00008500.pt
+      checkpoint_sha256: b851cb153a857d4d120195419b2fea2e3ee0e0db37cc039878fa6455ccae0a7f
+      model_state_sha256: 2d2b61278e4b38e9a6eaf5c6b7d2ad24a317c9bee8d0467c2ab6330e71cbf0ce
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 5
+      checkpoint_step: 8650
+      main_model_reference_label: 90%
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00008650.pt
+      checkpoint_sha256: ecefff2a3644581b1bf7a48f9a901e398531f39258bb0890a78202220b4196ba
+      model_state_sha256: f2f1c3c48aad9dd2d19d8d64a5717c83aebe4f0ef8ff22ea9decda2e5b7231ac
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+    - checkpoint_index: 6
+      checkpoint_step: 9050
+      main_model_reference_label: stable post-grokking
+      phase_label_scope: main_model_reference_only
+      checkpoint_path: checkpoints/stage14-random-label-training-s0-df790c07a988/step_00009050.pt
+      checkpoint_sha256: 195a9efc1a9bd69cbbe46e892daaf4ec1709883b86469fbdbb035e75fc11b67c
+      model_state_sha256: 1236e12d8453ac6448eec8eebc39d295ca0ad9812fb3b36f6069d0fdbb7ed724
+      absolute_step_mismatch: 0
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+  fidelity_sensitivity:
+    checkpoint_step: 9050
+    cells:
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 4
+        denominator: 5
+        decimal: '0.800000'
+        float: 0.8
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 17
+        denominator: 20
+        decimal: '0.850000'
+        float: 0.85
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 9
+        denominator: 10
+        decimal: '0.900000'
+        float: 0.9
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 19
+        denominator: 20
+        decimal: '0.950000'
+        float: 0.95
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 39
+        denominator: 40
+        decimal: '0.975000'
+        float: 0.975
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: true
+      scientifically_rerun: false
+    primary_cell_referenced_not_rerun: true
+  distinctness_sensitivity:
+    checkpoint_step: 9050
+    cells:
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 4
+        decimal: '0.250000'
+        float: 0.25
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 1
+        denominator: 2
+        decimal: '0.500000'
+        float: 0.5
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: true
+      scientifically_rerun: false
+    - checkpoint_step: 9050
+      fidelity_threshold:
+        numerator: 99
+        denominator: 100
+        decimal: '0.990000'
+        float: 0.99
+      jaccard_cutoff:
+        numerator: 3
+        denominator: 4
+        decimal: '0.750000'
+        float: 0.75
+      per_cell_exact_evaluation_budget: 50000
+      primary_cell_reference: false
+      scientifically_rerun: true
+    primary_cell_referenced_not_rerun: true
+transfer:
+  subsets:
+  - subset_name: Q1
+    example_count: 3249
+  - subset_name: Q2
+    example_count: 3192
+  - subset_name: Q3
+    example_count: 3192
+  - subset_name: Q4
+    example_count: 3136
+  partition:
+    lower_operand_range:
+    - 0
+    - 56
+    upper_operand_range:
+    - 57
+    - 112
+    disjoint: true
+    exhaustive: true
+  global_family_profiles:
+    enabled: true
+    checkpoint_steps:
+    - 200
+    - 3400
+    - 7450
+    - 8150
+    - 8500
+    - 8650
+    - 9050
+    source_family: primary_diversity_family
+    evaluation_subsets:
+    - Q1
+    - Q2
+    - Q3
+    - Q4
+    may_change_family_membership: false
+  subset_discovery:
+    enabled: true
+    checkpoint_steps:
+    - 200
+    - 3400
+    - 7450
+    - 8150
+    - 8500
+    - 8650
+    - 9050
+    discovery_subsets:
+    - Q1
+    - Q2
+    - Q3
+    - Q4
+    evaluation_subsets:
+    - Q1
+    - Q2
+    - Q3
+    - Q4
+    matrix_shape_per_checkpoint:
+    - 4
+    - 4
+    discovery_threshold:
+      numerator: 99
+      denominator: 100
+      decimal: '0.990000'
+      float: 0.99
+    per_discovery_search_budget: 10000
+    unused_budget_transfer: false
+  fidelity_reference: corresponding_full_random_label_model_on_the_same_subset
+  profile_distance: maximum_absolute_difference_across_Q1_Q2_Q3_Q4
+  grouping_algorithm: deterministic_complete_linkage_hierarchical_clustering
+  primary_grouping_tolerance:
+    numerator: 1
+    denominator: 20
+    decimal: '0.050000'
+    float: 0.05
+  grouping_sensitivity_grid:
+  - numerator: 1
+    denominator: 40
+    decimal: '0.025000'
+    float: 0.025
+  - numerator: 1
+    denominator: 20
+    decimal: '0.050000'
+    float: 0.05
+  - numerator: 1
+    denominator: 10
+    decimal: '0.100000'
+    float: 0.1
+  empty_family_group_count: null
+  singleton_family_group_count: 1
+  transfer_equivalence_implies_mechanistic_identity: false
+execution_order:
+- source_validation
+- primary_sparse_checkpoints_in_step_order
+- primary_diversity_checkpoints_in_step_order
+- fidelity_sensitivity_at_step_9050
+- distinctness_sensitivity_at_step_9050
+- global_family_transfer_profiles
+- subset_discovery_transfer_matrices
+- transfer_grouping
+- deterministic_reporting
+- independent_reproduction
+outcome_rules:
+  failed_sparse_search_recorded_as_empty: true
+  empty_family_size: 0
+  empty_dependent_metrics: null
+  family_target_status: right_censored_at_family_target
+  search_failure_does_not_prove_nonexistence: true
+  control_comparison_scope: descriptive_only
+outputs:
+  sparse_search_table: results/tables/seed_0_stage14_random_label_sparse_search.csv
+  family_summary_table: results/tables/seed_0_stage14_random_label_family_summary.csv
+  circuits_table: results/tables/seed_0_stage14_random_label_circuits.csv
+  pairwise_overlap_table: results/tables/seed_0_stage14_random_label_pairwise_overlap.csv
+  restart_table: results/tables/seed_0_stage14_random_label_restarts.csv
+  frontier_table: results/tables/seed_0_stage14_random_label_frontier.csv
+  fidelity_sensitivity_table: results/tables/seed_0_stage14_random_label_fidelity_sensitivity.csv
+  distinctness_sensitivity_table: results/tables/seed_0_stage14_random_label_distinctness_sensitivity.csv
+  transfer_table: results/tables/seed_0_stage14_random_label_transfer.csv
+  runtime_table: results/tables/seed_0_stage14_random_label_runtime.csv
+  analysis_note: results/notes/seed_0_stage14_random_label_circuit_analysis.md
+  archive: results/archives/stage14-random-label-analysis-s0-7b472aa5163a.tar.gz
+  manifest: manifests/stage14_random_label_analysis_stage14-random-label-analysis-s0-7b472aa5163a.json
+  raw_output_directory: results/raw/stage14-random-label-analysis-s0-7b472aa5163a
+archive:
+  format: deterministic_gzip_compressed_PAX_tar
+  gzip_mtime: 0
+  member_mtime: 0
+  member_uid: 0
+  member_gid: 0
+  member_mode: '0644'
+  sorted_members: true
+  per_file_hash_inventory: true
+  runtime_excluded_from_deterministic_hashes: true
+integrity:
+  model_state_must_remain_unchanged: true
+  parameter_gradients_must_remain_absent: true
+  temporary_hooks_must_be_removed: true
+  deterministic_outputs_require_reproduction: true
+  runtime_compared_semantically_only: true
+  stage15_started: false

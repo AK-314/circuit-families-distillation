@@ -1,0 +1,55 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local Python environment
+.venv/
+
+# Editors
+.vscode/
+.idea/
+
+# Generated datasets
+data/generated/*
+!data/generated/.gitkeep
+
+# Model checkpoints
+checkpoints/*
+!checkpoints/.gitkeep
+
+# Large or intermediate raw outputs
+results/raw/*
+!results/raw/.gitkeep
+
+# Follow-up artifact store mirrors and sealed archives
+artifacts/
+teacher_cache/
+student_checkpoints/
+results/archives/
+results/staging/
+manifests/runtime/
+
+# Model and bulk-array formats are external artifacts by default
+*.pt
+*.pth
+*.safetensors
+*.npz
+*.npy
+*.tar.gz
+*.tar.zst
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+credentials/
+
+# Temporary files
+*.tmp
+*.log

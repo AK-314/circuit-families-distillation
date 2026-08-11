@@ -1,0 +1,165 @@
+schema_version: 1
+experiment_type: stage12_diversity_forced_search
+
+source:
+  training_run_id: modular-addition-training-s1-5f1bc9dee7ab
+  model_seed: 1
+  checkpoint_step: 9050
+  checkpoint_index: 7
+  checkpoint_phase: stable_post_grokking
+  primary_threshold_manifest: manifests/primary_fidelity_threshold.json
+  stage11_calibration_manifest: manifests/stage11_calibration_stage11-calibration-s1-c2856467c00f.json
+  stage11_calibration_table: results/tables/seed_1_stage11_threshold_calibration.csv
+  excluded_pre_freeze_output_register: results/tables/excluded_pre_freeze_diversity_outputs.csv
+  threshold_freeze_commit: 57a677014145fe89d7707e8aecdbc90a0aabdf93
+
+fidelity:
+  primary_threshold: 0.99
+  threshold_numerator: 99
+  threshold_denominator: 100
+  primary_sparsity_max_components: 258
+  exact_evaluation_examples: 12769
+
+components:
+  total_count: 516
+  attention_head_count: 4
+  mlp_neuron_count: 512
+  attention_head_identifiers: H0-H3
+  mlp_neuron_identifiers: N0-N511
+  candidate_batch_size: 16
+
+distinctness:
+  metric: jaccard_similarity
+  definition: retained_intersection_count_divided_by_retained_union_count
+  empty_empty_value: 1
+  decision_statistic: maximum_pairwise_overlap
+  acceptance_comparison: less_than_or_equal
+  primary_cutoff: 0.50
+  sensitivity_grid:
+    - 0.25
+    - 0.50
+    - 0.75
+  definitive_execution_order:
+    - 0.50
+    - 0.25
+    - 0.75
+
+ranking:
+  base_method: stage9_gate_gradient_estimated_removal_damage
+  damage_percentile_formula: ordinal_position_divided_by_retained_count_minus_one
+  singleton_percentile: 0.0
+  percentile_population: currently_retained_components
+  exact_damage_tie_rule: lower_stable_component_index_first
+  positive_affine_invariant: true
+  non_finite_score_policy: fail_search
+  reuse_rate_definition: prior_accepted_circuits_retaining_component_divided_by_prior_accepted_circuit_count
+  reuse_coefficient: 0.5
+  removal_score_definition: damage_percentile_minus_reuse_coefficient_times_reuse_rate
+  numerically_indistinguishable_tolerance: 1.0e-12
+  ranking_batch_size: 256
+  exact_evaluation_batch_size: 256
+
+seed_derivation:
+  canonical_material_template: circuit-families|stage12-diversity-search|model_seed={model_seed}|checkpoint_index={checkpoint_index}|family_member_index={family_member_index}|restart_index={restart_index}
+  digest_algorithm: sha256
+  integer_seed_derivation: first_4_digest_bytes_interpreted_as_unsigned_big_endian_integer
+  bit_generator: numpy.random.PCG64
+  model_seed_recorded: true
+  checkpoint_index_recorded: true
+  family_member_index_recorded: true
+  restart_index_recorded: true
+
+restarts:
+  maximum_per_requested_alternative: 5
+  indexing: zero_based
+  controller: deterministic_sequential
+  run_restart_zero_first: true
+  later_restart_condition: no_valid_distinct_candidate_and_budget_remains
+  stop_after_first_valid_distinct_candidate: true
+  perturbation_scope: numerically_indistinguishable_candidate_scores_only
+  shared_requested_circuit_budget: true
+  unused_restarts_recorded: true
+
+budgets:
+  per_requested_circuit_exact_evaluations: 10000
+  per_cell_exact_evaluations: 50000
+  family_target: 10
+  exact_evaluation_unit: one_candidate_mask_evaluated_over_all_12769_examples
+  ranking_passes_recorded_separately: true
+  transfer_between_members: prohibited
+  transfer_between_cutoffs: prohibited
+  transfer_between_checkpoints: prohibited
+  transfer_between_seeds: prohibited
+  transfer_to_controls: prohibited
+
+execution:
+  definitive_checkpoint_steps:
+    - 9050
+  definitive_phases:
+    - stable_post_grokking
+  definitive_fidelity_thresholds:
+    - 0.99
+  pre_grokking_family_search: prohibited
+  transition_family_search: prohibited
+  stage13_started: false
+
+primary_mode:
+  reuse_cost_ranking: true
+  final_exact_jaccard_validation: true
+  hard_overlap_constraints: false
+  hard_component_exclusions: false
+
+stress_tests:
+  soft_overlap_penalty: required_method_validation
+  hard_overlap_constraint: required_method_validation
+  hard_component_exclusions: required_method_validation
+  primary_scientific_family: false
+
+negative_controls:
+  matched_size_random_masks:
+    source: committed_stage11_146_component_masks
+    expected_valid_family_members: 0
+  degraded_c1:
+    selection: lowest_stable_component_index_among_tested_rejected_terminal_deletions
+  shuffled_ranking:
+    purpose: method_validation_only
+    scientific_family_result: false
+  fidelity_impossible:
+    construction: deterministic_all_components_hard_excluded_or_equivalent
+  distinctness_impossible:
+    construction: deterministic_fixture_where_all_fidelity_valid_candidates_violate_cutoff
+
+output_statuses:
+  - valid_distinct_candidate
+  - fidelity_failure
+  - sparsity_failure
+  - distinctness_failure
+  - search_failure
+  - budget_exhaustion
+  - invalid_masking_output
+  - no_feasible_candidate_discovered_within_tested_search
+  - right_censored_at_family_target
+
+archive:
+  format: deterministic_gzip_compressed_PAX_tar
+  gzip_mtime: 0
+  member_mtime: 0
+  member_uid: 0
+  member_gid: 0
+  member_mode: "0644"
+  sorted_members: true
+  per_file_hash_inventory: true
+  runtime_excluded_from_deterministic_scientific_hashes: true
+
+outputs:
+  family_summary_table: results/tables/seed_1_stage12_family_summary.csv
+  circuit_table: results/tables/seed_1_stage12_circuits.csv
+  pairwise_overlap_table: results/tables/seed_1_stage12_pairwise_overlap.csv
+  restart_table: results/tables/seed_1_stage12_restarts.csv
+  negative_control_table: results/tables/seed_1_stage12_negative_controls.csv
+  frontier_table: results/tables/seed_1_stage12_frontier.csv
+  compute_projection_table: results/tables/stage12_compute_projection.csv
+  runtime_table: results/tables/seed_1_stage12_runtime.csv
+  validation_note: results/notes/seed_1_stage12_validation.md
+  archive_template: results/archives/{stage12_run_id}.tar.gz
+  manifest_template: manifests/stage12_diversity_{stage12_run_id}.json

@@ -1,0 +1,63 @@
+"""Component masking and fidelity evaluation."""
+
+from circuit_families.interpretability.component_ablation import (
+    apply_attention_head_mask,
+    apply_mlp_neuron_mask,
+    masked_model_logits,
+    validate_mask_model,
+)
+from circuit_families.interpretability.fidelity import (
+    DEFAULT_LOGIT_ABSOLUTE_TOLERANCE,
+    DEFAULT_LOGIT_RELATIVE_TOLERANCE,
+    CheckpointEvaluationContext,
+    MaskEvaluationMetrics,
+    evaluate_component_mask,
+    load_checkpoint_evaluation_context,
+)
+from circuit_families.interpretability.masks import (
+    ATTENTION_HEAD_COUNT,
+    ATTENTION_HEAD_HOOK_NAME,
+    ATTENTION_HEAD_IDS,
+    COMPONENT_LOCATION_BY_ID,
+    COMPONENT_LOCATIONS,
+    MLP_NEURON_COUNT,
+    MLP_NEURON_HOOK_NAME,
+    MLP_NEURON_IDS,
+    SEARCHABLE_COMPONENT_COUNT,
+    SEARCHABLE_COMPONENT_IDS,
+    ComponentLocation,
+    ComponentMask,
+    component_location,
+    load_component_mask,
+    save_component_mask,
+    validate_frozen_architecture,
+)
+
+__all__ = [
+    "ATTENTION_HEAD_COUNT",
+    "ATTENTION_HEAD_HOOK_NAME",
+    "ATTENTION_HEAD_IDS",
+    "COMPONENT_LOCATION_BY_ID",
+    "COMPONENT_LOCATIONS",
+    "MLP_NEURON_COUNT",
+    "MLP_NEURON_HOOK_NAME",
+    "MLP_NEURON_IDS",
+    "SEARCHABLE_COMPONENT_COUNT",
+    "SEARCHABLE_COMPONENT_IDS",
+    "CheckpointEvaluationContext",
+    "ComponentLocation",
+    "ComponentMask",
+    "DEFAULT_LOGIT_ABSOLUTE_TOLERANCE",
+    "DEFAULT_LOGIT_RELATIVE_TOLERANCE",
+    "MaskEvaluationMetrics",
+    "apply_attention_head_mask",
+    "apply_mlp_neuron_mask",
+    "component_location",
+    "evaluate_component_mask",
+    "load_checkpoint_evaluation_context",
+    "load_component_mask",
+    "masked_model_logits",
+    "save_component_mask",
+    "validate_frozen_architecture",
+    "validate_mask_model",
+]

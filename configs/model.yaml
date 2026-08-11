@@ -1,0 +1,23 @@
+schema_version: 1
+experiment_type: modular_addition_transformer_model
+
+model:
+  implementation: transformer_lens
+  n_layers: 1
+  n_ctx: 3
+  d_model: 128
+  n_heads: 4
+  d_head: 32
+  d_mlp: 512
+  act_fn: relu
+  positional_embedding_type: standard
+  attention_dir: causal
+  normalization_type: null
+  dropout: 0.0
+  tie_word_embeddings: false
+  d_vocab: 114
+  d_vocab_out: 113
+  dtype: float32
+  init_weights: true
+  init_mode: gpt2
+  default_prepend_bos: false

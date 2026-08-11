@@ -1,0 +1,33 @@
+schema_version: 1
+experiment_type: modular_addition_dataset
+
+task:
+  name: modular_addition
+  modulus: 113
+  pair_order: lexicographic
+  equals_token_id: 113
+  expected_pair_count: 12769
+
+split:
+  generator: PCG64
+  seed: 0
+  primary_train_fraction: 0.30
+  primary_train_count: 3830
+  primary_test_count: 8939
+  control_train_fractions:
+    - 0.05
+    - 0.10
+    - 0.15
+    - 0.20
+    - 0.25
+
+random_labels:
+  generator: PCG64
+  seed: 1
+  method: permute_complete_true_label_vector
+
+outputs:
+  data_directory: data/generated
+  manifest_directory: manifests
+  dataset_filename: modular_addition_m113.npz
+  metadata_filename: modular_addition_m113.metadata.json

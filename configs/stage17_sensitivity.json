@@ -1,0 +1,140 @@
+{
+    "schema_version": 1,
+    "experiment_type": "stage17_two_dimensional_sensitivity",
+    "source": {
+        "training_run_id": "modular-addition-training-s1-5f1bc9dee7ab",
+        "model_seed": 1,
+        "checkpoint_index": 7,
+        "checkpoint_step": 9050,
+        "checkpoint_phase": "stable_post_grokking",
+        "checkpoint_manifest": "manifests/checkpoints_seed_1.json",
+        "checkpoint_path": "checkpoints/modular-addition-training-s1-5f1bc9dee7ab/step_00009050.pt",
+        "checkpoint_sha256": "5b449db5ff9a62d5b621450c013bc25949499ed767e6db1723561a4e87ab8d70",
+        "model_state_sha256": "18c66dc1802016a1bdf888070e87ebc615a98d7d1fb310613be0a7abdeccc72b",
+        "primary_threshold_manifest": "manifests/primary_fidelity_threshold.json",
+        "primary_threshold_manifest_sha256": "b4f7d2b536cbe2dde5961a4c634a0d42fb0d5c3af62812340849e6a3abedb8e7",
+        "stage11_manifest": "manifests/stage11_calibration_stage11-calibration-s1-c2856467c00f.json",
+        "stage11_manifest_sha256": "02c2f247515f64846f833d5ae6fc365c924373069ce5233a799321b77a9f1b18",
+        "search_config": "configs/search.yaml",
+        "search_config_sha256": "0e4f494f36f71bd8aac42ccf32b80f1e150103c2649ecab937a1025b0b860d80",
+        "search_config_mapping_sha256": "34e930a262d0b0f84ebb24eb6be111e6b7c243c00b2a716df5104934f1625ea4",
+        "stage12_run_id": "stage12-diversity-s1-020ebf1b5814",
+        "stage12_manifest": "manifests/stage12_diversity_stage12-diversity-s1-020ebf1b5814.json",
+        "stage12_manifest_sha256": "883638524b7a1da72b6063b920dad69e63ffb1315b81e3b20cdfe06499122046",
+        "stage12_archive": "results/archives/stage12-diversity-s1-020ebf1b5814.tar.gz",
+        "stage12_archive_sha256": "7cb6fe6f47778df2b5ccc78d84249631ce4546f775d111b3da04dde9a08ff8da",
+        "stage12_family_summary": "results/tables/seed_1_stage12_family_summary.csv",
+        "stage12_circuits": "results/tables/seed_1_stage12_circuits.csv",
+        "stage12_circuits_sha256": "4d1a2e14e5f1f51e775a3105c86c9ac17cd3aa6fefa181ebf5410a268389907f",
+        "stage12_pairwise_overlap": "results/tables/seed_1_stage12_pairwise_overlap.csv",
+        "stage12_pairwise_overlap_sha256": "dd3fca529e77a234c30338e3d6da121cc568b8f37c637163b4552bd6b841ea42",
+        "stage12_restarts": "results/tables/seed_1_stage12_restarts.csv",
+        "stage12_frontier": "results/tables/seed_1_stage12_frontier.csv",
+        "stage15_manifest": "manifests/stage15_no_generalisation_unavailable.json",
+        "stage16_run_id": "stage16-transfer-s1-cc55bd4162c8",
+        "stage16_manifest": "manifests/stage16_transfer_stage16-transfer-s1-cc55bd4162c8.json",
+        "stage16_manifest_sha256": "29d5aa32708276c4737f2d78903a4ad98ace889cc48855385691284b06369187",
+        "stage16_archive": "results/archives/stage16-transfer-s1-cc55bd4162c8.tar.gz",
+        "stage16_archive_sha256": "62569d0a6eff197ed6839cf551deacb4061c9ee390faa42aa882c3232a2ca207",
+        "stage16_transfer_profiles": "results/tables/seed_1_stage16_transfer_profiles.csv",
+        "stage16_transfer_profiles_sha256": "c832a4995a208df2d413afea7ccbc12d62d2bc27c10ab90b1ceb5a6a5e9e65c8",
+        "stage16_transfer_distances": "results/tables/seed_1_stage16_transfer_distances.csv",
+        "stage16_transfer_groups": "results/tables/seed_1_stage16_transfer_groups.csv",
+        "stage16_transfer_groups_sha256": "215b3602092f76775e31f1f43929b878ae11403108c58d4e8b141eb15700e7b9"
+    },
+    "fidelity_grid": [
+        {"numerator": 4, "denominator": 5, "display": "0.800"},
+        {"numerator": 17, "denominator": 20, "display": "0.850"},
+        {"numerator": 9, "denominator": 10, "display": "0.900"},
+        {"numerator": 19, "denominator": 20, "display": "0.950"},
+        {"numerator": 39, "denominator": 40, "display": "0.975"},
+        {"numerator": 99, "denominator": 100, "display": "0.990"}
+    ],
+    "distinctness_grid": [
+        {"numerator": 1, "denominator": 4, "display": "0.25"},
+        {"numerator": 1, "denominator": 2, "display": "0.50"},
+        {"numerator": 3, "denominator": 4, "display": "0.75"}
+    ],
+    "primary_cell": {
+        "fidelity_numerator": 99,
+        "fidelity_denominator": 100,
+        "distinctness_numerator": 1,
+        "distinctness_denominator": 2
+    },
+    "component_universe": {
+        "attention_heads": 4,
+        "mlp_neurons": 512,
+        "total_searchable_components": 516
+    },
+    "sparsity": {"maximum_retained_components": 258, "maximum_retained_proportion": 0.5},
+    "search": {
+        "exact_evaluation_examples": 12769,
+        "candidate_removal_batch_size_maximum": 16,
+        "ranking_batch_size": 256,
+        "evaluation_batch_size": 256,
+        "reuse_coefficient": 0.5,
+        "maximum_restarts_per_alternative": 5,
+        "per_requested_circuit_budget": 10000,
+        "per_cell_budget": 50000,
+        "family_target": 10,
+        "cell_order": "fidelity_grid_then_distinctness_grid",
+        "tie_tolerance": 1e-12
+    },
+    "transfer": {
+        "profile_order": ["Q1", "Q2", "Q3", "Q4"],
+        "distance": "maximum_absolute_difference",
+        "grouping": "deterministic_complete_linkage",
+        "primary_tolerance_numerator": 1,
+        "primary_tolerance_denominator": 20
+    },
+    "interpretation": {
+        "qualitative_endpoint": "recovered_structural_family_size_at_least_2",
+        "neighbourhood_fidelity_rationals": ["39/40", "99/100"],
+        "neighbourhood_distinctness_rationals": ["1/4", "1/2", "3/4"],
+        "immediate_neighbour_rational_pairs": [
+            ["39/40", "1/2"],
+            ["99/100", "1/4"],
+            ["99/100", "3/4"]
+        ],
+        "classification_order": [
+            "robust across the frozen sensitivity grid",
+            "robust only within a limited neighbourhood of the primary cell",
+            "threshold-sensitive or fragile",
+            "mixed",
+            "unresolved"
+        ]
+    },
+    "outputs": {
+        "raw_directory_template": "results/raw/{stage17_run_id}",
+        "cells_table": "results/tables/seed_1_stage17_sensitivity_cells.csv",
+        "family_size_matrix_table": "results/tables/seed_1_stage17_family_size_matrix.csv",
+        "family_summary_table": "results/tables/seed_1_stage17_family_summary.csv",
+        "circuits_table": "results/tables/seed_1_stage17_circuits.csv",
+        "pairwise_overlap_table": "results/tables/seed_1_stage17_pairwise_overlap.csv",
+        "restarts_table": "results/tables/seed_1_stage17_restarts.csv",
+        "search_failures_table": "results/tables/seed_1_stage17_search_failures.csv",
+        "search_failure_summary_table": "results/tables/seed_1_stage17_search_failure_summary.csv",
+        "circuit_size_summary_table": "results/tables/seed_1_stage17_circuit_size_summary.csv",
+        "transfer_profiles_table": "results/tables/seed_1_stage17_transfer_profiles.csv",
+        "transfer_distances_table": "results/tables/seed_1_stage17_transfer_distances.csv",
+        "transfer_groups_table": "results/tables/seed_1_stage17_transfer_groups.csv",
+        "frontier_table": "results/tables/seed_1_stage17_frontier.csv",
+        "family_size_curves_source_table": "results/tables/seed_1_stage17_family_size_curves_source.csv",
+        "family_size_distinctness_source_table": "results/tables/seed_1_stage17_family_size_distinctness_source.csv",
+        "family_size_heatmap_source_table": "results/tables/seed_1_stage17_family_size_heatmap_source.csv",
+        "runtime_table": "results/tables/seed_1_stage17_runtime.csv",
+        "note": "results/notes/seed_1_stage17_two_dimensional_sensitivity.md",
+        "heatmap_png": "figures/seed_1_stage17_family_size_heatmap.png",
+        "heatmap_pdf": "figures/seed_1_stage17_family_size_heatmap.pdf",
+        "curves_png": "figures/seed_1_stage17_family_size_curves.png",
+        "curves_pdf": "figures/seed_1_stage17_family_size_curves.pdf",
+        "caption": "figures/seed_1_stage17_sensitivity_caption.txt",
+        "archive_template": "results/archives/{stage17_run_id}.tar.gz",
+        "manifest_template": "manifests/stage17_sensitivity_{stage17_run_id}.json"
+    },
+    "lifecycle": {
+        "stage15_status": "unavailable",
+        "checkpoint_grid_decision_made": false,
+        "stage18_started": false
+    }
+}

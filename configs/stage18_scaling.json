@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "experiment_stage": 18,
+  "experiment_type": "stage18_main_seed_scaling",
+  "main_seeds": [0, 1, 2, 3, 4],
+  "pilot_seed": 1,
+  "fresh_training_seeds": [0, 2, 3, 4],
+  "reserve_seeds": [5, 6, 7, 8, 9],
+  "checkpoint_steps": [200, 3400, 7450, 8150, 8500, 8650, 9050],
+  "fidelity_grid": [
+    {"numerator": 4, "denominator": 5, "display": "0.800"},
+    {"numerator": 17, "denominator": 20, "display": "0.850"},
+    {"numerator": 9, "denominator": 10, "display": "0.900"},
+    {"numerator": 19, "denominator": 20, "display": "0.950"},
+    {"numerator": 39, "denominator": 40, "display": "0.975"},
+    {"numerator": 99, "denominator": 100, "display": "0.990"}
+  ],
+  "distinctness_grid": [
+    {"numerator": 1, "denominator": 4, "display": "0.25"},
+    {"numerator": 1, "denominator": 2, "display": "0.50"},
+    {"numerator": 3, "denominator": 4, "display": "0.75"}
+  ],
+  "primary_cell": {
+    "fidelity_numerator": 99,
+    "fidelity_denominator": 100,
+    "distinctness_numerator": 1,
+    "distinctness_denominator": 2
+  },
+  "training": {
+    "reference_seed": 1,
+    "reference_run_id": "modular-addition-training-s1-5f1bc9dee7ab",
+    "reference_manifest": "manifests/training_modular-addition-training-s1-5f1bc9dee7ab.json",
+    "standard_horizon": 40000,
+    "extension_increment": 10000,
+    "absolute_maximum": 80000,
+    "metric_interval": 50,
+    "checkpoint_interval": 50,
+    "stable_post_consecutive_checkpoints": 5,
+    "stable_post_test_accuracy": 0.99,
+    "memorisation_train_accuracy": 0.999,
+    "delayed_test_accuracy_ceiling": 0.10
+  },
+  "search": {
+    "exact_evaluation_examples": 12769,
+    "candidate_removal_batch_size_maximum": 16,
+    "ranking_batch_size": 256,
+    "evaluation_batch_size": 256,
+    "reuse_coefficient": 0.5,
+    "maximum_restarts_per_alternative": 5,
+    "per_requested_circuit_budget": 10000,
+    "per_cell_budget": 50000,
+    "family_target": 10,
+    "maximum_retained_components": 258,
+    "tie_tolerance": 1e-12
+  },
+  "transfer": {
+    "profile_order": ["Q1", "Q2", "Q3", "Q4"],
+    "distance": "maximum_absolute_difference",
+    "grouping": "deterministic_complete_linkage",
+    "primary_tolerance_numerator": 1,
+    "primary_tolerance_denominator": 20
+  },
+  "concurrency": {
+    "production_workers": 12,
+    "intra_op_threads_per_worker": 1,
+    "inter_op_threads_per_worker": 1,
+    "compute_only_ceiling_workers": 14,
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "shard_rule": "fresh_cell_index_zero_based_mod_12"
+  },
+  "archive": {
+    "layout": "one_deterministic_shard_per_model_seed_and_checkpoint",
+    "scientific_shard_count": 35,
+    "top_level_index_count": 1
+  },
+  "additional_controls": {
+    "second_no_generalisation_seed": "not_executable",
+    "additional_random_label_seed_count": 0,
+    "reason": "resources prioritised for the five required main seeds"
+  },
+  "references": {
+    "freeze_manifest": "manifests/post_stage17_checkpoint_grid_and_concurrency_freeze.json",
+    "freeze_manifest_sha256": "b0c966e260407da1b54180748a6b49bc46788efc78186a04f1a0522e7a2a2cc0",
+    "freeze_note": "results/notes/post_stage17_checkpoint_grid_and_concurrency_freeze.md",
+    "freeze_note_sha256": "c329b81449d4cc9a082eb43fff23d780d79de227e1159cae9ec22b86a4f82b99",
+    "benchmark_summary": "results/tables/post_stage17_concurrency_benchmark_summary.csv",
+    "benchmark_summary_sha256": "540ef8a925c7d78d9c698d3a788fbb123e83bed3236ee37f1280d03398ed6c2e",
+    "control_seed_freeze": "manifests/post_stage17_additional_control_seed_count_freeze.json",
+    "control_seed_freeze_sha256": "a48caca72f98cbb5cf9007b8443af83dbb395a0fb88da27a47f3faebe31ce6a7",
+    "stage17_manifest": "manifests/stage17_sensitivity_stage17-sensitivity-s1-7801e7938531.json",
+    "stage17_manifest_sha256": "1cc23013436540eb1bb5f0f080327d51a883503617f53e71fb17071b6537ebc0",
+    "stage17_archive": "results/archives/stage17-sensitivity-s1-7801e7938531.tar.gz",
+    "stage17_archive_sha256": "d1c9a906ef6bacbe401da9d8dfa944a669cae0cf5115eea9387da18e62b6ee3c",
+    "stage16_manifest": "manifests/stage16_transfer_stage16-transfer-s1-cc55bd4162c8.json",
+    "stage15_manifest": "manifests/stage15_no_generalisation_unavailable.json"
+  },
+  "lifecycle": {
+    "stage15_status": "unavailable",
+    "stage19_started": false,
+    "stage20_inference_permitted": false
+  }
+}

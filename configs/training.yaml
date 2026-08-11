@@ -1,0 +1,45 @@
+schema_version: 1
+experiment_type: modular_addition_training
+
+optimizer:
+  name: AdamW
+  learning_rate: 0.001
+  beta1: 0.9
+  beta2: 0.98
+  epsilon: 1.0e-8
+  weight_decay: 1.0
+
+schedule:
+  name: constant
+  warmup_steps: 0
+
+training:
+  max_steps: 40000
+  batch_mode: full_training_set
+  precision: float32
+  gradient_clipping: null
+  evaluation_interval: 50
+  checkpoint_interval: 50
+  evaluate_step_zero: true
+  checkpoint_step_zero: true
+  checkpoint_final_step: true
+
+device:
+  override: null
+  priority:
+    - cuda
+    - cpu
+
+validation:
+  reload_metric_absolute_tolerance: 1.0e-6
+  reload_metric_relative_tolerance: 1.0e-6
+
+smoke:
+  steps: 5
+  evaluation_interval: 1
+  checkpoint_interval: 1
+
+outputs:
+  checkpoint_directory: checkpoints
+  results_directory: results/raw
+  manifest_directory: manifests
