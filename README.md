@@ -13,6 +13,7 @@ the prospective protocol freeze.
 
 ## Start here
 
+- `workflow.md`
 - `docs/distillation_followup/distillation_experimental_protocol_draft.md`
 - `docs/distillation_followup/distillation_implementation_master.md`
 - `docs/distillation_followup/broad_timeline.md`
