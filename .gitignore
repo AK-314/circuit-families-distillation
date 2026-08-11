@@ -53,3 +53,11 @@ credentials/
 # Temporary files
 *.tmp
 *.log
+
+# Follow-up excluded development outputs
+followup/excluded_development/**
+!followup/excluded_development/*.md
+!followup/excluded_development/*.json
+!followup/excluded_development/*.csv
+!followup/excluded_development/*.yaml
+!followup/excluded_development/*.yml

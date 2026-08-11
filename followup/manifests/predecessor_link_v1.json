@@ -1,0 +1,147 @@
+{
+  "architecture": {
+    "model_config": {
+      "file_sha256": "5f3126ecf351c463561a1cffefa69e6576fe6e9cbd9f14aac6b73e956a3fe218",
+      "mapping_sha256": "0b263f3e01b5de162663632903069e87fc675e29b2f3e46f0979e8ae7537952c",
+      "path": "configs/model.yaml"
+    },
+    "training_config": {
+      "file_sha256": "488d43adb9b57152767d165160cd16324331681545752f0cff9c2fe4f342d603",
+      "mapping_sha256": "ebe04e9854542d13839903767f8da04f6af7560df5f782572c5308a1ca02d89a",
+      "path": "configs/training.yaml"
+    },
+    "transformer_source": {
+      "path": "src/circuit_families/models/transformer.py",
+      "sha256": "d5660617711bbf5378e4ba4ea5f34c55a51b0932bb8a537394abd03ba921cf18"
+    }
+  },
+  "component_basis": {
+    "component_ablation_source": {
+      "path": "src/circuit_families/interpretability/component_ablation.py",
+      "sha256": "2a75d55462fc8346c4eba8cfe3f5cf0c400effdb91d81d26fa39899af92993fd"
+    },
+    "dedicated_component_basis_sha256": null,
+    "masks_source": {
+      "path": "src/circuit_families/interpretability/masks.py",
+      "sha256": "2e3ef77f82547c8505d5d6ebc52d6d7e17e426c0fe743bcaa7190d45849f8bc5"
+    },
+    "stage8_masking_manifest": {
+      "path": "manifests/stage8_masking_s1-5f1bc9dee7ab.json",
+      "sha256": "ed6aca8d20d43ea7618936b962c8e865859c21894e5d809580106ffe73a8d4e5"
+    },
+    "status": "reused_predecessor_definition"
+  },
+  "dataset": {
+    "archive_sha256": "76c499f9d90d8561d12186f8cc7080f8c5cf7460c9f471c1e7b327b0b15337c5",
+    "dataset_sha256": "af13d2181f5f1122bc528c6dfadbdc67b0a38ea02c10b4fd504a492aca8afafa",
+    "manifest": {
+      "path": "manifests/dataset_modular-addition-dataset-s0-7ef9c73ff18f.json",
+      "sha256": "8c0d9531267181cd3bbf9d247085b6463efec04c8477a4e6c4137a37c54fd667"
+    },
+    "metadata_sha256": "acbfe6a61b48eb2a2ad522389185085858f72c960906e13291ee85f8bc95564f",
+    "run_id": "modular-addition-dataset-s0-7ef9c73ff18f",
+    "split_sha256": "c83ac398724817fae6a0d137d0f1c6d0b8786eee43efaff5c3d34de0a891b7f2",
+    "task_config": {
+      "file_sha256": "a5121ea6584cfc8bd3cbced7c939c0dd5547e27ab9463f657e4edfbbffa0dca5",
+      "mapping_sha256": "7ef9c73ff18f14d1c59cbc1a636d73caa23da099817714ffc70864b1ac00d377",
+      "path": "configs/task.yaml"
+    }
+  },
+  "metadata": {
+    "record_type": "predecessor_link",
+    "scientific_execution": false,
+    "stage": 1
+  },
+  "namespace_version": "circuit-families-distillation/v1",
+  "predecessor": {
+    "analysis_freeze_commit": "a55509537a70a225fedc5ce3a1c8236110974a6e",
+    "analysis_freeze_manifest": {
+      "path": "manifests/stage22_freeze_stage22-freeze-34241335dcf7.json",
+      "sha256": "248a111f7c328fac81ebe5be5cbd45582487635d43e31848c6a0cd6f06a29f30"
+    },
+    "implementation_order": {
+      "path": "implementation_order.md",
+      "sha256": "416e40146eee8aaf8a42a8e6c28b1e9219c33cdc90f46b01789ce5903fed1e34"
+    },
+    "protocol": {
+      "path": "experimental_protocol.md",
+      "sha256": "39a2852052a2e6c0e28f722d8c644be2a6897b2444f969342789385d048b47a7"
+    },
+    "repository": "https://github.com/AK-314/circuit-families"
+  },
+  "prior_results_visibility": {
+    "followup_distillation_endpoints_produced": false,
+    "followup_predictive_fidelity_endpoints_produced": false,
+    "predecessor_analysis_freeze_complete": true,
+    "predecessor_primary_analysis_visible": true,
+    "predecessor_results_are_blinded_pilot_evidence": false
+  },
+  "schema_version": 1,
+  "stage3_checkpoint_registry": {
+    "deferred_fields": [
+      "phase_selection_rule_outcome",
+      "phase_label",
+      "training_step",
+      "checkpoint_path",
+      "checkpoint_sha256",
+      "train_accuracy",
+      "test_accuracy",
+      "train_loss",
+      "test_loss",
+      "dense_output_identity"
+    ],
+    "resolved": false,
+    "selection_records": [],
+    "status": "deferred_to_stage_3"
+  },
+  "successor_snapshot": {
+    "byte_identical_overlapping_file_count": 166,
+    "changed_overlapping_file_count": 0,
+    "initial_commit": "2c261552b0553e29cdf1b07544371cf34129a799",
+    "overlapping_file_count": 166,
+    "relationship": "clean_source_snapshot_without_predecessor_scientific_outputs",
+    "repository": "https://github.com/AK-314/circuit-families-distillation"
+  },
+  "teacher_runs": [
+    {
+      "manifest": {
+        "path": "manifests/training_stage18-main-training-s0-58b8c1235464.json",
+        "sha256": "9e1be593fd3e3dc742c8d78fa7bbe4fb215dd083ce126959d0609d9db18beb26"
+      },
+      "run_id": "stage18-main-training-s0-58b8c1235464",
+      "teacher_seed": 0
+    },
+    {
+      "manifest": {
+        "path": "manifests/training_modular-addition-training-s1-5f1bc9dee7ab.json",
+        "sha256": "ac0df071552db645e18679a03de3f3a9ce5469f2fc14aa64b3f3308d30d9d1db"
+      },
+      "run_id": "modular-addition-training-s1-5f1bc9dee7ab",
+      "teacher_seed": 1
+    },
+    {
+      "manifest": {
+        "path": "manifests/training_stage18-main-training-s2-c70f62c0fa7c.json",
+        "sha256": "e6980add64618285a12ca73368d6400948dedd5b1cbecbe1ac7c68c2d7196938"
+      },
+      "run_id": "stage18-main-training-s2-c70f62c0fa7c",
+      "teacher_seed": 2
+    },
+    {
+      "manifest": {
+        "path": "manifests/training_stage18-main-training-s3-4c0c7c63ce2f.json",
+        "sha256": "6575566d4c2a5086737a9b2c5c16222938e7cf356d2724d6b628cf6f85cf3be3"
+      },
+      "run_id": "stage18-main-training-s3-4c0c7c63ce2f",
+      "teacher_seed": 3
+    },
+    {
+      "manifest": {
+        "path": "manifests/training_stage18-main-training-s4-c2881c226349.json",
+        "sha256": "b43531286cc90eb4383c45708237f6e75977b573d900acefe46095149793c9a0"
+      },
+      "run_id": "stage18-main-training-s4-c2881c226349",
+      "teacher_seed": 4
+    }
+  ]
+}

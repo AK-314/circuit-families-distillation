@@ -1196,24 +1196,34 @@ written in the implementation order or escalates the missing decision.
 
 ## Starting the present project with this workflow
 
-The clean collaboration repository and predecessor link already exist. The
-next master-thread sequence is:
+The clean collaboration repository exists, and Stage 1 now implements the
+follow-up namespace, predecessor-link machinery, collision protection, and
+prior-results visibility declaration. Stage 1 must pass its master-thread gate
+before any later stage begins.
 
-1. **Issue the Stage 3 teacher-registry handoff to Alex.** This work depends on
-   the private predecessor metrics and checkpoints already on Alex's machine.
-2. **In parallel only where safe, let Austin complete environment verification
-   and inspect the Stage 4/5B interfaces without inventing schemas.**
-3. **Complete and jointly review Stage 4 common identities and schemas.** This
-   is Barrier 0.
-4. **Issue parallel implementation handoffs:** Alex receives Stage 5A and
+The next master-thread sequence is:
+
+1. **Review and gate Stage 1.** Confirm predecessor preservation, namespace
+   safety, the canonical predecessor link, and the Stage 1 completion report.
+2. **If Stage 1 passes, issue Stage 2: freeze the scientific skeleton.** Stage 2
+   must complete and pass its own gate before the teacher registry is selected.
+3. **Only after Stage 2 passes, issue the Stage 3 teacher-registry handoff to
+   Alex.** That work depends on the private predecessor metrics and checkpoints
+   already on Alex's machine.
+4. **In parallel only where the implementation order explicitly permits it,
+   let Austin perform non-authoritative environment/interface inspection
+   without inventing shared schemas or beginning blocked stages.**
+5. **Complete and jointly review Stage 4 common identities and schemas when its
+   dependencies are satisfied.** This is Barrier 0.
+6. **Issue parallel implementation handoffs:** Alex receives Stage 5A and
    endpoint foundations; Austin receives target-cache, trainer, eligibility,
    and orchestration foundations.
-5. **Rejoin at the Stage 7 integration gate.** Run only synthetic and excluded
+7. **Rejoin at the Stage 7 integration gate.** Run only synthetic and excluded
    technical fixtures.
-6. **Use pilot evidence to resolve the permitted numeric freeze register.**
-7. **Commit and tag the protocol/config freeze before generating the definitive
+8. **Use pilot evidence to resolve the permitted numeric freeze register.**
+9. **Commit and tag the protocol/config freeze before generating the definitive
    job roster.**
-8. **Issue separate production handoffs by immutable job registry.** Heavy
+10. **Issue separate production handoffs by immutable job registry.** Heavy
    circuit work runs on Alex's machine; Austin owns the related code and
    manifest flow without being required to execute the heavy search.
 
