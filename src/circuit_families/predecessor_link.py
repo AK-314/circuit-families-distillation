@@ -8,11 +8,13 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from circuit_families.config import mapping_hash
 from circuit_families.followup_namespace import NAMESPACE_VERSION
 
 SCHEMA_VERSION = 1
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _GIT_COMMIT = re.compile(r"^[0-9a-f]{40}$")
+EXPECTED_TEACHER_SEEDS = (0, 1, 2, 3, 4)
 
 
 class PredecessorLinkError(ValueError):
@@ -309,10 +311,18 @@ def validate_predecessor_link(record: Mapping[str, Any]) -> None:
         )
 
     teacher_runs = _sequence(root["teacher_runs"], "teacher_runs")
-    if not teacher_runs:
-        raise PredecessorLinkError("teacher_runs must not be empty.")
+    expected_seeds = list(EXPECTED_TEACHER_SEEDS)
+
+    if len(teacher_runs) != len(expected_seeds):
+        raise PredecessorLinkError(
+            "teacher_runs must contain exactly five entries for seeds 0-4: "
+            f"expected_count={len(expected_seeds)}, "
+            f"actual_count={len(teacher_runs)}."
+        )
 
     seen_seeds: set[int] = set()
+    actual_seeds: list[int] = []
+
     for index, item in enumerate(teacher_runs):
         field = f"teacher_runs[{index}]"
         run = _mapping(item, field)
@@ -323,18 +333,38 @@ def validate_predecessor_link(record: Mapping[str, Any]) -> None:
         )
 
         seed = run["teacher_seed"]
-        if isinstance(seed, bool) or not isinstance(seed, int) or seed < 0:
+        if isinstance(seed, bool) or not isinstance(seed, int):
             raise PredecessorLinkError(
-                f"{field}.teacher_seed must be a non-negative integer."
+                f"{field}.teacher_seed must be an integer in the range 0-4: "
+                f"actual={seed!r}."
+            )
+        if seed not in EXPECTED_TEACHER_SEEDS:
+            raise PredecessorLinkError(
+                f"{field}.teacher_seed is outside the frozen Stage 1 roster: "
+                f"expected_one_of={expected_seeds}, actual={seed}."
             )
         if seed in seen_seeds:
             raise PredecessorLinkError(
                 f"Duplicate teacher seed in predecessor link: {seed}."
             )
+
         seen_seeds.add(seed)
+        actual_seeds.append(seed)
 
         _require_string(run["run_id"], f"{field}.run_id")
         _validate_path_hash(run["manifest"], f"{field}.manifest")
+
+    if set(actual_seeds) != set(expected_seeds):
+        raise PredecessorLinkError(
+            "teacher_runs does not contain the exact frozen Stage 1 seed set: "
+            f"expected={expected_seeds}, actual={actual_seeds}."
+        )
+
+    if actual_seeds != expected_seeds:
+        raise PredecessorLinkError(
+            "teacher_runs must use deterministic canonical seed ordering: "
+            f"expected={expected_seeds}, actual={actual_seeds}."
+        )
 
     stage3 = _mapping(
         root["stage3_checkpoint_registry"],
@@ -478,6 +508,46 @@ def verify_predecessor_link_physical(
             f"expected={expected_commit}, actual={actual_commit}."
         )
 
+    def verify_config_identity(value: Any, field: str) -> None:
+        item = _mapping(value, field)
+        relative = _require_portable_path(item["path"], f"{field}.path")
+        expected_file = _require_sha256(
+            item["file_sha256"],
+            f"{field}.file_sha256",
+        )
+        expected_mapping = _require_sha256(
+            item["mapping_sha256"],
+            f"{field}.mapping_sha256",
+        )
+
+        path = root / relative
+        if not path.is_file():
+            raise PredecessorLinkError(
+                f"Physical predecessor config is missing for {field}: {relative}"
+            )
+
+        actual_file = hashlib.sha256(path.read_bytes()).hexdigest()
+        if actual_file != expected_file:
+            raise PredecessorLinkError(
+                f"Physical predecessor config file hash mismatch for {field}: "
+                f"path={relative}, expected={expected_file}, actual={actual_file}."
+            )
+
+        import yaml
+
+        parsed = yaml.safe_load(path.read_text(encoding="utf-8"))
+        if not isinstance(parsed, Mapping):
+            raise PredecessorLinkError(
+                f"Physical config mapping missing for {field}."
+            )
+
+        actual_mapping = mapping_hash(parsed)
+        if actual_mapping != expected_mapping:
+            raise PredecessorLinkError(
+                f"Physical predecessor config mapping hash mismatch for {field}: "
+                f"expected={expected_mapping}, actual={actual_mapping}."
+            )
+
     def verify_path_hash(value: Any, field: str) -> None:
         item = _mapping(value, field)
         relative = _require_portable_path(item["path"], f"{field}.path")
@@ -508,8 +578,108 @@ def verify_predecessor_link_physical(
 
     dataset = _mapping(record["dataset"], "dataset")
     verify_path_hash(dataset["manifest"], "dataset.manifest")
+    verify_config_identity(dataset["task_config"], "dataset.task_config")
+
+    dataset_manifest_item = _mapping(dataset["manifest"], "dataset.manifest")
+    dataset_manifest_relative = _require_portable_path(
+        dataset_manifest_item["path"],
+        "dataset.manifest.path",
+    )
+    dataset_manifest_path = root / dataset_manifest_relative
+
+    try:
+        physical_dataset_manifest = json.loads(
+            dataset_manifest_path.read_text(encoding="utf-8")
+        )
+    except OSError as exc:
+        raise PredecessorLinkError(
+            "Could not read physical predecessor dataset manifest "
+            f"{dataset_manifest_relative}: {exc}"
+        ) from exc
+    except json.JSONDecodeError as exc:
+        raise PredecessorLinkError(
+            "Physical predecessor dataset manifest is invalid JSON: "
+            f"path={dataset_manifest_relative}, error={exc}"
+        ) from exc
+
+    physical_dataset_manifest = _mapping(
+        physical_dataset_manifest,
+        "physical_dataset_manifest",
+    )
+
+    expected_run_id = _require_string(dataset["run_id"], "dataset.run_id")
+    actual_run_id = physical_dataset_manifest.get("run_id")
+    if actual_run_id != expected_run_id:
+        raise PredecessorLinkError(
+            "Physical predecessor dataset run ID mismatch: "
+            f"expected={expected_run_id!r}, actual={actual_run_id!r}."
+        )
+
+    physical_hashes = _mapping(
+        physical_dataset_manifest.get("hashes"),
+        "physical_dataset_manifest.hashes",
+    )
+    for key in (
+        "dataset_sha256",
+        "split_sha256",
+        "archive_sha256",
+        "metadata_sha256",
+    ):
+        expected_hash = _require_sha256(dataset[key], f"dataset.{key}")
+        actual_hash = physical_hashes.get(key)
+        if actual_hash != expected_hash:
+            raise PredecessorLinkError(
+                "Physical predecessor dataset hash mismatch for "
+                f"dataset.{key}: expected={expected_hash!r}, "
+                f"actual={actual_hash!r}."
+            )
+
+    task_config = _mapping(dataset["task_config"], "dataset.task_config")
+    expected_config_path = _require_portable_path(
+        task_config["path"],
+        "dataset.task_config.path",
+    )
+    expected_config_mapping = _require_sha256(
+        task_config["mapping_sha256"],
+        "dataset.task_config.mapping_sha256",
+    )
+
+    physical_config = _mapping(
+        physical_dataset_manifest.get("config"),
+        "physical_dataset_manifest.config",
+    )
+    actual_config_path = physical_config.get("path")
+    if actual_config_path != expected_config_path:
+        raise PredecessorLinkError(
+            "Physical predecessor dataset task-config path mismatch: "
+            f"expected={expected_config_path!r}, actual={actual_config_path!r}."
+        )
+
+    actual_config_mapping = physical_config.get("sha256")
+    if actual_config_mapping != expected_config_mapping:
+        raise PredecessorLinkError(
+            "Physical predecessor dataset task-config mapping hash mismatch: "
+            f"expected={expected_config_mapping!r}, "
+            f"actual={actual_config_mapping!r}."
+        )
+
+    manifest_config_hash = physical_hashes.get("config_sha256")
+    if manifest_config_hash != expected_config_mapping:
+        raise PredecessorLinkError(
+            "Physical predecessor dataset hashes.config_sha256 mismatch: "
+            f"expected={expected_config_mapping!r}, "
+            f"actual={manifest_config_hash!r}."
+        )
 
     architecture = _mapping(record["architecture"], "architecture")
+    verify_config_identity(
+        architecture["model_config"],
+        "architecture.model_config",
+    )
+    verify_config_identity(
+        architecture["training_config"],
+        "architecture.training_config",
+    )
     verify_path_hash(
         architecture["transformer_source"],
         "architecture.transformer_source",
@@ -529,5 +699,68 @@ def verify_predecessor_link_physical(
         "component_basis.component_ablation_source",
     )
 
-    for index, run in enumerate(record["teacher_runs"]):
-        verify_path_hash(run["manifest"], f"teacher_runs[{index}].manifest")
+    for index, run_value in enumerate(record["teacher_runs"]):
+        field = f"teacher_runs[{index}]"
+        run = _mapping(run_value, field)
+        verify_path_hash(run["manifest"], f"{field}.manifest")
+
+        manifest_item = _mapping(run["manifest"], f"{field}.manifest")
+        manifest_relative = _require_portable_path(
+            manifest_item["path"],
+            f"{field}.manifest.path",
+        )
+        manifest_path = root / manifest_relative
+
+        try:
+            physical_teacher_manifest = json.loads(
+                manifest_path.read_text(encoding="utf-8")
+            )
+        except OSError as exc:
+            raise PredecessorLinkError(
+                "Could not read physical predecessor teacher manifest "
+                f"{manifest_relative}: {exc}"
+            ) from exc
+        except json.JSONDecodeError as exc:
+            raise PredecessorLinkError(
+                "Physical predecessor teacher manifest is invalid JSON: "
+                f"path={manifest_relative}, error={exc}"
+            ) from exc
+
+        physical_teacher_manifest = _mapping(
+            physical_teacher_manifest,
+            f"physical_{field}_manifest",
+        )
+
+        expected_run_id = _require_string(
+            run["run_id"],
+            f"{field}.run_id",
+        )
+        actual_run_id = physical_teacher_manifest.get("run_id")
+        if actual_run_id != expected_run_id:
+            raise PredecessorLinkError(
+                "Physical predecessor teacher run ID mismatch for "
+                f"{field}: expected={expected_run_id!r}, "
+                f"actual={actual_run_id!r}."
+            )
+
+        physical_seed = _mapping(
+            physical_teacher_manifest.get("seed"),
+            f"physical_{field}_manifest.seed",
+        )
+
+        actual_seed_name = physical_seed.get("name")
+        if actual_seed_name != "model_seed":
+            raise PredecessorLinkError(
+                "Physical predecessor teacher seed name mismatch for "
+                f"{field}: expected='model_seed', "
+                f"actual={actual_seed_name!r}."
+            )
+
+        expected_seed = run["teacher_seed"]
+        actual_seed = physical_seed.get("value")
+        if actual_seed != expected_seed:
+            raise PredecessorLinkError(
+                "Physical predecessor teacher seed mismatch for "
+                f"{field}: expected={expected_seed!r}, "
+                f"actual={actual_seed!r}."
+            )

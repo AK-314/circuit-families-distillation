@@ -21,8 +21,12 @@ separate record.
 
 ## Snapshot scope
 
-The successor source snapshot is recorded at
-`2c261552b0553e29cdf1b07544371cf34129a799` in `https://github.com/AK-314/circuit-families-distillation`.
+The successor initial source snapshot is the repository root commit
+`2e8f293ca307370ab213949c4a9490bf5fc2a47c` in `https://github.com/AK-314/circuit-families-distillation`.
+
+The distinct Stage 1 pre-stage baseline, immediately before Stage 1 work,
+is `2c261552b0553e29cdf1b07544371cf34129a799`. This later workflow-documentation commit is not the
+successor initial source snapshot.
 
 Across the audited `src/`, `tests/`, `scripts/`, and `configs/` snapshot,
 166 files overlap with the predecessor and all 166 are byte-identical. The

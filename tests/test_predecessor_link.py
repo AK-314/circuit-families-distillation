@@ -124,6 +124,53 @@ def test_wrong_but_well_formed_protocol_hash_fails_physical_verification(
         )
 
 
+def test_wrong_dataset_run_id_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+    record["dataset"]["run_id"] = "wrong-but-well-formed-dataset-run"
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="Physical predecessor dataset run ID mismatch",
+    ):
+        verify_predecessor_link_physical(
+            record,
+            predecessor_root=predecessor,
+        )
+
+
+def test_wrong_dataset_hash_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+    record["dataset"]["dataset_sha256"] = "0" * 64
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=(
+            "Physical predecessor dataset hash mismatch for "
+            "dataset.dataset_sha256"
+        ),
+    ):
+        verify_predecessor_link_physical(
+            record,
+            predecessor_root=predecessor,
+        )
+
+
 def test_missing_freeze_identity_fails(canonical_record: dict) -> None:
     record = deepcopy(canonical_record)
     del record["predecessor"]["analysis_freeze_manifest"]
@@ -269,5 +316,160 @@ def test_symlink_into_predecessor_fails(tmp_path: Path) -> None:
         validate_followup_output_path(
             link / "results",
             successor_root=successor,
+            predecessor_root=predecessor,
+        )
+
+
+def test_missing_teacher_seed_fails(canonical_record: dict) -> None:
+    record = deepcopy(canonical_record)
+    record["teacher_runs"] = record["teacher_runs"][:-1]
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=r"expected_count=5, actual_count=4",
+    ):
+        validate_predecessor_link(record)
+
+
+def test_extra_teacher_seed_fails(canonical_record: dict) -> None:
+    record = deepcopy(canonical_record)
+    extra = deepcopy(record["teacher_runs"][-1])
+    extra["teacher_seed"] = 5
+    extra["run_id"] = "invented-extra-teacher"
+    record["teacher_runs"].append(extra)
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=r"expected_count=5, actual_count=6",
+    ):
+        validate_predecessor_link(record)
+
+
+def test_out_of_range_teacher_seed_fails(canonical_record: dict) -> None:
+    record = deepcopy(canonical_record)
+    record["teacher_runs"][-1]["teacher_seed"] = 5
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=r"expected_one_of=\[0, 1, 2, 3, 4\], actual=5",
+    ):
+        validate_predecessor_link(record)
+
+
+def test_five_teacher_entries_must_collectively_equal_zero_through_four(
+    canonical_record: dict,
+) -> None:
+    record = deepcopy(canonical_record)
+    record["teacher_runs"][-1]["teacher_seed"] = 3
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="Duplicate teacher seed",
+    ):
+        validate_predecessor_link(record)
+
+
+def test_teacher_roster_order_is_canonical(canonical_record: dict) -> None:
+    record = deepcopy(canonical_record)
+    record["teacher_runs"][0], record["teacher_runs"][1] = (
+        record["teacher_runs"][1],
+        record["teacher_runs"][0],
+    )
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=r"deterministic canonical seed ordering",
+    ):
+        validate_predecessor_link(record)
+
+
+def test_wrong_but_well_formed_config_file_hash_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+    record["architecture"]["model_config"]["file_sha256"] = "0" * 64
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="config file hash mismatch",
+    ):
+        verify_predecessor_link_physical(
+            record,
+            predecessor_root=predecessor,
+        )
+
+
+def test_wrong_but_well_formed_config_mapping_hash_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+    record["architecture"]["training_config"]["mapping_sha256"] = "0" * 64
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="config mapping hash mismatch",
+    ):
+        verify_predecessor_link_physical(
+            record,
+            predecessor_root=predecessor,
+        )
+
+def test_wrong_teacher_run_id_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+    record["teacher_runs"][0]["run_id"] = (
+        "wrong-but-well-formed-teacher-run"
+    )
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="Physical predecessor teacher run ID mismatch",
+    ):
+        verify_predecessor_link_physical(
+            record,
+            predecessor_root=predecessor,
+        )
+
+
+def test_wrong_teacher_seed_provenance_fails_physical_verification(
+    canonical_record: dict,
+) -> None:
+    predecessor = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+    if not predecessor.is_dir():
+        pytest.skip("private predecessor checkout is not installed")
+
+    record = deepcopy(canonical_record)
+
+    seed_one = deepcopy(record["teacher_runs"][1])
+    record["teacher_runs"][0]["run_id"] = seed_one["run_id"]
+    record["teacher_runs"][0]["manifest"] = seed_one["manifest"]
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="Physical predecessor teacher seed mismatch",
+    ):
+        verify_predecessor_link_physical(
+            record,
             predecessor_root=predecessor,
         )

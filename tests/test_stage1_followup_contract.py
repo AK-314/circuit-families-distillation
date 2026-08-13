@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 from circuit_families.followup_namespace import (
@@ -169,3 +170,82 @@ def test_visibility_declaration_matches_machine_state() -> None:
     assert "no student training has begun" in text
     assert "no follow-up circuit discovery has begun" in text
     assert "no follow-up comparative scientific analysis has been run" in text
+
+
+def test_git_policy_classifications_are_enforced() -> None:
+    """Exercise the repository's real Git ignore policy, not documentation text."""
+
+    def is_ignored(relative_path: str) -> bool:
+        completed = subprocess.run(
+            [
+                "git",
+                "check-ignore",
+                "-q",
+                "--no-index",
+                relative_path,
+            ],
+            cwd=ROOT,
+            check=False,
+        )
+        if completed.returncode not in {0, 1}:
+            raise AssertionError(
+                "git check-ignore failed for "
+                f"{relative_path!r} with return code "
+                f"{completed.returncode}"
+            )
+        return completed.returncode == 0
+
+    ignored = [
+        "followup/local/scratch/audit_probe.bin",
+        "followup/artifacts/teacher_cache/audit_probe.bin",
+        "followup/artifacts/student_checkpoints/audit_probe.bin",
+        "followup/artifacts/student_outputs/audit_probe.bin",
+        "followup/artifacts/discovery_raw/audit_probe.bin",
+        "followup/artifacts/archives/audit_probe.bin",
+        "followup/artifacts/reproduction_bundles/audit_probe.bin",
+        "followup/excluded_development/audit_probe.bin",
+    ]
+    trackable = [
+        "followup/excluded_development/audit_probe.json",
+        "followup/manifests/audit_probe.json",
+        "followup/configs/audit_probe.yaml",
+        "followup/reviewed/tables/audit_probe.csv",
+        "followup/reviewed/notes/audit_probe.md",
+    ]
+
+    for relative_path in ignored:
+        assert is_ignored(relative_path), (
+            f"Git policy unexpectedly permits {relative_path}"
+        )
+
+    for relative_path in trackable:
+        assert not is_ignored(relative_path), (
+            f"Git policy unexpectedly ignores {relative_path}"
+        )
+
+
+def test_teacher_roster_schema_is_exactly_five_seeds_zero_through_four() -> None:
+    schema = json.loads(
+        (ROOT / "schemas/predecessor_link_v1.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    teacher_runs = schema["properties"]["teacher_runs"]
+
+    assert teacher_runs["type"] == "array"
+    assert teacher_runs["minItems"] == 5
+    assert teacher_runs["maxItems"] == 5
+
+    item = teacher_runs["items"]
+    assert item["type"] == "object"
+    assert item["additionalProperties"] is False
+    assert set(item["required"]) == {
+        "teacher_seed",
+        "run_id",
+        "manifest",
+    }
+
+    teacher_seed = item["properties"]["teacher_seed"]
+    assert teacher_seed["type"] == "integer"
+    assert teacher_seed["minimum"] == 0
+    assert teacher_seed["maximum"] == 4

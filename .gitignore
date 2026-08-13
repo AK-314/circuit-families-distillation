@@ -61,3 +61,6 @@ followup/excluded_development/**
 !followup/excluded_development/*.csv
 !followup/excluded_development/*.yaml
 !followup/excluded_development/*.yml
+
+# Follow-up machine-local scratch
+followup/local/scratch/**
