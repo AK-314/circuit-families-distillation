@@ -52,3 +52,29 @@ achieved metrics, and dense-output identities remain explicitly deferred to
 Stage 3.
 
 No absolute private filesystem path is a canonical artifact identity.
+
+## Physical successor-snapshot verification
+
+When both the successor and predecessor repositories are physically available,
+Stage 1 validation must verify the recorded successor snapshot from committed Git
+objects rather than trusting the manifest counts.
+
+The physical check is read-only and must:
+
+1. open the successor repository without modifying it;
+2. confirm that `successor_snapshot.initial_commit` exists;
+3. confirm that this commit is the repository's unique root commit;
+4. enumerate the frozen relevant file population at that successor commit;
+5. enumerate the corresponding population at the frozen predecessor commit;
+6. compute overlapping paths from those two committed Git trees;
+7. compare committed blob contents for every overlapping path;
+8. require the computed values to equal the canonical manifest claims:
+   166 overlapping files, 166 byte-identical overlapping files, and
+   0 changed overlapping files; and
+9. reject missing commits, an incorrect or non-unique root, altered counts,
+   altered overlapping paths, or non-identical overlapping content.
+
+The path-selection rule used for this frozen comparison must be explicit and
+deterministic. The comparison must use Git commit objects, not current worktree
+files, so later commits, untracked files, ignored files, and local modifications
+cannot change the result.

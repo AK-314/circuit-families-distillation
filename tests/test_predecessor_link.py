@@ -14,9 +14,11 @@ from circuit_families.followup_namespace import (
 )
 from circuit_families.predecessor_link import (
     PredecessorLinkError,
+    compare_commit_blob_populations,
     load_predecessor_link,
     validate_predecessor_link,
     verify_predecessor_link_physical,
+    verify_successor_snapshot_physical,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -473,3 +475,331 @@ def test_wrong_teacher_seed_provenance_fails_physical_verification(
             record,
             predecessor_root=predecessor,
         )
+
+def test_genuine_repositories_match_frozen_successor_snapshot(
+    canonical_record: dict,
+) -> None:
+    """Verify the frozen 166/166/0 snapshot against genuine repositories."""
+
+    successor_root = ROOT
+    predecessor_root = Path(
+        "/Users/alexkolesnikov/Projects/circuit-families"
+    )
+
+    if not predecessor_root.is_dir():
+        pytest.skip(
+            "physical predecessor repository is genuinely unavailable"
+        )
+
+    evidence = verify_successor_snapshot_physical(
+        canonical_record,
+        successor_root=successor_root,
+        predecessor_root=predecessor_root,
+    )
+
+    assert evidence["verified_root_commit"] == (
+        "2e8f293ca307370ab213949c4a9490bf5fc2a47c"
+    )
+    assert evidence["predecessor_comparison_commit"] == (
+        "a55509537a70a225fedc5ce3a1c8236110974a6e"
+    )
+    assert evidence["predecessor_selected_file_count"] == 166
+    assert evidence["successor_selected_file_count"] == 167
+    assert evidence["overlapping_file_count"] == 166
+    assert evidence["byte_identical_overlapping_file_count"] == 166
+    assert evidence["changed_overlapping_file_count"] == 0
+    assert evidence["changed_paths"] == []
+
+def test_valid_non_root_successor_commit_is_rejected(
+    canonical_record: dict,
+) -> None:
+    """A valid successor commit must still fail if it is not the Git root."""
+
+    record = deepcopy(canonical_record)
+    record["successor_snapshot"]["initial_commit"] = (
+        "a1630d03a9b739b56eb07f7a393d9df09d004685"
+    )
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="recorded successor commit is not the root",
+    ):
+        verify_successor_snapshot_physical(
+            record,
+            successor_root=ROOT,
+            predecessor_root=Path(
+                "/Users/alexkolesnikov/Projects/circuit-families"
+            ),
+        )
+
+def test_nonexistent_successor_commit_is_rejected(
+    canonical_record: dict,
+) -> None:
+    """A well-formed but absent successor commit must be rejected."""
+
+    record = deepcopy(canonical_record)
+    nonexistent = "f" * 40
+
+    import subprocess
+
+    probe = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(ROOT),
+            "cat-file",
+            "-e",
+            f"{nonexistent}^{{commit}}",
+        ],
+        check=False,
+        capture_output=True,
+    )
+    assert probe.returncode != 0
+
+    record["successor_snapshot"]["initial_commit"] = nonexistent
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="successor commit missing",
+    ):
+        verify_successor_snapshot_physical(
+            record,
+            successor_root=ROOT,
+            predecessor_root=Path(
+                "/Users/alexkolesnikov/Projects/circuit-families"
+            ),
+        )
+
+@pytest.mark.parametrize(
+    ("field", "mutated_value", "message"),
+    [
+        (
+            "overlapping_file_count",
+            165,
+            "successor snapshot overlap count mismatch",
+        ),
+        (
+            "byte_identical_overlapping_file_count",
+            165,
+            "successor snapshot identical overlap count mismatch",
+        ),
+        (
+            "changed_overlapping_file_count",
+            1,
+            "successor snapshot changed overlap count mismatch",
+        ),
+    ],
+)
+def test_false_successor_snapshot_count_claim_is_rejected(
+    canonical_record: dict,
+    field: str,
+    mutated_value: int,
+    message: str,
+) -> None:
+    """Each frozen overlap-count claim must match physical Git evidence."""
+
+    record = deepcopy(canonical_record)
+    record["successor_snapshot"][field] = mutated_value
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match=message,
+    ):
+        verify_successor_snapshot_physical(
+            record,
+            successor_root=ROOT,
+            predecessor_root=Path(
+                "/Users/alexkolesnikov/Projects/circuit-families"
+            ),
+        )
+
+def test_changed_overlapping_content_is_rejected_and_reported(
+    tmp_path: Path,
+) -> None:
+    """Changed overlapping Git blobs must fail even when counts match."""
+
+    import subprocess
+
+    predecessor = tmp_path / "predecessor"
+    successor = tmp_path / "successor"
+
+    def initialize(repository: Path, content: str) -> str:
+        repository.mkdir()
+        subprocess.run(
+            ["git", "init", "-q"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            [
+                "git",
+                "config",
+                "user.email",
+                "fixture@example.invalid",
+            ],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "config", "user.name", "Fixture"],
+            cwd=repository,
+            check=True,
+        )
+        source = repository / "src"
+        source.mkdir()
+        (source / "shared.txt").write_text(
+            content,
+            encoding="utf-8",
+        )
+        subprocess.run(
+            ["git", "add", "src/shared.txt"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "commit", "-q", "-m", "root"],
+            cwd=repository,
+            check=True,
+        )
+        return subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repository,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+
+    predecessor_commit = initialize(predecessor, "predecessor-value\n")
+    successor_commit = initialize(successor, "successor-value\n")
+
+    record = {
+        "predecessor": {
+            "analysis_freeze_commit": predecessor_commit,
+        },
+        "successor_snapshot": {
+            "initial_commit": successor_commit,
+            "overlapping_file_count": 1,
+            "byte_identical_overlapping_file_count": 0,
+            "changed_overlapping_file_count": 1,
+        },
+    }
+
+    with pytest.raises(
+        PredecessorLinkError,
+        match="changed overlapping files detected",
+    ) as exc_info:
+        verify_successor_snapshot_physical(
+            record,
+            successor_root=successor,
+            predecessor_root=predecessor,
+        )
+
+    message = str(exc_info.value)
+    assert "src/shared.txt" in message
+    assert "predecessor-value" not in message
+    assert "successor-value" not in message
+
+def test_commit_object_comparison_is_independent_of_later_worktree_state(
+    tmp_path: Path,
+) -> None:
+    """Selected commit objects, not branch/worktree state, define comparison."""
+
+    import subprocess
+
+    predecessor = tmp_path / "predecessor"
+    successor = tmp_path / "successor"
+
+    def initialize(repository: Path) -> str:
+        repository.mkdir()
+        subprocess.run(
+            ["git", "init", "-q"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            [
+                "git",
+                "config",
+                "user.email",
+                "fixture@example.invalid",
+            ],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "config", "user.name", "Fixture"],
+            cwd=repository,
+            check=True,
+        )
+        source = repository / "src"
+        source.mkdir()
+        (source / "shared.txt").write_text(
+            "frozen\n",
+            encoding="utf-8",
+        )
+        subprocess.run(
+            ["git", "add", "src/shared.txt"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "commit", "-q", "-m", "root"],
+            cwd=repository,
+            check=True,
+        )
+        return subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repository,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+
+    predecessor_commit = initialize(predecessor)
+    successor_commit = initialize(successor)
+
+    before = compare_commit_blob_populations(
+        predecessor,
+        predecessor_commit,
+        successor,
+        successor_commit,
+    )
+
+    # Add a later committed file after the selected successor snapshot.
+    later = successor / "src" / "later.txt"
+    later.write_text("later commit\n", encoding="utf-8")
+    subprocess.run(
+        ["git", "add", "src/later.txt"],
+        cwd=successor,
+        check=True,
+    )
+    subprocess.run(
+        ["git", "commit", "-q", "-m", "later"],
+        cwd=successor,
+        check=True,
+    )
+
+    # Add untracked and dirty tracked worktree state after that later commit.
+    (successor / "src" / "untracked.txt").write_text(
+        "untracked\n",
+        encoding="utf-8",
+    )
+    (successor / "src" / "shared.txt").write_text(
+        "dirty worktree value\n",
+        encoding="utf-8",
+    )
+
+    after = compare_commit_blob_populations(
+        predecessor,
+        predecessor_commit,
+        successor,
+        successor_commit,
+    )
+
+    assert before == after
+    assert after["predecessor_selected_file_count"] == 1
+    assert after["successor_selected_file_count"] == 1
+    assert after["overlapping_file_count"] == 1
+    assert after["byte_identical_overlapping_file_count"] == 1
+    assert after["changed_overlapping_file_count"] == 0
+    assert after["changed_paths"] == []

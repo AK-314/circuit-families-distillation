@@ -15,6 +15,7 @@ SCHEMA_VERSION = 1
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 _GIT_COMMIT = re.compile(r"^[0-9a-f]{40}$")
 EXPECTED_TEACHER_SEEDS = (0, 1, 2, 3, 4)
+SUCCESSOR_SNAPSHOT_PATH_PREFIXES = ("src", "tests", "scripts", "configs")
 
 
 class PredecessorLinkError(ValueError):
@@ -466,6 +467,292 @@ def load_predecessor_link(path: str | Path) -> dict[str, Any]:
     record = dict(_mapping(loaded, "predecessor_link"))
     validate_predecessor_link(record)
     return record
+
+
+def enumerate_commit_blobs(
+    repository_root: Path,
+    commit: str,
+    *,
+    prefixes: Sequence[str] = SUCCESSOR_SNAPSHOT_PATH_PREFIXES,
+) -> dict[str, str]:
+    """Enumerate committed blobs beneath frozen prefixes from one Git tree."""
+
+    import subprocess
+
+    root = repository_root.expanduser().resolve()
+    completed = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "ls-tree",
+            "-r",
+            "-z",
+            commit,
+            "--",
+            *prefixes,
+        ],
+        check=False,
+        capture_output=True,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.decode(
+            "utf-8", errors="replace"
+        ).strip()
+        raise PredecessorLinkError(
+            "commit-object file enumeration failed: "
+            f"repository={root}, commit={commit}, "
+            f"returncode={completed.returncode}, detail={detail!r}."
+        )
+
+    blobs: dict[str, str] = {}
+    for entry in completed.stdout.split(b"\0"):
+        if not entry:
+            continue
+
+        try:
+            metadata, path_bytes = entry.split(b"\t", 1)
+            _mode, object_type, object_id = metadata.decode(
+                "ascii"
+            ).split()
+        except (ValueError, UnicodeDecodeError) as exc:
+            raise PredecessorLinkError(
+                "commit-object file enumeration returned malformed "
+                f"ls-tree data for commit={commit}."
+            ) from exc
+
+        if object_type != "blob":
+            continue
+
+        relative_path = path_bytes.decode(
+            "utf-8", errors="surrogateescape"
+        )
+        blobs[relative_path] = object_id
+
+    return blobs
+
+def compare_commit_blob_populations(
+    predecessor_root: Path,
+    predecessor_commit: str,
+    successor_root: Path,
+    successor_commit: str,
+    *,
+    prefixes: Sequence[str] = SUCCESSOR_SNAPSHOT_PATH_PREFIXES,
+) -> dict[str, Any]:
+    """Compare frozen committed blob populations across predecessor and successor."""
+
+    predecessor_blobs = enumerate_commit_blobs(
+        predecessor_root,
+        predecessor_commit,
+        prefixes=prefixes,
+    )
+    successor_blobs = enumerate_commit_blobs(
+        successor_root,
+        successor_commit,
+        prefixes=prefixes,
+    )
+
+    predecessor_paths = set(predecessor_blobs)
+    successor_paths = set(successor_blobs)
+    overlapping_paths = sorted(predecessor_paths & successor_paths)
+
+    changed_paths = [
+        path
+        for path in overlapping_paths
+        if predecessor_blobs[path] != successor_blobs[path]
+    ]
+    identical_count = len(overlapping_paths) - len(changed_paths)
+
+    return {
+        "selected_path_prefixes": list(prefixes),
+        "predecessor_selected_file_count": len(predecessor_blobs),
+        "successor_selected_file_count": len(successor_blobs),
+        "overlapping_file_count": len(overlapping_paths),
+        "byte_identical_overlapping_file_count": identical_count,
+        "changed_overlapping_file_count": len(changed_paths),
+        "changed_paths": changed_paths,
+    }
+
+
+def verify_successor_repository_identity(
+    successor_root: Path,
+    initial_commit: str,
+) -> dict[str, Any]:
+    """Physically verify the recorded successor commit as the unique Git root."""
+
+    import subprocess
+
+    root = successor_root.expanduser().resolve()
+
+    repository_check = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "rev-parse",
+            "--is-inside-work-tree",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if (
+        repository_check.returncode != 0
+        or repository_check.stdout.strip() != "true"
+    ):
+        detail = (
+            repository_check.stderr.strip()
+            or repository_check.stdout.strip()
+        )
+        raise PredecessorLinkError(
+            "successor repository identity failed: "
+            f"{root} is not a Git worktree "
+            f"(detail={detail!r})."
+        )
+
+    commit_check = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "cat-file",
+            "-e",
+            f"{initial_commit}^{{commit}}",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if commit_check.returncode != 0:
+        raise PredecessorLinkError(
+            "successor commit missing: "
+            f"recorded initial_commit={initial_commit} "
+            "does not exist as a commit in the successor repository."
+        )
+
+    roots_check = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "rev-list",
+            "--max-parents=0",
+            "--all",
+      ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if roots_check.returncode != 0:
+        detail = roots_check.stderr.strip() or roots_check.stdout.strip()
+        raise PredecessorLinkError(
+            "successor root enumeration failed: "
+            f"git command failed "
+            f"(returncode={roots_check.returncode}, detail={detail!r})."
+        )
+
+    roots = tuple(
+        line.strip()
+        for line in roots_check.stdout.splitlines()
+        if line.strip()
+    )
+
+    if len(roots) != 1:
+        raise PredecessorLinkError(
+            "successor root contract failed: "
+            "repository must have exactly one root commit; "
+            f"actual_root_count={len(roots)}, roots={list(roots)!r}."
+        )
+
+    verified_root = roots[0]
+    if verified_root != initial_commit:
+        raise PredecessorLinkError(
+            "recorded successor commit is not the root: "
+            f"recorded_initial_commit={initial_commit}, "
+            f"actual_unique_root={verified_root}."
+        )
+
+    return {
+        "repository": str(root),
+        "recorded_initial_commit": initial_commit,
+        "verified_root_commit": verified_root,
+        "root_commit_count": len(roots),
+    }
+
+
+
+def verify_successor_snapshot_physical(
+    record: Mapping[str, Any],
+    *,
+    successor_root: str | Path,
+    predecessor_root: str | Path,
+) -> dict[str, Any]:
+    """Physically verify the frozen successor root and overlap claims."""
+
+    predecessor = _mapping(record["predecessor"], "predecessor")
+    successor = _mapping(
+        record["successor_snapshot"],
+        "successor_snapshot",
+    )
+
+    predecessor_commit = _require_commit(
+        predecessor["analysis_freeze_commit"],
+        "predecessor.analysis_freeze_commit",
+    )
+    successor_commit = _require_commit(
+        successor["initial_commit"],
+        "successor_snapshot.initial_commit",
+    )
+
+    identity = verify_successor_repository_identity(
+        Path(successor_root),
+        successor_commit,
+    )
+    comparison = compare_commit_blob_populations(
+        Path(predecessor_root),
+        predecessor_commit,
+        Path(successor_root),
+        successor_commit,
+    )
+
+    changed_paths = comparison["changed_paths"]
+    if changed_paths:
+        changed_count = comparison["changed_overlapping_file_count"]
+        raise PredecessorLinkError(
+            "changed overlapping files detected in frozen "
+            "successor snapshot comparison: "
+            f"changed_count={changed_count}, "
+            f"changed_paths={changed_paths!r}."
+        )
+
+    checks = (
+        (
+            "overlapping_file_count",
+            "successor snapshot overlap count mismatch",
+        ),
+        (
+            "byte_identical_overlapping_file_count",
+            "successor snapshot identical overlap count mismatch",
+        ),
+        (
+            "changed_overlapping_file_count",
+            "successor snapshot changed overlap count mismatch",
+        ),
+    )
+
+    for field, message in checks:
+        expected = successor[field]
+        actual = comparison[field]
+        if actual != expected:
+            raise PredecessorLinkError(
+                f"{message}: expected={expected}, actual={actual}."
+            )
+
+    evidence = dict(identity)
+    evidence.update(comparison)
+    evidence["predecessor_comparison_commit"] = predecessor_commit
+    evidence["physical_successor_snapshot_status"] = "PASS"
+    return evidence
 
 
 def verify_predecessor_link_physical(

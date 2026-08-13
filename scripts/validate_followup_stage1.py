@@ -16,6 +16,7 @@ from circuit_families.predecessor_link import (
     PredecessorLinkError,
     load_predecessor_link,
     verify_predecessor_link_physical,
+    verify_successor_snapshot_physical,
 )
 
 DEFAULT_MANIFEST = Path("followup/manifests/predecessor_link_v1.json")
@@ -148,6 +149,10 @@ def main() -> int:
 
         if args.predecessor_root is None:
             print(
+                "physical_successor_snapshot_verification: SKIPPED "
+                "(WARN: --predecessor-root not supplied)"
+            )
+            print(
                 "physical_predecessor_verification: SKIPPED "
                 "(WARN: --predecessor-root not supplied)"
             )
@@ -156,11 +161,61 @@ def main() -> int:
             print("overall: PASS_WITH_WARNING")
             return 0
 
+        snapshot_evidence = verify_successor_snapshot_physical(
+            record,
+            successor_root=repository,
+            predecessor_root=args.predecessor_root,
+        )
+        print("physical_successor_snapshot_verification: PASS")
+        print(
+            "verified_successor_root_commit: "
+            + snapshot_evidence["verified_root_commit"]
+        )
+        print(
+            "verified_predecessor_comparison_commit: "
+            + snapshot_evidence["predecessor_comparison_commit"]
+        )
+        print(
+            "successor_snapshot_selected_path_prefixes: "
+            + str(snapshot_evidence["selected_path_prefixes"])
+        )
+        print(
+            "successor_snapshot_predecessor_selected_file_count: "
+            + str(snapshot_evidence["predecessor_selected_file_count"])
+        )
+        print(
+            "successor_snapshot_successor_selected_file_count: "
+            + str(snapshot_evidence["successor_selected_file_count"])
+        )
+        print(
+            "successor_snapshot_overlapping_file_count: "
+            + str(snapshot_evidence["overlapping_file_count"])
+        )
+        print(
+            "successor_snapshot_byte_identical_overlapping_file_count: "
+            + str(
+                snapshot_evidence[
+                    "byte_identical_overlapping_file_count"
+                ]
+            )
+        )
+        print(
+            "successor_snapshot_changed_overlapping_file_count: "
+            + str(snapshot_evidence["changed_overlapping_file_count"])
+        )
+        print(
+            "successor_snapshot_changed_paths: "
+            + str(snapshot_evidence["changed_paths"])
+        )
+
         verify_predecessor_link_physical(
             record,
             predecessor_root=args.predecessor_root,
         )
         print("physical_predecessor_verification: PASS")
+        print("physical_predecessor_config_verification: PASS")
+        print("physical_dataset_verification: PASS")
+        print("physical_teacher_verification: PASS")
         print(f"physical_predecessor_root: {args.predecessor_root.resolve()}")
         print("scientific_computation: NO")
         print("files_written: NO")
