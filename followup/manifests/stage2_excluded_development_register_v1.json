@@ -1,0 +1,77 @@
+{
+  "allowed_dispositions": [
+    "registered_excluded",
+    "regenerated_post_freeze",
+    "superseded_by_post_freeze_regeneration"
+  ],
+  "authority": [
+    {
+      "authority_id": "implementation_master",
+      "git_blob": "10618b3ee5eec80838855a306160b9d4f2023fcb",
+      "precedence": 2,
+      "repository_path": "docs/distillation_followup/distillation_implementation_master.md",
+      "sha256": "2aac7951e85cb26a2d081a368819965cf7b4110145fdf13a83abd802a4ffebd4"
+    },
+    {
+      "authority_id": "protocol",
+      "git_blob": "f378be047e1a2e601b031fb0648e8372ffc5f6f0",
+      "precedence": 3,
+      "repository_path": "docs/distillation_followup/distillation_experimental_protocol_draft.md",
+      "sha256": "92441a8234d58273cca33b8f716c116c60015666628d55459a3843104a6e49be"
+    },
+    {
+      "authority_id": "workflow",
+      "git_blob": "cb28f8904c23b1690e42c8418f9cf3719f71c07a",
+      "precedence": 4,
+      "repository_path": "workflow.md",
+      "sha256": "9c2587b90ee0f278c1ed142da2e84e78617bf5c70956bbb76ec21b39d8e2f1c5"
+    },
+    {
+      "authority_id": "workstream_A",
+      "git_blob": "0e57d60523b2e9351a57eacc4ba5120f2850a2d6",
+      "precedence": 5,
+      "repository_path": "docs/distillation_followup/workstreams/ws_a_protocol_registry.md",
+      "sha256": "a90233c8aae97c67f226363a8d1a04ce8132f201da18b68fe1e2bca7a2b00bbe"
+    },
+    {
+      "authority_id": "predecessor_link",
+      "git_blob": "0a72f8b2bc9c2d3a2ceb2cf2114b5b1182f7c8e9",
+      "precedence": 6,
+      "repository_path": "followup/manifests/predecessor_link_v1.json",
+      "sha256": "e24ce5574c5178a72c24f280c8a70db052842baaf0e433cd183801f0d6f4cb53"
+    }
+  ],
+  "entries": [],
+  "firewall": {
+    "absolute_private_canonical_paths_forbidden": true,
+    "accidental_endpoint_output_action": "register_do_not_promote",
+    "excluded_development_root": "followup/excluded_development/",
+    "pilot_effects_may_select_protocol_values": false,
+    "post_freeze_regeneration_required": true,
+    "predecessor_output_forbidden": true,
+    "primary_analysis_eligible": false,
+    "scientific_selection_eligible": false
+  },
+  "metadata": {
+    "created_from_commit": "9118ecd239753c54fa5c66766e5d80b54d2a6259",
+    "record_type": "stage2_excluded_development_register",
+    "scientific_execution": false,
+    "stage": 2,
+    "status": "firewall_active"
+  },
+  "namespace_version": 1,
+  "required_entry_fields": [
+    "exclusion_id",
+    "artifact_identity",
+    "development_context",
+    "exclusion_reason",
+    "endpoint_values_emitted",
+    "primary_analysis_eligible",
+    "scientific_selection_eligible",
+    "regeneration_required",
+    "regenerate_after",
+    "disposition",
+    "promotion_in_place_permitted"
+  ],
+  "schema_version": 1
+}

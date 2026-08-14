@@ -1,0 +1,265 @@
+{
+  "authority": [
+    {
+      "authority_id": "implementation_master",
+      "git_blob": "10618b3ee5eec80838855a306160b9d4f2023fcb",
+      "precedence": 2,
+      "repository_path": "docs/distillation_followup/distillation_implementation_master.md",
+      "sha256": "2aac7951e85cb26a2d081a368819965cf7b4110145fdf13a83abd802a4ffebd4"
+    },
+    {
+      "authority_id": "protocol",
+      "git_blob": "f378be047e1a2e601b031fb0648e8372ffc5f6f0",
+      "precedence": 3,
+      "repository_path": "docs/distillation_followup/distillation_experimental_protocol_draft.md",
+      "sha256": "92441a8234d58273cca33b8f716c116c60015666628d55459a3843104a6e49be"
+    },
+    {
+      "authority_id": "workflow",
+      "git_blob": "cb28f8904c23b1690e42c8418f9cf3719f71c07a",
+      "precedence": 4,
+      "repository_path": "workflow.md",
+      "sha256": "9c2587b90ee0f278c1ed142da2e84e78617bf5c70956bbb76ec21b39d8e2f1c5"
+    },
+    {
+      "authority_id": "workstream_A",
+      "git_blob": "0e57d60523b2e9351a57eacc4ba5120f2850a2d6",
+      "precedence": 5,
+      "repository_path": "docs/distillation_followup/workstreams/ws_a_protocol_registry.md",
+      "sha256": "a90233c8aae97c67f226363a8d1a04ce8132f201da18b68fe1e2bca7a2b00bbe"
+    },
+    {
+      "authority_id": "predecessor_link",
+      "git_blob": "0a72f8b2bc9c2d3a2ceb2cf2114b5b1182f7c8e9",
+      "precedence": 6,
+      "repository_path": "followup/manifests/predecessor_link_v1.json",
+      "sha256": "e24ce5574c5178a72c24f280c8a70db052842baaf0e433cd183801f0d6f4cb53"
+    }
+  ],
+  "coverage": {
+    "additional_open_choices": [
+      "Definitive production scope"
+    ],
+    "all_decisions_unresolved": true,
+    "protocol_section15_expected_count": 19,
+    "protocol_section15_expected_rows": [
+      "Teacher registry",
+      "Primary phase grid",
+      "Student architecture",
+      "Student replication",
+      "Hard training",
+      "Soft target",
+      "Soft training",
+      "Soft eligibility",
+      "Primary fidelity",
+      "Endpoint 2 size cap",
+      "Endpoint 2 overlap",
+      "Discovery roster",
+      "Method budgets",
+      "Exact evaluation allowance",
+      "Phase contrasts",
+      "Student cell summary",
+      "Missing-cell rule",
+      "Production concurrency",
+      "Analysis outputs"
+    ],
+    "recommended_values_are_nonbinding": true
+  },
+  "decisions": [
+    {
+      "decision_family": "Teacher registry",
+      "decision_id": "UD-001",
+      "dependency": "Stage 2 scientific-skeleton freeze and valid predecessor link.",
+      "forbidden_premature_selection": "Do not select seeds, checkpoint hashes, or phase labels using follow-up student, circuit, or endpoint outcomes.",
+      "lane": "Lane A",
+      "owner": "Alex",
+      "resolution_stage": "Stage 3",
+      "section15_rows": [
+        "Teacher registry"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Exact primary phase grid",
+      "decision_id": "UD-002",
+      "dependency": "Canonical teacher registry and per-seed phase classification.",
+      "forbidden_premature_selection": "Do not choose definitive phase landmarks using follow-up distillation, circuit, or endpoint effects.",
+      "lane": "Lane A",
+      "owner": "Alex",
+      "resolution_stage": "Stage 3",
+      "section15_rows": [
+        "Primary phase grid"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Student architecture and initialization rule",
+      "decision_id": "UD-003",
+      "dependency": "Technical student implementation and benchmarking; reviewed by Alex before freeze.",
+      "forbidden_premature_selection": "Do not choose architecture or initialization from observed phase, condition, circuit, or endpoint effects.",
+      "lane": "Lane B",
+      "owner": "Austin",
+      "resolution_stage": "Stage 11",
+      "section15_rows": [
+        "Student architecture"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Student replication, attempt cap, replacement and minimum eligibility",
+      "decision_id": "UD-004",
+      "dependency": "Technical student-training evidence; joint Stage 11 freeze with Alex.",
+      "forbidden_premature_selection": "Do not tune planned initializations, attempt caps, replacement, or minimum eligible counts to observed scientific effects.",
+      "lane": "Lane B",
+      "owner": "Austin",
+      "resolution_stage": "Stage 11",
+      "section15_rows": [
+        "Student replication"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Hard training configuration",
+      "decision_id": "UD-005",
+      "dependency": "Shared trainer implementation and technical benchmarking.",
+      "forbidden_premature_selection": "Do not tune hard-training loss, optimizer, schedule, stopping rule, or attempt budget to endpoint effects.",
+      "lane": "Lane B",
+      "owner": "Austin",
+      "resolution_stage": "Stage 11",
+      "section15_rows": [
+        "Hard training"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Soft target, loss, temperature, training and eligibility",
+      "decision_id": "UD-006",
+      "dependency": "Soft-student implementation and technical benchmarking.",
+      "forbidden_premature_selection": "Do not choose the final soft target, loss, temperature, training settings, tolerance, or eligibility rule from observed scientific effects.",
+      "lane": "Lane B",
+      "owner": "Austin",
+      "resolution_stage": "Stage 11",
+      "section15_rows": [
+        "Soft target",
+        "Soft training",
+        "Soft eligibility"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Fidelity implementation details, threshold and precision",
+      "decision_id": "UD-007",
+      "dependency": "Centred-logit fidelity implementation and technical calibration.",
+      "forbidden_premature_selection": "Do not select implementation details, threshold, denominator guard, or numerical precision to sharpen phase or student contrasts.",
+      "lane": "Lane C",
+      "owner": "Alex",
+      "resolution_stage": "Stage 12",
+      "section15_rows": [
+        "Primary fidelity"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Endpoint 2 component cap, overlap rule and cutoff",
+      "decision_id": "UD-008",
+      "dependency": "Packing implementation and discovery-method interface validation.",
+      "forbidden_premature_selection": "Do not select component cap, overlap metric, or cutoff from observed multiplicity, phase, or condition effects.",
+      "lane": "Lane C",
+      "owner": "Alex",
+      "resolution_stage": "Stage 12",
+      "section15_rows": [
+        "Endpoint 2 size cap",
+        "Endpoint 2 overlap"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Discovery roster, method versions and native budgets",
+      "decision_id": "UD-009",
+      "dependency": "Discovery adapters and per-method technical benchmarking.",
+      "forbidden_premature_selection": "Do not add, remove, version-select, or budget discovery methods based on scientific outcome direction.",
+      "lane": "Lane C",
+      "owner": "Alex",
+      "resolution_stage": "Stage 12",
+      "section15_rows": [
+        "Discovery roster",
+        "Method budgets"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Common exact-evaluation allowance",
+      "decision_id": "UD-010",
+      "dependency": "Exact-evaluation ledger and discovery interfaces; interface review by Austin.",
+      "forbidden_premature_selection": "Do not tune the common exact-mask-evaluation allowance to rescue or suppress particular scientific cells.",
+      "lane": "Lane C",
+      "owner": "Alex",
+      "resolution_stage": "Stage 12",
+      "section15_rows": [
+        "Exact evaluation allowance"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Primary phase contrasts, cell summary and missing-cell rule",
+      "decision_id": "UD-011",
+      "dependency": "Frozen eligibility semantics and synthetic-fixture analysis implementation; joint review.",
+      "forbidden_premature_selection": "Do not choose contrasts, cell summaries, minimum-cell handling, or unresolved-cell treatment after inspecting definitive scientific effects.",
+      "lane": "Lane D",
+      "owner": "Alex",
+      "resolution_stage": "Stage 13",
+      "section15_rows": [
+        "Phase contrasts",
+        "Student cell summary",
+        "Missing-cell rule"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Required analysis tables, figures and manifests",
+      "decision_id": "UD-012",
+      "dependency": "Frozen analysis contract.",
+      "forbidden_premature_selection": "Do not add, remove, or promote required outputs according to which scientific results appear strongest.",
+      "lane": "Lane D",
+      "owner": "Alex",
+      "resolution_stage": "Stage 13",
+      "section15_rows": [
+        "Analysis outputs"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Production concurrency, isolation and merge rule",
+      "decision_id": "UD-013",
+      "dependency": "Compute projection and orchestration implementation.",
+      "forbidden_premature_selection": "Do not let worker count, threading, isolation, or merge topology change scientific estimands, eligibility, or result inclusion.",
+      "lane": "Lane D",
+      "owner": "Austin",
+      "resolution_stage": "Stage 14",
+      "section15_rows": [
+        "Production concurrency"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "decision_family": "Definitive production scope",
+      "decision_id": "UD-014",
+      "dependency": "Compute projection after Stages 11-13 freezes.",
+      "forbidden_premature_selection": "Do not shrink or expand definitive production scope according to observed scientific outcomes.",
+      "lane": "Joint",
+      "owner": "Joint",
+      "resolution_stage": "Stage 14 / Barrier 3",
+      "section15_rows": [],
+      "status": "unresolved"
+    }
+  ],
+  "metadata": {
+    "created_from_commit": "9118ecd239753c54fa5c66766e5d80b54d2a6259",
+    "record_type": "stage2_unresolved_decision_register",
+    "scientific_execution": false,
+    "stage": 2,
+    "status": "open_decisions_registered"
+  },
+  "namespace_version": 1,
+  "schema_version": 1
+}
