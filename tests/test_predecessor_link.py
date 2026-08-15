@@ -527,9 +527,7 @@ def test_valid_non_root_successor_commit_is_rejected(
         verify_successor_snapshot_physical(
             record,
             successor_root=ROOT,
-            predecessor_root=Path(
-                "/Users/alexkolesnikov/Projects/circuit-families"
-            ),
+            predecessor_root=ROOT,
         )
 
 def test_nonexistent_successor_commit_is_rejected(
@@ -565,9 +563,7 @@ def test_nonexistent_successor_commit_is_rejected(
         verify_successor_snapshot_physical(
             record,
             successor_root=ROOT,
-            predecessor_root=Path(
-                "/Users/alexkolesnikov/Projects/circuit-families"
-            ),
+            predecessor_root=ROOT,
         )
 
 @pytest.mark.parametrize(
@@ -591,14 +587,81 @@ def test_nonexistent_successor_commit_is_rejected(
     ],
 )
 def test_false_successor_snapshot_count_claim_is_rejected(
-    canonical_record: dict,
+    tmp_path: Path,
     field: str,
     mutated_value: int,
     message: str,
 ) -> None:
     """Each frozen overlap-count claim must match physical Git evidence."""
 
-    record = deepcopy(canonical_record)
+    import subprocess
+
+    predecessor = tmp_path / "predecessor"
+    successor = tmp_path / "successor"
+
+    def initialize(repository: Path) -> str:
+        repository.mkdir()
+        subprocess.run(
+            ["git", "init", "-q"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            [
+                "git",
+                "config",
+                "user.email",
+                "fixture@example.invalid",
+            ],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "config", "user.name", "Fixture"],
+            cwd=repository,
+            check=True,
+        )
+
+        source = repository / "src"
+        source.mkdir()
+        (source / "shared.txt").write_text(
+            "frozen\n",
+            encoding="utf-8",
+        )
+
+        subprocess.run(
+            ["git", "add", "src/shared.txt"],
+            cwd=repository,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "commit", "-q", "-m", "root"],
+            cwd=repository,
+            check=True,
+        )
+
+        return subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repository,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+
+    predecessor_commit = initialize(predecessor)
+    successor_commit = initialize(successor)
+
+    record = {
+        "predecessor": {
+            "analysis_freeze_commit": predecessor_commit,
+        },
+        "successor_snapshot": {
+            "initial_commit": successor_commit,
+            "overlapping_file_count": 1,
+            "byte_identical_overlapping_file_count": 1,
+            "changed_overlapping_file_count": 0,
+        },
+    }
     record["successor_snapshot"][field] = mutated_value
 
     with pytest.raises(
@@ -607,10 +670,8 @@ def test_false_successor_snapshot_count_claim_is_rejected(
     ):
         verify_successor_snapshot_physical(
             record,
-            successor_root=ROOT,
-            predecessor_root=Path(
-                "/Users/alexkolesnikov/Projects/circuit-families"
-            ),
+            successor_root=successor,
+            predecessor_root=predecessor,
         )
 
 def test_changed_overlapping_content_is_rejected_and_reported(
