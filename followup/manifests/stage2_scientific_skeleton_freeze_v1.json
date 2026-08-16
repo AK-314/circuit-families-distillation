@@ -1,0 +1,279 @@
+{
+  "authority": [
+    {
+      "authority_id": "implementation_master",
+      "git_blob": "10618b3ee5eec80838855a306160b9d4f2023fcb",
+      "precedence": 2,
+      "repository_path": "docs/distillation_followup/distillation_implementation_master.md",
+      "sha256": "2aac7951e85cb26a2d081a368819965cf7b4110145fdf13a83abd802a4ffebd4"
+    },
+    {
+      "authority_id": "protocol",
+      "git_blob": "f378be047e1a2e601b031fb0648e8372ffc5f6f0",
+      "precedence": 3,
+      "repository_path": "docs/distillation_followup/distillation_experimental_protocol_draft.md",
+      "sha256": "92441a8234d58273cca33b8f716c116c60015666628d55459a3843104a6e49be"
+    },
+    {
+      "authority_id": "workflow",
+      "git_blob": "cb28f8904c23b1690e42c8418f9cf3719f71c07a",
+      "precedence": 4,
+      "repository_path": "workflow.md",
+      "sha256": "9c2587b90ee0f278c1ed142da2e84e78617bf5c70956bbb76ec21b39d8e2f1c5"
+    },
+    {
+      "authority_id": "workstream_A",
+      "git_blob": "0e57d60523b2e9351a57eacc4ba5120f2850a2d6",
+      "precedence": 5,
+      "repository_path": "docs/distillation_followup/workstreams/ws_a_protocol_registry.md",
+      "sha256": "a90233c8aae97c67f226363a8d1a04ce8132f201da18b68fe1e2bca7a2b00bbe"
+    },
+    {
+      "authority_id": "predecessor_link",
+      "git_blob": "0a72f8b2bc9c2d3a2ceb2cf2114b5b1182f7c8e9",
+      "precedence": 6,
+      "repository_path": "followup/manifests/predecessor_link_v1.json",
+      "sha256": "e24ce5574c5178a72c24f280c8a70db052842baaf0e433cd183801f0d6f4cb53"
+    }
+  ],
+  "claims_boundary": {
+    "endpoint_outputs_present": false,
+    "full_numeric_protocol_frozen": false,
+    "production_ready": false,
+    "prohibited_claims": [
+      "Endpoint 1 is the true or globally minimal sufficient circuit size.",
+      "Endpoint 2 is the true number of distinct circuits.",
+      "Raw packing counts across discovery methods are perfectly resource-matched.",
+      "Student initializations are independent population-level replicates.",
+      "Hard-target and soft-target students may be pooled.",
+      "Fourier interchange establishes a unique algorithm or mechanism.",
+      "Stage 2 makes the full protocol numerically final."
+    ],
+    "scientific_results_present": false,
+    "stage3_authorized": false
+  },
+  "firewall": {
+    "repository_path": "docs/distillation_followup/stage2_method_development_firewall.md",
+    "status": "registered"
+  },
+  "freeze_scope": {
+    "is_partial_freeze": true,
+    "numeric_protocol_fully_frozen": false,
+    "stage3_started": false,
+    "teacher_registry_frozen": false
+  },
+  "frozen_items": [
+    {
+      "authority_refs": [
+        "protocol"
+      ],
+      "claim_limit": "Freezes the scientific question only; it does not freeze later numeric, roster, or production choices.",
+      "item_id": "FS-001",
+      "name": "Exact research question",
+      "normative_statement": "> Under a fixed component basis, intervention and evaluation protocol, does the grokking-associated change in sparse-circuit recoverability follow the teacher function, vary across distilled realizations of that function, or arise from the distillation and discovery procedures themselves?",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "No lower level may be treated as the population-level unit.",
+      "item_id": "FS-002",
+      "name": "Experimental hierarchy",
+      "normative_statement": "The hierarchy is teacher seed -> phase within teacher -> distillation condition -> student initialization -> discovery method -> thresholds/circuits, with phase repeated within teacher.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Student initializations are not independent population replicates.",
+      "item_id": "FS-003",
+      "name": "Population-level unit",
+      "normative_statement": "Teacher seed is the population-level unit.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "protocol"
+      ],
+      "claim_limit": "It measures conditional realization variation rather than population-level replication.",
+      "item_id": "FS-004",
+      "name": "Student-initialization interpretation",
+      "normative_statement": "Student initialization is realization variation conditional on a teacher.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "They are not independent population units.",
+      "item_id": "FS-005",
+      "name": "Repeated-measurement layers",
+      "normative_statement": "Methods, thresholds, and circuits are repeated measurements within the higher-level hierarchy.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Pooling hard and soft students into one estimand is prohibited.",
+      "item_id": "FS-006",
+      "name": "Hard and soft estimands",
+      "normative_statement": "Hard-target and soft-target students are separate estimands and are never pooled.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Teacher circuit behavior may not be inferred only through distilled students.",
+      "item_id": "FS-007",
+      "name": "Direct teacher evaluation",
+      "normative_statement": "Every selected teacher is evaluated directly under the identical circuit protocol.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Any hard-target student failing even one teacher argmax decision is ineligible.",
+      "item_id": "FS-008",
+      "name": "Hard-target eligibility",
+      "normative_statement": "Hard-target eligibility requires 100% reproduction of teacher argmax decisions over all 12,769 inputs.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "It is not defined relative to the teacher's dense outputs.",
+      "item_id": "FS-009",
+      "name": "Student circuit-fidelity reference",
+      "normative_statement": "Student circuit fidelity is relative to the student's own dense outputs.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Implementation details, threshold, and precision remain unresolved until Stage 12.",
+      "item_id": "FS-010",
+      "name": "Proposed primary fidelity family",
+      "normative_statement": "Centred-logit predictive fidelity is the proposed primary fidelity family, including per-input additive-logit gauge removal.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol",
+        "workflow"
+      ],
+      "claim_limit": "The fallback keeps Endpoint 1 defined when sparse recovery fails.",
+      "item_id": "FS-011",
+      "name": "Endpoint 1 definition",
+      "normative_statement": "Endpoint 1 is the smallest recovered qualifying component proportion under a specified procedure, with the intact mask at proportion 1.0 as fallback.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol",
+        "workflow"
+      ],
+      "claim_limit": "It must not be described as the true or globally minimal sufficient circuit size.",
+      "item_id": "FS-012",
+      "name": "Endpoint 1 interpretation limit",
+      "normative_statement": "Endpoint 1 is procedure-relative and only an upper bound on the unknown globally minimal sufficient proportion.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol",
+        "workflow"
+      ],
+      "claim_limit": "It must not be described as the true number of distinct circuits or an exhaustive circuit count.",
+      "item_id": "FS-013",
+      "name": "Endpoint 2 definition and interpretation",
+      "normative_statement": "Endpoint 2 is a procedure-relative packing lower bound under a specified procedure, including zero when no qualifying circuit is recovered.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol",
+        "workflow"
+      ],
+      "claim_limit": "Raw packing counts across methods are not described as perfectly resource-matched.",
+      "item_id": "FS-014",
+      "name": "Method-budget interpretation",
+      "normative_statement": "Discovery methods receive method-specific native budgets plus a common final exact-mask-evaluation allowance, and primary phase/student comparisons are interpreted within method.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master"
+      ],
+      "claim_limit": "The protocol does not prospectively predict which category will occur.",
+      "item_id": "FS-015",
+      "name": "Outcome-category status",
+      "normative_statement": "The six stated outcome categories are interpretations, not predictions.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "It is not a primary endpoint and does not establish uniqueness.",
+      "item_id": "FS-016",
+      "name": "Fourier interchange scope",
+      "normative_statement": "Fourier interchange is a gated secondary experiment with all five required controls.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "They cannot silently become required primary analyses.",
+      "item_id": "FS-017",
+      "name": "Gated extensions",
+      "normative_statement": "Entropy estimation, cross-task breadth, general theory, and conditional atlases are gated extensions outside the core critical path.",
+      "status": "frozen_stage2"
+    },
+    {
+      "authority_refs": [
+        "implementation_master",
+        "protocol"
+      ],
+      "claim_limit": "Such output may not select phase checkpoints, thresholds, component caps, overlap cutoffs, student counts, methods, budgets, or other scientific protocol values.",
+      "item_id": "FS-018",
+      "name": "Method-development firewall",
+      "normative_statement": "Pre-freeze endpoint-producing method-development output must be excluded, registered, and regenerated after freeze before definitive use.",
+      "status": "frozen_stage2"
+    }
+  ],
+  "metadata": {
+    "created_from_commit": "9118ecd239753c54fa5c66766e5d80b54d2a6259",
+    "record_type": "stage2_scientific_skeleton_freeze",
+    "scientific_execution": false,
+    "stage": 2,
+    "status": "partial_scientific_skeleton_frozen"
+  },
+  "namespace_version": 1,
+  "schema_version": 1,
+  "unresolved_register": {
+    "repository_path": "followup/configs/stage2_unresolved_decisions_v1.json",
+    "status": "registered"
+  }
+}

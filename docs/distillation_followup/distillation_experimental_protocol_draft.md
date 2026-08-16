@@ -2,7 +2,7 @@
 
 ## Follow-up experimental protocol — draft for prospective freeze
 
-**Protocol status:** Draft; not yet frozen
+**Protocol status:** Stage 2 scientific skeleton frozen; full numeric, roster, analysis, and production protocol remains draft and prospectively unresolved
 **Relationship to predecessor:** Prospective follow-up to `experimental_protocol.md`
 **Results already visible:** The predecessor study's training and circuit-family results
 **Results that must not be generated before this protocol is frozen:** Distillation outcomes used for scientific comparison, centred-logit circuit endpoints, and Fourier-interchange outcomes
@@ -13,7 +13,7 @@ The predecessor protocol and its amendment history remain immutable. This docume
 
 This is not globally pre-results: the original circuit-family results are known. It is prospective only with respect to the new distillation experiment and the new primary endpoints. Existing results must be disclosed as prior evidence when the follow-up is reported.
 
-Before scientific execution, this draft must be converted into a frozen version with every item in the freeze register resolved. Any method-development output produced before freeze must be registered, excluded from the primary analysis, and regenerated after freeze.
+The Stage 2 scientific skeleton is frozen, but before endpoint-producing scientific execution the remaining freeze-register choices must be resolved prospectively and the full protocol frozen. Any method-development output produced before the relevant freeze must be registered, excluded from the primary analysis, and regenerated after freeze.
 
 ## 2. Frozen research question
 
@@ -217,7 +217,7 @@ The pilot may not be used to select phase landmarks, endpoint thresholds, sparsi
 
 ## 15. Freeze register
 
-The protocol cannot move from draft to frozen until these are resolved:
+The Stage 2 skeleton freeze does not resolve the register below. The full protocol cannot move from draft to frozen until these are resolved:
 
 | Decision | Required frozen value |
 |---|---|
