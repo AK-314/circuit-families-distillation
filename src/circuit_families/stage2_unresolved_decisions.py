@@ -32,6 +32,7 @@ DECISION_KEYS = {
     "decision_family",
     "status",
     "section15_rows",
+    "additional_freeze_items",
     "owner",
     "lane",
     "resolution_stage",
@@ -161,6 +162,80 @@ EXPECTED_DECISIONS = {
         "stage": "Stage 14 / Barrier 3",
     },
 }
+
+EXPECTED_ADDITIONAL_FREEZE_ITEMS = {
+    "UD-007": [
+        {
+            "item": "Fidelity sensitivity grid",
+            "owner": "Alex",
+            "resolution_stage": "Stage 12",
+            "status": "unresolved",
+        },
+    ],
+    "UD-008": [
+        {
+            "item": "Component-cap and overlap sensitivity settings",
+            "owner": "Alex",
+            "resolution_stage": "Stage 12",
+            "status": "unresolved",
+        },
+        {
+            "item": "Packing subset algorithm",
+            "owner": "Alex",
+            "resolution_stage": "Stage 12",
+            "status": "unresolved",
+        },
+    ],
+    "UD-009": [
+        {
+            "item": "Restart and termination rules",
+            "owner": "Alex",
+            "resolution_stage": "Stage 12",
+            "status": "unresolved",
+        },
+    ],
+    "UD-011": [
+        {
+            "item": "Direct teacher–student contrast",
+            "owner": "Alex",
+            "resolution_stage": "Stage 13",
+            "status": "unresolved",
+        },
+        {
+            "item": "Realization-dispersion summaries",
+            "owner": "Alex",
+            "resolution_stage": "Stage 13",
+            "status": "unresolved",
+        },
+    ],
+    "UD-012": [
+        {
+            "item": "Student-attempt failure summaries",
+            "owner": "Alex",
+            "resolution_stage": "Stage 13",
+            "status": "unresolved",
+        },
+        {
+            "item": "Sensitivity interpretation",
+            "owner": "Alex",
+            "resolution_stage": "Stage 13",
+            "status": "unresolved",
+        },
+        {
+            "item": "Outcome-category resolution rules",
+            "owner": "Alex",
+            "resolution_stage": "Stage 13",
+            "status": "unresolved",
+        },
+    ],
+}
+
+IMPLEMENTATION_MASTER_OPEN_ITEMS = {
+    entry["item"]
+    for entries in EXPECTED_ADDITIONAL_FREEZE_ITEMS.values()
+    for entry in entries
+}
+
 
 SETTLED_STAGE2_CONCEPTS = {
     "Exact research question",
@@ -319,6 +394,15 @@ def validate_unresolved_decisions(record: dict[str, Any]) -> None:
                 f"{decision_id} Section 15 coverage mismatch"
             )
 
+        expected_additional = EXPECTED_ADDITIONAL_FREEZE_ITEMS.get(
+            decision_id,
+            [],
+        )
+        if decision["additional_freeze_items"] != expected_additional:
+            raise UnresolvedDecisionError(
+                f"{decision_id} additional freeze-item coverage mismatch"
+            )
+
         if decision["owner"] != expected["owner"]:
             raise UnresolvedDecisionError(
                 f"{decision_id} owner mismatch; expected {expected['owner']}"
@@ -346,6 +430,66 @@ def validate_unresolved_decisions(record: dict[str, Any]) -> None:
             raise UnresolvedDecisionError(
                 f"{decision_id} forbidden_premature_selection must be non-empty"
             )
+
+    additional_seen: dict[str, list[str]] = {}
+    for decision_id, decision in by_id.items():
+        for entry in decision["additional_freeze_items"]:
+            if not isinstance(entry, dict):
+                raise UnresolvedDecisionError(
+                    f"{decision_id} additional freeze item must be an object"
+                )
+            expected_entry_keys = {
+                "item",
+                "owner",
+                "resolution_stage",
+                "status",
+            }
+            if set(entry) != expected_entry_keys:
+                raise UnresolvedDecisionError(
+                    f"{decision_id} additional freeze-item fields mismatch"
+                )
+            item = entry["item"]
+            if item not in IMPLEMENTATION_MASTER_OPEN_ITEMS:
+                raise UnresolvedDecisionError(
+                    f"{decision_id} contains unknown implementation-master "
+                    f"open item: {item!r}"
+                )
+            if entry["status"] != "unresolved":
+                raise UnresolvedDecisionError(
+                    f"{decision_id} additional freeze item {item!r} "
+                    "must remain unresolved"
+                )
+            if entry["owner"] != decision["owner"]:
+                raise UnresolvedDecisionError(
+                    f"{decision_id} additional freeze item {item!r} "
+                    "owner does not match accountable decision owner"
+                )
+            if entry["resolution_stage"] != decision["resolution_stage"]:
+                raise UnresolvedDecisionError(
+                    f"{decision_id} additional freeze item {item!r} "
+                    "resolution stage does not match governing decision stage"
+                )
+            additional_seen.setdefault(item, []).append(decision_id)
+
+    missing_additional = sorted(
+        IMPLEMENTATION_MASTER_OPEN_ITEMS - set(additional_seen)
+    )
+    duplicate_additional = {
+        item: decision_ids
+        for item, decision_ids in additional_seen.items()
+        if len(decision_ids) != 1
+    }
+
+    if missing_additional:
+        raise UnresolvedDecisionError(
+            "missing implementation-master open-item coverage: "
+            f"{missing_additional}"
+        )
+    if duplicate_additional:
+        raise UnresolvedDecisionError(
+            "duplicate implementation-master open-item coverage: "
+            f"{duplicate_additional}"
+        )
 
     coverage = record["coverage"]
     expected_coverage_keys = {

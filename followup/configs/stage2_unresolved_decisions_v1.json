@@ -77,6 +77,7 @@
       "section15_rows": [
         "Teacher registry"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -90,6 +91,7 @@
       "section15_rows": [
         "Primary phase grid"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -103,6 +105,7 @@
       "section15_rows": [
         "Student architecture"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -116,6 +119,7 @@
       "section15_rows": [
         "Student replication"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -129,6 +133,7 @@
       "section15_rows": [
         "Hard training"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -144,6 +149,7 @@
         "Soft training",
         "Soft eligibility"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -156,6 +162,14 @@
       "resolution_stage": "Stage 12",
       "section15_rows": [
         "Primary fidelity"
+      ],
+      "additional_freeze_items": [
+        {
+          "item": "Fidelity sensitivity grid",
+          "owner": "Alex",
+          "resolution_stage": "Stage 12",
+          "status": "unresolved"
+        }
       ],
       "status": "unresolved"
     },
@@ -171,6 +185,20 @@
         "Endpoint 2 size cap",
         "Endpoint 2 overlap"
       ],
+      "additional_freeze_items": [
+        {
+          "item": "Component-cap and overlap sensitivity settings",
+          "owner": "Alex",
+          "resolution_stage": "Stage 12",
+          "status": "unresolved"
+        },
+        {
+          "item": "Packing subset algorithm",
+          "owner": "Alex",
+          "resolution_stage": "Stage 12",
+          "status": "unresolved"
+        }
+      ],
       "status": "unresolved"
     },
     {
@@ -185,6 +213,14 @@
         "Discovery roster",
         "Method budgets"
       ],
+      "additional_freeze_items": [
+        {
+          "item": "Restart and termination rules",
+          "owner": "Alex",
+          "resolution_stage": "Stage 12",
+          "status": "unresolved"
+        }
+      ],
       "status": "unresolved"
     },
     {
@@ -198,6 +234,7 @@
       "section15_rows": [
         "Exact evaluation allowance"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -213,6 +250,20 @@
         "Student cell summary",
         "Missing-cell rule"
       ],
+      "additional_freeze_items": [
+        {
+          "item": "Direct teacher–student contrast",
+          "owner": "Alex",
+          "resolution_stage": "Stage 13",
+          "status": "unresolved"
+        },
+        {
+          "item": "Realization-dispersion summaries",
+          "owner": "Alex",
+          "resolution_stage": "Stage 13",
+          "status": "unresolved"
+        }
+      ],
       "status": "unresolved"
     },
     {
@@ -225,6 +276,26 @@
       "resolution_stage": "Stage 13",
       "section15_rows": [
         "Analysis outputs"
+      ],
+      "additional_freeze_items": [
+        {
+          "item": "Student-attempt failure summaries",
+          "owner": "Alex",
+          "resolution_stage": "Stage 13",
+          "status": "unresolved"
+        },
+        {
+          "item": "Sensitivity interpretation",
+          "owner": "Alex",
+          "resolution_stage": "Stage 13",
+          "status": "unresolved"
+        },
+        {
+          "item": "Outcome-category resolution rules",
+          "owner": "Alex",
+          "resolution_stage": "Stage 13",
+          "status": "unresolved"
+        }
       ],
       "status": "unresolved"
     },
@@ -239,6 +310,7 @@
       "section15_rows": [
         "Production concurrency"
       ],
+      "additional_freeze_items": [],
       "status": "unresolved"
     },
     {
@@ -250,6 +322,7 @@
       "owner": "Joint",
       "resolution_stage": "Stage 14 / Barrier 3",
       "section15_rows": [],
+      "additional_freeze_items": [],
       "status": "unresolved"
     }
   ],

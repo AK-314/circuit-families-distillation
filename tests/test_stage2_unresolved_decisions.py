@@ -12,7 +12,6 @@ from circuit_families.stage2_unresolved_decisions import (
     validate_unresolved_decisions,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "followup/configs/stage2_unresolved_decisions_v1.json"
 
@@ -169,5 +168,150 @@ def test_recommended_values_must_remain_nonbinding() -> None:
     with pytest.raises(
         UnresolvedDecisionError,
         match="recommended_values_are_nonbinding must remain true",
+    ):
+        validate_unresolved_decisions(record)
+
+LATER_FREEZE_ASSIGNMENTS = [
+    ("Fidelity sensitivity grid", "UD-007", "Alex", "Stage 12"),
+    (
+        "Component-cap and overlap sensitivity settings",
+        "UD-008",
+        "Alex",
+        "Stage 12",
+    ),
+    ("Packing subset algorithm", "UD-008", "Alex", "Stage 12"),
+    ("Restart and termination rules", "UD-009", "Alex", "Stage 12"),
+    ("Direct teacher–student contrast", "UD-011", "Alex", "Stage 13"),
+    ("Realization-dispersion summaries", "UD-011", "Alex", "Stage 13"),
+    ("Student-attempt failure summaries", "UD-012", "Alex", "Stage 13"),
+    ("Sensitivity interpretation", "UD-012", "Alex", "Stage 13"),
+    ("Outcome-category resolution rules", "UD-012", "Alex", "Stage 13"),
+]
+
+
+def additional_item(record: dict, decision_id: str, item: str) -> dict:
+    assigned = decision(record, decision_id)
+    return next(
+        entry
+        for entry in assigned["additional_freeze_items"]
+        if entry["item"] == item
+    )
+
+
+@pytest.mark.parametrize(
+    ("item", "decision_id", "owner", "resolution_stage"),
+    LATER_FREEZE_ASSIGNMENTS,
+)
+def test_each_later_freeze_item_has_explicit_owner_and_stage(
+    item: str,
+    decision_id: str,
+    owner: str,
+    resolution_stage: str,
+) -> None:
+    record = load_unresolved_decisions(REGISTER)
+    entry = additional_item(record, decision_id, item)
+
+    assert entry["owner"] == owner
+    assert entry["resolution_stage"] == resolution_stage
+    assert entry["status"] == "unresolved"
+
+
+@pytest.mark.parametrize(
+    ("item", "decision_id", "_owner", "_resolution_stage"),
+    LATER_FREEZE_ASSIGNMENTS,
+)
+def test_removing_any_later_freeze_item_is_rejected(
+    item: str,
+    decision_id: str,
+    _owner: str,
+    _resolution_stage: str,
+) -> None:
+    record = canonical()
+    assigned = decision(record, decision_id)
+    assigned["additional_freeze_items"] = [
+        entry
+        for entry in assigned["additional_freeze_items"]
+        if entry["item"] != item
+    ]
+
+    with pytest.raises(
+        UnresolvedDecisionError,
+        match="additional freeze-item coverage mismatch",
+    ):
+        validate_unresolved_decisions(record)
+
+
+@pytest.mark.parametrize(
+    ("item", "decision_id", "_owner", "_resolution_stage"),
+    LATER_FREEZE_ASSIGNMENTS,
+)
+def test_moving_any_later_freeze_item_to_wrong_family_is_rejected(
+    item: str,
+    decision_id: str,
+    _owner: str,
+    _resolution_stage: str,
+) -> None:
+    record = canonical()
+    source = decision(record, decision_id)
+    target_id = "UD-012" if decision_id != "UD-012" else "UD-011"
+    target = decision(record, target_id)
+
+    entry = next(
+        entry
+        for entry in source["additional_freeze_items"]
+        if entry["item"] == item
+    )
+    source["additional_freeze_items"].remove(entry)
+    target["additional_freeze_items"].append(entry)
+
+    with pytest.raises(
+        UnresolvedDecisionError,
+        match="additional freeze-item coverage mismatch",
+    ):
+        validate_unresolved_decisions(record)
+
+
+@pytest.mark.parametrize(
+    ("item", "decision_id", "_owner", "_resolution_stage"),
+    LATER_FREEZE_ASSIGNMENTS,
+)
+def test_misassigning_any_later_freeze_item_owner_is_rejected(
+    item: str,
+    decision_id: str,
+    _owner: str,
+    _resolution_stage: str,
+) -> None:
+    record = canonical()
+    entry = additional_item(record, decision_id, item)
+    entry["owner"] = "Austin"
+
+    with pytest.raises(
+        UnresolvedDecisionError,
+        match="additional freeze-item coverage mismatch",
+    ):
+        validate_unresolved_decisions(record)
+
+
+@pytest.mark.parametrize(
+    ("item", "decision_id", "_owner", "_resolution_stage"),
+    LATER_FREEZE_ASSIGNMENTS,
+)
+def test_misassigning_any_later_freeze_item_stage_is_rejected(
+    item: str,
+    decision_id: str,
+    _owner: str,
+    _resolution_stage: str,
+) -> None:
+    record = canonical()
+    entry = additional_item(record, decision_id, item)
+    entry["resolution_stage"] = (
+        "Stage 13"
+        if entry["resolution_stage"] == "Stage 12"
+        else "Stage 12"
+    )
+
+    with pytest.raises(
+        UnresolvedDecisionError,
+        match="additional freeze-item coverage mismatch",
     ):
         validate_unresolved_decisions(record)
