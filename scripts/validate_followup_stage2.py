@@ -2,12 +2,10 @@
 from __future__ import annotations
 
 import hashlib
-import json
 import re
 import subprocess
 import sys
 from pathlib import Path
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SRC = REPO_ROOT / "src"
@@ -24,7 +22,6 @@ from circuit_families.stage2_scientific_skeleton import (  # noqa: E402
 from circuit_families.stage2_unresolved_decisions import (  # noqa: E402
     load_unresolved_decisions,
 )
-
 
 EXPECTED_BASE_COMMIT = "9118ecd239753c54fa5c66766e5d80b54d2a6259"
 

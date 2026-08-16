@@ -19,7 +19,6 @@ from circuit_families.stage2_unresolved_decisions import (
     validate_unresolved_decisions,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SKELETON = ROOT / "followup/manifests/stage2_scientific_skeleton_freeze_v1.json"
 UNRESOLVED = ROOT / "followup/configs/stage2_unresolved_decisions_v1.json"
