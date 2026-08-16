@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import json
 from pathlib import Path
 
@@ -11,7 +10,6 @@ from circuit_families.stage2_scientific_skeleton import (
     load_scientific_skeleton,
     validate_scientific_skeleton,
 )
-
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "followup/manifests/stage2_scientific_skeleton_freeze_v1.json"
@@ -123,4 +121,65 @@ def test_partial_freeze_cannot_be_promoted() -> None:
     record = canonical()
     record["freeze_scope"]["numeric_protocol_fully_frozen"] = True
     with pytest.raises(ScientificSkeletonError, match="partial-freeze boundary"):
+        validate_scientific_skeleton(record)
+
+ALL_FROZEN_ITEM_IDS = [
+    f"FS-{index:03d}"
+    for index in range(1, 19)
+]
+
+
+@pytest.mark.parametrize("item_id", ALL_FROZEN_ITEM_IDS)
+def test_every_frozen_normative_statement_is_immutable(
+    item_id: str,
+) -> None:
+    record = mutate(
+        item_id,
+        "normative_statement",
+        "CORRUPTED SCIENTIFIC STATEMENT",
+    )
+
+    with pytest.raises(
+        ScientificSkeletonError,
+        match=rf"{item_id} lost required frozen meaning",
+    ):
+        validate_scientific_skeleton(record)
+
+
+@pytest.mark.parametrize("item_id", ALL_FROZEN_ITEM_IDS)
+def test_every_frozen_claim_limit_is_immutable(
+    item_id: str,
+) -> None:
+    record = mutate(
+        item_id,
+        "claim_limit",
+        "CORRUPTED CLAIM BOUNDARY",
+    )
+
+    with pytest.raises(
+        ScientificSkeletonError,
+        match=rf"{item_id} lost required claim boundary",
+    ):
+        validate_scientific_skeleton(record)
+
+
+def test_prohibited_claim_roster_is_immutable() -> None:
+    record = canonical()
+    record["claims_boundary"]["prohibited_claims"] = []
+
+    with pytest.raises(
+        ScientificSkeletonError,
+        match="claims_boundary violates frozen Stage 2 claim contract",
+    ):
+        validate_scientific_skeleton(record)
+
+
+def test_production_ready_boundary_is_immutable() -> None:
+    record = canonical()
+    record["claims_boundary"]["production_ready"] = True
+
+    with pytest.raises(
+        ScientificSkeletonError,
+        match="claims_boundary violates frozen Stage 2 claim contract",
+    ):
         validate_scientific_skeleton(record)

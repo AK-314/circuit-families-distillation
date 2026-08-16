@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import json
 from pathlib import Path
 
@@ -13,7 +12,6 @@ from circuit_families.stage2_method_development_firewall import (
     require_registered_development_output,
     validate_firewall_register,
 )
-
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = (
@@ -186,5 +184,19 @@ def test_promotion_in_place_is_rejected() -> None:
     with pytest.raises(
         MethodDevelopmentFirewallError,
         match="cannot be promoted in place",
+    ):
+        validate_firewall_register(record)
+
+def test_parent_traversal_artifact_identity_is_rejected() -> None:
+    record = canonical()
+    entry = valid_entry()
+    entry["artifact_identity"] = (
+        "followup/excluded_development/../pilot_endpoint.json"
+    )
+    record["entries"] = [entry]
+
+    with pytest.raises(
+        MethodDevelopmentFirewallError,
+        match="parent traversal",
     ):
         validate_firewall_register(record)
