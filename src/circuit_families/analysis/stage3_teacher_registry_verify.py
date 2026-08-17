@@ -10,9 +10,10 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-from pathlib import Path, PurePosixPath
 import re
-from typing import Any, Mapping, Sequence
+from collections.abc import Mapping, Sequence
+from pathlib import Path, PurePosixPath
+from typing import Any
 
 from circuit_families.analysis.stage3_teacher_registry import (
     CANONICAL_PHASES,
@@ -27,7 +28,6 @@ from circuit_families.analysis.stage3_teacher_selection import (
     TeacherCandidates,
     extract_all_teacher_candidates,
 )
-
 
 _HEX40 = re.compile(r"^[0-9a-f]{40}$")
 _HEX64 = re.compile(r"^[0-9a-f]{64}$")

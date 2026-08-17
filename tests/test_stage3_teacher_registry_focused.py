@@ -68,7 +68,7 @@ def synthetic_stage3(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
         for step in steps:
             checkpoint = checkpoint_dir / f"step_{step:08d}.pt"
             checkpoint.write_bytes(
-                f"seed={teacher.seed};step={step}".encode("utf-8")
+                f"seed={teacher.seed};step={step}".encode()
             )
             rows.append(
                 {
@@ -249,7 +249,6 @@ def test_registry_builder_rejects_absolute_checkpoint_path(
     synthetic_stage3,
 ) -> None:
     candidate = synthetic_stage3["candidates"][1]
-    provenance = synthetic_stage3["provenance"][1]
 
     broken = copy.deepcopy(candidate.transition_50.record)
     assert broken is not None

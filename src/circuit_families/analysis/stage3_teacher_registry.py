@@ -8,19 +8,19 @@ scientific endpoint computation.
 from __future__ import annotations
 
 import csv
-from dataclasses import dataclass
 import io
 import json
 import math
-from pathlib import PurePosixPath
 import re
-from typing import Any, Mapping, Sequence
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import PurePosixPath
+from typing import Any
 
 from circuit_families.analysis.stage3_teacher_selection import (
     PhaseCandidate,
     TeacherCandidates,
 )
-
 
 REGISTRY_SCHEMA_VERSION = "1"
 RECORD_SCHEMA_VERSION = "1"

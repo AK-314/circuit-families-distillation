@@ -7,10 +7,11 @@ output is written here.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
+from collections.abc import Mapping
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 from circuit_families.analysis.phase_detection import (
     find_pre_grokking_checkpoint,
@@ -24,7 +25,6 @@ from circuit_families.analysis.stage3_teacher_inputs import (
     load_stage1_canonical_roster,
     validate_teacher_input,
 )
-
 
 PHASE_PRE = "pre-grokking"
 PHASE_TRANSITION = "50%"

@@ -6,14 +6,14 @@ run models, inspect circuit results, or write scientific outputs.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
-from pathlib import Path, PurePosixPath
 import re
-from typing import Any, Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
+from pathlib import Path, PurePosixPath
+from typing import Any
 
 from circuit_families.training.checkpoints import file_sha256
-
 
 STAGE1_LINK = Path("followup/manifests/predecessor_link_v1.json")
 EXPECTED_EVAL_INTERVAL = 50
