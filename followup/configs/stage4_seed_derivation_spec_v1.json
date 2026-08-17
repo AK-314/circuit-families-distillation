@@ -1,0 +1,156 @@
+{
+  "attempt_retry_contract": {
+    "attempt_index_type": "non-negative integer",
+    "both_are_explicit": true,
+    "reason": "student initialization identity is distinct from attempt/retry identity; distinct stochastic executions must not collapse",
+    "retry_index_type": "non-negative integer",
+    "silent_defaulting_allowed": false
+  },
+  "authority": {
+    "identity_spec": {
+      "path": "followup/configs/stage4_condition_identity_spec_v1.json",
+      "sha256": "b13ea30441c8c71b50f4b2df83a3a48a8a47cb4e0534b2c3fd0545c6d809f6b8"
+    },
+    "stage3_registry": {
+      "path": "followup/manifests/stage3_teacher_registry_v1.json",
+      "sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d"
+    },
+    "vocabulary": {
+      "path": "followup/configs/stage4_common_vocabulary_v1.json",
+      "sha256": "7987c1b5320a0174053ec4f69496ffffc297a0df74ce35c1626bc846e4c0bc01"
+    }
+  },
+  "byte_extraction": {
+    "byte_count": 8,
+    "endianness": "big",
+    "selected_digest_bytes": "digest[0:8]",
+    "signed": false,
+    "start_index_zero_based": 0
+  },
+  "canonical_input_material": {
+    "condition_id_serialization": "reuse condition-identity/v1 wire ID verbatim; no second identity serializer",
+    "encoding": "ASCII (therefore identical UTF-8 bytes)",
+    "field_order": [
+      "wire_header",
+      "namespace",
+      "seed_derivation_version",
+      "condition_id",
+      "purpose",
+      "attempt_index",
+      "retry_index"
+    ],
+    "final_line_feed_required": true,
+    "integer_encoding": "unsigned base-10 ASCII; zero is 0; no sign; no leading zeros",
+    "line_ending": "LF",
+    "template": "cfdseed:v1\\nnamespace=circuit-families-distillation\\nseed_derivation_version=seed-derivation/v1\\ncondition_id=<canonical-condition-id>\\npurpose=<canonical-purpose>\\nattempt_index=<canonical-uint>\\nretry_index=<canonical-uint>\\n"
+  },
+  "digest": {
+    "algorithm": "SHA-256",
+    "output_bytes": 32,
+    "output_hex_characters": 64
+  },
+  "forbidden": [
+    "Python built-in hash()",
+    "machine paths",
+    "collaborator usernames",
+    "timestamps",
+    "process IDs",
+    "implicit attempt/retry defaults",
+    "noncanonical condition IDs",
+    "free-form purpose aliases"
+  ],
+  "integer_seed": {
+    "final_width_bits": 63,
+    "maximum": 9223372036854775807,
+    "minimum": 0,
+    "non_negative": true,
+    "operation": "raw_u64 & 0x7FFFFFFFFFFFFFFF",
+    "raw_integer_width_bits": 64
+  },
+  "known_test_vectors": {
+    "discovery_attempt0_retry0": {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1",
+      "digest_sha256": "8f2e9b6b4755bc8f5d5f956c694907fbacecfa0d6fe5a8cff911cf619f0ef88d",
+      "purpose": "discovery",
+      "raw_u64": 10317354681412992143,
+      "retry_index": 0,
+      "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1\npurpose=discovery\nattempt_index=0\nretry_index=0\n",
+      "seed_value": 1093982644558216335,
+      "selected_bytes_hex": "8f2e9b6b4755bc8f"
+    },
+    "tie_breaking_attempt0_retry0": {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "digest_sha256": "3e170463ad6e72369f812bfa1d31218af07ec4ba682024c2ec23a1a1c497c77b",
+      "purpose": "tie_breaking",
+      "raw_u64": 4474049580973847094,
+      "retry_index": 0,
+      "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=tie_breaking\nattempt_index=0\nretry_index=0\n",
+      "seed_value": 4474049580973847094,
+      "selected_bytes_hex": "3e170463ad6e7236"
+    },
+    "training_attempt0_retry0": {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "digest_sha256": "15cc19f298db90994c9afffa9a2ad587a06e8dd59314e6cb0f690891efc7a308",
+      "purpose": "training",
+      "raw_u64": 1570658899782766745,
+      "retry_index": 0,
+      "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=training\nattempt_index=0\nretry_index=0\n",
+      "seed_value": 1570658899782766745,
+      "selected_bytes_hex": "15cc19f298db9099"
+    },
+    "training_attempt0_retry1": {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "digest_sha256": "d7ad8ab6d1304282fa6ae64e471ad152950a74e922cb06c64b60257d46c6fbb2",
+      "purpose": "training",
+      "raw_u64": 15541230406923731586,
+      "retry_index": 1,
+      "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=training\nattempt_index=0\nretry_index=1\n",
+      "seed_value": 6317858370068955778,
+      "selected_bytes_hex": "d7ad8ab6d1304282"
+    },
+    "training_attempt1_retry0": {
+      "attempt_index": 1,
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "digest_sha256": "2959768e0af93b799323b51662331f5ac804ece9c57cc930103ebe1577a747e2",
+      "purpose": "training",
+      "raw_u64": 2979542980923833209,
+      "retry_index": 0,
+      "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=training\nattempt_index=1\nretry_index=0\n",
+      "seed_value": 2979542980923833209,
+      "selected_bytes_hex": "2959768e0af93b79"
+    }
+  },
+  "namespace": "circuit-families-distillation",
+  "purpose_taxonomy": {
+    "discovery": {
+      "meaning": "stochastic circuit-discovery execution for one complete discovery condition and explicit attempt/retry coordinate",
+      "required_identity_depth": 8
+    },
+    "tie_breaking": {
+      "meaning": "stochastic tie-breaking associated with the same student attempt/retry coordinate; distinct from training by purpose",
+      "required_identity_depth": 4
+    },
+    "training": {
+      "meaning": "stochastic student-training initialization/trajectory for one explicit attempt/retry coordinate",
+      "required_identity_depth": 4
+    }
+  },
+  "scientific_value_policy": {
+    "UD-003_through_UD-014": "unresolved",
+    "actual_student_or_discovery_job_roster_frozen": false,
+    "later_scientific_numeric_values_used_by_seed_algorithm": false
+  },
+  "seed_derivation_version": "seed-derivation/v1",
+  "stored_evidence_required": [
+    "seed_derivation_version",
+    "seed_material",
+    "digest_sha256",
+    "selected_bytes_hex",
+    "seed_value"
+  ],
+  "wire_header": "cfdseed:v1"
+}

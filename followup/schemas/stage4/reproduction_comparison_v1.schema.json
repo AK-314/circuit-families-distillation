@@ -1,0 +1,73 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:reproduction-comparison:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "semantic_match": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "semantic_match"
+                ]
+              },
+              "then": {
+                "required": [
+                  "discrepancy_note"
+                ]
+              }
+            }
+          ],
+          "properties": {
+            "comparison_rule_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "discrepancy_note": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reproduced_record": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "semantic_match": {
+              "type": "boolean"
+            },
+            "source_record": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            }
+          },
+          "required": [
+            "comparison_rule_ref",
+            "source_record",
+            "reproduced_record",
+            "semantic_match"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "reproduction_comparison"
+        },
+        "schema_version": {
+          "const": "reproduction_comparison/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 reproduction_comparison v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-012",
+    "UD-013",
+    "UD-014"
+  ]
+}

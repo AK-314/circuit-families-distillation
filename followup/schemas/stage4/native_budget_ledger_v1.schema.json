@@ -1,0 +1,80 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:native-budget-ledger:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "discovery_run": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "entries": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "native_units_charged": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "operation_ref": {
+                    "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+                  },
+                  "sequence_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "sequence_index",
+                  "operation_ref",
+                  "native_units_charged"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "method_budget_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "native_budget_limit": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "native_unit_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "native_units_consumed": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "discovery_run",
+            "method_budget_ref",
+            "native_unit_ref",
+            "native_budget_limit",
+            "native_units_consumed",
+            "entries"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "native_budget_ledger"
+        },
+        "schema_version": {
+          "const": "native_budget_ledger/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 native_budget_ledger v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-009"
+  ]
+}

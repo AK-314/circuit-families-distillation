@@ -1,0 +1,99 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:analysis-freeze:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "analysis_contract_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "excluded_development_records": {
+              "items": {
+                "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+              },
+              "type": "array"
+            },
+            "firewall_authority": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "const": "docs/distillation_followup/stage2_method_development_firewall.md"
+                },
+                "sha256": {
+                  "const": "5e5ce8666f4182d7fce5f310bc42d3d45f3ff8af55bbc5882985acbc0916fadd"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "firewall_clear": {
+              "type": "boolean"
+            },
+            "population_unit": {
+              "const": "teacher_seed"
+            },
+            "primary_input_records": {
+              "items": {
+                "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+              },
+              "type": "array"
+            },
+            "production_ready": {
+              "type": "boolean"
+            },
+            "unresolved_decision_ids": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "population_unit",
+            "analysis_contract_ref",
+            "firewall_authority",
+            "firewall_clear",
+            "unresolved_decision_ids",
+            "production_ready",
+            "primary_input_records",
+            "excluded_development_records"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "analysis_freeze"
+        },
+        "schema_version": {
+          "const": "analysis_freeze/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 analysis_freeze v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-003",
+    "UD-004",
+    "UD-005",
+    "UD-006",
+    "UD-007",
+    "UD-008",
+    "UD-009",
+    "UD-010",
+    "UD-011",
+    "UD-012",
+    "UD-013",
+    "UD-014"
+  ]
+}

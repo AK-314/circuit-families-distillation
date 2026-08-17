@@ -1,0 +1,105 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:sealed-dense-model:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "architecture_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "component_basis": {
+              "additionalProperties": false,
+              "properties": {
+                "component_ablation_source": {
+                  "const": {
+                    "path": "src/circuit_families/interpretability/component_ablation.py",
+                    "sha256": "2a75d55462fc8346c4eba8cfe3f5cf0c400effdb91d81d26fa39899af92993fd"
+                  }
+                },
+                "component_count": {
+                  "const": 516
+                },
+                "masks_source": {
+                  "const": {
+                    "path": "src/circuit_families/interpretability/masks.py",
+                    "sha256": "2e3ef77f82547c8505d5d6ebc52d6d7e17e426c0fe743bcaa7190d45849f8bc5"
+                  }
+                },
+                "stage8_masking_manifest": {
+                  "const": {
+                    "path": "manifests/stage8_masking_s1-5f1bc9dee7ab.json",
+                    "sha256": "ed6aca8d20d43ea7618936b962c8e865859c21894e5d809580106ffe73a8d4e5"
+                  }
+                },
+                "status": {
+                  "const": "reused_predecessor_definition"
+                }
+              },
+              "required": [
+                "component_count",
+                "status",
+                "masks_source",
+                "component_ablation_source",
+                "stage8_masking_manifest"
+              ],
+              "type": "object"
+            },
+            "eligibility_reference": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "eligibility_status": {
+              "const": "passed"
+            },
+            "model_checkpoint": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_checkpoint"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "eligibility_reference",
+            "eligibility_status",
+            "architecture_ref",
+            "component_basis",
+            "model_checkpoint"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "sealed_dense_model"
+        },
+        "schema_version": {
+          "const": "sealed_dense_model/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 sealed_dense_model v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-003"
+  ]
+}

@@ -1,0 +1,521 @@
+{
+  "$defs": {
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "creation_stage": {
+          "pattern": "^stage[0-9]+[a-z]?$",
+          "type": "string"
+        },
+        "producer_lane": {
+          "enum": [
+            "lane_a",
+            "lane_b",
+            "lane_c",
+            "lane_d",
+            "joint"
+          ]
+        },
+        "source_records": {
+          "items": {
+            "$ref": "#/$defs/record_reference"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "producer_lane",
+        "creation_stage",
+        "source_records"
+      ],
+      "type": "object"
+    },
+    "record_reference": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^cfdid:v1:d[2-8]\\|.+$",
+          "type": "string"
+        },
+        "record_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "record_type": {
+          "enum": [
+            "teacher_reference",
+            "teacher_output_cache",
+            "student_attempt",
+            "student_eligibility",
+            "sealed_dense_model",
+            "discovery_run",
+            "native_budget_ledger",
+            "exact_mask_evaluation_ledger",
+            "endpoint_record",
+            "student_cell_summary",
+            "teacher_seed_inventory",
+            "excluded_development_output",
+            "reproduction_comparison",
+            "analysis_freeze"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            "analysis_freeze/v1",
+            "discovery_run/v1",
+            "endpoint_record/v1",
+            "exact_mask_evaluation_ledger/v1",
+            "excluded_development_output/v1",
+            "native_budget_ledger/v1",
+            "reproduction_comparison/v1",
+            "sealed_dense_model/v1",
+            "student_attempt/v1",
+            "student_cell_summary/v1",
+            "student_eligibility/v1",
+            "teacher_output_cache/v1",
+            "teacher_reference/v1",
+            "teacher_seed_inventory/v1"
+          ]
+        }
+      },
+      "required": [
+        "record_type",
+        "schema_version",
+        "condition_id"
+      ],
+      "type": "object"
+    },
+    "seed_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "digest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "seed_derivation_version": {
+          "const": "seed-derivation/v1"
+        },
+        "seed_material": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "seed_value": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "selected_bytes_hex": {
+          "pattern": "^[0-9a-f]{16}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "seed_derivation_version",
+        "seed_material",
+        "digest_sha256",
+        "selected_bytes_hex",
+        "seed_value"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "version_reference": {
+      "pattern": "^[a-z][a-z0-9._-]*/v[1-9][0-9]*$",
+      "type": "string"
+    }
+  },
+  "$id": "urn:circuit-families-distillation:schema:common-envelope:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "teacher_reference"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 3
+          },
+          "schema_version": {
+            "const": "teacher_reference/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "teacher_output_cache"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 3
+          },
+          "schema_version": {
+            "const": "teacher_output_cache/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "student_attempt"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 4
+          },
+          "schema_version": {
+            "const": "student_attempt/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "student_eligibility"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 4
+          },
+          "schema_version": {
+            "const": "student_eligibility/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "sealed_dense_model"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 4
+          },
+          "schema_version": {
+            "const": "sealed_dense_model/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "discovery_run"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 8
+          },
+          "schema_version": {
+            "const": "discovery_run/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "native_budget_ledger"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 8
+          },
+          "schema_version": {
+            "const": "native_budget_ledger/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "exact_mask_evaluation_ledger"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 8
+          },
+          "schema_version": {
+            "const": "exact_mask_evaluation_ledger/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "endpoint_record"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 8
+          },
+          "schema_version": {
+            "const": "endpoint_record/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "student_cell_summary"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 3
+          },
+          "schema_version": {
+            "const": "student_cell_summary/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "teacher_seed_inventory"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 2
+          },
+          "schema_version": {
+            "const": "teacher_seed_inventory/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "excluded_development_output"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 3
+          },
+          "schema_version": {
+            "const": "excluded_development_output/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "reproduction_comparison"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 3
+          },
+          "schema_version": {
+            "const": "reproduction_comparison/v1"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "record_type": {
+            "const": "analysis_freeze"
+          }
+        },
+        "required": [
+          "record_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "identity_depth": {
+            "const": 2
+          },
+          "schema_version": {
+            "const": "analysis_freeze/v1"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "condition_id": {
+      "pattern": "^cfdid:v1:d[2-8]\\|.+$",
+      "type": "string"
+    },
+    "identity_depth": {
+      "maximum": 8,
+      "minimum": 2,
+      "type": "integer"
+    },
+    "namespace": {
+      "const": "circuit-families-distillation"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "record_status": {
+      "enum": [
+        "draft",
+        "sealed",
+        "superseded"
+      ]
+    },
+    "record_type": {
+      "enum": [
+        "teacher_reference",
+        "teacher_output_cache",
+        "student_attempt",
+        "student_eligibility",
+        "sealed_dense_model",
+        "discovery_run",
+        "native_budget_ledger",
+        "exact_mask_evaluation_ledger",
+        "endpoint_record",
+        "student_cell_summary",
+        "teacher_seed_inventory",
+        "excluded_development_output",
+        "reproduction_comparison",
+        "analysis_freeze"
+      ]
+    },
+    "schema_version": {
+      "enum": [
+        "analysis_freeze/v1",
+        "discovery_run/v1",
+        "endpoint_record/v1",
+        "exact_mask_evaluation_ledger/v1",
+        "excluded_development_output/v1",
+        "native_budget_ledger/v1",
+        "reproduction_comparison/v1",
+        "sealed_dense_model/v1",
+        "student_attempt/v1",
+        "student_cell_summary/v1",
+        "student_eligibility/v1",
+        "teacher_output_cache/v1",
+        "teacher_reference/v1",
+        "teacher_seed_inventory/v1"
+      ]
+    },
+    "vocabulary_version": {
+      "const": "common-vocabulary/v1"
+    }
+  },
+  "required": [
+    "namespace",
+    "vocabulary_version",
+    "schema_version",
+    "record_type",
+    "record_status",
+    "condition_id",
+    "identity_depth",
+    "payload",
+    "provenance"
+  ],
+  "title": "Circuit Families Distillation Stage 4 Common Envelope v1",
+  "type": "object"
+}

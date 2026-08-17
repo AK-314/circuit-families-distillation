@@ -1,0 +1,104 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:excluded-development-output:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "artifact": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_large_object"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            },
+            "development_purpose_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "excluded_register_path": {
+              "const": "followup/manifests/stage2_excluded_development_register_v1.json"
+            },
+            "firewall_authority": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "const": "docs/distillation_followup/stage2_method_development_firewall.md"
+                },
+                "sha256": {
+                  "const": "5e5ce8666f4182d7fce5f310bc42d3d45f3ff8af55bbc5882985acbc0916fadd"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "lifecycle_state": {
+              "const": "excluded"
+            },
+            "primary_analysis_eligible": {
+              "const": false
+            },
+            "regeneration_required": {
+              "const": true
+            },
+            "regeneration_status": {
+              "enum": [
+                "pending",
+                "regenerated"
+              ]
+            },
+            "scientific_selection_use_allowed": {
+              "const": false
+            }
+          },
+          "required": [
+            "firewall_authority",
+            "excluded_register_path",
+            "development_purpose_ref",
+            "lifecycle_state",
+            "primary_analysis_eligible",
+            "scientific_selection_use_allowed",
+            "regeneration_required",
+            "regeneration_status",
+            "artifact"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "excluded_development_output"
+        },
+        "schema_version": {
+          "const": "excluded_development_output/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 excluded_development_output v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-013",
+    "UD-014"
+  ]
+}

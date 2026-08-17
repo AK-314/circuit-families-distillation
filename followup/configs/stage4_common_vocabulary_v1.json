@@ -1,0 +1,159 @@
+{
+  "attempt_outcome_values": [
+    "succeeded",
+    "failed"
+  ],
+  "authority": {
+    "stage2_unresolved_decisions": {
+      "path": "followup/configs/stage2_unresolved_decisions_v1.json",
+      "sha256": "56e229671b7f35b8430e0e079805e9a3ed9a4534f6aa2b9e274a7d7cf41c08dc"
+    },
+    "stage3_registry": {
+      "path": "followup/manifests/stage3_teacher_registry_v1.json",
+      "sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d"
+    }
+  },
+  "availability_state_values": [
+    "planned",
+    "selected",
+    "unavailable",
+    "failed",
+    "missing"
+  ],
+  "canonical_field_names": [
+    "namespace",
+    "vocabulary_version",
+    "schema_version",
+    "record_type",
+    "record_status",
+    "condition_id",
+    "identity_depth",
+    "teacher_seed",
+    "phase",
+    "distillation_condition",
+    "student_initialization",
+    "discovery_method",
+    "fidelity_setting",
+    "component_cap",
+    "overlap_setting",
+    "attempt_index",
+    "retry_index",
+    "availability_state",
+    "attempt_outcome",
+    "seed_purpose",
+    "seed_derivation_version",
+    "seed_material",
+    "seed_value",
+    "reference",
+    "sha256",
+    "provenance"
+  ],
+  "canonical_hierarchy": [
+    "teacher_seed",
+    "phase",
+    "distillation_condition",
+    "student_initialization",
+    "discovery_method",
+    "fidelity_setting",
+    "component_cap",
+    "overlap_setting"
+  ],
+  "distillation_condition_values": [
+    "direct_teacher",
+    "hard_target",
+    "soft_target"
+  ],
+  "forbidden_aliases": {
+    "distillation_condition": {
+      "direct": "use direct_teacher",
+      "hard": "use hard_target",
+      "hard-target": "use hard_target",
+      "soft": "use soft_target",
+      "soft-target": "use soft_target",
+      "teacher": "use direct_teacher"
+    },
+    "not_applicable": {
+      "": "use na",
+      "N/A": "use na",
+      "n/a": "use na",
+      "none": "use na",
+      "null": "use na"
+    }
+  },
+  "identity_version": "condition-identity/v1",
+  "namespace": "circuit-families-distillation",
+  "not_applicable_token": "na",
+  "phase_values": [
+    "pre-grokking",
+    "50%",
+    "stable post-grokking"
+  ],
+  "prefix_depths": {
+    "component_cap": 7,
+    "discovery_method": 5,
+    "distillation_condition": 3,
+    "fidelity_setting": 6,
+    "overlap_setting": 8,
+    "student_initialization": 4,
+    "teacher_phase": 2,
+    "teacher_seed": 1
+  },
+  "record_status_values": [
+    "draft",
+    "sealed",
+    "superseded"
+  ],
+  "record_types": [
+    "teacher_reference",
+    "teacher_output_cache",
+    "student_attempt",
+    "student_eligibility",
+    "sealed_dense_model",
+    "discovery_run",
+    "native_budget_ledger",
+    "exact_mask_evaluation_ledger",
+    "endpoint_record",
+    "student_cell_summary",
+    "teacher_seed_inventory",
+    "excluded_development_output",
+    "reproduction_comparison",
+    "analysis_freeze"
+  ],
+  "schema_family_version": "common-schema/v1",
+  "schema_versions": {
+    "analysis_freeze": "analysis_freeze/v1",
+    "discovery_run": "discovery_run/v1",
+    "endpoint_record": "endpoint_record/v1",
+    "exact_mask_evaluation_ledger": "exact_mask_evaluation_ledger/v1",
+    "excluded_development_output": "excluded_development_output/v1",
+    "native_budget_ledger": "native_budget_ledger/v1",
+    "reproduction_comparison": "reproduction_comparison/v1",
+    "sealed_dense_model": "sealed_dense_model/v1",
+    "student_attempt": "student_attempt/v1",
+    "student_cell_summary": "student_cell_summary/v1",
+    "student_eligibility": "student_eligibility/v1",
+    "teacher_output_cache": "teacher_output_cache/v1",
+    "teacher_reference": "teacher_reference/v1",
+    "teacher_seed_inventory": "teacher_seed_inventory/v1"
+  },
+  "scientific_value_policy": {
+    "UD-003_through_UD-014": "unresolved",
+    "numeric_values_may_be_frozen_in_stage4": false,
+    "schema_defaults_may_resolve_scientific_ambiguity": false,
+    "typed_versioned_references_allowed": true
+  },
+  "seed_derivation_version": "seed-derivation/v1",
+  "seed_purpose_values": [
+    "training",
+    "tie_breaking",
+    "discovery"
+  ],
+  "upstream_field_bridges": {
+    "stage3_teacher_registry_v1": {
+      "availability_status": "availability_state",
+      "phase_label": "phase",
+      "teacher_seed": "teacher_seed"
+    }
+  },
+  "vocabulary_version": "common-vocabulary/v1"
+}

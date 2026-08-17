@@ -1,0 +1,123 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:student-cell-summary:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "cell_analysis_status": {
+              "enum": [
+                "resolved",
+                "unresolved"
+              ]
+            },
+            "eligible_student_count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "eligible_student_initializations": {
+              "items": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true
+            },
+            "endpoint_records": {
+              "items": {
+                "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+              },
+              "type": "array"
+            },
+            "failed_attempt_count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "failed_attempts": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "attempt_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "attempt_reference": {
+                    "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+                  },
+                  "retry_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "student_initialization": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "student_initialization",
+                  "attempt_index",
+                  "retry_index",
+                  "attempt_reference"
+                ],
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "minimum_eligible_students_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "missing_student_count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "missing_student_initializations": {
+              "items": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "array",
+              "uniqueItems": true
+            },
+            "population_unit": {
+              "const": "teacher_seed"
+            },
+            "summary_rule_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            }
+          },
+          "required": [
+            "population_unit",
+            "summary_rule_ref",
+            "minimum_eligible_students_ref",
+            "cell_analysis_status",
+            "eligible_student_count",
+            "failed_attempt_count",
+            "missing_student_count",
+            "eligible_student_initializations",
+            "failed_attempts",
+            "missing_student_initializations",
+            "endpoint_records"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "student_cell_summary"
+        },
+        "schema_version": {
+          "const": "student_cell_summary/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 student_cell_summary v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-011",
+    "UD-012"
+  ]
+}
