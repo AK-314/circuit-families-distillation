@@ -1,0 +1,121 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:exact-mask-evaluation-ledger:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "charged_evaluation_count": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "discovery_run": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "entries": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "budget_charged": {
+                    "type": "boolean"
+                  },
+                  "evaluation_order": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "fidelity_value": {
+                    "type": "number"
+                  },
+                  "mask_kind": {
+                    "enum": [
+                      "intact",
+                      "candidate"
+                    ]
+                  },
+                  "mask_sha256": {
+                    "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                  },
+                  "qualifies": {
+                    "type": "boolean"
+                  },
+                  "retained_count": {
+                    "maximum": 516,
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "retained_proportion": {
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "evaluation_order",
+                  "mask_sha256",
+                  "mask_kind",
+                  "retained_count",
+                  "retained_proportion",
+                  "fidelity_value",
+                  "qualifies",
+                  "budget_charged"
+                ],
+                "type": "object"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "exact_evaluation_allowance": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "exact_evaluation_allowance_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "exact_evaluation_count": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "fidelity_definition_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "intact_baseline_present": {
+              "const": true
+            },
+            "sealed_dense_model": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            }
+          },
+          "required": [
+            "sealed_dense_model",
+            "discovery_run",
+            "fidelity_definition_ref",
+            "exact_evaluation_allowance_ref",
+            "exact_evaluation_allowance",
+            "exact_evaluation_count",
+            "charged_evaluation_count",
+            "intact_baseline_present",
+            "entries"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "exact_mask_evaluation_ledger"
+        },
+        "schema_version": {
+          "const": "exact_mask_evaluation_ledger/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 exact_mask_evaluation_ledger v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-007",
+    "UD-010"
+  ]
+}

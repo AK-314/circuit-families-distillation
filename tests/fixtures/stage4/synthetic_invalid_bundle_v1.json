@@ -1,0 +1,725 @@
+{
+  "authority": {
+    "identity_version": "condition-identity/v1",
+    "stage3_registry_sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d",
+    "vocabulary_version": "common-vocabulary/v1"
+  },
+  "bundle_schema_version": "stage4-synthetic-bundle/v1",
+  "expected_error_contains": "endpoint_1 does not reconstruct as the smallest qualifying proportion in exact ledger",
+  "expected_validation": "fail",
+  "fixture_kind": "invalid",
+  "mutation": "endpoint1_not_smallest_qualifying_exact_evaluation",
+  "production_eligible": false,
+  "records_by_sha256": {
+    "0000000000000000000000000000000000000000000000000000000000000001": {
+      "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=direct_teacher",
+      "identity_depth": 3,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "canonical_run_id": "modular-addition-training-s1-5f1bc9dee7ab",
+        "checkpoint": {
+          "path": "checkpoints/modular-addition-training-s1-5f1bc9dee7ab/step_00009050.pt",
+          "sha256": "5b449db5ff9a62d5b621450c013bc25949499ed767e6db1723561a4e87ab8d70",
+          "storage_class": "external_checkpoint"
+        },
+        "stage3_record_schema_version": "1",
+        "stage3_registry_namespace": "circuit-families-distillation/stage3-teacher-registry",
+        "stage3_registry_path": "followup/manifests/stage3_teacher_registry_v1.json",
+        "stage3_registry_sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d",
+        "training_step": 9050
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_a",
+        "source_records": []
+      },
+      "record_status": "sealed",
+      "record_type": "teacher_reference",
+      "schema_version": "teacher_reference/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000002": {
+      "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+      "identity_depth": 3,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "artifact": {
+          "path": "synthetic/cache-hard.bin",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "storage_class": "external_large_object"
+        },
+        "cache_kind": "teacher_argmax",
+        "example_count": 12769,
+        "example_ordering_ref": "synthetic-ordering/v1",
+        "teacher_reference": {
+          "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=direct_teacher",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+          "record_type": "teacher_reference",
+          "schema_version": "teacher_reference/v1"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_b",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=direct_teacher",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+            "record_type": "teacher_reference",
+            "schema_version": "teacher_reference/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "teacher_output_cache",
+      "schema_version": "teacher_output_cache/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000003": {
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "identity_depth": 4,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "attempt_index": 0,
+        "attempt_outcome": "succeeded",
+        "model_checkpoint": {
+          "path": "synthetic/student.pt",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "storage_class": "external_checkpoint"
+        },
+        "replication_policy_ref": "synthetic-replication-policy/v1",
+        "retry_index": 0,
+        "student_architecture_ref": "synthetic-student-architecture/v1",
+        "target_cache": {
+          "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+          "record_type": "teacher_output_cache",
+          "schema_version": "teacher_output_cache/v1"
+        },
+        "tie_breaking_seed": {
+          "digest_sha256": "3e170463ad6e72369f812bfa1d31218af07ec4ba682024c2ec23a1a1c497c77b",
+          "seed_derivation_version": "seed-derivation/v1",
+          "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=tie_breaking\nattempt_index=0\nretry_index=0\n",
+          "seed_value": 4474049580973847094,
+          "selected_bytes_hex": "3e170463ad6e7236"
+        },
+        "training_config_ref": "synthetic-hard-training/v1",
+        "training_log": {
+          "path": "synthetic/student-training.log",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "storage_class": "external_log"
+        },
+        "training_seed": {
+          "digest_sha256": "15cc19f298db90994c9afffa9a2ad587a06e8dd59314e6cb0f690891efc7a308",
+          "seed_derivation_version": "seed-derivation/v1",
+          "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0\npurpose=training\nattempt_index=0\nretry_index=0\n",
+          "seed_value": 1570658899782766745,
+          "selected_bytes_hex": "15cc19f298db9099"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_b",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+            "record_type": "teacher_output_cache",
+            "schema_version": "teacher_output_cache/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "student_attempt",
+      "schema_version": "student_attempt/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000004": {
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "identity_depth": 4,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "attempt_index": 0,
+        "attempt_reference": {
+          "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000003",
+          "record_type": "student_attempt",
+          "schema_version": "student_attempt/v1"
+        },
+        "criterion": "exact_teacher_argmax_agreement",
+        "eligibility_status": "passed",
+        "evaluation_example_count": 12769,
+        "retry_index": 0,
+        "teacher_argmax_agreement_count": 12769
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_b",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000003",
+            "record_type": "student_attempt",
+            "schema_version": "student_attempt/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "student_eligibility",
+      "schema_version": "student_eligibility/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000005": {
+      "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "identity_depth": 4,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "architecture_ref": "synthetic-student-architecture/v1",
+        "component_basis": {
+          "component_ablation_source": {
+            "path": "src/circuit_families/interpretability/component_ablation.py",
+            "sha256": "2a75d55462fc8346c4eba8cfe3f5cf0c400effdb91d81d26fa39899af92993fd"
+          },
+          "component_count": 516,
+          "masks_source": {
+            "path": "src/circuit_families/interpretability/masks.py",
+            "sha256": "2e3ef77f82547c8505d5d6ebc52d6d7e17e426c0fe743bcaa7190d45849f8bc5"
+          },
+          "stage8_masking_manifest": {
+            "path": "manifests/stage8_masking_s1-5f1bc9dee7ab.json",
+            "sha256": "ed6aca8d20d43ea7618936b962c8e865859c21894e5d809580106ffe73a8d4e5"
+          },
+          "status": "reused_predecessor_definition"
+        },
+        "eligibility_reference": {
+          "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000004",
+          "record_type": "student_eligibility",
+          "schema_version": "student_eligibility/v1"
+        },
+        "eligibility_status": "passed",
+        "model_checkpoint": {
+          "path": "synthetic/student.pt",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+          "storage_class": "external_checkpoint"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_b",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000004",
+            "record_type": "student_eligibility",
+            "schema_version": "student_eligibility/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "sealed_dense_model",
+      "schema_version": "sealed_dense_model/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000006": {
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "identity_depth": 8,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "attempt_index": 0,
+        "component_cap_ref": "synthetic-cap/v1",
+        "discovery_method_ref": "synthetic-method/v1",
+        "discovery_seed": {
+          "digest_sha256": "c7701eaca177daf23acef7f44b1e95af1cbdcb4eb2829f1daeeb02d4571a383d",
+          "seed_derivation_version": "seed-derivation/v1",
+          "seed_material": "cfdseed:v1\nnamespace=circuit-families-distillation\nseed_derivation_version=seed-derivation/v1\ncondition_id=cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1\npurpose=discovery\nattempt_index=0\nretry_index=0\n",
+          "seed_value": 5147648100876671730,
+          "selected_bytes_hex": "c7701eaca177daf2"
+        },
+        "fidelity_definition_ref": "synthetic-fidelity/v1",
+        "method_budget_ref": "synthetic-budget/v1",
+        "overlap_setting_ref": "synthetic-overlap/v1",
+        "retry_index": 0,
+        "sealed_dense_model": {
+          "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000005",
+          "record_type": "sealed_dense_model",
+          "schema_version": "sealed_dense_model/v1"
+        },
+        "search_artifact": {
+          "path": "synthetic/search.bin",
+          "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "storage_class": "external_large_object"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000005",
+            "record_type": "sealed_dense_model",
+            "schema_version": "sealed_dense_model/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "discovery_run",
+      "schema_version": "discovery_run/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000007": {
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "identity_depth": 8,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "discovery_run": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000006",
+          "record_type": "discovery_run",
+          "schema_version": "discovery_run/v1"
+        },
+        "entries": [
+          {
+            "native_units_charged": 4,
+            "operation_ref": "synthetic-operation/v1",
+            "sequence_index": 0
+          }
+        ],
+        "method_budget_ref": "synthetic-budget/v1",
+        "native_budget_limit": 4,
+        "native_unit_ref": "synthetic-native-unit/v1",
+        "native_units_consumed": 4
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000006",
+            "record_type": "discovery_run",
+            "schema_version": "discovery_run/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "native_budget_ledger",
+      "schema_version": "native_budget_ledger/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000008": {
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "identity_depth": 8,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "charged_evaluation_count": 1,
+        "discovery_run": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000006",
+          "record_type": "discovery_run",
+          "schema_version": "discovery_run/v1"
+        },
+        "entries": [
+          {
+            "budget_charged": false,
+            "evaluation_order": 0,
+            "fidelity_value": 1.0,
+            "mask_kind": "intact",
+            "mask_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            "qualifies": true,
+            "retained_count": 516,
+            "retained_proportion": 1.0
+          },
+          {
+            "budget_charged": true,
+            "evaluation_order": 1,
+            "fidelity_value": 0.95,
+            "mask_kind": "candidate",
+            "mask_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+            "qualifies": true,
+            "retained_count": 258,
+            "retained_proportion": 0.5
+          }
+        ],
+        "exact_evaluation_allowance": 2,
+        "exact_evaluation_allowance_ref": "synthetic-allowance/v1",
+        "exact_evaluation_count": 2,
+        "fidelity_definition_ref": "synthetic-fidelity/v1",
+        "intact_baseline_present": true,
+        "sealed_dense_model": {
+          "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000005",
+          "record_type": "sealed_dense_model",
+          "schema_version": "sealed_dense_model/v1"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000005",
+            "record_type": "sealed_dense_model",
+            "schema_version": "sealed_dense_model/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000006",
+            "record_type": "discovery_run",
+            "schema_version": "discovery_run/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "exact_mask_evaluation_ledger",
+      "schema_version": "exact_mask_evaluation_ledger/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "0000000000000000000000000000000000000000000000000000000000000009": {
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "identity_depth": 8,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "component_cap_ref": "synthetic-cap/v1",
+        "endpoint_1": {
+          "global_minimum_claim": false,
+          "interpretation": "smallest_qualifying_proportion_in_exact_ledger",
+          "procedure_censored": false,
+          "qualifying_mask_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "smallest_recovered_component_proportion": 1.0
+        },
+        "endpoint_2": {
+          "interpretation": "procedure_dependent_packing_lower_bound",
+          "packed_mask_sha256s": [
+            "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ],
+          "packing_lower_bound": 1,
+          "packing_rule_ref": "synthetic-packing-rule/v1",
+          "true_packing_number_claim": false
+        },
+        "exact_ledger": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000008",
+          "record_type": "exact_mask_evaluation_ledger",
+          "schema_version": "exact_mask_evaluation_ledger/v1"
+        },
+        "fidelity_definition_ref": "synthetic-fidelity/v1",
+        "overlap_setting_ref": "synthetic-overlap/v1"
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000008",
+            "record_type": "exact_mask_evaluation_ledger",
+            "schema_version": "exact_mask_evaluation_ledger/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "endpoint_record",
+      "schema_version": "endpoint_record/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000a": {
+      "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "identity_depth": 8,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "component_cap_ref": "synthetic-cap/v1",
+        "endpoint_1": {
+          "global_minimum_claim": false,
+          "interpretation": "smallest_qualifying_proportion_in_exact_ledger",
+          "procedure_censored": false,
+          "qualifying_mask_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "smallest_recovered_component_proportion": 0.5
+        },
+        "endpoint_2": {
+          "interpretation": "procedure_dependent_packing_lower_bound",
+          "packed_mask_sha256s": [
+            "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ],
+          "packing_lower_bound": 1,
+          "packing_rule_ref": "synthetic-packing-rule/v1",
+          "true_packing_number_claim": false
+        },
+        "exact_ledger": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000008",
+          "record_type": "exact_mask_evaluation_ledger",
+          "schema_version": "exact_mask_evaluation_ledger/v1"
+        },
+        "fidelity_definition_ref": "synthetic-fidelity/v1",
+        "overlap_setting_ref": "synthetic-overlap/v1"
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000008",
+            "record_type": "exact_mask_evaluation_ledger",
+            "schema_version": "exact_mask_evaluation_ledger/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "endpoint_record",
+      "schema_version": "endpoint_record/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000b": {
+      "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+      "identity_depth": 3,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "cell_analysis_status": "unresolved",
+        "eligible_student_count": 1,
+        "eligible_student_initializations": [
+          0
+        ],
+        "endpoint_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000009",
+            "record_type": "endpoint_record",
+            "schema_version": "endpoint_record/v1"
+          }
+        ],
+        "failed_attempt_count": 0,
+        "failed_attempts": [],
+        "minimum_eligible_students_ref": "synthetic-minimum-eligible/v1",
+        "missing_student_count": 0,
+        "missing_student_initializations": [],
+        "population_unit": "teacher_seed",
+        "summary_rule_ref": "synthetic-summary-rule/v1"
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_d",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000009",
+            "record_type": "endpoint_record",
+            "schema_version": "endpoint_record/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "student_cell_summary",
+      "schema_version": "student_cell_summary/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000c": {
+      "condition_id": "cfdid:v1:d2|teacher_seed=1|phase=stable%20post-grokking",
+      "identity_depth": 2,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "cell_state": "selected",
+        "population_unit": "teacher_seed",
+        "stage3_availability_state": "selected",
+        "stage3_registry_path": "followup/manifests/stage3_teacher_registry_v1.json",
+        "stage3_registry_sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d",
+        "student_cell_summaries": [
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000b",
+            "record_type": "student_cell_summary",
+            "schema_version": "student_cell_summary/v1"
+          }
+        ],
+        "unavailable_reason": null
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_d",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000b",
+            "record_type": "student_cell_summary",
+            "schema_version": "student_cell_summary/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "teacher_seed_inventory",
+      "schema_version": "teacher_seed_inventory/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000d": {
+      "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+      "identity_depth": 3,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "artifact": {
+          "path": "synthetic/excluded-development.bin",
+          "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+          "storage_class": "external_large_object"
+        },
+        "development_purpose_ref": "synthetic-pilot-purpose/v1",
+        "excluded_register_path": "followup/manifests/stage2_excluded_development_register_v1.json",
+        "firewall_authority": {
+          "path": "docs/distillation_followup/stage2_method_development_firewall.md",
+          "sha256": "5e5ce8666f4182d7fce5f310bc42d3d45f3ff8af55bbc5882985acbc0916fadd"
+        },
+        "lifecycle_state": "excluded",
+        "primary_analysis_eligible": false,
+        "regeneration_required": true,
+        "regeneration_status": "pending",
+        "scientific_selection_use_allowed": false
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_c",
+        "source_records": []
+      },
+      "record_status": "sealed",
+      "record_type": "excluded_development_output",
+      "schema_version": "excluded_development_output/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000e": {
+      "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+      "identity_depth": 3,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "comparison_rule_ref": "synthetic-reproduction-rule/v1",
+        "reproduced_record": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "000000000000000000000000000000000000000000000000000000000000000a",
+          "record_type": "endpoint_record",
+          "schema_version": "endpoint_record/v1"
+        },
+        "semantic_match": true,
+        "source_record": {
+          "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+          "record_sha256": "0000000000000000000000000000000000000000000000000000000000000009",
+          "record_type": "endpoint_record",
+          "schema_version": "endpoint_record/v1"
+        }
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "lane_d",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "0000000000000000000000000000000000000000000000000000000000000009",
+            "record_type": "endpoint_record",
+            "schema_version": "endpoint_record/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000a",
+            "record_type": "endpoint_record",
+            "schema_version": "endpoint_record/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "reproduction_comparison",
+      "schema_version": "reproduction_comparison/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    },
+    "000000000000000000000000000000000000000000000000000000000000000f": {
+      "condition_id": "cfdid:v1:d2|teacher_seed=1|phase=stable%20post-grokking",
+      "identity_depth": 2,
+      "namespace": "circuit-families-distillation",
+      "payload": {
+        "analysis_contract_ref": "synthetic-analysis-contract/v1",
+        "excluded_development_records": [
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000d",
+            "record_type": "excluded_development_output",
+            "schema_version": "excluded_development_output/v1"
+          }
+        ],
+        "firewall_authority": {
+          "path": "docs/distillation_followup/stage2_method_development_firewall.md",
+          "sha256": "5e5ce8666f4182d7fce5f310bc42d3d45f3ff8af55bbc5882985acbc0916fadd"
+        },
+        "firewall_clear": false,
+        "population_unit": "teacher_seed",
+        "primary_input_records": [
+          {
+            "condition_id": "cfdid:v1:d2|teacher_seed=1|phase=stable%20post-grokking",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000c",
+            "record_type": "teacher_seed_inventory",
+            "schema_version": "teacher_seed_inventory/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000b",
+            "record_type": "student_cell_summary",
+            "schema_version": "student_cell_summary/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000e",
+            "record_type": "reproduction_comparison",
+            "schema_version": "reproduction_comparison/v1"
+          }
+        ],
+        "production_ready": false,
+        "unresolved_decision_ids": [
+          "UD-003",
+          "UD-004",
+          "UD-005",
+          "UD-006",
+          "UD-007",
+          "UD-008",
+          "UD-009",
+          "UD-010",
+          "UD-011",
+          "UD-012",
+          "UD-013",
+          "UD-014"
+        ]
+      },
+      "provenance": {
+        "creation_stage": "stage4",
+        "producer_lane": "joint",
+        "source_records": [
+          {
+            "condition_id": "cfdid:v1:d2|teacher_seed=1|phase=stable%20post-grokking",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000c",
+            "record_type": "teacher_seed_inventory",
+            "schema_version": "teacher_seed_inventory/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000b",
+            "record_type": "student_cell_summary",
+            "schema_version": "student_cell_summary/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000e",
+            "record_type": "reproduction_comparison",
+            "schema_version": "reproduction_comparison/v1"
+          },
+          {
+            "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+            "record_sha256": "000000000000000000000000000000000000000000000000000000000000000d",
+            "record_type": "excluded_development_output",
+            "schema_version": "excluded_development_output/v1"
+          }
+        ]
+      },
+      "record_status": "sealed",
+      "record_type": "analysis_freeze",
+      "schema_version": "analysis_freeze/v1",
+      "vocabulary_version": "common-vocabulary/v1"
+    }
+  },
+  "scientific_data": false
+}

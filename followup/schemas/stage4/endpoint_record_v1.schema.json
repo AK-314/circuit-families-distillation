@@ -1,0 +1,115 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:endpoint-record:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "component_cap_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "endpoint_1": {
+              "additionalProperties": false,
+              "properties": {
+                "global_minimum_claim": {
+                  "const": false
+                },
+                "interpretation": {
+                  "const": "smallest_qualifying_proportion_in_exact_ledger"
+                },
+                "procedure_censored": {
+                  "type": "boolean"
+                },
+                "qualifying_mask_sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "smallest_recovered_component_proportion": {
+                  "maximum": 1.0,
+                  "minimum": 0.0,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "smallest_recovered_component_proportion",
+                "qualifying_mask_sha256",
+                "procedure_censored",
+                "interpretation",
+                "global_minimum_claim"
+              ],
+              "type": "object"
+            },
+            "endpoint_2": {
+              "additionalProperties": false,
+              "properties": {
+                "interpretation": {
+                  "const": "procedure_dependent_packing_lower_bound"
+                },
+                "packed_mask_sha256s": {
+                  "items": {
+                    "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                  },
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "packing_lower_bound": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "packing_rule_ref": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+                },
+                "true_packing_number_claim": {
+                  "const": false
+                }
+              },
+              "required": [
+                "packing_lower_bound",
+                "packed_mask_sha256s",
+                "packing_rule_ref",
+                "interpretation",
+                "true_packing_number_claim"
+              ],
+              "type": "object"
+            },
+            "exact_ledger": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "fidelity_definition_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "overlap_setting_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            }
+          },
+          "required": [
+            "exact_ledger",
+            "fidelity_definition_ref",
+            "component_cap_ref",
+            "overlap_setting_ref",
+            "endpoint_1",
+            "endpoint_2"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "endpoint_record"
+        },
+        "schema_version": {
+          "const": "endpoint_record/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 endpoint_record v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-007",
+    "UD-008",
+    "UD-010"
+  ]
+}

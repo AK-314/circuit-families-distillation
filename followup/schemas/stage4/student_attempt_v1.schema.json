@@ -1,0 +1,171 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:student-attempt:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "attempt_outcome": {
+                    "const": "succeeded"
+                  }
+                },
+                "required": [
+                  "attempt_outcome"
+                ]
+              },
+              "then": {
+                "not": {
+                  "required": [
+                    "failure_reason"
+                  ]
+                },
+                "required": [
+                  "model_checkpoint"
+                ]
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "attempt_outcome": {
+                    "const": "failed"
+                  }
+                },
+                "required": [
+                  "attempt_outcome"
+                ]
+              },
+              "then": {
+                "not": {
+                  "required": [
+                    "model_checkpoint"
+                  ]
+                },
+                "required": [
+                  "failure_reason"
+                ]
+              }
+            }
+          ],
+          "properties": {
+            "attempt_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "attempt_outcome": {
+              "enum": [
+                "succeeded",
+                "failed"
+              ]
+            },
+            "failure_reason": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "model_checkpoint": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_checkpoint"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            },
+            "replication_policy_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "retry_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "student_architecture_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "target_cache": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "tie_breaking_seed": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/seed_evidence"
+            },
+            "training_config_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "training_log": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_log"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            },
+            "training_seed": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/seed_evidence"
+            }
+          },
+          "required": [
+            "target_cache",
+            "attempt_index",
+            "retry_index",
+            "attempt_outcome",
+            "student_architecture_ref",
+            "replication_policy_ref",
+            "training_config_ref",
+            "training_seed",
+            "tie_breaking_seed",
+            "training_log"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "student_attempt"
+        },
+        "schema_version": {
+          "const": "student_attempt/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 student_attempt v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-003",
+    "UD-004",
+    "UD-005",
+    "UD-006"
+  ]
+}

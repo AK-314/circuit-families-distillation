@@ -1,0 +1,72 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:student-eligibility:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "attempt_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "attempt_reference": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "criterion": {
+              "enum": [
+                "exact_teacher_argmax_agreement",
+                "soft_policy_reference"
+              ]
+            },
+            "eligibility_status": {
+              "enum": [
+                "passed",
+                "failed",
+                "pending_policy"
+              ]
+            },
+            "evaluation_example_count": {
+              "const": 12769
+            },
+            "retry_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "soft_policy_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "teacher_argmax_agreement_count": {
+              "maximum": 12769,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "attempt_reference",
+            "attempt_index",
+            "retry_index",
+            "eligibility_status",
+            "criterion"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "student_eligibility"
+        },
+        "schema_version": {
+          "const": "student_eligibility/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 student_eligibility v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-006"
+  ]
+}

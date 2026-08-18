@@ -1,0 +1,121 @@
+{
+  "allowed_depth_range": [
+    2,
+    8
+  ],
+  "authority": {
+    "stage3_registry": {
+      "path": "followup/manifests/stage3_teacher_registry_v1.json",
+      "sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d"
+    },
+    "vocabulary": {
+      "path": "followup/configs/stage4_common_vocabulary_v1.json",
+      "sha256": "7987c1b5320a0174053ec4f69496ffffc297a0df74ce35c1626bc846e4c0bc01"
+    }
+  },
+  "canonical_hierarchy": [
+    "teacher_seed",
+    "phase",
+    "distillation_condition",
+    "student_initialization",
+    "discovery_method",
+    "fidelity_setting",
+    "component_cap",
+    "overlap_setting"
+  ],
+  "canonical_serialization": {
+    "empty_values_allowed": false,
+    "escaping": "RFC3986 percent-encoding",
+    "field_order": [
+      "teacher_seed",
+      "phase",
+      "distillation_condition",
+      "student_initialization",
+      "discovery_method",
+      "fidelity_setting",
+      "component_cap",
+      "overlap_setting"
+    ],
+    "integer_encoding": "unsigned base-10 ASCII; no sign; no leading zeros",
+    "literal_safe_bytes": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~",
+    "not_applicable_as_missing_suffix_allowed": false,
+    "percent_hex_case": "uppercase",
+    "prefix_depth_explicit": true,
+    "silent_field_omission_allowed": false,
+    "string_encoding": "UTF-8",
+    "string_unicode_normalization": "NFC-required-before-serialization"
+  },
+  "cross_field_rules": {
+    "complete_identity_depth": 8,
+    "depth_2": "teacher-phase prefix; valid for every planned Stage 3 cell, including unavailable cells",
+    "depth_3": "requires selected Stage 3 teacher-phase cell and exact canonical distillation_condition",
+    "depth_4_to_8": "requires hard_target or soft_target; direct_teacher forbidden",
+    "student_initialization": "non-negative integer; attempt/retry not part of condition ID",
+    "unavailable_cell_rule": "unavailable Stage 3 cells may form depth-2 inventory identities only; depth >=3 is rejected"
+  },
+  "identity_version": "condition-identity/v1",
+  "namespace": "circuit-families-distillation",
+  "record_type_required_depths": {
+    "analysis_freeze": 2,
+    "discovery_run": 8,
+    "endpoint_record": 8,
+    "exact_mask_evaluation_ledger": 8,
+    "excluded_development_output": 3,
+    "native_budget_ledger": 8,
+    "reproduction_comparison": 3,
+    "sealed_dense_model": 4,
+    "student_attempt": 4,
+    "student_cell_summary": 3,
+    "student_eligibility": 4,
+    "teacher_output_cache": 3,
+    "teacher_reference": 3,
+    "teacher_seed_inventory": 2
+  },
+  "scientific_value_policy": {
+    "UD-003_through_UD-014": "unresolved",
+    "synthetic_references_are_scientific_settings": false
+  },
+  "stage3_availability": {
+    "planned_cells": 15,
+    "selected_cells": 13,
+    "unavailable_cells": [
+      {
+        "phase": "50%",
+        "teacher_phase_id": "cfdid:v1:d2|teacher_seed=0|phase=50%25",
+        "teacher_seed": 0
+      },
+      {
+        "phase": "pre-grokking",
+        "teacher_phase_id": "cfdid:v1:d2|teacher_seed=0|phase=pre-grokking",
+        "teacher_seed": 0
+      }
+    ]
+  },
+  "synthetic_test_vectors": {
+    "complete_a": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1",
+    "complete_cap_changed": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-b%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1",
+    "complete_fidelity_changed": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-b%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1",
+    "complete_method_changed": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-b%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-a%2Fv1",
+    "complete_overlap_changed": "cfdid:v1:d8|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-method-a%2Fv1|fidelity_setting=synthetic-fidelity-a%2Fv1|component_cap=synthetic-cap-a%2Fv1|overlap_setting=synthetic-overlap-b%2Fv1",
+    "direct_teacher": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=direct_teacher",
+    "hard_condition": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+    "hard_init_0": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+    "hard_init_1": "cfdid:v1:d4|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=1",
+    "soft_condition": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=soft_target",
+    "teacher_phase": "cfdid:v1:d2|teacher_seed=1|phase=stable%20post-grokking"
+  },
+  "version_reference": {
+    "fields": [
+      "discovery_method",
+      "fidelity_setting",
+      "component_cap",
+      "overlap_setting"
+    ],
+    "pattern": "^[a-z][a-z0-9._-]*/v[1-9][0-9]*$",
+    "raw_numeric_values_allowed": false,
+    "scientific_values_frozen_by_stage4": false
+  },
+  "wire_format": "cfdid:v1:d<depth>|<field1>=<canonical-value>|...|<fieldN>=<canonical-value>",
+  "wire_prefix": "cfdid",
+  "wire_version_token": "v1"
+}

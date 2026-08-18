@@ -1,0 +1,78 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:teacher-reference:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "canonical_run_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "checkpoint": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_checkpoint"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            },
+            "stage3_record_schema_version": {
+              "const": "1"
+            },
+            "stage3_registry_namespace": {
+              "const": "circuit-families-distillation/stage3-teacher-registry"
+            },
+            "stage3_registry_path": {
+              "const": "followup/manifests/stage3_teacher_registry_v1.json"
+            },
+            "stage3_registry_sha256": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+            },
+            "training_step": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "stage3_registry_path",
+            "stage3_registry_sha256",
+            "stage3_registry_namespace",
+            "stage3_record_schema_version",
+            "canonical_run_id",
+            "checkpoint",
+            "training_step"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "teacher_reference"
+        },
+        "schema_version": {
+          "const": "teacher_reference/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 teacher_reference v1"
+}

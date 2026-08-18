@@ -1,0 +1,71 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:teacher-output-cache:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "artifact": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_large_object"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            },
+            "cache_kind": {
+              "enum": [
+                "teacher_argmax",
+                "teacher_logits"
+              ]
+            },
+            "example_count": {
+              "const": 12769
+            },
+            "example_ordering_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "teacher_reference": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            }
+          },
+          "required": [
+            "teacher_reference",
+            "cache_kind",
+            "example_ordering_ref",
+            "example_count",
+            "artifact"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "teacher_output_cache"
+        },
+        "schema_version": {
+          "const": "teacher_output_cache/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 teacher_output_cache v1"
+}

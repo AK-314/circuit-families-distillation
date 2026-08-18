@@ -1,0 +1,95 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:discovery-run:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1"
+    },
+    {
+      "properties": {
+        "payload": {
+          "additionalProperties": false,
+          "properties": {
+            "attempt_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "component_cap_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "discovery_method_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "discovery_seed": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/seed_evidence"
+            },
+            "fidelity_definition_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "method_budget_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "overlap_setting_ref": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/version_reference"
+            },
+            "retry_index": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "sealed_dense_model": {
+              "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/record_reference"
+            },
+            "search_artifact": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "$ref": "urn:circuit-families-distillation:schema:common-envelope:v1#/$defs/sha256"
+                },
+                "storage_class": {
+                  "const": "external_large_object"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "storage_class"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "sealed_dense_model",
+            "attempt_index",
+            "retry_index",
+            "discovery_method_ref",
+            "method_budget_ref",
+            "fidelity_definition_ref",
+            "component_cap_ref",
+            "overlap_setting_ref",
+            "discovery_seed",
+            "search_artifact"
+          ],
+          "type": "object"
+        },
+        "record_type": {
+          "const": "discovery_run"
+        },
+        "schema_version": {
+          "const": "discovery_run/v1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "title": "Stage 4 discovery_run v1",
+  "x-unresolved-decision-dependencies": [
+    "UD-007",
+    "UD-008",
+    "UD-009"
+  ]
+}
