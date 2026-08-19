@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:circuit-families-distillation:schema:stage5bc-target-cache-manifest:v1",
+  "title": "Stage 5B/C teacher target-cache manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "technical_fixture",
+    "stage4_record_serializable",
+    "stage4_cache_kinds",
+    "example_count",
+    "class_count",
+    "input_order",
+    "representations",
+    "teacher_reference",
+    "provenance_hashes",
+    "payload",
+    "completion"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "stage5bc-target-cache-manifest/v1"
+    },
+    "manifest_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "technical_fixture": {
+      "type": "boolean"
+    },
+    "stage4_record_serializable": {
+      "type": "boolean"
+    },
+    "stage4_cache_kinds": {
+      "const": [
+        "teacher_argmax",
+        "teacher_logits"
+      ]
+    },
+    "example_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "class_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "input_order": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ordering_ref",
+        "ordered_input_ids_sha256",
+        "example_count",
+        "exact_order_required"
+      ],
+      "properties": {
+        "ordering_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ordered_input_ids_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "example_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "exact_order_required": {
+          "const": true
+        }
+      }
+    },
+    "representations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_logits",
+        "centred_logits",
+        "argmax",
+        "probabilities"
+      ],
+      "properties": {
+        "raw_logits": {
+          "$ref": "#/$defs/logit_representation"
+        },
+        "centred_logits": {
+          "$ref": "#/$defs/centred_representation"
+        },
+        "argmax": {
+          "$ref": "#/$defs/argmax_representation"
+        },
+        "probabilities": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "present"
+              ],
+              "properties": {
+                "present": {
+                  "const": false
+                }
+              }
+            },
+            {
+              "$ref": "#/$defs/probability_representation"
+            }
+          ]
+        }
+      }
+    },
+    "teacher_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "schema_version",
+        "condition_id",
+        "record_sha256"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "teacher_reference"
+        },
+        "schema_version": {
+          "const": "teacher_reference/v1"
+        },
+        "condition_id": {
+          "type": "string",
+          "pattern": "^cfdid:v1:d3\\|.+$"
+        },
+        "record_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "provenance_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_sha256",
+        "split_sha256",
+        "task_config_sha256",
+        "model_config_sha256",
+        "training_config_sha256",
+        "component_basis_sha256"
+      ],
+      "properties": {
+        "dataset_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "split_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "task_config_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "model_config_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "training_config_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "component_basis_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "storage_class"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "storage_class": {
+          "enum": [
+            "technical_fixture_small_file",
+            "external_large_object"
+          ]
+        }
+      }
+    },
+    "completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "atomic_write_protocol",
+        "completion_state",
+        "completion_record_path",
+        "completion_record_sha256"
+      ],
+      "properties": {
+        "atomic_write_protocol": {
+          "const": "write-temp-fsync-replace/v1"
+        },
+        "completion_state": {
+          "const": "complete"
+        },
+        "completion_record_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completion_record_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "logit_representation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "representation",
+        "shape",
+        "dtype",
+        "sha256"
+      ],
+      "properties": {
+        "present": {
+          "const": true
+        },
+        "representation": {
+          "const": "raw_final_position_logits"
+        },
+        "shape": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "dtype": {
+          "enum": [
+            "float16",
+            "float32",
+            "float64",
+            "bfloat16"
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "centred_representation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "representation",
+        "shape",
+        "dtype",
+        "sha256"
+      ],
+      "properties": {
+        "present": {
+          "const": true
+        },
+        "representation": {
+          "const": "subtract_per_input_class_mean"
+        },
+        "shape": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "dtype": {
+          "enum": [
+            "float16",
+            "float32",
+            "float64",
+            "bfloat16"
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "argmax_representation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "representation",
+        "shape",
+        "dtype",
+        "sha256"
+      ],
+      "properties": {
+        "present": {
+          "const": true
+        },
+        "representation": {
+          "const": "argmax_from_raw_logits"
+        },
+        "shape": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "dtype": {
+          "const": "int64"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "probability_representation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "present",
+        "representation",
+        "shape",
+        "dtype",
+        "sha256"
+      ],
+      "properties": {
+        "present": {
+          "const": true
+        },
+        "representation": {
+          "const": "teacher_probabilities"
+        },
+        "shape": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "dtype": {
+          "enum": [
+            "float16",
+            "float32",
+            "float64",
+            "bfloat16"
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "technical_fixture": {
+            "const": true
+          }
+        },
+        "required": [
+          "technical_fixture"
+        ]
+      },
+      "then": {
+        "properties": {
+          "stage4_record_serializable": {
+            "const": false
+          },
+          "payload": {
+            "properties": {
+              "storage_class": {
+                "const": "technical_fixture_small_file"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "technical_fixture": {
+            "const": false
+          }
+        },
+        "required": [
+          "technical_fixture"
+        ]
+      },
+      "then": {
+        "properties": {
+          "example_count": {
+            "const": 12769
+          },
+          "stage4_record_serializable": {
+            "const": true
+          },
+          "payload": {
+            "properties": {
+              "storage_class": {
+                "const": "external_large_object"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
