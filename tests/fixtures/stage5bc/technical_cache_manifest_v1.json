@@ -1,0 +1,77 @@
+{
+  "schema_version": "stage5bc-target-cache-manifest/v1",
+  "manifest_id": "technical-target-cache-fixture/v1",
+  "technical_fixture": true,
+  "stage4_record_serializable": false,
+  "stage4_cache_kinds": [
+    "teacher_argmax",
+    "teacher_logits"
+  ],
+  "example_count": 4,
+  "class_count": 3,
+  "input_order": {
+    "ordering_ref": "technical-canonical-input-order/v1",
+    "ordered_input_ids_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "example_count": 4,
+    "exact_order_required": true
+  },
+  "representations": {
+    "raw_logits": {
+      "present": true,
+      "representation": "raw_final_position_logits",
+      "shape": [
+        4,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "centred_logits": {
+      "present": true,
+      "representation": "subtract_per_input_class_mean",
+      "shape": [
+        4,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "argmax": {
+      "present": true,
+      "representation": "argmax_from_raw_logits",
+      "shape": [
+        4
+      ],
+      "dtype": "int64",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444"
+    },
+    "probabilities": {
+      "present": false
+    }
+  },
+  "teacher_reference": {
+    "record_type": "teacher_reference",
+    "schema_version": "teacher_reference/v1",
+    "condition_id": "cfdid:v1:d3|teacher_seed=1|phase=stable%20post-grokking|distillation_condition=hard_target",
+    "record_sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "provenance_hashes": {
+    "dataset_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+    "split_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+    "task_config_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+    "model_config_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+    "training_config_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "component_basis_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "payload": {
+    "path": "technical-fixtures/stage5bc/teacher-target-cache.bin",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "storage_class": "technical_fixture_small_file"
+  },
+  "completion": {
+    "atomic_write_protocol": "write-temp-fsync-replace/v1",
+    "completion_state": "complete",
+    "completion_record_path": "technical-fixtures/stage5bc/teacher-target-cache.complete.json",
+    "completion_record_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  }
+}

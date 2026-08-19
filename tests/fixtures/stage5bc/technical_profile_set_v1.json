@@ -1,0 +1,96 @@
+{
+  "schema_version": "stage5bc-technical-profile-set/v1",
+  "profiles": [
+    {
+      "schema_version": "stage5bc-technical-profile/v1",
+      "profile_id": "technical-architecture-fixture/v1",
+      "profile_kind": "architecture",
+      "classification": "technical_fixture",
+      "scientific_data": false,
+      "production_eligible": false,
+      "settings_status": "technical_candidate_only",
+      "decision_dependencies": [
+        "UD-003"
+      ],
+      "resolves_decisions": [],
+      "settings": {
+        "candidate_family": "tiny-fixture-model",
+        "purpose": "interface_and_resume_testing_only"
+      }
+    },
+    {
+      "schema_version": "stage5bc-technical-profile/v1",
+      "profile_id": "technical-trainer-fixture/v1",
+      "profile_kind": "trainer",
+      "classification": "technical_fixture",
+      "scientific_data": false,
+      "production_eligible": false,
+      "settings_status": "technical_candidate_only",
+      "decision_dependencies": [
+        "UD-005",
+        "UD-006"
+      ],
+      "resolves_decisions": [],
+      "settings": {
+        "candidate_step_budget": 4,
+        "purpose": "trainer_lifecycle_testing_only"
+      }
+    },
+    {
+      "schema_version": "stage5bc-technical-profile/v1",
+      "profile_id": "technical-adapter-fixture/v1",
+      "profile_kind": "adapter",
+      "classification": "technical_fixture",
+      "scientific_data": false,
+      "production_eligible": false,
+      "settings_status": "technical_candidate_only",
+      "decision_dependencies": [
+        "UD-005",
+        "UD-006"
+      ],
+      "resolves_decisions": [],
+      "settings": {
+        "candidate_hard_adapter": "synthetic-hard-target",
+        "candidate_soft_adapter": "synthetic-centred-logit",
+        "purpose": "shared_interface_testing_only"
+      }
+    },
+    {
+      "schema_version": "stage5bc-technical-profile/v1",
+      "profile_id": "technical-resume-fixture/v1",
+      "profile_kind": "resume",
+      "classification": "technical_fixture",
+      "scientific_data": false,
+      "production_eligible": false,
+      "settings_status": "technical_candidate_only",
+      "decision_dependencies": [
+        "UD-004",
+        "UD-005",
+        "UD-006"
+      ],
+      "resolves_decisions": [],
+      "settings": {
+        "candidate_checkpoint_interval": 2,
+        "purpose": "interruption_equivalence_testing_only"
+      }
+    },
+    {
+      "schema_version": "stage5bc-technical-profile/v1",
+      "profile_id": "technical-orchestration-fixture/v1",
+      "profile_kind": "orchestration",
+      "classification": "technical_fixture",
+      "scientific_data": false,
+      "production_eligible": false,
+      "settings_status": "technical_candidate_only",
+      "decision_dependencies": [
+        "UD-004",
+        "UD-013"
+      ],
+      "resolves_decisions": [],
+      "settings": {
+        "technical_worker_limit": 1,
+        "purpose": "isolated_job_and_merge_testing_only"
+      }
+    }
+  ]
+}
