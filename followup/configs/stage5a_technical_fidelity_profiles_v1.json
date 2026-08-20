@@ -1,0 +1,27 @@
+{
+  "profile_set_version": "stage5a-technical-fidelity-profiles/v1",
+  "stage": "5A",
+  "purpose": "synthetic_and_technical_validation_only",
+  "scientific_data": false,
+  "production_eligible": false,
+  "resolves_ud007": false,
+  "profiles": [
+    {
+      "profile_ref": "centred-logit-technical-f64-sequential/v1",
+      "formula_ref": "centred-logit-predictive-fidelity/v1",
+      "profile_status": "technical_candidate",
+      "scientific_data": false,
+      "production_eligible": false,
+      "resolves_ud007": false,
+      "accumulation_dtype": "float64",
+      "centering_dtype": "preserve_input_float_dtype",
+      "accumulation_order": "canonical_example_order_then_class_sum",
+      "canonical_order_policy": "explicit_index_strict_contiguous_ascending",
+      "batch_semantics": "batch_boundaries_do_not_change_logical_order",
+      "nonfinite_policy": "reject",
+      "denominator_guard_candidate": "classify_exact_zero_else_positive",
+      "near_zero_guard_defined": false,
+      "notes": "Synthetic/technical Stage 5A candidate only. This profile is non-production-eligible, does not resolve UD-007, and cannot be selected from phase, condition, student, endpoint, or other scientific effects."
+    }
+  ]
+}
