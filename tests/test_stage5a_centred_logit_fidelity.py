@@ -210,3 +210,66 @@ def test_profile_contains_no_threshold_or_sensitivity_grid() -> None:
         '"fidelity_sensitivity_grid"',
     )
     assert all(key not in raw_text for key in forbidden_json_keys)
+
+
+def test_metric_record_json_roundtrip() -> None:
+    import json
+
+    from circuit_families.interpretability.centred_logit_fidelity import (
+        CentredLogitPredictiveMetricRecord,
+        centred_logit_predictive_metric_record_from_record,
+    )
+
+    record = CentredLogitPredictiveMetricRecord(
+        formula_ref="centred-logit-predictive-fidelity/v1",
+        profile_ref="centred-logit-technical-f64-sequential/v1",
+        record_status="technical_candidate",
+        evaluated_example_count=2,
+        class_count=3,
+        numerator=10.0,
+        denominator=5.0,
+        predictive_fidelity=-1.0,
+        denominator_status="valid",
+        canonical_order_policy="canonical",
+        accumulation_order="sequential",
+        nonfinite_rejected=True,
+        notes="technical-only",
+    )
+
+    decoded = json.loads(
+        json.dumps(record.to_record(), allow_nan=False)
+    )
+
+    restored = centred_logit_predictive_metric_record_from_record(decoded)
+
+    assert restored == record
+
+
+def test_metric_record_roundtrip_preserves_negative_fidelity() -> None:
+    from circuit_families.interpretability.centred_logit_fidelity import (
+        CentredLogitPredictiveMetricRecord,
+        centred_logit_predictive_metric_record_from_record,
+    )
+
+    record = CentredLogitPredictiveMetricRecord(
+        formula_ref="centred-logit-predictive-fidelity/v1",
+        profile_ref="centred-logit-technical-f64-sequential/v1",
+        record_status="technical_candidate",
+        evaluated_example_count=1,
+        class_count=2,
+        numerator=3.0,
+        denominator=1.0,
+        predictive_fidelity=-2.0,
+        denominator_status="valid",
+        canonical_order_policy="canonical",
+        accumulation_order="sequential",
+        nonfinite_rejected=True,
+        notes="technical-only",
+    )
+
+    restored = centred_logit_predictive_metric_record_from_record(
+        record.to_record()
+    )
+
+    assert restored.predictive_fidelity == -2.0
+

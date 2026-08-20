@@ -392,6 +392,53 @@ def _require_exact_keys(
         )
 
 
+
+def centred_logit_predictive_metric_record_from_record(
+    record: Mapping[str, Any],
+) -> CentredLogitPredictiveMetricRecord:
+    """Validate and reconstruct one Stage 5A metric record.
+
+    This reconstructs technical metric records only. It does not resolve
+    UD-007 or define a production scientific endpoint.
+    """
+
+    _require_exact_keys(
+        record,
+        required={
+            "formula_ref",
+            "profile_ref",
+            "record_status",
+            "evaluated_example_count",
+            "class_count",
+            "numerator",
+            "denominator",
+            "predictive_fidelity",
+            "denominator_status",
+            "canonical_order_policy",
+            "accumulation_order",
+            "nonfinite_rejected",
+            "notes",
+        },
+        label="metric record",
+    )
+
+    return CentredLogitPredictiveMetricRecord(
+        formula_ref=record["formula_ref"],
+        profile_ref=record["profile_ref"],
+        record_status=record["record_status"],
+        evaluated_example_count=record["evaluated_example_count"],
+        class_count=record["class_count"],
+        numerator=record["numerator"],
+        denominator=record["denominator"],
+        predictive_fidelity=record["predictive_fidelity"],
+        denominator_status=record["denominator_status"],
+        canonical_order_policy=record["canonical_order_policy"],
+        accumulation_order=record["accumulation_order"],
+        nonfinite_rejected=record["nonfinite_rejected"],
+        notes=record["notes"],
+    )
+
+
 def technical_profile_from_record(
     record: Mapping[str, Any],
 ) -> TechnicalNumericalProfile:
