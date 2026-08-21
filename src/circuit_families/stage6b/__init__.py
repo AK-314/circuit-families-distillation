@@ -1,0 +1,53 @@
+"""Stage 6B hard-target loss and full-domain eligibility core."""
+
+from circuit_families.stage6b.hard_target import (
+    DECISION_VECTOR_HASH_VERSION,
+    HARD_ELIGIBILITY_CRITERION,
+    CanonicalDecisionVector,
+    HardEligibilityEvidence,
+    HardLabelLossAdapter,
+    HardTargetEligibilityError,
+    HardTargetLossError,
+    canonical_decision_bytes,
+    decision_sha256,
+    evaluate_hard_target_eligibility,
+)
+from circuit_families.stage6b.records import (
+    HARD_ATTEMPT_CLASSIFICATIONS,
+    CircuitReleaseDecision,
+    HardAttemptAssessment,
+    HardAttemptLedger,
+    HardEligibilityRecordEvidence,
+    HardSealingEvidence,
+    Stage6BRecordError,
+    assess_hard_attempt,
+    canonical_stage6b_record_bytes,
+    circuit_release_gate,
+    generate_hard_sealing_evidence,
+    stage6b_record_sha256,
+)
+
+__all__ = [
+    "DECISION_VECTOR_HASH_VERSION",
+    "HARD_ELIGIBILITY_CRITERION",
+    "CanonicalDecisionVector",
+    "HardEligibilityEvidence",
+    "HardLabelLossAdapter",
+    "HardTargetEligibilityError",
+    "HardTargetLossError",
+    "HARD_ATTEMPT_CLASSIFICATIONS",
+    "CircuitReleaseDecision",
+    "HardAttemptAssessment",
+    "HardAttemptLedger",
+    "HardEligibilityRecordEvidence",
+    "HardSealingEvidence",
+    "Stage6BRecordError",
+    "assess_hard_attempt",
+    "canonical_decision_bytes",
+    "canonical_stage6b_record_bytes",
+    "circuit_release_gate",
+    "decision_sha256",
+    "evaluate_hard_target_eligibility",
+    "generate_hard_sealing_evidence",
+    "stage6b_record_sha256",
+]
