@@ -28,10 +28,10 @@ def _ensure_repository_runtime() -> None:
 
     if Path(sys.prefix).resolve() == VENV_ROOT.resolve():
         return
+    if not VENV_PYTHON.is_file():
+        return
     if os.environ.get("STAGE5D_REEXECUTED") == "1":
         raise RuntimeError("Stage 5D CLI could not enter repository virtualenv")
-    if not VENV_PYTHON.is_file():
-        raise RuntimeError(f"repository virtualenv is missing: {VENV_PYTHON}")
 
     environment = dict(os.environ)
     environment["STAGE5D_REEXECUTED"] = "1"

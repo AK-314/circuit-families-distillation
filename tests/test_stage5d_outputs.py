@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import copy
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -264,6 +266,49 @@ def test_validate_only_cli_writes_nothing_and_is_cwd_independent(
     assert "STAGE5D_OUTPUT_VALIDATION=PASS" in result.stdout
     assert "OUTPUT_WRITTEN=NO" in result.stdout
     assert tuple(working_directory.iterdir()) == before
+
+
+def test_validate_only_cli_accepts_external_runtime_without_local_venv(
+    tmp_path,
+) -> None:
+    checkout = tmp_path / "checkout_without_local_venv"
+    checkout_src = checkout / "src"
+    checkout_scripts = checkout / "scripts"
+    checkout_scripts.mkdir(parents=True)
+    shutil.copytree(ROOT / "src/circuit_families", checkout_src / "circuit_families")
+    checkout_cli = checkout_scripts / CLI.name
+    shutil.copy2(CLI, checkout_cli)
+
+    assert not (checkout / ".venv").exists()
+    assert Path(sys.prefix).resolve() != (checkout / ".venv").resolve()
+
+    working_directory = tmp_path / "external_runtime_cwd"
+    working_directory.mkdir()
+    environment = dict(os.environ)
+    environment.pop("PYTHONPATH", None)
+    environment.pop("STAGE5D_REEXECUTED", None)
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(checkout_cli),
+            "--ingestion",
+            str(ENVELOPE),
+            "--profile-set",
+            str(PROFILES),
+            "--profile-id",
+            "fixture_median_min2",
+        ],
+        cwd=working_directory,
+        env=environment,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+
+    assert "STAGE5D_OUTPUT_VALIDATION=PASS" in result.stdout
+    assert "OUTPUT_WRITTEN=NO" in result.stdout
+    assert tuple(working_directory.iterdir()) == ()
 
 
 def test_explicit_temporary_output_writes_atomically(
