@@ -1,0 +1,2692 @@
+{
+  "cell_expectations": [
+    {
+      "cell_id": "cell_s0_phase_early_hard_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_hard_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_hard_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_hard_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_soft_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_soft_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_soft_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_early_soft_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_hard_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_hard_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_hard_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_hard_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_soft_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_soft_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_soft_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s0_phase_late_soft_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 0
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_hard_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_hard_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_hard_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_hard_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_soft_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_soft_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_soft_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_early_soft_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_hard_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_hard_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_hard_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_hard_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_soft_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_soft_method_greedy_endpoint_2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_soft_method_beam_endpoint_1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": null,
+      "state": "expected"
+    },
+    {
+      "cell_id": "cell_s1_phase_late_soft_method_beam_endpoint_2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": "synthetic_missing_cell_fixture",
+      "state": "unresolved"
+    },
+    {
+      "cell_id": "cell_s1_phase_unavailable_hard_method_greedy_endpoint_1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_unavailable",
+        "protocol_id": "synthetic_protocol_v1",
+        "teacher_seed": 1
+      },
+      "reason": "synthetic_teacher_phase_unavailable",
+      "state": "unavailable"
+    }
+  ],
+  "classification": "synthetic_technical_only",
+  "direct_teacher_endpoints": [
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_early_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.4
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_early_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_early_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.45
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_early_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_late_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.55
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_late_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_late_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.6
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 0
+      },
+      "record_id": "teacher_s0_phase_late_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_early_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.5
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_early_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_early_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.55
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_early_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_late_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.65
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_late_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_late_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.7
+    },
+    {
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_late_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": null,
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_unavailable",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": null,
+        "subject_kind": "teacher",
+        "teacher_seed": 1
+      },
+      "record_id": "teacher_s1_phase_unavailable_method_greedy_endpoint_1",
+      "state": "unavailable",
+      "value": null
+    }
+  ],
+  "eligibility_records": [
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "eligibility_id": "elig_attempt_s0_phase_early_hard_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "eligibility_id": "elig_attempt_s0_phase_early_hard_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "eligibility_id": "elig_attempt_s0_phase_early_hard_i2",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "eligibility_id": "elig_attempt_s0_phase_early_soft_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "eligibility_id": "elig_attempt_s0_phase_early_soft_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "eligibility_id": "elig_attempt_s0_phase_early_soft_i2",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "eligibility_id": "elig_attempt_s0_phase_late_hard_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "eligibility_id": "elig_attempt_s0_phase_late_hard_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i2",
+      "eligibility_id": "elig_attempt_s0_phase_late_hard_i2",
+      "reason": "synthetic_eligibility_failure",
+      "status": "ineligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "eligibility_id": "elig_attempt_s0_phase_late_soft_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "eligibility_id": "elig_attempt_s0_phase_late_soft_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "eligibility_id": "elig_attempt_s0_phase_late_soft_i2",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "eligibility_id": "elig_attempt_s1_phase_early_hard_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "eligibility_id": "elig_attempt_s1_phase_early_hard_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "eligibility_id": "elig_attempt_s1_phase_early_hard_i2",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "eligibility_id": "elig_attempt_s1_phase_early_soft_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "eligibility_id": "elig_attempt_s1_phase_early_soft_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i2",
+      "eligibility_id": "elig_attempt_s1_phase_early_soft_i2",
+      "reason": "synthetic_eligibility_failure",
+      "status": "ineligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "eligibility_id": "elig_attempt_s1_phase_late_hard_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "eligibility_id": "elig_attempt_s1_phase_late_hard_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "eligibility_id": "elig_attempt_s1_phase_late_hard_i2",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i0",
+      "eligibility_id": "elig_attempt_s1_phase_late_soft_i0",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i1",
+      "eligibility_id": "elig_attempt_s1_phase_late_soft_i1",
+      "reason": null,
+      "status": "eligible"
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i2",
+      "eligibility_id": "elig_attempt_s1_phase_late_soft_i2",
+      "reason": "synthetic_training_failure",
+      "status": "inapplicable"
+    }
+  ],
+  "method_budgets": [
+    {
+      "budget_id": "budget_greedy_v1",
+      "exact_eval_allowance": 20,
+      "method_id": "method_greedy",
+      "native_budget": 100,
+      "resource_unit": "synthetic_proposals"
+    },
+    {
+      "budget_id": "budget_beam_v1",
+      "exact_eval_allowance": 20,
+      "method_id": "method_beam",
+      "native_budget": 180,
+      "resource_unit": "synthetic_proposals"
+    }
+  ],
+  "schema_version": "stage5d_synthetic_universe_v1",
+  "student_attempts": [
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "attempt_index": 0,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 0,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "attempt_index": 1,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 1,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "attempt_index": 2,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 2,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "attempt_index": 0,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 0,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "attempt_index": 1,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 1,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "attempt_index": 2,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 2,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "attempt_index": 0,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 0,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "attempt_index": 1,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 1,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i2",
+      "attempt_index": 2,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 2,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "attempt_index": 0,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 0,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "attempt_index": 1,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 1,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "attempt_index": 2,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 2,
+      "teacher_seed": 0
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "attempt_index": 0,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 0,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "attempt_index": 1,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 1,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "attempt_index": 2,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 2,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "attempt_index": 0,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 0,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "attempt_index": 1,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 1,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i2",
+      "attempt_index": 2,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_early",
+      "student_initialization": 2,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "attempt_index": 0,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 0,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "attempt_index": 1,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 1,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "attempt_index": 2,
+      "distillation_condition": "hard",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 2,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i0",
+      "attempt_index": 0,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 0,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i1",
+      "attempt_index": 1,
+      "distillation_condition": "soft",
+      "failure_reason": null,
+      "outcome": "completed",
+      "phase": "phase_late",
+      "student_initialization": 1,
+      "teacher_seed": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i2",
+      "attempt_index": 2,
+      "distillation_condition": "soft",
+      "failure_reason": "synthetic_training_failure",
+      "outcome": "failed",
+      "phase": "phase_late",
+      "student_initialization": 2,
+      "teacher_seed": 1
+    }
+  ],
+  "student_endpoints": [
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 1.0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 0
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.33
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.32
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.35
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i2_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.34
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i2_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i2_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.37
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_hard_i2_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.34
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.37
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.36
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.39
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i2_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.38
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i2_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i2_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.41
+    },
+    {
+      "attempt_id": "attempt_s0_phase_early_soft_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_early_soft_i2_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.42
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.45
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.44
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.47
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_hard_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.46
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.49
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.48
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.51
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i2_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.5
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i2_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i2_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.53
+    },
+    {
+      "attempt_id": "attempt_s0_phase_late_soft_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 0
+      },
+      "record_id": "student_s0_phase_late_soft_i2_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 5
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.38
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 1
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.41
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.43
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i2_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.42
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i2_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i2_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.45
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_hard_i2_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.42
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.45
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.44
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.47
+    },
+    {
+      "attempt_id": "attempt_s1_phase_early_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_early",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_early_soft_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.5
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 2
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.53
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i0_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.52
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.55
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i1_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i2_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.54
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i2_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i2_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.57
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_hard_i2",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "hard",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 2,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_hard_i2_method_beam_endpoint_2",
+      "state": "defined",
+      "value": 5
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i0_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.54
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i0_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 3
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i0",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 0,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i0_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.57
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i1_method_greedy_endpoint_1",
+      "state": "defined",
+      "value": 0.56
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_greedy_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_2",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_greedy",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i1_method_greedy_endpoint_2",
+      "state": "defined",
+      "value": 4
+    },
+    {
+      "attempt_id": "attempt_s1_phase_late_soft_i1",
+      "identity": {
+        "budget_id": "budget_beam_v1",
+        "distillation_condition": "soft",
+        "endpoint_id": "endpoint_1",
+        "fidelity_id": "synthetic_fidelity_v1",
+        "method_id": "method_beam",
+        "phase": "phase_late",
+        "protocol_id": "synthetic_protocol_v1",
+        "student_initialization": 1,
+        "subject_kind": "student",
+        "teacher_seed": 1
+      },
+      "record_id": "student_s1_phase_late_soft_i1_method_beam_endpoint_1",
+      "state": "defined",
+      "value": 0.59
+    }
+  ],
+  "teacher_inventories": [
+    {
+      "phase_status": {
+        "phase_early": "available",
+        "phase_late": "available",
+        "phase_unavailable": "unavailable"
+      },
+      "teacher_seed": 0
+    },
+    {
+      "phase_status": {
+        "phase_early": "available",
+        "phase_late": "available",
+        "phase_unavailable": "unavailable"
+      },
+      "teacher_seed": 1
+    }
+  ]
+}

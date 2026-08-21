@@ -1,0 +1,99 @@
+{
+  "$id": "urn:circuit-families-distillation:schema:stage5d-technical-analysis-profile:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "classification": {
+      "const": "synthetic_technical_only"
+    },
+    "decision_dependencies": {
+      "items": {
+        "enum": [
+          "UD-004",
+          "UD-011",
+          "UD-012"
+        ]
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "production_eligible": {
+      "const": false
+    },
+    "profile_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "resolves_decisions": {
+      "maxItems": 0,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "stage5d_technical_analysis_profile_v1"
+    },
+    "scientific_data": {
+      "const": false
+    },
+    "selection_basis": {
+      "const": "technical_fixture_only_never_scientific_effects"
+    },
+    "settings": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_reducer": {
+          "enum": [
+            "median",
+            "mean"
+          ]
+        },
+        "minimum_eligible_students": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "phase_pairs": {
+          "items": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "population_reducer": {
+          "enum": [
+            "median",
+            "mean"
+          ]
+        }
+      },
+      "required": [
+        "cell_reducer",
+        "minimum_eligible_students",
+        "phase_pairs",
+        "population_reducer"
+      ],
+      "type": "object"
+    },
+    "synthetic_only": {
+      "const": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "classification",
+    "synthetic_only",
+    "scientific_data",
+    "production_eligible",
+    "decision_dependencies",
+    "resolves_decisions",
+    "selection_basis",
+    "settings"
+  ],
+  "title": "Stage 5D technical analysis profile v1",
+  "type": "object"
+}

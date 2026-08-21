@@ -1,0 +1,58 @@
+{
+  "profiles": [
+    {
+      "classification": "synthetic_technical_only",
+      "decision_dependencies": [
+        "UD-004",
+        "UD-011",
+        "UD-012"
+      ],
+      "production_eligible": false,
+      "profile_id": "fixture_median_min2",
+      "resolves_decisions": [],
+      "schema_version": "stage5d_technical_analysis_profile_v1",
+      "scientific_data": false,
+      "selection_basis": "technical_fixture_only_never_scientific_effects",
+      "settings": {
+        "cell_reducer": "median",
+        "minimum_eligible_students": 2,
+        "phase_pairs": [
+          [
+            "phase_early",
+            "phase_late"
+          ]
+        ],
+        "population_reducer": "median"
+      },
+      "synthetic_only": true
+    },
+    {
+      "classification": "synthetic_technical_only",
+      "decision_dependencies": [
+        "UD-004",
+        "UD-011",
+        "UD-012"
+      ],
+      "production_eligible": false,
+      "profile_id": "fixture_mean_min3",
+      "resolves_decisions": [],
+      "schema_version": "stage5d_technical_analysis_profile_v1",
+      "scientific_data": false,
+      "selection_basis": "technical_fixture_only_never_scientific_effects",
+      "settings": {
+        "cell_reducer": "mean",
+        "minimum_eligible_students": 3,
+        "phase_pairs": [
+          [
+            "phase_early",
+            "phase_late"
+          ]
+        ],
+        "population_reducer": "mean"
+      },
+      "synthetic_only": true
+    }
+  ],
+  "schema_version": "stage5d_technical_analysis_profile_set_v1",
+  "selection_rule": "caller_must_inject_profile_id_and_never_select_using_scientific_effects"
+}
