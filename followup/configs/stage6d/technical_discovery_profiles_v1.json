@@ -1,0 +1,54 @@
+{
+  "schema_version": "stage6d-technical-discovery-profiles/v1",
+  "technical_only": true,
+  "production_eligible": false,
+  "unresolved_decisions": [
+    "UD-007",
+    "UD-009",
+    "UD-010",
+    "UD-014"
+  ],
+  "resource_warning": "Method-native budget units are method-specific and are not resource-equivalent across discovery methods.",
+  "profiles": [
+    {
+      "profile_id": "technical-greedy-fixture-v1",
+      "profile_version": "technical-profile/v1",
+      "method_name": "greedy_deletion",
+      "method_version": "inherited-technical-adapter/v1",
+      "configuration_reference": "followup/configs/stage6d/technical_discovery_profiles_v1.json#technical-greedy-fixture-v1",
+      "native_budget_unit": "ranked_component_proposals",
+      "native_budget_allowance": 5,
+      "exact_evaluation_allowance": 3,
+      "maximum_restarts": 0,
+      "technical_only": true,
+      "production_eligible": false,
+      "unresolved_decisions": [
+        "UD-007",
+        "UD-009",
+        "UD-010",
+        "UD-014"
+      ],
+      "resource_warning": "Method-native budget units are method-specific and are not resource-equivalent across discovery methods."
+    },
+    {
+      "profile_id": "technical-diversity-fixture-v1",
+      "profile_version": "technical-profile/v1",
+      "method_name": "diversity_forced",
+      "method_version": "inherited-technical-adapter/v1",
+      "configuration_reference": "followup/configs/stage6d/technical_discovery_profiles_v1.json#technical-diversity-fixture-v1",
+      "native_budget_unit": "restart_ranked_proposals",
+      "native_budget_allowance": 7,
+      "exact_evaluation_allowance": 3,
+      "maximum_restarts": 2,
+      "technical_only": true,
+      "production_eligible": false,
+      "unresolved_decisions": [
+        "UD-007",
+        "UD-009",
+        "UD-010",
+        "UD-014"
+      ],
+      "resource_warning": "Method-native budget units are method-specific and are not resource-equivalent across discovery methods."
+    }
+  ]
+}
