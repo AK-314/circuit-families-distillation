@@ -1,0 +1,53 @@
+"""Stage 6E deterministic Endpoint 2 packing contracts."""
+
+from circuit_families.stage6e.packing import (
+    build_compatibility_graph,
+    build_endpoint2_result,
+    exact_maximum_compatible_subset,
+    qualified_input_hash,
+    qualify_and_deduplicate,
+    recompute_endpoint2,
+    retained_jaccard_overlap,
+)
+from circuit_families.stage6e.records import (
+    COMMON_COMPONENT_BASIS_SIZE,
+    POLICY_SCHEMA_VERSION,
+    PROCEDURE_PACKING_LOWER_BOUND_SEMANTICS,
+    CandidateRecord,
+    CompatibilityGraphRecord,
+    Endpoint2ResultRecord,
+    ExactCandidateEvidence,
+    PackingProofRecord,
+    QualificationResult,
+    SelectedMemberRecord,
+    TechnicalEndpoint2Policy,
+    endpoint2_result_from_record,
+    endpoint2_result_to_stage4_endpoint_record,
+    load_technical_policy,
+    technical_policy_from_record,
+)
+
+__all__ = [
+    "COMMON_COMPONENT_BASIS_SIZE",
+    "POLICY_SCHEMA_VERSION",
+    "PROCEDURE_PACKING_LOWER_BOUND_SEMANTICS",
+    "CandidateRecord",
+    "CompatibilityGraphRecord",
+    "Endpoint2ResultRecord",
+    "ExactCandidateEvidence",
+    "PackingProofRecord",
+    "QualificationResult",
+    "SelectedMemberRecord",
+    "TechnicalEndpoint2Policy",
+    "build_compatibility_graph",
+    "build_endpoint2_result",
+    "exact_maximum_compatible_subset",
+    "qualified_input_hash",
+    "endpoint2_result_from_record",
+    "endpoint2_result_to_stage4_endpoint_record",
+    "load_technical_policy",
+    "qualify_and_deduplicate",
+    "recompute_endpoint2",
+    "retained_jaccard_overlap",
+    "technical_policy_from_record",
+]
