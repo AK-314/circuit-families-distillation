@@ -745,7 +745,82 @@ def test_endpoint2_result_serialization_and_reconstruction() -> None:
         endpoint2_result_from_record(corrupted)
 
 
-def test_stage4_endpoint_payload_preserves_endpoint2_claim_boundary() -> None:
+def test_stage4_endpoint_adapter_passes_accepted_validator() -> None:
+    import importlib.util
+
+    from circuit_families.stage6e import (
+        endpoint2_result_to_stage4_endpoint_record,
+    )
+    from circuit_families.stage6e.packing import recompute_endpoint2
+
+    root = Path(__file__).resolve().parents[1]
+    stage4_test = root / "tests/test_stage4_schema_discovery_part_o.py"
+
+    spec = importlib.util.spec_from_file_location(
+        "_stage4_endpoint_contract_fixture",
+        stage4_test,
+    )
+    assert spec is not None
+    assert spec.loader is not None
+
+    fixture_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(fixture_module)
+
+    vocab = fixture_module.vocab.__wrapped__()
+    registry = fixture_module.registry.__wrapped__()
+    stage3 = fixture_module.stage3.__wrapped__(registry)
+    identity_spec = fixture_module.identity_spec.__wrapped__()
+    contract = fixture_module.contract.__wrapped__(vocab, identity_spec)
+
+    accepted = fixture_module.endpoint_record(
+        vocab,
+        stage3,
+        packing=0,
+    )
+    fixture_module.validate(
+        accepted,
+        contract=contract,
+        stage3=stage3,
+    )
+
+    policy = load_technical_policy(POLICY_PATH)
+    qualification = _qualify(
+        [_exact_evidence(retained_count=2)],
+        policy,
+    )
+    result = recompute_endpoint2(
+        qualification,
+        policy,
+    )
+
+    adapted = endpoint2_result_to_stage4_endpoint_record(
+        accepted,
+        result,
+    )
+
+    fixture_module.validate(
+        adapted,
+        contract=contract,
+        stage3=stage3,
+    )
+
+    endpoint2 = adapted["payload"]["endpoint_2"]
+    assert endpoint2 == {
+        "packing_lower_bound": 1,
+        "packed_mask_sha256s": [
+            result.selected_members[0].mask_identity
+        ],
+        "packing_rule_ref": "stage6e-exact-packing-rule/v1",
+        "interpretation": (
+            "procedure_dependent_packing_lower_bound"
+        ),
+        "true_packing_number_claim": False,
+    }
+
+    assert accepted["payload"]["endpoint_2"] != endpoint2
+
+
+def test_stage4_endpoint_adapter_rejects_non_sha_mask_identity() -> None:
     from circuit_families.stage6e import (
         endpoint2_result_to_stage4_endpoint_record,
     )
@@ -757,23 +832,48 @@ def test_stage4_endpoint_payload_preserves_endpoint2_claim_boundary() -> None:
             1,
             1,
             1,
-            (_candidate("stage4", (0, 1)),),
+            (_candidate("not-a-sha", (0,)),),
         ),
         policy,
     )
 
-    payload = endpoint2_result_to_stage4_endpoint_record(result)
+    with pytest.raises(ValueError, match="lowercase SHA-256"):
+        endpoint2_result_to_stage4_endpoint_record(
+            {
+                "record_type": "endpoint_record",
+                "record_status": "sealed",
+                "payload": {"endpoint_2": {}},
+            },
+            result,
+        )
 
-    assert payload["endpoint_name"] == "endpoint_2"
-    assert payload["endpoint_semantics"] == (
-        "procedure_dependent_packing_lower_bound"
+
+def test_stage4_endpoint_adapter_rejects_non_endpoint_record() -> None:
+    from circuit_families.stage6e import (
+        endpoint2_result_to_stage4_endpoint_record,
     )
-    assert payload["value"] == 1
-    assert payload["policy_hash"] == result.policy_hash
-    assert payload["input_hash"] == result.input_hash
-    assert payload["graph_hash"] == result.graph_hash
-    assert payload["proof_hash"] == result.proof.proof_hash
-    assert payload["result_hash"] == result.result_hash
+    from circuit_families.stage6e.packing import recompute_endpoint2
+
+    policy = load_technical_policy(POLICY_PATH)
+    result = recompute_endpoint2(
+        QualificationResult(
+            1,
+            1,
+            1,
+            (_candidate("stage4-invalid", (0,)),),
+        ),
+        policy,
+    )
+
+    with pytest.raises(ValueError, match="record_type"):
+        endpoint2_result_to_stage4_endpoint_record(
+            {
+                "record_type": "not_endpoint_record",
+                "record_status": "sealed",
+                "payload": {"endpoint_2": {}},
+            },
+            result,
+        )
 
 
 def test_technical_e2e_duplicate_permutation_tie_and_zero() -> None:

@@ -12,6 +12,7 @@ from typing import Any
 
 POLICY_SCHEMA_VERSION = "stage6e-technical-endpoint2-policy/v1"
 PROCEDURE_PACKING_LOWER_BOUND_SEMANTICS = "procedure_dependent_packing_lower_bound"
+STAGE4_TECHNICAL_PACKING_RULE_REF = "stage6e-exact-packing-rule/v1"
 TECHNICAL_POLICY_KIND = "technical_fixture"
 COMMON_COMPONENT_BASIS_SIZE = 516
 
@@ -602,18 +603,44 @@ def endpoint2_result_from_record(
 
 
 def endpoint2_result_to_stage4_endpoint_record(
+    endpoint_record: Mapping[str, Any],
     result: Endpoint2ResultRecord,
 ) -> dict[str, object]:
-    """Return the Stage 4 endpoint-record payload for Endpoint 2 evidence."""
+    """Inject Endpoint 2 into an existing accepted Stage 4 endpoint record."""
 
-    return {
-        "endpoint_name": "endpoint_2",
-        "endpoint_semantics": result.semantics,
-        "value": result.packing_lower_bound,
-        "policy_hash": result.policy_hash,
-        "input_hash": result.input_hash,
-        "graph_hash": result.graph_hash,
-        "proof_hash": result.proof.proof_hash,
-        "result_hash": result.result_hash,
-        "recomputation_reference": result.proof.recomputation_reference,
+    import copy
+
+    record = copy.deepcopy(dict(endpoint_record))
+
+    if record.get("record_type") != "endpoint_record":
+        raise ValueError("Stage 4 record_type must be endpoint_record")
+    if record.get("record_status") != "sealed":
+        raise ValueError("Stage 4 endpoint_record must be sealed")
+
+    payload = record.get("payload")
+    if not isinstance(payload, dict):
+        raise ValueError("Stage 4 endpoint_record payload must be an object")
+    if "endpoint_2" not in payload:
+        raise ValueError("Stage 4 endpoint_record payload lacks endpoint_2")
+
+    packed_mask_sha256s = [
+        member.mask_identity for member in result.selected_members
+    ]
+    for digest in packed_mask_sha256s:
+        if (
+            len(digest) != 64
+            or any(char not in "0123456789abcdef" for char in digest)
+        ):
+            raise ValueError(
+                "selected mask identity must be a lowercase SHA-256 digest"
+            )
+
+    payload["endpoint_2"] = {
+        "packing_lower_bound": result.packing_lower_bound,
+        "packed_mask_sha256s": packed_mask_sha256s,
+        "packing_rule_ref": STAGE4_TECHNICAL_PACKING_RULE_REF,
+        "interpretation": PROCEDURE_PACKING_LOWER_BOUND_SEMANTICS,
+        "true_packing_number_claim": False,
     }
+
+    return record
