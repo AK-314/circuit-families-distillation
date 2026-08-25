@@ -1,0 +1,19 @@
+{
+  "schema_version": "stage6e-technical-endpoint2-policy/v1",
+  "policy_name": "stage6e_endpoint2_synthetic_contract_fixture",
+  "policy_kind": "technical_fixture",
+  "scientific_data": false,
+  "production_default": false,
+  "resolves_unresolved_decisions": [],
+  "fidelity_metric_reference": "centred-logit-predictive-fidelity/v1",
+  "fidelity_threshold": 0.625,
+  "component_basis_reference": "common-component-basis-516/v1",
+  "component_basis_size": 516,
+  "component_cap_reference": "stage6e-synthetic-component-cap/v1",
+  "max_component_proportion": 0.375,
+  "overlap_rule_reference": "jaccard-retained-components/technical-v1",
+  "max_pairwise_overlap": 0.25,
+  "solver_reference": "exact-maximum-compatible-subset/technical-v1",
+  "tie_break_reference": "lexicographically-smallest-mask-identity-tuple/v1",
+  "source_budget_reference": "stage6e-synthetic-source-budget-reference/v1"
+}
