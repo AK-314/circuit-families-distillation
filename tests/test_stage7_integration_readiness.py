@@ -640,3 +640,127 @@ def test_part_i_registered_fixture_contract_is_ready_without_checkpoint_access()
     assert request_mapping["classification"] == "synthetic_technical_only"
     assert request_mapping["scientific_data"] is False
     assert request_mapping["production_eligible"] is False
+
+
+
+def test_part_l_validate_only_cli_is_exposed_read_only_and_fixture_free(
+    tmp_path: Path,
+) -> None:
+    import subprocess
+    import sys
+
+    cli = (
+        ROOT
+        / "scripts/"
+        "validate_stage7_technical_integration.py"
+    )
+
+    help_result = subprocess.run(
+        [
+            sys.executable,
+            str(cli),
+            "--help",
+        ],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    assert help_result.returncode == 0
+    assert "--validate-only" in help_result.stdout
+
+    before = tuple(
+        tmp_path.iterdir()
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(cli),
+            "--validate-only",
+        ],
+        cwd=tmp_path,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+
+    after = tuple(
+        tmp_path.iterdir()
+    )
+
+    assert result.returncode == 0, (
+        result.stdout
+        + result.stderr
+    )
+
+    assert "STAGE7A_VALIDATE_ONLY=PASS" in result.stdout
+    assert "VALIDATION_MODE=CONTRACT_READINESS_ONLY" in result.stdout
+    assert "PIPELINE_STEP_COUNT=10" in result.stdout
+    assert "TECHNICAL_FIXTURE_EXECUTION=NO" in result.stdout
+    assert "REGISTERED_FIXTURE_EXECUTION=NO" in result.stdout
+    assert "OUTPUT_WRITTEN=NO" in result.stdout
+    assert "SCIENTIFIC_DATA=NO" in result.stdout
+    assert "PRODUCTION_ELIGIBLE=NO" in result.stdout
+    assert "PRODUCTION_DEFAULT=NO" in result.stdout
+    assert "UD_RESOLUTIONS=0" in result.stdout
+    assert "STAGE8_EXECUTION=NO" in result.stdout
+
+    assert before == after
+
+
+def test_part_l_validate_only_does_not_call_portable_fixture(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    import importlib.util
+
+    cli = (
+        ROOT
+        / "scripts/"
+        "validate_stage7_technical_integration.py"
+    )
+
+    spec = importlib.util.spec_from_file_location(
+        "stage7a_validate_only_cli_test",
+        cli,
+    )
+
+    assert spec is not None
+    assert spec.loader is not None
+
+    module = importlib.util.module_from_spec(
+        spec
+    )
+
+    spec.loader.exec_module(
+        module
+    )
+
+    def forbidden_fixture_execution(
+        *args,
+        **kwargs,
+    ):
+        raise AssertionError(
+            "portable fixture executed during --validate-only"
+        )
+
+    monkeypatch.setattr(
+        module,
+        "run_portable_stage7_fixture",
+        forbidden_fixture_execution,
+    )
+
+    assert module.main(
+        [
+            "--validate-only",
+        ]
+    ) == 0
+
+    output = capsys.readouterr().out
+
+    assert "STAGE7A_VALIDATE_ONLY=PASS" in output
+    assert "TECHNICAL_FIXTURE_EXECUTION=NO" in output
+    assert "REGISTERED_FIXTURE_EXECUTION=NO" in output
+    assert "OUTPUT_WRITTEN=NO" in output

@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import sys
+from dataclasses import fields, replace
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -85,9 +87,15 @@ if str(SRC_ROOT) not in sys.path:
         str(SRC_ROOT),
     )
 
+from circuit_families.stage4_condition_identity import (  # noqa: E402
+    Stage3AvailabilityIndex,
+)
 from circuit_families.stage7 import (  # noqa: E402
+    EXPECTED_PIPELINE_STEPS,
     Stage7PortableE2EError,
     TechnicalDistillationFixtureConfig,
+    build_technical_run_manifest,
+    load_technical_run_request,
     run_portable_stage7_fixture,
 )
 
@@ -101,8 +109,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help=(
+            "Validate Stage 7A contracts and registered-reference readiness "
+            "without executing the synthetic technical integration."
+        ),
+    )
+
+    parser.add_argument(
         "--output-root",
-        required=True,
+        required=False,
         type=Path,
         help=(
             "Dedicated non-existing directory beneath the system temporary root."
@@ -111,54 +128,373 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser.add_argument(
         "--teacher-seed",
-        required=True,
+        required=False,
         type=int,
     )
 
     parser.add_argument(
         "--phase",
-        required=True,
+        required=False,
     )
 
     parser.add_argument(
         "--hard-learning-rate",
-        required=True,
+        required=False,
         type=float,
     )
 
     parser.add_argument(
         "--soft-learning-rate",
-        required=True,
+        required=False,
         type=float,
     )
 
     parser.add_argument(
         "--technical-stop-step",
-        required=True,
+        required=False,
         type=int,
     )
 
     parser.add_argument(
         "--technical-safety-step-limit",
-        required=True,
+        required=False,
         type=int,
     )
 
     parser.add_argument(
         "--soft-tolerance",
-        required=True,
+        required=False,
         type=float,
     )
 
     return parser
 
 
+
+
+def _run_validate_only() -> int:
+    request = load_technical_run_request(
+        REPO_ROOT
+        / "followup/configs/stage7/"
+        "technical_run_request_v1.json"
+    )
+
+    stage3 = Stage3AvailabilityIndex.from_registry(
+        json.loads(
+            (
+                REPO_ROOT
+                / "followup/manifests/"
+                "stage3_teacher_registry_v1.json"
+            ).read_text(
+                encoding="utf-8"
+            )
+        )
+    )
+
+    manifest = build_technical_run_manifest(
+        request,
+        stage3=stage3,
+        repository_root=REPO_ROOT,
+    )
+
+    request_mapping = request.to_mapping()
+    manifest_mapping = manifest.to_mapping()
+
+    if (
+        request_mapping["classification"]
+        != "synthetic_technical_only"
+    ):
+        raise ValueError(
+            "validate-only requires synthetic_technical_only classification"
+        )
+
+    for key in (
+        "scientific_data",
+        "production_eligible",
+        "production_default",
+    ):
+        if request_mapping[key] is not False:
+            raise ValueError(
+                f"request firewall failed for {key}"
+            )
+
+        if manifest_mapping[key] is not False:
+            raise ValueError(
+                f"manifest firewall failed for {key}"
+            )
+
+    if request_mapping["resolves_decisions"] != []:
+        raise ValueError(
+            "validate-only may not resolve UD decisions"
+        )
+
+    step_ids = tuple(
+        step.step_id
+        for step in manifest.lifecycle.topological_steps()
+    )
+
+    if step_ids != EXPECTED_PIPELINE_STEPS:
+        raise ValueError(
+            "validate-only lifecycle differs from canonical pipeline"
+        )
+
+    teacher = request.teacher_reference
+    teacher_changes: dict[str, str] = {}
+
+    for field in fields(
+        teacher
+    ):
+        value = getattr(
+            teacher,
+            field.name,
+        )
+
+        if value == "injected_fixture":
+            teacher_changes[
+                field.name
+            ] = "registered_reference"
+
+        if (
+            isinstance(
+                value,
+                str,
+            )
+            and value.startswith(
+                "synthetic://"
+            )
+        ):
+            teacher_changes[
+                field.name
+            ] = (
+                "registered://stage7/"
+                "teacher-checkpoint/pending"
+            )
+
+    if len(
+        teacher_changes
+    ) < 2:
+        raise ValueError(
+            "registered-reference readiness binding unavailable"
+        )
+
+    registered_teacher = replace(
+        teacher,
+        **teacher_changes,
+    )
+
+    registered_request = replace(
+        request,
+        teacher_reference=registered_teacher,
+    )
+
+    registered_manifest = build_technical_run_manifest(
+        registered_request,
+        stage3=stage3,
+        repository_root=REPO_ROOT,
+    )
+
+    registered_steps = tuple(
+        step.step_id
+        for step in registered_manifest.lifecycle.topological_steps()
+    )
+
+    if registered_steps != EXPECTED_PIPELINE_STEPS:
+        raise ValueError(
+            "registered-reference readiness changed canonical lifecycle"
+        )
+
+    registered_mapping = registered_request.to_mapping()
+
+    if (
+        registered_mapping["classification"]
+        != "synthetic_technical_only"
+    ):
+        raise ValueError(
+            "registered-reference readiness changed classification"
+        )
+
+    for key in (
+        "scientific_data",
+        "production_eligible",
+        "production_default",
+    ):
+        if registered_mapping[key] is not False:
+            raise ValueError(
+                f"registered-reference firewall failed for {key}"
+            )
+
+    serialized = json.dumps(
+        registered_mapping,
+        sort_keys=True,
+    )
+
+    if "private_checkpoint_access=none" not in serialized:
+        raise ValueError(
+            "explicit no-private-checkpoint declaration missing"
+        )
+
+    for forbidden in (
+        "private_checkpoint_access=granted",
+        "private_checkpoint_path",
+        "private_checkpoint_bytes",
+        "private://",
+        "/Users/",
+        "\\Users\\",
+    ):
+        if forbidden in serialized:
+            raise ValueError(
+                "private checkpoint evidence present: "
+                + forbidden
+            )
+
+    registered_uri = next(
+        value
+        for value in (
+            getattr(
+                registered_teacher,
+                field.name,
+            )
+            for field in fields(
+                registered_teacher
+            )
+        )
+        if (
+            isinstance(
+                value,
+                str,
+            )
+            and value.startswith(
+                "registered://"
+            )
+        )
+    )
+
+    print(
+        "STAGE7A_VALIDATE_ONLY=PASS"
+    )
+    print(
+        "VALIDATION_MODE=CONTRACT_READINESS_ONLY"
+    )
+    print(
+        f"PIPELINE_STEP_COUNT={len(step_ids)}"
+    )
+    print(
+        f"REQUEST_SHA256={request.request_sha256}"
+    )
+    print(
+        f"MANIFEST_SHA256={manifest.manifest_sha256}"
+    )
+    print(
+        "REGISTERED_REQUEST_SHA256="
+        f"{registered_request.request_sha256}"
+    )
+    print(
+        "REGISTERED_MANIFEST_SHA256="
+        f"{registered_manifest.manifest_sha256}"
+    )
+    print(
+        f"REGISTERED_REFERENCE_URI={registered_uri}"
+    )
+    print(
+        "TECHNICAL_FIXTURE_EXECUTION=NO"
+    )
+    print(
+        "REGISTERED_FIXTURE_EXECUTION=NO"
+    )
+    print(
+        "OUTPUT_WRITTEN=NO"
+    )
+    print(
+        "SCIENTIFIC_DATA=NO"
+    )
+    print(
+        "PRODUCTION_ELIGIBLE=NO"
+    )
+    print(
+        "PRODUCTION_DEFAULT=NO"
+    )
+    print(
+        "UD_RESOLUTIONS=0"
+    )
+    print(
+        "STAGE8_EXECUTION=NO"
+    )
+
+    return 0
+
 def main(
     argv: list[str] | None = None,
 ) -> int:
-    args = build_parser().parse_args(
+    parser = build_parser()
+    args = parser.parse_args(
         argv
     )
+
+    fixture_argument_names = (
+        "output_root",
+        "teacher_seed",
+        "phase",
+        "hard_learning_rate",
+        "soft_learning_rate",
+        "technical_stop_step",
+        "technical_safety_step_limit",
+        "soft_tolerance",
+    )
+
+    if args.validate_only:
+        supplied_fixture_arguments = [
+            name
+            for name in fixture_argument_names
+            if getattr(
+                args,
+                name,
+            ) is not None
+        ]
+
+        if supplied_fixture_arguments:
+            parser.error(
+                "--validate-only cannot be combined with technical-fixture "
+                "arguments: "
+                + ", ".join(
+                    supplied_fixture_arguments
+                )
+            )
+
+        try:
+            return _run_validate_only()
+        except (
+            OSError,
+            RuntimeError,
+            ValueError,
+        ) as exc:
+            print(
+                "STAGE7A_VALIDATE_ONLY=FAIL "
+                f"reason={exc}",
+                file=sys.stderr,
+            )
+            return 2
+
+    missing_fixture_arguments = [
+        name
+        for name in fixture_argument_names
+        if getattr(
+            args,
+            name,
+        ) is None
+    ]
+
+    if missing_fixture_arguments:
+        parser.error(
+            "full synthetic technical integration requires: "
+            + ", ".join(
+                "--"
+                + name.replace(
+                    "_",
+                    "-",
+                )
+                for name in missing_fixture_arguments
+            )
+        )
 
     try:
         config = TechnicalDistillationFixtureConfig(
