@@ -1,0 +1,181 @@
+{
+  "analysis_profile_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-analysis-profile-binding/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "fixture_median_min2",
+    "sha256": "e7d43ec9f9cd7f1bef67b9504b5ddf2e2e0b46b5fc121bfe0ddeb04d7630e95c",
+    "source": "followup/configs/stage5d/technical_analysis_profiles_v1.json",
+    "source_kind": "repository_file"
+  },
+  "classification": "synthetic_technical_only",
+  "decision_dependencies": [
+    "UD-003",
+    "UD-004",
+    "UD-005",
+    "UD-006",
+    "UD-007",
+    "UD-008",
+    "UD-009",
+    "UD-010",
+    "UD-011",
+    "UD-012",
+    "UD-013",
+    "UD-014"
+  ],
+  "discovery_profile_references": [
+    {
+      "classification": "technical_fixture",
+      "production_eligible": false,
+      "reference_id": "technical-greedy-discovery-binding/v1",
+      "resolves_decisions": [],
+      "scientific_data": false,
+      "selector": "technical-greedy-fixture-v1",
+      "sha256": "0caf2cb3625c207539f538e1489331070ec8c2be1c2793627a1d5c3208b93dd1",
+      "source": "followup/configs/stage6d/technical_discovery_profiles_v1.json",
+      "source_kind": "repository_file"
+    },
+    {
+      "classification": "technical_fixture",
+      "production_eligible": false,
+      "reference_id": "technical-diversity-discovery-binding/v1",
+      "resolves_decisions": [],
+      "scientific_data": false,
+      "selector": "technical-diversity-fixture-v1",
+      "sha256": "0caf2cb3625c207539f538e1489331070ec8c2be1c2793627a1d5c3208b93dd1",
+      "source": "followup/configs/stage6d/technical_discovery_profiles_v1.json",
+      "source_kind": "repository_file"
+    }
+  ],
+  "endpoint1_policy_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-endpoint1-ledger-profile/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "TechnicalLedgerProfile",
+    "sha256": "ac4c9da33af57dcad2f06d7874da8d27b78dfa16568763a779f9bdde26a61b37",
+    "source": "injected://stage6a/technical-ledger-profile/v1",
+    "source_kind": "injected_fixture"
+  },
+  "endpoint2_policy_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-endpoint2-policy-binding/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "stage6e_endpoint2_synthetic_contract_fixture",
+    "sha256": "0a438bce6f04fd9841be10e17255342969d465db762a9edf627ea5b238916cef",
+    "source": "followup/configs/stage6e/technical_endpoint2_policy_v1.json",
+    "source_kind": "repository_file"
+  },
+  "exclusion_register_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "stage2-excluded-development-register/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "stage2_excluded_development_register",
+    "sha256": "6171abc8ff1b82ce6705499dc966a0d842aa5497016846c0ea96932b52334b6f",
+    "source": "followup/manifests/stage2_excluded_development_register_v1.json",
+    "source_kind": "repository_file"
+  },
+  "hard_profile_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-hard-profile-binding/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "technical-adapter-fixture/v1",
+    "sha256": "0850cc6d0a73607332a0f3ba24df87bf99a306ca289b0efbb3e7636e45751acb",
+    "source": "tests/fixtures/stage5bc/technical_profile_set_v1.json",
+    "source_kind": "repository_file"
+  },
+  "job_lifecycle_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "accepted-stage5bc-job-lifecycle/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "TechnicalJobRegistry",
+    "sha256": "76d103e6abd41a437fa7f5d750829291bf94dba644399f7edb557fefc6194898",
+    "source": "src/circuit_families/stage5bc/job_dag.py",
+    "source_kind": "repository_file"
+  },
+  "output_root": "followup/excluded_development/stage7/technical-run-contract-v1",
+  "production_default": false,
+  "production_eligible": false,
+  "request_id": "technical-stage7-portable-contract/v1",
+  "resolves_decisions": [],
+  "schema_version": "stage7-technical-run-request/v1",
+  "scientific_data": false,
+  "seed_derivation_reference": "seed-derivation/v1",
+  "seed_inputs": [
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "label": "hard_training_attempt_0",
+      "purpose": "training",
+      "retry_index": 0
+    },
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0",
+      "label": "hard_tie_breaking_attempt_0",
+      "purpose": "tie_breaking",
+      "retry_index": 0
+    },
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=soft_target|student_initialization=0",
+      "label": "soft_training_attempt_0",
+      "purpose": "training",
+      "retry_index": 0
+    },
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d4|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=soft_target|student_initialization=0",
+      "label": "soft_tie_breaking_attempt_0",
+      "purpose": "tie_breaking",
+      "retry_index": 0
+    },
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d8|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=hard_target|student_initialization=0|discovery_method=synthetic-greedy%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "label": "hard_discovery_attempt_0",
+      "purpose": "discovery",
+      "retry_index": 0
+    },
+    {
+      "attempt_index": 0,
+      "condition_id": "cfdid:v1:d8|teacher_seed=0|phase=stable%20post-grokking|distillation_condition=soft_target|student_initialization=0|discovery_method=synthetic-greedy%2Fv1|fidelity_setting=synthetic-fidelity%2Fv1|component_cap=synthetic-cap%2Fv1|overlap_setting=synthetic-overlap%2Fv1",
+      "label": "soft_discovery_attempt_0",
+      "purpose": "discovery",
+      "retry_index": 0
+    }
+  ],
+  "soft_profile_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-soft-profile-binding/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "technical-adapter-fixture/v1",
+    "sha256": "0850cc6d0a73607332a0f3ba24df87bf99a306ca289b0efbb3e7636e45751acb",
+    "source": "tests/fixtures/stage5bc/technical_profile_set_v1.json",
+    "source_kind": "repository_file"
+  },
+  "teacher_reference": {
+    "classification": "technical_fixture",
+    "production_eligible": false,
+    "reference_id": "technical-synthetic-teacher-reference/v1",
+    "resolves_decisions": [],
+    "scientific_data": false,
+    "selector": "teacher_seed=0;phase=stable post-grokking;private_checkpoint_access=none",
+    "sha256": "cc55efd37b21280cad8cd95f4e1327f0a76e3191b8972dda6f03dda0c284c349",
+    "source": "synthetic://stage7/teacher-reference/v1",
+    "source_kind": "injected_fixture"
+  }
+}
