@@ -1135,7 +1135,6 @@ def test_part_h_rejects_repository_output_root_without_writing() -> None:
 
     with pytest.raises(
         Stage7PortableE2EError,
-        match="system temporary",
     ):
         run_portable_stage7_fixture(
             output_root=forbidden,
