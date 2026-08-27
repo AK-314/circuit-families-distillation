@@ -5,7 +5,6 @@ import json
 import re
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parents[1]
 REQUEST = REPO / "followup/configs/stage7b/registered_fixture_request_v1.json"
 
