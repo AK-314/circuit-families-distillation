@@ -1,0 +1,195 @@
+{
+  "accepted_authority": {
+    "accepted_stage7a_head": "f475f0bfd201dc85fd4fb7a3f0249ac332e21ddc",
+    "inheritance_rule": "Reuse accepted authorities exactly; do not define a second trainer, eligibility rule, discovery algorithm, fidelity metric, endpoint reducer, native budget, or exact allowance.",
+    "required_integrated_base": "ebd223187b170adc77fb9eacb78253efd408361e",
+    "stage6a_exact_ledger_endpoint1_authorities": [
+      {
+        "path": "scripts/recompute_stage6a_endpoint1.py",
+        "sha256": "5f1f80d3ac4f4efc704ec2978ddfa7fda2bfaeb2cfcef97895013263046972a8"
+      },
+      {
+        "path": "src/circuit_families/stage6a/__init__.py",
+        "sha256": "6943cf44885c31d592abdca5e22fc650285b04fdf6794414e262889042877a66"
+      },
+      {
+        "path": "src/circuit_families/stage6a/budget.py",
+        "sha256": "262a0b2c523e863be3f657303e4436a8737c33fbb266c6ffd903af51aa140f2e"
+      },
+      {
+        "path": "src/circuit_families/stage6a/endpoint.py",
+        "sha256": "5f7bb6de5234c7e74dc3846913f344472b5ac53c7826a8e7380f58c72659ab5a"
+      },
+      {
+        "path": "src/circuit_families/stage6a/ledger.py",
+        "sha256": "298c6c17e8419a71daf6e7b63736ff56172ab75ad6d60efb3fa32f00dd388133"
+      },
+      {
+        "path": "src/circuit_families/stage6a/models.py",
+        "sha256": "0ace5d623830c6311e890b1e28a2bc037ab48776962af593cf98c06ff8ba59e2"
+      },
+      {
+        "path": "tests/test_stage6a_contracts.py",
+        "sha256": "d0f58a63b5e50cc26e6bd9a3042e87dce05569bc4dd92166c58126ec1ed29935"
+      }
+    ],
+    "stage6d_discovery_native_budget_authorities": [
+      {
+        "path": "followup/configs/stage6d/technical_discovery_profiles_v1.json",
+        "sha256": "0caf2cb3625c207539f538e1489331070ec8c2be1c2793627a1d5c3208b93dd1"
+      },
+      {
+        "path": "scripts/validate_stage6d_discovery_adapters.py",
+        "sha256": "f695a0d0bc851781d16efe038f51295fd51b666c24820d13e56b95dcd6b9e3f7"
+      },
+      {
+        "path": "src/circuit_families/stage6d/__init__.py",
+        "sha256": "fde82bcf46d7d6c63ea585603f0663e8a025f2c1d2db045e105786a84597c8fb"
+      },
+      {
+        "path": "src/circuit_families/stage6d/adapters.py",
+        "sha256": "21f6ab265a790ac6756f5447dd98f46eb3bed64030e415eba349f511cf77f665"
+      },
+      {
+        "path": "src/circuit_families/stage6d/budgets.py",
+        "sha256": "fd9e2d29856f5a04ea312d19790bc6b4eef6ea84625bf7c08c8a68fa904d422a"
+      },
+      {
+        "path": "src/circuit_families/stage6d/diversity.py",
+        "sha256": "49946348e80a4137b70c7d303e2bae46027e51acbba5783786be2fdaaabdad32"
+      },
+      {
+        "path": "src/circuit_families/stage6d/greedy.py",
+        "sha256": "61dffe8119f21f922f4de151b327f1e32cfd43a87158159905404d7d9cad86c8"
+      },
+      {
+        "path": "src/circuit_families/stage6d/models.py",
+        "sha256": "d35907b9ce15cd3ee8dd7d63e3bdffeb161c14af61c3471c4c87fea1bb98e19f"
+      },
+      {
+        "path": "src/circuit_families/stage6d/profiles.py",
+        "sha256": "453294a7cabd41912c9e25f0d2fd047131bd027595ba0ba1bbf5020ceeb9efe0"
+      },
+      {
+        "path": "tests/test_stage6d_adapters.py",
+        "sha256": "58156e1aa69062665a48f3d213f03db8bf0fe89c7565b2a338d224023cf2379c"
+      },
+      {
+        "path": "tests/test_stage6d_contracts.py",
+        "sha256": "27199acf5c2133ef84a343e62c55a0f16a2f78bb6dadda06b04810aeb52c9ba5"
+      },
+      {
+        "path": "tests/test_stage6d_validate_cli.py",
+        "sha256": "db4dcddf8b6ce52bf1e2bfd3634418f288196763b4a7d4f4dba5408f9a10f25d"
+      }
+    ],
+    "stage6e_endpoint2_policy": {
+      "path": "followup/configs/stage6e/technical_endpoint2_policy_v1.json",
+      "sha256": "0a438bce6f04fd9841be10e17255342969d465db762a9edf627ea5b238916cef"
+    },
+    "stage7a_technical_request": {
+      "path": "followup/configs/stage7/technical_run_request_v1.json",
+      "sha256": "81a2fe7d1f1f0535e57183371920ecd33f2348a54bc4c3540e3ff740438f50f3"
+    }
+  },
+  "attempt_roster": {
+    "attempts_are_unpooled": true,
+    "failed_attempt_is_not_retried_for_eligibility": true,
+    "failed_attempt_is_retained": true,
+    "hard_target_attempts": 1,
+    "soft_target_attempts": 1,
+    "student_discovery_requires_eligible_sealed_student": true,
+    "teacher_direct_discovery_is_unconditional": true
+  },
+  "compute_envelope": {
+    "exact_evaluation_is_bounded_by_inherited_stage6a_allowances": true,
+    "hard_student_attempts_per_fixture_run": 1,
+    "maximum_student_discovery_adapter_invocations_per_fixture_run": 4,
+    "soft_student_attempts_per_fixture_run": 1,
+    "student_discovery_invocations_may_be_lower_only_due_to_ineligibility": true,
+    "teacher_attempts_per_fixture_run": 1,
+    "teacher_discovery_adapter_invocations_per_fixture_run": 2
+  },
+  "deterministic_initialization": {
+    "count_per_condition": 1,
+    "derivation": "reuse_accepted_seed_derivation",
+    "post_outcome_reinitialization": false
+  },
+  "discovery": {
+    "accepted_adapter_count": 2,
+    "adapter_roster": "inherit_exactly_from_accepted_stage6d_and_stage7_authority",
+    "exact_evaluation_allowances": "inherit_separately_from_accepted_stage6a_authority",
+    "method_native_budgets": "inherit_exactly_from_accepted_stage6d_authority",
+    "native_and_exact_budgets_are_separate": true
+  },
+  "endpoints": {
+    "endpoint1_policy": "inherit_exactly_from_accepted_stage6a_authority",
+    "endpoint2_policy": "inherit_exactly_from_accepted_stage6e_authority",
+    "interpret_endpoint_values": false,
+    "print_endpoint_values": false
+  },
+  "execution_engineering": {
+    "atomic_cache_and_checkpoint_writes": true,
+    "batch_reduction_allowed_only_after_documented_memory_failure": true,
+    "batch_size_semantics": "mathematically_invariant_full_domain_partition_only",
+    "device": "mps",
+    "device_selected_before_endpoint_output": true,
+    "exact_evaluation_batch_size": 256,
+    "one_worker": true,
+    "retain_duplicate_full_domain_logits_in_memory": false,
+    "teacher_forward_batch_size": 256
+  },
+  "production_default": false,
+  "registered_teacher": {
+    "canonical_run_id": "stage18-main-training-s0-58b8c1235464",
+    "checkpoint_path_relative_to_predecessor": "checkpoints/stage18-main-training-s0-58b8c1235464/step_00005900.pt",
+    "checkpoint_sha256": "f8f0fc43c559aa6f63e796a62627b8657a789a34f558b81ee33fbc6cc8968bc6",
+    "complete_domain_size": 12769,
+    "domain_order": "lexicographic_modular_addition_inputs",
+    "phase_label": "stable post-grokking",
+    "teacher_seed": 0,
+    "training_step": 5900
+  },
+  "request_kind": "technical_interface_fixture",
+  "resource_envelope": {
+    "combined_source_and_reproduction_local_ceiling_bytes": 4294967296,
+    "git_lfs_allowed": false,
+    "predicted_peak_bytes_per_runtime_root": 1073741824,
+    "predicted_peak_resident_bytes": 2147483648,
+    "stop_before_exceeding_combined_local_ceiling": true
+  },
+  "runtime_boundary": {
+    "predecessor_root_is_runtime_argument": true,
+    "private_absolute_path_in_tracked_content": false,
+    "reproduction_root_must_be_separate": true,
+    "runtime_outputs_tracked": false,
+    "source_root_relative": "followup/local/stage7b/registered-fixture-v1"
+  },
+  "schema_version": "stage7b.registered_fixture_request.v1",
+  "scientific_data": false,
+  "scientific_firewall": {
+    "all_endpoint_like_outputs_lifecycle_state": "excluded",
+    "primary_input_eligible": false,
+    "regeneration_required_after_definitive_freeze": true,
+    "request_mutation_after_endpoint_output": false,
+    "scientific_interpretation": false,
+    "teacher_seed_population_unit_retained": true
+  },
+  "shared_trainer_workload": {
+    "native_positive_work_units_per_attempt": 1,
+    "native_work_unit_safety_ceiling_per_attempt": 1,
+    "reuse_accepted_shared_trainer": true,
+    "smallest_nonzero_supported_integer_workload": true,
+    "training_length_post_outcome_tuning": false
+  },
+  "stage8_execution": false,
+  "targets_and_fidelity": {
+    "complete_domain_exact_evaluation": true,
+    "hard_soft_pooling": false,
+    "hard_target": true,
+    "predictive_fidelity": "centred_logit_only",
+    "soft_target": true
+  },
+  "technical_only": true,
+  "ud_resolution": false
+}
