@@ -64,3 +64,6 @@ followup/excluded_development/**
 
 # Follow-up machine-local scratch
 followup/local/scratch/**
+
+# Stage 7B local registered-fixture runtime products
+/followup/local/stage7b/
