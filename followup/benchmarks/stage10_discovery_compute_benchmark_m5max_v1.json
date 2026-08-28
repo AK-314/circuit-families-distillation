@@ -1,0 +1,118 @@
+{
+  "budget_interpretation": {
+    "common_exact_allowance_required": true,
+    "final_budget_frozen": false,
+    "method_native_units_resource_equivalent": false,
+    "raw_cross_method_packing_resource_matched": false
+  },
+  "classification": "registered_teacher_technical_benchmark_only",
+  "endpoint_values_recorded": false,
+  "exact_evaluation": {
+    "deterministic_result_hash": "86186919bfadcde5bef988f07dc6c76d01a74ca19e46d801984777889420dca1",
+    "full_domain_count": 12769,
+    "inference_batch_size": 256,
+    "repeat_elapsed_seconds": [
+      0.09000724996440113,
+      0.08844537497498095
+    ],
+    "steady_state_seconds": 0.08844537497498095
+  },
+  "hardware": {
+    "device": "cpu",
+    "machine": "arm64",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.11.15",
+    "torch": "2.13.0"
+  },
+  "ledger_reuse": {
+    "component_cap_sensitivity_without_new_search": true,
+    "discovery_trajectory_threshold_change_may_require_new_search": true,
+    "fidelity_threshold_reducer_sensitivity_without_new_search": true,
+    "overlap_sensitivity_without_new_search": true,
+    "packing_recomputation_without_new_search": true,
+    "reuse_limited_to_masks_already_present_in_sealed_ledger": true
+  },
+  "method_projections": [
+    {
+      "budget_status": "technical_fixture_only_not_frozen",
+      "method_name": "diversity_forced",
+      "model_count": 105,
+      "one_worker_hours_at_technical_fixture_budget": 0.03447700643155258
+    },
+    {
+      "budget_status": "technical_fixture_only_not_frozen",
+      "method_name": "greedy_deletion",
+      "model_count": 105,
+      "one_worker_hours_at_technical_fixture_budget": 0.029211017032988215
+    }
+  ],
+  "methods": [
+    {
+      "cold_start_elapsed_seconds": 1.177253834088333,
+      "deterministic_reproduction": true,
+      "evidence_sha256": "e735844f17ac29e9e41c578f82da842c4e83389331da29b26a29ffa3f884d773",
+      "exact_budget_consumed": 3,
+      "exact_evaluation_allowance": 3,
+      "method_name": "diversity_forced",
+      "native_budget_allowance": 7,
+      "native_budget_consumed": 3,
+      "native_budget_unit": "restart_ranked_proposals",
+      "proposal_count": 3,
+      "repeat_elapsed_seconds": [
+        1.177253834088333,
+        1.1820687919389457
+      ],
+      "steady_state_elapsed_seconds": 1.1820687919389457,
+      "stopping_status": "completed"
+    },
+    {
+      "cold_start_elapsed_seconds": 1.0140442500123754,
+      "deterministic_reproduction": true,
+      "evidence_sha256": "8d7eeb8246a7e61e9fc5132c23a4ac7ffa6bbc955e9cc3fe37c3e3ca2ce3fc5d",
+      "exact_budget_consumed": 3,
+      "exact_evaluation_allowance": 3,
+      "method_name": "greedy_deletion",
+      "native_budget_allowance": 5,
+      "native_budget_consumed": 3,
+      "native_budget_unit": "ranked_component_proposals",
+      "proposal_count": 3,
+      "repeat_elapsed_seconds": [
+        1.0140442500123754,
+        1.0015205839881673
+      ],
+      "steady_state_elapsed_seconds": 1.0015205839881673,
+      "stopping_status": "completed"
+    }
+  ],
+  "peak_rss_bytes": 517783552,
+  "primary_model_count_projection": 105,
+  "production_eligible": false,
+  "ranking_pass": {
+    "component_count": 516,
+    "deterministic_ordering_hash": "4d1aa3ad9acddc294c8196872350ea90ab2e402514223f9f420f75ebdb2d5b68",
+    "repeat_elapsed_seconds": [
+      0.14159112505149096,
+      0.1314077500719577
+    ],
+    "steady_state_seconds": 0.1314077500719577
+  },
+  "registered_teacher_count": 1,
+  "report_sha256": "e723c775254f7ad0253e135a25c824db87b14ced5bd1a8d95e889f8fe61a5560",
+  "resolves_decisions": [],
+  "safe_concurrency": {
+    "default_workers_on_measured_mac": 1,
+    "increase_only_after_memory_monitoring": true,
+    "measured_process_peak_rss_bytes": 517783552
+  },
+  "schema_version": "stage10-discovery-compute-benchmark/v1",
+  "scientific_data": false,
+  "scientific_red_team_started": false,
+  "source_bindings": {
+    "benchmark_module_sha256": "ddc14a9607336b8ce1c935c34a059b4aad204ec37131b6372d2d1e4966fc1373",
+    "checkpoint_sha256": "f8f0fc43c559aa6f63e796a62627b8657a789a34f558b81ee33fbc6cc8968bc6",
+    "discovery_profiles_sha256": "0caf2cb3625c207539f538e1489331070ec8c2be1c2793627a1d5c3208b93dd1",
+    "registered_request_sha256": "818953f7fdcfed7e7f133e23ac3d44d47e35dfda8f006e6c90ec9a4c1ec92d34"
+  },
+  "stage10_complete": true,
+  "stage11_started": false
+}
