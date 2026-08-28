@@ -1,0 +1,23 @@
+{
+  "schema_version": "stage8-technical-edge-case-matrix/v1",
+  "classification": "synthetic_technical_only",
+  "scientific_data": false,
+  "production_eligible": false,
+  "resolves_decisions": [],
+  "cases": [
+    {"case_id": "hard_exactly_one_mismatch", "expected": "ineligible_12768_of_12769"},
+    {"case_id": "soft_immediately_below_tolerance", "expected": "eligible"},
+    {"case_id": "soft_immediately_above_tolerance", "expected": "ineligible"},
+    {"case_id": "no_sparse_qualifying_circuit", "expected": "endpoint1_equals_1"},
+    {"case_id": "no_packing_eligible_circuit", "expected": "packing_lower_bound_zero"},
+    {"case_id": "method_optimization_failure", "expected": "failed_reported"},
+    {"case_id": "exact_evaluation_budget_exhaustion", "expected": "exact_budget_exhausted"},
+    {"case_id": "duplicate_proposals", "expected": "one_unique_exact_evaluation"},
+    {"case_id": "missing_student_cell", "expected": "missing_reported"},
+    {"case_id": "cell_below_minimum_eligible_count", "expected": "unresolved_reported"},
+    {"case_id": "interrupted_and_resumed_worker", "expected": "resume_same_attempt"},
+    {"case_id": "conflicting_worker_inventory", "expected": "conflict_rejected"},
+    {"case_id": "additive_logit_gauge_shift", "expected": "eligibility_invariant"},
+    {"case_id": "result_order_permutation", "expected": "summary_invariant"}
+  ]
+}
