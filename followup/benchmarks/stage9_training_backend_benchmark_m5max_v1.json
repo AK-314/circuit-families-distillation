@@ -1,0 +1,373 @@
+{
+  "architecture_parameter_count": 227313,
+  "backend_qualification": [
+    {
+      "bitwise_reproducible": true,
+      "device": "cpu",
+      "disposition": "verified_deterministic_reference_candidate",
+      "semantic_argmax_reproducible": true
+    },
+    {
+      "bitwise_reproducible": false,
+      "device": "mps",
+      "disposition": "development_only_not_definitive",
+      "semantic_argmax_reproducible": true
+    }
+  ],
+  "classification": "technical_benchmark_only",
+  "conditions": [
+    "hard_target",
+    "soft_target"
+  ],
+  "decision_boundary": {
+    "cpu_reference_candidate_only": true,
+    "mps_definitive_training_authorized": false,
+    "optimizer_schedule_stopping_attempt_cap_frozen": false,
+    "scientific_red_team_started": false
+  },
+  "full_domain_count": 12769,
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.11.15",
+    "torch": "2.13.0"
+  },
+  "intermediate_checkpoint_storage_projections": [
+    {
+      "attempt_count": 90,
+      "checkpoint_bytes": 5155587360,
+      "checkpoint_count_per_attempt_including_initial_and_final": 21,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 180,
+      "checkpoint_bytes": 10311174720,
+      "checkpoint_count_per_attempt_including_initial_and_final": 21,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 90,
+      "checkpoint_bytes": 24795920160,
+      "checkpoint_count_per_attempt_including_initial_and_final": 101,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 180,
+      "checkpoint_bytes": 49591840320,
+      "checkpoint_count_per_attempt_including_initial_and_final": 101,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 90,
+      "checkpoint_bytes": 49346336160,
+      "checkpoint_count_per_attempt_including_initial_and_final": 201,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 180,
+      "checkpoint_bytes": 98692672320,
+      "checkpoint_count_per_attempt_including_initial_and_final": 201,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 90,
+      "checkpoint_bytes": 196648832160,
+      "checkpoint_count_per_attempt_including_initial_and_final": 801,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 40000
+    },
+    {
+      "attempt_count": 180,
+      "checkpoint_bytes": 393297664320,
+      "checkpoint_count_per_attempt_including_initial_and_final": 801,
+      "checkpoint_interval_updates": 50,
+      "interpretation": "legacy_interval_scenario_not_frozen",
+      "updates_per_attempt": 40000
+    }
+  ],
+  "measurements": [
+    {
+      "checkpoint_payload_bytes": 2727824,
+      "cold_start_update_seconds": 0.16182841698173434,
+      "comparison": {
+        "bitwise_dense_output_equal": true,
+        "bitwise_state_equal": true,
+        "differing_parameter_element_count": 0,
+        "differing_parameter_tensor_names": [],
+        "full_domain_argmax_mismatch_count": 0,
+        "full_domain_count": 12769,
+        "maximum_absolute_dense_output_difference": 0.0,
+        "maximum_absolute_parameter_difference": 0.0,
+        "relative_dense_output_l2_difference": 0.0,
+        "relative_parameter_l2_difference": 0.0
+      },
+      "condition": "hard_target",
+      "dense_output_bytes": 5771588,
+      "device": "cpu",
+      "median_update_seconds": 0.15092783351428807,
+      "peak_rss_bytes": 896155648,
+      "repeat_update_seconds": [
+        0.16182841698173434,
+        0.1400272500468418
+      ],
+      "steady_state_update_seconds": 0.1400272500468418
+    },
+    {
+      "checkpoint_payload_bytes": 2727824,
+      "cold_start_update_seconds": 0.1395479580387473,
+      "comparison": {
+        "bitwise_dense_output_equal": true,
+        "bitwise_state_equal": true,
+        "differing_parameter_element_count": 0,
+        "differing_parameter_tensor_names": [],
+        "full_domain_argmax_mismatch_count": 0,
+        "full_domain_count": 12769,
+        "maximum_absolute_dense_output_difference": 0.0,
+        "maximum_absolute_parameter_difference": 0.0,
+        "relative_dense_output_l2_difference": 0.0,
+        "relative_parameter_l2_difference": 0.0
+      },
+      "condition": "soft_target",
+      "dense_output_bytes": 5771588,
+      "device": "cpu",
+      "median_update_seconds": 0.14053558302111924,
+      "peak_rss_bytes": 924024832,
+      "repeat_update_seconds": [
+        0.1395479580387473,
+        0.14152320800349116
+      ],
+      "steady_state_update_seconds": 0.14152320800349116
+    },
+    {
+      "checkpoint_payload_bytes": 2727824,
+      "cold_start_update_seconds": 0.2929107079980895,
+      "comparison": {
+        "bitwise_dense_output_equal": false,
+        "bitwise_state_equal": false,
+        "differing_parameter_element_count": 635,
+        "differing_parameter_tensor_names": [
+          "embed.W_E"
+        ],
+        "full_domain_argmax_mismatch_count": 0,
+        "full_domain_count": 12769,
+        "maximum_absolute_dense_output_difference": 1.7136335372924805e-07,
+        "maximum_absolute_parameter_difference": 6.183981895446777e-07,
+        "relative_dense_output_l2_difference": 3.6084281451345225e-07,
+        "relative_parameter_l2_difference": 2.33813029085863e-08
+      },
+      "condition": "hard_target",
+      "dense_output_bytes": 5771588,
+      "device": "mps",
+      "median_update_seconds": 0.1598996039829217,
+      "peak_rss_bytes": 924024832,
+      "repeat_update_seconds": [
+        0.2929107079980895,
+        0.026888499967753887
+      ],
+      "steady_state_update_seconds": 0.026888499967753887
+    },
+    {
+      "checkpoint_payload_bytes": 2727824,
+      "cold_start_update_seconds": 0.024319249903783202,
+      "comparison": {
+        "bitwise_dense_output_equal": false,
+        "bitwise_state_equal": false,
+        "differing_parameter_element_count": 294,
+        "differing_parameter_tensor_names": [
+          "embed.W_E"
+        ],
+        "full_domain_argmax_mismatch_count": 0,
+        "full_domain_count": 12769,
+        "maximum_absolute_dense_output_difference": 1.4901161193847656e-07,
+        "maximum_absolute_parameter_difference": 1.4901161193847656e-08,
+        "relative_dense_output_l2_difference": 3.4058609844349585e-07,
+        "relative_parameter_l2_difference": 1.4080519724661004e-09
+      },
+      "condition": "soft_target",
+      "dense_output_bytes": 5771588,
+      "device": "mps",
+      "median_update_seconds": 0.021432082925457507,
+      "peak_rss_bytes": 924024832,
+      "repeat_update_seconds": [
+        0.024319249903783202,
+        0.018544915947131813
+      ],
+      "steady_state_update_seconds": 0.018544915947131813
+    }
+  ],
+  "native_updates_per_trial": 1,
+  "production_eligible": false,
+  "repeats_per_backend_condition": 2,
+  "report_sha256": "9ac594ec5ab1ae800d54dad25ca1a2266dcdaaa3bb0c8d3800d272e43b0e8654",
+  "resolves_decisions": [],
+  "runtime_projections": [
+    {
+      "attempt_count": 90,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 3.519380725629162,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 180,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 7.038761451258324,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 90,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 17.59690362814581,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 180,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 35.19380725629162,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 90,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 35.19380725629162,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 180,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 70.38761451258324,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 90,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 140.77522902516648,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 40000
+    },
+    {
+      "attempt_count": 180,
+      "device": "cpu",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 281.55045805033296,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 40000
+    },
+    {
+      "attempt_count": 90,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 0.5679176989360712,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 180,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 1.1358353978721425,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 1000
+    },
+    {
+      "attempt_count": 90,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 2.8395884946803562,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 180,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 5.6791769893607125,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 5000
+    },
+    {
+      "attempt_count": 90,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 5.6791769893607125,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 180,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 11.358353978721425,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 10000
+    },
+    {
+      "attempt_count": 90,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 22.71670795744285,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 40000
+    },
+    {
+      "attempt_count": 180,
+      "device": "mps",
+      "interpretation": "upper_level_planning_scenario_not_frozen",
+      "linear_wall_clock_hours_one_worker": 45.4334159148857,
+      "seconds_per_update_basis": "mean_of_hard_and_soft_second_repeat_steady_state",
+      "updates_per_attempt": 40000
+    }
+  ],
+  "schema_version": "stage9-student-training-backend-benchmark/v1",
+  "scientific_data": false,
+  "source_bindings": {
+    "benchmark_module_sha256": "3d79b5a022a3f0b3220063f4bcb59b1b6e60b6fdf400dd7c9396a55013e46b56",
+    "model_config_sha256": "5f3126ecf351c463561a1cffefa69e6576fe6e9cbd9f14aac6b73e956a3fe218",
+    "training_config_sha256": "488d43adb9b57152767d165160cd16324331681545752f0cff9c2fe4f342d603"
+  },
+  "stage10_started": false,
+  "stage9_complete": true,
+  "storage_projections": [
+    {
+      "attempt_count": 90,
+      "checkpoint_plus_dense_output_bytes": 764947080,
+      "excludes_intermediate_checkpoints": true
+    },
+    {
+      "attempt_count": 180,
+      "checkpoint_plus_dense_output_bytes": 1529894160,
+      "excludes_intermediate_checkpoints": true
+    }
+  ],
+  "unmeasured_backends": [
+    {
+      "device": "cuda",
+      "disposition": "must_pass_same_exact_and_semantic_qualification_before_use"
+    }
+  ]
+}
