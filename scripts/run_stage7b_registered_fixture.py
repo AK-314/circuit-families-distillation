@@ -14,6 +14,8 @@ import argparse
 import hashlib
 import importlib
 import json
+import resource
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -131,6 +133,17 @@ def main() -> int:
         raise
 
     compact = {
+        "source_git_head": subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=repo,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip(),
+        "runtime_ms": int((time.perf_counter() - started) * 1000),
+        "peak_rss_bytes": int(
+            resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        ),
         "provenance_status": result.provenance_status,
         "hard_attempt_status": result.hard_attempt_status,
         "soft_attempt_status": result.soft_attempt_status,

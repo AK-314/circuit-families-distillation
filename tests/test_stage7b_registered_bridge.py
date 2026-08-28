@@ -204,6 +204,9 @@ def test_runner_is_cwd_independent_and_has_no_private_absolute_path() -> None:
     assert "--predecessor-root" in text
     assert "--output-root" in text
     assert "/Users/" not in text
+    assert '"source_git_head"' in text
+    assert '"runtime_ms"' in text
+    assert '"peak_rss_bytes"' in text
     assert "/private/" not in text
 
 
