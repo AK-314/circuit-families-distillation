@@ -40,6 +40,9 @@ def test_stage7b_registered_teacher_identity_is_exact() -> None:
     )
     assert r["complete_domain_size"] == 12769
     assert r["domain_order"] == "lexicographic_modular_addition_inputs"
+    assert r["ordering_reference"] == (
+        "lexicographic-modular-addition-inputs/v1"
+    )
 
 
 def test_stage7b_one_hard_one_soft_and_failed_attempt_retention() -> None:
@@ -51,6 +54,13 @@ def test_stage7b_one_hard_one_soft_and_failed_attempt_retention() -> None:
     assert r["failed_attempt_is_not_retried_for_eligibility"] is True
     assert r["student_discovery_requires_eligible_sealed_student"] is True
     assert r["teacher_direct_discovery_is_unconditional"] is True
+
+    initialization = _load()["deterministic_initialization"]
+    assert initialization["derivation"] == "reuse_accepted_seed_derivation"
+    assert (
+        initialization["model_constructor_projection"]
+        == "low_32_bits_of_seed_derivation_v1"
+    )
 
 
 def test_stage7b_minimal_shared_trainer_workload_is_fixed() -> None:
@@ -68,6 +78,8 @@ def test_stage7b_hard_soft_separation_and_centred_logit_fidelity() -> None:
     assert r["soft_target"] is True
     assert r["hard_soft_pooling"] is False
     assert r["predictive_fidelity"] == "centred_logit_only"
+    assert r["soft_eligibility_tolerance"] == 1.0
+    assert r["soft_argmax_agreement_required"] is True
     assert r["complete_domain_exact_evaluation"] is True
 
 
@@ -99,9 +111,11 @@ def test_stage7b_device_batches_and_storage_ceiling_are_predeclared() -> None:
     r = _load()
     e = r["execution_engineering"]
     assert e["device"] == "mps"
+    assert e["discovery_exact_device"] == "cpu"
     assert e["device_selected_before_endpoint_output"] is True
     assert e["teacher_forward_batch_size"] == 256
     assert e["exact_evaluation_batch_size"] == 256
+    assert e["mps_unsupported_deterministic_ops"] == "warn_only"
     assert e["batch_size_semantics"] == (
         "mathematically_invariant_full_domain_partition_only"
     )

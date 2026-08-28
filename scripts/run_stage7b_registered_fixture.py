@@ -11,9 +11,11 @@ No endpoint value is printed.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib
 import json
 import sys
+import time
 from pathlib import Path
 
 
@@ -93,13 +95,40 @@ def main() -> int:
             "production Stage 7B bindings are unavailable or incompatible"
         ) from exc
 
-    result = run_registered_fixture(
-        repository_root=repo,
-        predecessor_root=args.predecessor_root.resolve(),
-        output_root=args.output_root.resolve(),
-        request_path=request_path,
-        bindings=bindings,
-    )
+    started = time.perf_counter()
+    try:
+        result = run_registered_fixture(
+            repository_root=repo,
+            predecessor_root=args.predecessor_root.resolve(),
+            output_root=args.output_root.resolve(),
+            request_path=request_path,
+            bindings=bindings,
+        )
+    except Exception as exc:
+        failure_root = args.output_root.resolve()
+        failure_root.mkdir(parents=True, exist_ok=True)
+        failure = {
+            "schema_version": "stage7b.failed_physical_run.v1",
+            "status": "FAILED_SOFTWARE_EXECUTION",
+            "exception_type": type(exc).__name__,
+            "exception_message": str(exc),
+            "request_sha256": hashlib.sha256(
+                request_path.read_bytes()
+            ).hexdigest(),
+            "runtime_ms": int((time.perf_counter() - started) * 1000),
+            "request_mutated": False,
+            "endpoint_values_printed": False,
+            "scientific_data": False,
+            "stage8_status": "NOT_STARTED",
+        }
+        destination = failure_root / "failed_run_manifest.json"
+        temporary = destination.with_suffix(".json.tmp")
+        temporary.write_text(
+            json.dumps(failure, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        temporary.replace(destination)
+        raise
 
     compact = {
         "provenance_status": result.provenance_status,

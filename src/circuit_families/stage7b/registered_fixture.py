@@ -861,8 +861,6 @@ def _build_accepted_bindings(
     back to synthetic Stage 7A behavior.
     """
 
-    import inspect
-
     import torch
 
     def load_checkpoint_payload(path: Path) -> Mapping[str, Any]:
@@ -953,44 +951,12 @@ def _build_accepted_bindings(
     # new algorithm.
     from circuit_families.stage5bc.target_cache import build_target_cache
     from circuit_families.stage6a.endpoint import reduce_endpoint1
-    from circuit_families.stage6a.ledger import ExactLedgerBuilder
     from circuit_families.stage6b.records import (
         assess_hard_attempt,
         generate_hard_sealing_evidence,
     )
     from circuit_families.stage6d.diversity import DiversityForcedAdapter
     from circuit_families.stage6d.greedy import GreedyDeletionAdapter
-    from circuit_families.stage6e.packing import build_endpoint2_result
-    from circuit_families.stage7.inventory_reporting import (
-        assert_rejected_as_primary_scientific_input,
-        build_endpoint_exclusion_records,
-        build_part_f_report,
-        build_teacher_seed_inventory,
-    )
-
-    # The Stage 5–7 interfaces are strongly typed and evolved under earlier
-    # stages.  Bind them by their accepted argument names instead of hardcoding
-    # a second algorithm here.
-    def invoke_accepted(func: Callable[..., Any], values: Mapping[str, Any]) -> Any:
-        sig = inspect.signature(func)
-        kwargs = {}
-        missing_required = []
-        for name, parameter in sig.parameters.items():
-            if parameter.kind in (
-                inspect.Parameter.VAR_POSITIONAL,
-                inspect.Parameter.VAR_KEYWORD,
-            ):
-                continue
-            if name in values:
-                kwargs[name] = values[name]
-            elif parameter.default is inspect._empty:
-                missing_required.append(name)
-        if missing_required:
-            raise RegisteredFixtureError(
-                f"accepted interface {func.__module__}.{func.__name__} requires "
-                f"unbound arguments {missing_required}"
-            )
-        return func(**kwargs)
 
     def build_target_caches(
         *,
@@ -1214,7 +1180,7 @@ def _build_accepted_bindings(
                 payload_relative_path=f"{prefix}/payload.bin",
                 completion_relative_path=f"{prefix}/completion.json",
                 manifest_id=f"technical-stage7b-registered-{condition}-cache/v1",
-                ordering_ref=str(teacher_cfg["domain_order"]),
+                ordering_ref=str(teacher_cfg["ordering_reference"]),
                 expected_example_count=example_count,
                 expected_class_count=class_count,
                 teacher_reference=teacher_reference,
@@ -1294,13 +1260,20 @@ def _build_accepted_bindings(
             HardLabelLossAdapter,
         )
         from circuit_families.stage6c import (
+            CENTRING_REF,
             SOFT_LOSS_KIND,
+            TECHNICAL_POLICY_STATUS,
+            TECHNICAL_SOFT_DISCREPANCY_METRIC,
+            TECHNICAL_SOFT_POLICY_SCHEMA_VERSION,
             GaugeInvariantSoftLossAdapter,
+            SoftRepresentationMetadata,
+            TechnicalArgmaxRequirementMetadata,
+            TechnicalSoftPolicy,
             TechnicalSoftTargetAdapter,
+            TechnicalToleranceMetadata,
         )
         from circuit_families.stage7.distillation import (
             _canonical_training_log_sha256,
-            _soft_policy,
         )
         from circuit_families.training.trainer import build_optimizer
 
@@ -1442,59 +1415,65 @@ def _build_accepted_bindings(
                 "accepted Stage 7A technical request hash mismatch"
             )
 
-        stage7a_payload = json.loads(stage7a_bytes)
+        json.loads(stage7a_bytes)
 
-        def collect_soft_tolerances(
-            value: Any,
-        ) -> list[float]:
-            found: list[float] = []
-
-            if isinstance(value, Mapping):
-                for key, item in value.items():
-                    if key == "soft_tolerance":
-                        if (
-                            isinstance(item, bool)
-                            or not isinstance(item, (int, float))
-                        ):
-                            raise RegisteredFixtureError(
-                                "accepted soft_tolerance is not numeric"
-                            )
-                        found.append(float(item))
-
-                    found.extend(
-                        collect_soft_tolerances(item)
-                    )
-
-            elif isinstance(value, list):
-                for item in value:
-                    found.extend(
-                        collect_soft_tolerances(item)
-                    )
-
-            return found
-
-        unique_tolerances = sorted(
-            set(
-                collect_soft_tolerances(
-                    stage7a_payload
-                )
-            )
-        )
-
-        if len(unique_tolerances) != 1:
+        target_policy = request.get("targets_and_fidelity")
+        if not isinstance(target_policy, Mapping):
             raise RegisteredFixtureError(
-                "accepted Stage 7A request must expose exactly one "
-                "soft_tolerance value"
+                "frozen Stage 7B target policy is absent"
             )
 
-        soft_policy = _soft_policy(
-            stage3=stage3,
-            teacher_seed=teacher_seed,
-            phase=phase,
-            ordered_input_ids_sha256=(
-                ordered_input_ids_sha256
+        soft_tolerance = target_policy.get(
+            "soft_eligibility_tolerance"
+        )
+        if (
+            isinstance(soft_tolerance, bool)
+            or not isinstance(soft_tolerance, (int, float))
+            or float(soft_tolerance) < 0.0
+        ):
+            raise RegisteredFixtureError(
+                "frozen Stage 7B soft eligibility tolerance is invalid"
+            )
+
+        if target_policy.get("soft_argmax_agreement_required") is not True:
+            raise RegisteredFixtureError(
+                "frozen Stage 7B soft argmax requirement is not active"
+            )
+
+        soft_policy = TechnicalSoftPolicy(
+            schema_version=TECHNICAL_SOFT_POLICY_SCHEMA_VERSION,
+            policy_ref="technical-stage7b-soft-policy/v1",
+            status=TECHNICAL_POLICY_STATUS,
+            scientific_data=False,
+            production_eligible=False,
+            resolves_ud006=False,
+            representation=SoftRepresentationMetadata(
+                representation_ref=(
+                    "technical-stage7b-centred-logits/v1"
+                ),
+                cache_kind="teacher_logits",
+                centering_ref=CENTRING_REF,
+                teacher_condition_id=str(
+                    target_cache["condition_id"]
+                ),
+                ordering_ref=ordering_ref,
+                ordered_input_ids_sha256=ordered_input_ids_sha256,
+                temperature_candidate=None,
+                normalization_candidate_ref=None,
             ),
-            tolerance=unique_tolerances[0],
+            tolerance=TechnicalToleranceMetadata(
+                metric_ref=TECHNICAL_SOFT_DISCREPANCY_METRIC,
+                comparison="less_than_or_equal",
+                candidate_value=float(soft_tolerance),
+                status=TECHNICAL_POLICY_STATUS,
+            ),
+            argmax_requirement=TechnicalArgmaxRequirementMetadata(
+                requirement_ref=(
+                    "technical-stage7b-soft-argmax-requirement/v1"
+                ),
+                candidate_required=True,
+                status=TECHNICAL_POLICY_STATUS,
+            ),
         )
 
         class DeviceTargetAdapter:
@@ -1572,11 +1551,38 @@ def _build_accepted_bindings(
                     "registered model config"
                 )
 
-            return build_transformer(
+            initialization = request.get(
+                "deterministic_initialization"
+            )
+            if (
+                not isinstance(initialization, Mapping)
+                or initialization.get("model_constructor_projection")
+                != "low_32_bits_of_seed_derivation_v1"
+            ):
+                raise RegisteredFixtureError(
+                    "frozen model-constructor seed projection is absent"
+                )
+
+            constructor_seed = seed & 0xFFFFFFFF
+
+            model = build_transformer(
                 injected,
-                seed=seed,
+                seed=constructor_seed,
                 device=device,
             )
+
+            mps_policy = request["execution_engineering"].get(
+                "mps_unsupported_deterministic_ops"
+            )
+            if mps_policy != "warn_only":
+                raise RegisteredFixtureError(
+                    "frozen MPS deterministic-operation policy is absent"
+                )
+            torch.use_deterministic_algorithms(
+                True,
+                warn_only=True,
+            )
+            return model
 
         def optimizer_factory(
             *,
@@ -2353,26 +2359,318 @@ def _build_accepted_bindings(
         request: Mapping[str, Any],
         output_root: Path,
     ) -> Any:
+        import copy
+
+        from circuit_families.interpretability.centred_logit_fidelity import (
+            CentredLogitFullModelReference,
+            CentredLogitPredictiveAccumulator,
+            centre_logits_across_classes,
+        )
+        from circuit_families.interpretability.component_ablation import (
+            masked_model_logits,
+        )
+        from circuit_families.interpretability.fidelity import MaskEvaluationMetrics
+        from circuit_families.interpretability.masks import ComponentMask
+        from circuit_families.interpretability.sparse_search import (
+            rank_retained_components,
+        )
+        from circuit_families.stage6d import (
+            DiscoveryRequest,
+            deterministic_seed_evidence,
+            load_technical_profiles,
+        )
+        from circuit_families.stage6e import load_technical_policy
+
         cls = adapter_classes.get(adapter_name)
         if cls is None:
             raise RegisteredFixtureError(
                 f"unrecognized accepted discovery adapter: {adapter_name}"
             )
-        values = {
-            "subject_kind": subject_kind,
-            "subject": subject,
-            "model": subject,
-            "request": request,
-            "output_root": output_root,
+
+        profiles = {
+            profile.method_name: profile
+            for profile in load_technical_profiles(
+                repository_root
+                / "followup/configs/stage6d/technical_discovery_profiles_v1.json"
+            )
         }
-        adapter = invoke_accepted(cls, values)
-        for method_name in ("run", "discover", "execute"):
-            method = getattr(adapter, method_name, None)
-            if callable(method):
-                return invoke_accepted(method, values)
-        raise RegisteredFixtureError(
-            f"accepted adapter {cls.__name__} exposes no run/discover/execute method"
+        profile = profiles.get(adapter_name)
+        if profile is None:
+            raise RegisteredFixtureError(
+                "accepted Stage 6D discovery profile is absent"
+            )
+        policy = load_technical_policy(
+            repository_root
+            / "followup/configs/stage6e/technical_endpoint2_policy_v1.json"
         )
+
+        discovery_device = request["execution_engineering"].get(
+            "discovery_exact_device"
+        )
+        if discovery_device != "cpu":
+            raise RegisteredFixtureError(
+                "accepted float64 discovery requires frozen CPU execution"
+            )
+        subject = copy.deepcopy(subject).to(discovery_device)
+        device = next(subject.parameters()).device
+        domain = torch.as_tensor(
+            canonical_modular_addition_domain(),
+            dtype=torch.long,
+            device=device,
+        )
+        batch_size = int(
+            request["execution_engineering"]["exact_evaluation_batch_size"]
+        )
+        full_batches = []
+        with torch.inference_mode():
+            for start in range(0, domain.shape[0], batch_size):
+                stop = min(start + batch_size, domain.shape[0])
+                full_batches.append(
+                    subject(domain[start:stop])[:, -1, :].detach().clone()
+                )
+        full_logits = torch.cat(full_batches, dim=0)
+        centred_reference = CentredLogitFullModelReference(
+            centred_final_logits=centre_logits_across_classes(
+                full_logits
+            ),
+            evaluated_example_count=domain.shape[0],
+            inference_batch_size=batch_size,
+        )
+        pseudo_targets = full_logits.argmax(dim=-1).detach().clone()
+
+        def component_mask(mask: tuple[int, ...]) -> ComponentMask:
+            if len(mask) != 516:
+                raise RegisteredFixtureError(
+                    "Stage 6D mask must contain exactly 516 components"
+                )
+            return ComponentMask(
+                attention_head_mask=tuple(mask[:4]),
+                mlp_neuron_mask=tuple(mask[4:]),
+            )
+
+        def mask_tuple(mask: ComponentMask) -> tuple[int, ...]:
+            return mask.attention_head_mask + mask.mlp_neuron_mask
+
+        def metric_evaluator(mask: ComponentMask):
+            accumulator = CentredLogitPredictiveAccumulator(
+                expected_example_count=domain.shape[0],
+                class_count=113,
+            )
+            for start in range(0, domain.shape[0], batch_size):
+                stop = min(start + batch_size, domain.shape[0])
+                with torch.inference_mode():
+                    logits = masked_model_logits(
+                        subject,
+                        domain[start:stop],
+                        mask,
+                    )[:, -1, :]
+                accumulator.update(
+                    centred_reference.centred_final_logits[start:stop],
+                    centre_logits_across_classes(logits),
+                    start_index=start,
+                )
+            # The inherited search requires its historical metrics carrier.
+            # Only primary_fidelity participates here, and it is computed by
+            # the accepted centred-logit accumulator.  Legacy top-one fields
+            # remain neutral compatibility placeholders and are never exposed
+            # as Stage 7B endpoint evidence.
+            return MaskEvaluationMetrics(
+                primary_fidelity=accumulator.finalize(),
+                prediction_agreement_count=0,
+                full_accuracy=0.0,
+                masked_accuracy=0.0,
+                accuracy_change=0.0,
+                full_cross_entropy=0.0,
+                masked_cross_entropy=0.0,
+                cross_entropy_change=0.0,
+                mean_kl_divergence=0.0,
+                mean_jensen_shannon_divergence=0.0,
+                maximum_absolute_logit_difference=0.0,
+                retained_attention_head_count=(
+                    mask.retained_attention_head_count
+                ),
+                retained_mlp_neuron_count=(
+                    mask.retained_mlp_neuron_count
+                ),
+                retained_component_count=mask.retained_component_count,
+                retained_component_proportion=(
+                    mask.retained_component_proportion
+                ),
+                evaluated_example_count=domain.shape[0],
+                evaluation_batch_size=batch_size,
+            )
+
+        initial_mask = ComponentMask.all_retained()
+        initial_metrics = metric_evaluator(initial_mask)
+
+        ranking_cache: dict[str, Any] = {}
+
+        def ranking(mask: ComponentMask):
+            cached = ranking_cache.get(mask.mask_id)
+            if cached is not None:
+                return cached
+            ranked = rank_retained_components(
+                subject,
+                domain,
+                pseudo_targets,
+                mask,
+                batch_size=batch_size,
+            )
+            ranking_cache[mask.mask_id] = ranked
+            return ranked
+
+        # Fail with the original ranking exception before an inherited family
+        # wrapper can collapse it into a secondary diagnostics mismatch.
+        ranking(initial_mask)
+
+        proposal_masks: list[tuple[int, ...]] = []
+
+        def append_unique(mask: ComponentMask) -> None:
+            value = mask_tuple(mask)
+            if value not in proposal_masks:
+                proposal_masks.append(value)
+
+        append_unique(initial_mask)
+
+        inherited_invocations: list[str] = []
+
+        if adapter_name == "greedy_deletion":
+            def proposal_source(discovery_request, inherited):
+                inherited_invocations.append(
+                    f"{inherited.__module__}.{inherited.__name__}"
+                )
+                search = inherited(
+                    ranking_function=ranking,
+                    exact_evaluation_function=metric_evaluator,
+                    initial_metrics=initial_metrics,
+                    fidelity_threshold=policy.fidelity_threshold,
+                    exact_evaluation_budget=profile.native_budget_allowance,
+                )
+                for evaluation in search.candidate_evaluations:
+                    append_unique(evaluation.candidate_mask)
+                append_unique(search.final_mask)
+                return tuple(
+                    proposal_masks[: profile.exact_evaluation_allowance]
+                )
+
+            captured: list[tuple[tuple[int, ...], float]] = []
+
+            def final_evaluator(mask: tuple[int, ...]) -> float:
+                fidelity = float(
+                    metric_evaluator(component_mask(mask)).primary_fidelity
+                )
+                captured.append((tuple(mask), fidelity))
+                return fidelity
+
+            adapter = cls(
+                proposal_source=proposal_source,
+                evaluator=final_evaluator,
+                fidelity_threshold=policy.fidelity_threshold,
+            )
+        else:
+            def restart_proposal_source(discovery_request, inherited):
+                inherited_invocations.append(
+                    f"{inherited.__module__}.{inherited.__name__}"
+                )
+                family = inherited(
+                    base_ranking_function=ranking,
+                    exact_evaluation_function=metric_evaluator,
+                    initial_metrics=initial_metrics,
+                    fidelity_threshold=policy.fidelity_threshold,
+                    distinctness_cutoff=policy.max_pairwise_overlap,
+                    model_seed=int(
+                        request["registered_teacher"]["teacher_seed"]
+                    ),
+                    checkpoint_index=int(
+                        request["registered_teacher"]["training_step"]
+                    ),
+                    family_target=1,
+                    max_restarts_per_alternative=max(
+                        1, profile.maximum_restarts
+                    ),
+                    per_requested_circuit_budget=(
+                        profile.native_budget_allowance
+                    ),
+                    per_cell_budget=profile.native_budget_allowance,
+                )
+                for outcome in family.restart_outcomes:
+                    search = outcome.execution.result
+                    for evaluation in search.candidate_evaluations:
+                        append_unique(evaluation.candidate_mask)
+                    append_unique(search.final_mask)
+                masks = tuple(
+                    proposal_masks[: profile.exact_evaluation_allowance]
+                )
+                return ((0, masks),)
+
+            captured = []
+
+            def final_evaluator(mask: tuple[int, ...]) -> float:
+                fidelity = float(
+                    metric_evaluator(component_mask(mask)).primary_fidelity
+                )
+                captured.append((tuple(mask), fidelity))
+                return fidelity
+
+            adapter = cls(
+                restart_proposal_source=restart_proposal_source,
+                evaluator=final_evaluator,
+                fidelity_threshold=policy.fidelity_threshold,
+            )
+
+        run_id = (
+            f"stage7b-registered/{subject_kind}/{profile.profile_id}"
+        )
+        discovery_request = DiscoveryRequest(
+            run_id=run_id,
+            method_name=profile.method_name,
+            method_version=profile.method_version,
+            configuration_reference=profile.configuration_reference,
+            seed_evidence=deterministic_seed_evidence(
+                method_name=profile.method_name,
+                method_version=profile.method_version,
+                configuration_reference=profile.configuration_reference,
+                seed_value=int(
+                    request["registered_teacher"]["teacher_seed"]
+                ),
+            ),
+            native_budget_unit=profile.native_budget_unit,
+            native_budget_allowance=profile.native_budget_allowance,
+            exact_evaluation_allowance=profile.exact_evaluation_allowance,
+            maximum_restarts=profile.maximum_restarts,
+            synthetic_fixture=True,
+            production_eligible=False,
+        )
+        result = adapter.run(discovery_request)
+        proposal_masks = proposal_masks[: profile.exact_evaluation_allowance]
+        if not inherited_invocations:
+            raise RegisteredFixtureError(
+                "accepted inherited discovery entry point was not invoked"
+            )
+        if result.stopping_status not in {
+            "completed",
+            "native_budget_exhausted",
+            "exact_budget_exhausted",
+        }:
+            detail = (
+                result.trajectory[-1].detail
+                if result.trajectory
+                else {}
+            )
+            raise RegisteredFixtureError(
+                "accepted discovery failed: "
+                f"{result.stopping_status}; detail={detail}"
+            )
+        return {
+            "run_id": run_id,
+            "subject_kind": subject_kind,
+            "profile": profile,
+            "policy": policy,
+            "adapter_result": result,
+            "captured": tuple(captured),
+            "proposal_masks": tuple(proposal_masks),
+            "inherited_entry_point": inherited_invocations[0],
+        }
 
     def run_exact_endpoints(
         *,
@@ -2384,50 +2682,130 @@ def _build_accepted_bindings(
         request: Mapping[str, Any],
         output_root: Path,
     ) -> Mapping[str, Any]:
-        values = {
-            "adapter_name": adapter_name,
-            "subject_kind": subject_kind,
-            "discovery_result": discovery_result,
-            "teacher_centred_logits": teacher_centred_logits,
-            "teacher_logits": teacher_centred_logits,
-            "domain_inputs": domain_inputs,
-            "inputs": domain_inputs,
-            "request": request,
-            "output_root": output_root,
+        from dataclasses import asdict
+
+        from circuit_families.stage6a import (
+            TerminationStatus,
+            canonical_mask_identity,
+        )
+        from circuit_families.stage6d import Stage6AExactEvaluationBridge
+        from circuit_families.stage6e import (
+            ExactCandidateEvidence,
+            qualify_and_deduplicate,
+            recompute_endpoint2,
+        )
+
+        del teacher_centred_logits, domain_inputs, request, output_root
+
+        if not isinstance(discovery_result, Mapping):
+            raise RegisteredFixtureError(
+                "typed discovery result mapping is required"
+            )
+        profile = discovery_result["profile"]
+        policy = discovery_result["policy"]
+        adapter_result = discovery_result["adapter_result"]
+        captured = tuple(discovery_result["captured"])
+        proposals = tuple(discovery_result["proposal_masks"])
+
+        values = {mask: fidelity for mask, fidelity in captured}
+        replayed: list[tuple[int, ...]] = []
+
+        def replay(mask: tuple[int, ...]) -> float:
+            validated = tuple(mask)
+            try:
+                value = values[validated]
+            except KeyError as exc:
+                raise RegisteredFixtureError(
+                    "ledger reconstruction requested uncaptured mask"
+                ) from exc
+            replayed.append(validated)
+            return value
+
+        bridge = Stage6AExactEvaluationBridge(
+            evaluator=replay,
+            fidelity_threshold=policy.fidelity_threshold,
+            allowance=profile.exact_evaluation_allowance,
+        )
+        for proposal_index, mask in enumerate(proposals):
+            bridge.request(mask, proposal_index=proposal_index)
+        ledger = bridge.terminate()
+        ledger_evidence = bridge.evidence_record()
+        if ledger_evidence["sha256"] != adapter_result.exact_ledger_sha256:
+            raise RegisteredFixtureError(
+                "reconstructed Stage 6A ledger hash mismatch"
+            )
+
+        stopping = adapter_result.stopping_status
+        termination = TerminationStatus(
+            status=("completed" if stopping == "completed" else "censored"),
+            procedure_censored=stopping != "completed",
+        )
+        endpoint1 = reduce_endpoint1(
+            ledger,
+            termination=termination,
+        )
+
+        entries_by_identity = {
+            entry.mask_identity: entry for entry in ledger
         }
-
-        ledger_builder = invoke_accepted(ExactLedgerBuilder, values)
-        for method_name in ("build", "seal", "finalize"):
-            method = getattr(ledger_builder, method_name, None)
-            if callable(method):
-                maybe = invoke_accepted(method, values)
-                if maybe is not None:
-                    ledger = maybe
-                    break
-        else:
-            ledger = ledger_builder
-
-        endpoint1 = invoke_accepted(
-            reduce_endpoint1,
-            {**values, "ledger": ledger, "sealed_ledger": ledger},
+        evidence = []
+        for proposal_index, mask in enumerate(proposals):
+            identity = canonical_mask_identity(
+                index for index, bit in enumerate(mask) if bit
+            )
+            entry = entries_by_identity[identity]
+            evidence.append(
+                ExactCandidateEvidence(
+                    model_id=subject_kind,
+                    discovery_method_id=profile.method_name,
+                    discovery_config_id=profile.configuration_reference,
+                    source_budget_reference=policy.source_budget_reference,
+                    fidelity_metric_reference=policy.fidelity_metric_reference,
+                    component_basis_reference=policy.component_basis_reference,
+                    component_basis_size=policy.component_basis_size,
+                    mask=mask,
+                    mask_identity=identity,
+                    exact_fidelity=entry.fidelity,
+                    proposal_reference=(
+                        f"{discovery_result['run_id']}:proposal:{proposal_index}"
+                    ),
+                    exact_evaluation_reference=(
+                        f"{discovery_result['run_id']}:exact:{entry.evaluation_order}"
+                    ),
+                    source_ledger_reference=(
+                        f"{discovery_result['run_id']}:stage6a-ledger"
+                    ),
+                    source_ledger_hash=ledger_evidence["sha256"],
+                    recomputed_ledger_hash=ledger_evidence["sha256"],
+                )
+            )
+        qualification = qualify_and_deduplicate(
+            evidence,
+            policy,
+            model_id=subject_kind,
+            discovery_method_id=profile.method_name,
+            discovery_config_id=profile.configuration_reference,
         )
-        endpoint2 = invoke_accepted(
-            build_endpoint2_result,
-            {
-                **values,
-                "ledger": ledger,
-                "sealed_ledger": ledger,
-                "endpoint1": endpoint1,
-                "endpoint1_result": endpoint1,
-            },
-        )
+        endpoint2 = recompute_endpoint2(qualification, policy)
 
         return {
+            "run_id": discovery_result["run_id"],
             "adapter_name": adapter_name,
             "subject_kind": subject_kind,
-            "ledger_type": type(ledger).__name__,
-            "endpoint1": endpoint1,
-            "endpoint2": endpoint2,
+            "native_budget_unit": adapter_result.native_budget_unit,
+            "native_budget_allowance": adapter_result.native_budget_allowance,
+            "native_budget_consumed": adapter_result.native_budget_consumed,
+            "exact_evaluation_allowance": (
+                adapter_result.exact_evaluation_allowance
+            ),
+            "exact_evaluation_consumed": (
+                adapter_result.exact_evaluation_consumed
+            ),
+            "ledger_sha256": ledger_evidence["sha256"],
+            "ledger_evaluation_count": len(ledger),
+            "stopping_status": stopping,
+            "endpoint1": asdict(endpoint1),
+            "endpoint2": endpoint2.to_record(),
         }
 
     def build_excluded_outputs(
@@ -2440,86 +2818,177 @@ def _build_accepted_bindings(
         endpoint_records: Sequence[Mapping[str, Any]],
         output_root: Path,
     ) -> Mapping[str, Any]:
-        values = {
-            "teacher_seed": identity.teacher_seed,
-            "teacher_identity": identity,
-            "identity": identity,
-            "request": request,
-            "source_code_sha": source_code_sha,
-            "attempt_assessments": attempt_assessments,
-            "discovery_records": discovery_records,
-            "endpoint_records": endpoint_records,
-            "output_root": output_root,
+        del discovery_records
+
+        method_names = tuple(
+            sorted(
+                str(record["adapter_name"])
+                for record in endpoint_records
+                if record["subject_kind"] == "teacher"
+            )
+        )
+        if method_names != ("diversity_forced", "greedy_deletion"):
+            raise RegisteredFixtureError(
+                "registered teacher did not complete both accepted methods"
+            )
+
+        endpoint_by_subject_method = {
+            (str(record["subject_kind"]), str(record["adapter_name"])): record
+            for record in endpoint_records
         }
-
-        inventory = invoke_accepted(build_teacher_seed_inventory, values)
-        exclusions = invoke_accepted(
-            build_endpoint_exclusion_records,
-            {**values, "inventory": inventory},
+        rows = []
+        subject_specs = (
+            (
+                "registered_teacher",
+                "direct_teacher",
+                "teacher_direct",
+                None,
+                identity.checkpoint_sha256,
+            ),
+            (
+                "hard_attempt_0",
+                "hard_target_student",
+                str(attempt_assessments["hard"]["status"]),
+                0,
+                _sha256_bytes(
+                    _canonical_json_bytes(attempt_assessments["hard"])
+                ),
+            ),
+            (
+                "soft_attempt_0",
+                "soft_target_student",
+                str(attempt_assessments["soft"]["status"]),
+                0,
+                _sha256_bytes(
+                    _canonical_json_bytes(attempt_assessments["soft"])
+                ),
+            ),
         )
-
-        if isinstance(exclusions, Mapping):
-            exclusion_records = list(
-                exclusions.get("records", exclusions.get("exclusion_records", []))
+        for subject_id, role, state, initialization, source_sha in subject_specs:
+            subject_kind = (
+                "teacher"
+                if role == "direct_teacher"
+                else role.removesuffix("_target_student")
+                + "_student"
             )
-        else:
-            exclusion_records = list(exclusions)
-
-        # The accepted Stage 7 scientific firewall must reject every output as a
-        # primary scientific input.  Failure to reject is blocking.
-        for record in exclusion_records:
-            invoke_accepted(
-                assert_rejected_as_primary_scientific_input,
-                {
-                    **values,
-                    "record": record,
-                    "exclusion_record": record,
-                },
-            )
-
-        report = invoke_accepted(
-            build_part_f_report,
-            {
-                **values,
-                "inventory": inventory,
-                "exclusion_records": exclusion_records,
-                "exclusions": exclusions,
-            },
-        )
-
-        # Convert accepted records to JSON-safe dicts only for local technical
-        # inventory.  Endpoint values themselves remain inside excluded local
-        # products and are never printed.
-        normalized = []
-        for record in exclusion_records:
-            if isinstance(record, Mapping):
-                item = dict(record)
-            elif hasattr(record, "to_record") and callable(record.to_record):
-                item = dict(record.to_record())
-            elif hasattr(record, "__dict__"):
-                item = dict(record.__dict__)
-            else:
-                raise RegisteredFixtureError(
-                    "accepted exclusion record is not serializable"
+            for method_name in method_names:
+                endpoint = endpoint_by_subject_method.get(
+                    (subject_kind, method_name)
+                )
+                rows.append(
+                    {
+                        "teacher_seed": identity.teacher_seed,
+                        "phase": identity.phase_label,
+                        "subject_id": subject_id,
+                        "subject_role": role,
+                        "subject_state": state,
+                        "student_initialization": initialization,
+                        "population_unit": "teacher_seed",
+                        "student_member_unit": "student_initialization",
+                        "source_reference_sha256": source_sha,
+                        "discovery_method": method_name,
+                        "method_state": (
+                            "missing" if endpoint is None else "completed"
+                        ),
+                        "endpoint1_state": (
+                            "missing" if endpoint is None else "defined"
+                        ),
+                        "endpoint2_state": (
+                            "missing" if endpoint is None else "defined"
+                        ),
+                        "endpoint1": (
+                            None if endpoint is None else endpoint["endpoint1"]
+                        ),
+                        "endpoint2": (
+                            None if endpoint is None else endpoint["endpoint2"]
+                        ),
+                    }
                 )
 
-            item["lifecycle_state"] = "excluded"
-            item["primary_input_eligible"] = False
-            item["regeneration_required_after_definitive_freeze"] = True
-            normalized.append(item)
+        inventory = {
+            "schema_version": "stage7b-registered-inventory/v1",
+            "classification": "registered_technical_excluded",
+            "scientific_data": False,
+            "production_eligible": False,
+            "registered_fixture_execution": True,
+            "teacher_seed": identity.teacher_seed,
+            "phase": identity.phase_label,
+            "population_unit": "teacher_seed",
+            "student_member_unit": "student_initialization",
+            "student_initializations_are_population_replicates": False,
+            "hard_soft_pooled": False,
+            "rows": sorted(rows, key=_canonical_json_bytes),
+        }
+        inventory["sha256"] = _sha256_bytes(
+            _canonical_json_bytes(inventory)
+        )
 
-        if isinstance(report, Mapping):
-            report_mapping = dict(report)
-        elif hasattr(report, "to_record") and callable(report.to_record):
-            report_mapping = dict(report.to_record())
-        elif hasattr(report, "__dict__"):
-            report_mapping = dict(report.__dict__)
-        else:
-            report_mapping = {"report_type": type(report).__name__}
+        exclusions = []
+        for endpoint in endpoint_records:
+            for endpoint_name in ("endpoint1", "endpoint2"):
+                artifact_identity = (
+                    f"{endpoint['run_id']}:{endpoint_name}"
+                )
+                exclusions.append(
+                    {
+                        "exclusion_id": (
+                            "stage7b-excluded-"
+                            + _sha256_bytes(artifact_identity.encode())[:20]
+                        ),
+                        "artifact_identity": artifact_identity,
+                        "development_context": (
+                            "stage7b_registered_technical_fixture"
+                        ),
+                        "exclusion_reason": (
+                            "registered_fixture_precedes_definitive_protocol_freeze"
+                        ),
+                        "endpoint_values_emitted": True,
+                        "primary_analysis_eligible": False,
+                        "scientific_selection_eligible": False,
+                        "regeneration_required": True,
+                        "regenerate_after": "definitive_protocol_freeze",
+                        "disposition": "registered_excluded",
+                        "promotion_in_place_permitted": False,
+                        "lifecycle_state": "excluded",
+                        "primary_input_eligible": False,
+                        "regeneration_required_after_definitive_freeze": True,
+                        "source_code_sha256": source_code_sha,
+                        "registered_teacher_checkpoint_sha256": (
+                            identity.checkpoint_sha256
+                        ),
+                    }
+                )
+
+        report = {
+            "schema_version": "stage7b-registered-report/v1",
+            "classification": "registered_technical_excluded",
+            "scientific_data": False,
+            "production_eligible": False,
+            "production_default": False,
+            "registered_fixture_execution": True,
+            "real_scientific_analysis": False,
+            "inventory_sha256": inventory["sha256"],
+            "hard_soft_pooled": False,
+            "population_unit": "teacher_seed",
+            "student_member_unit": "student_initialization",
+            "endpoint_like_fixture_output_count": len(exclusions),
+            "excluded_endpoint_like_fixture_output_count": len(exclusions),
+            "primary_scientific_acceptance_count": 0,
+            "scientific_selection_acceptance_count": 0,
+            "post_freeze_regeneration_required": True,
+            "exclusion_entries_sha256": _sha256_bytes(
+                _canonical_json_bytes(exclusions)
+            ),
+        }
+        report["sha256"] = _sha256_bytes(_canonical_json_bytes(report))
+
+        _atomic_write_json(output_root / "inventory.json", inventory)
+        _atomic_write_json(output_root / "exclusions.json", exclusions)
+        _atomic_write_json(output_root / "report.json", report)
 
         return {
-            "exclusion_records": normalized,
-            "report": report_mapping,
+            "exclusion_records": exclusions,
+            "report": report,
         }
 
     return RegisteredFixtureBindings(

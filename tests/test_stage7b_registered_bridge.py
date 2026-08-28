@@ -215,9 +215,10 @@ def test_bridge_defines_no_second_optimizer_or_discovery_algorithm() -> None:
     assert "optimizer.step(" not in text
     assert "GreedyDeletionAdapter" in text
     assert "DiversityForcedAdapter" in text
-    assert "ExactLedgerBuilder" in text
+    assert "Stage6AExactEvaluationBridge" in text
     assert "reduce_endpoint1" in text
-    assert "build_endpoint2_result" in text
+    assert "recompute_endpoint2" in text
+    assert "invoke_accepted" not in text
 
 
 def test_part_c_source_does_not_embed_private_checkpoint_or_endpoint_values() -> None:

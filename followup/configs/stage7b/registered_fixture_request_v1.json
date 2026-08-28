@@ -113,6 +113,7 @@
   "deterministic_initialization": {
     "count_per_condition": 1,
     "derivation": "reuse_accepted_seed_derivation",
+    "model_constructor_projection": "low_32_bits_of_seed_derivation_v1",
     "post_outcome_reinitialization": false
   },
   "discovery": {
@@ -134,7 +135,9 @@
     "batch_size_semantics": "mathematically_invariant_full_domain_partition_only",
     "device": "mps",
     "device_selected_before_endpoint_output": true,
+    "discovery_exact_device": "cpu",
     "exact_evaluation_batch_size": 256,
+    "mps_unsupported_deterministic_ops": "warn_only",
     "one_worker": true,
     "retain_duplicate_full_domain_logits_in_memory": false,
     "teacher_forward_batch_size": 256
@@ -146,6 +149,7 @@
     "checkpoint_sha256": "f8f0fc43c559aa6f63e796a62627b8657a789a34f558b81ee33fbc6cc8968bc6",
     "complete_domain_size": 12769,
     "domain_order": "lexicographic_modular_addition_inputs",
+    "ordering_reference": "lexicographic-modular-addition-inputs/v1",
     "phase_label": "stable post-grokking",
     "teacher_seed": 0,
     "training_step": 5900
@@ -188,6 +192,8 @@
     "hard_soft_pooling": false,
     "hard_target": true,
     "predictive_fidelity": "centred_logit_only",
+    "soft_argmax_agreement_required": true,
+    "soft_eligibility_tolerance": 1.0,
     "soft_target": true
   },
   "technical_only": true,
