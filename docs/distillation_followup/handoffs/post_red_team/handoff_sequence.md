@@ -53,6 +53,8 @@ synthetic/excluded fixtures.
 
 ### Alex 3 — Stage 12-R2: Basis re-granulation and orientation sensitivity
 
+**File:** `alex_03_stage12r2_basis_sensitivity.md`
+
 **Syllabus:** Implement canonical-basis compatibility, pre-output-projection
 attention coordinates, seeded balanced neuron blocks, fixed orthogonal
 rotations, parameter-weighted accounting, and component-type-stratified
