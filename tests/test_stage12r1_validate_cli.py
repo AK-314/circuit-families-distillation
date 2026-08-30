@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -12,7 +13,7 @@ from scripts.validate_stage12r1_independent_discovery import (
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/validate_stage12r1_independent_discovery.py"
-PYTHON = ROOT / ".venv/bin/python"
+PYTHON = Path(sys.executable)
 
 
 def _run(cwd: Path, hash_seed: str) -> subprocess.CompletedProcess[str]:
