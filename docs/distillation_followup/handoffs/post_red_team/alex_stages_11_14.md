@@ -1,5 +1,10 @@
 # Alex handoff — Stages 11–14 scientific freeze and recovery machinery
 
+> **SUPERSEDED — DO NOT PASTE INTO A STAGE TASK.** This combined handoff
+> compressed several independent implementations into oversized parts. Use
+> `handoff_sequence.md` and the numbered Alex handoffs instead. It is retained
+> only to preserve the planning history.
+
 ## Mission
 
 Prepare the scientific and recovery side of the post-red-team experiment for
