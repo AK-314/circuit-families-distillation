@@ -6,7 +6,7 @@ Repository: `AK-314/circuit-families-distillation`
 
 Local clone convention: `~/Projects/circuit-families-distillation`
 
-Required exact base:
+Required authority floor:
 
 ```text
 52b8f602614cb2b830ecc31f9c0200cbdcb4462e
@@ -17,6 +17,11 @@ Required branch:
 ```text
 feat/stage-11-red-team-design-resolution
 ```
+
+Create the branch from the current `origin/main` after this handoff package is
+merged. Part A must prove that the authority-floor SHA above is an ancestor,
+that the merged handoff files are present, and that local `main` exactly matches
+`origin/main`. Record that current `origin/main` SHA as the implementation base.
 
 ## Mission
 
@@ -88,7 +93,7 @@ analysis, or Fourier scientific execution is authorized.
 HANDOFF=ALEX_01_STAGE11
 COMPLETED_PARTS=<...>
 NEXT_PART=<...>
-BASE=52b8f602614cb2b830ecc31f9c0200cbdcb4462e
+BASE=<exact implementation base recorded in Part A>
 HEAD=<exact current SHA>
 WAITING_FOR=<NONE or exact blocker>
 SCIENTIFIC_DATA=NO
@@ -121,7 +126,8 @@ The first block is read-only. It must print and verify:
 
 - repository root and remote URL;
 - current branch, HEAD, `main`, and `origin/main`;
-- exact base equality with `52b8f602...`;
+- `52b8f602...` exists and is an ancestor of current `origin/main`;
+- current local `main` exactly equals `origin/main` and contains this handoff;
 - clean tracked state plus separately listed untracked files;
 - existence and hashes of all authorities;
 - PR #15 merged state and head/merge SHAs if GitHub is available;
@@ -132,9 +138,9 @@ The first block is read-only. It must print and verify:
 After Alex returns the output, diagnose it. A second block may create the branch
 only if the exact-base and cleanliness guards pass.
 
-**Part A passes when:** the branch is created from the exact base, tracked state
-is clean, user-owned untracked files are preserved, and scientific execution is
-absent.
+**Part A passes when:** the branch is created from the recorded current
+`origin/main`, the authority floor is in its ancestry, tracked state is clean,
+user-owned untracked files are preserved, and scientific execution is absent.
 
 ## Part B — Coverage audit: red-team findings to design obligations
 

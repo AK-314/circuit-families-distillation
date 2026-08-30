@@ -6,7 +6,7 @@ Repository: `AK-314/circuit-families-distillation`
 
 Local clone convention: `~/Projects/circuit-families-distillation`
 
-Required exact base:
+Required authority floor:
 
 ```text
 52b8f602614cb2b830ecc31f9c0200cbdcb4462e
@@ -17,6 +17,11 @@ Required branch:
 ```text
 feat/stage-12p1-task-teacher-foundation
 ```
+
+Create the branch from the current `origin/main` after this handoff package is
+merged. Part A must prove that the authority-floor SHA above is an ancestor,
+that the merged handoff files are present, and that local `main` exactly matches
+`origin/main`. Record that current `origin/main` SHA as the implementation base.
 
 ## Mission
 
@@ -85,7 +90,7 @@ All emitted fixtures must be explicitly technical/non-production.
 HANDOFF=AUSTIN_01_STAGE12P1
 COMPLETED_PARTS=<...>
 NEXT_PART=<...>
-BASE=52b8f602614cb2b830ecc31f9c0200cbdcb4462e
+BASE=<exact implementation base recorded in Part A>
 HEAD=<exact current SHA>
 WAITING_FOR=<NONE or exact blocker>
 SCIENTIFIC_DATA=NO
@@ -126,7 +131,8 @@ The first block is read-only and must print:
 
 - repository root and remote;
 - current branch, HEAD, `main`, and `origin/main`;
-- exact equality with required base `52b8f602...`;
+- existence of `52b8f602...` as an ancestor of current `origin/main`;
+- exact equality of local `main` and `origin/main`, containing this handoff;
 - clean tracked state and separately listed untracked files;
 - authority hashes;
 - Python/environment identity;
@@ -136,8 +142,9 @@ The first block is read-only and must print:
 
 After returned output is diagnosed, a second block may create the branch.
 
-**Part A passes when:** branch starts at the exact base, tracked tree is clean,
-and no scientific/private artifact has been accessed.
+**Part A passes when:** branch starts at the recorded current `origin/main`, the
+authority floor is in its ancestry, tracked tree is clean, and no
+scientific/private artifact has been accessed.
 
 ## Part B — Reuse and gap audit
 

@@ -10,16 +10,19 @@ at a time, and each operational response contains one terminal block.
 The number of handoffs reflects independently testable code or scientific
 boundaries. It is not an attempt to manufacture stages.
 
-## Shared base
+## Shared authority floor and implementation base
 
-The planning package is merged into `main` at:
+The post-red-team planning authority is merged into history at:
 
 ```text
 52b8f602614cb2b830ecc31f9c0200cbdcb4462e
 ```
 
-Every first-wave branch starts from this exact SHA. Later handoffs state their
-own accepted input SHA after the required predecessor PRs have merged.
+The documentation commit that adds this sequence is necessarily newer. Both
+first-wave tasks therefore start from the same current `origin/main` after this
+handoff package is merged, verify that `52b8f602...` is its ancestor, and record
+the resulting exact implementation-base SHA in Part A. Later handoffs state
+their accepted input SHA after the required predecessor PRs have merged.
 
 ## Alex sequence
 
@@ -177,7 +180,7 @@ teacher, student, discovery, or analysis stage chats.
 ## Synchronization map
 
 ```text
-main @ 52b8f60
+shared main containing authority floor 52b8f60 + handoff package
    ├── Alex 1 ──────────────── Barrier 1 scientific interfaces
    └── Austin 1 ────────────── policy-neutral task/teacher foundation
              │
