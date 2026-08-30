@@ -1,5 +1,10 @@
 # Austin handoff — Stages 11–14 production machinery and cluster rehearsal
 
+> **SUPERSEDED — DO NOT PASTE INTO A STAGE TASK.** This combined handoff
+> compressed several independent implementations into oversized parts. Use
+> `handoff_sequence.md` and the numbered Austin handoffs instead. It is retained
+> only to preserve the planning history.
+
 ## Mission
 
 Prepare the training, orchestration, compact-storage, Fourier-execution, and
