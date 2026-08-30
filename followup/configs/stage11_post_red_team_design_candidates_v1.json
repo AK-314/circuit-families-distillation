@@ -1,0 +1,297 @@
+{
+  "record_type": "stage11_post_red_team_design_candidates",
+  "schema_version": 1,
+  "stage": 11,
+  "status": "candidate_interfaces_only",
+  "scientific_execution": false,
+  "production_eligible": false,
+  "historical_stage4_identity_mutated": false,
+  "population": {
+    "population_unit": "teacher_seed",
+    "protected_primary_task": "modular_addition_mod_113",
+    "teacher_expansion_direction": "expand_beyond_five_predecessor_seeds_toward_approximately_15_if_prospectively_constructible",
+    "exact_teacher_roster": null,
+    "exact_teacher_count": null,
+    "phase_selection_evidence": "training_metrics_only",
+    "matched_availability_required": true,
+    "unavailable_teacher_phase_cells_reportable": true,
+    "production_freeze_stage": "Stage 13"
+  },
+  "tasks": [
+    {
+      "task_slot": "Task 1",
+      "role": "protected_primary",
+      "task_family": "modular_addition",
+      "stage12p1_implementation": "ModularAdditionImplementation",
+      "modulus": 113,
+      "scope": "full_domain",
+      "production_formula_status": "accepted_direction",
+      "production_freeze_stage": "Stage 13"
+    },
+    {
+      "task_slot": "Task 2",
+      "role": "compact_external_validity_replication",
+      "task_family": "modular_multiplication",
+      "stage12p1_implementation": "ModularMultiplicationImplementation",
+      "modulus": null,
+      "scope": "reduced",
+      "production_formula_status": "candidate_interface_only",
+      "production_freeze_stage": "Stage 13"
+    },
+    {
+      "task_slot": "Task 3",
+      "role": "capacity_contingent_external_validity_replication",
+      "task_family": "modular_polynomial",
+      "stage12p1_implementation": "ModularPolynomialImplementation",
+      "modulus": null,
+      "scope": "reduced",
+      "production_formula_status": "production_value_still_open",
+      "formula_terms": null,
+      "selection_must_be_outcome_independent": true,
+      "production_freeze_stage": "Stage 13"
+    }
+  ],
+  "task_scope_rules": {
+    "task2_required_before_task3": true,
+    "task3_runs_only_after_protected_completeness_gate": true,
+    "reduced_task_completeness_must_be_reported": true,
+    "modular_subtraction_counts_as_task_breadth": false,
+    "task_structured_descriptive_metrics_only_if_prospectively_registered": true
+  },
+  "architectures": {
+    "canonical_family": "predecessor_matched",
+    "candidate_panel_maximum_families": 5,
+    "exact_family_roster": null,
+    "assignment_strategy": "balanced_sparse_assignment",
+    "literal_full_factorial": false,
+    "required_accounting": [
+      "parameter_count",
+      "searchable_component_count",
+      "component_type_counts"
+    ],
+    "interpretation": "external_validity_conditional_factor",
+    "isolated_depth_or_width_causal_claim_permitted": false,
+    "production_freeze_stage": "Stage 13"
+  },
+  "component_bases": [
+    {
+      "basis_family": "canonical",
+      "definition": "attention_heads_plus_individual_mlp_neurons",
+      "intervention": "activation_zeroing",
+      "status": "accepted_direction"
+    },
+    {
+      "basis_family": "attention_refinement",
+      "definition": "pre_output_projection_attention_coordinates",
+      "exact_coordinate_definition": null,
+      "status": "candidate_interface_only"
+    },
+    {
+      "basis_family": "coarse_mlp_blocks",
+      "definition": "prospectively_seeded_balanced_neuron_blocks",
+      "block_count": null,
+      "block_size_policy": null,
+      "status": "candidate_interface_only"
+    },
+    {
+      "basis_family": "orientation_sensitivity",
+      "definition": "limited_fixed_orthogonal_rotations_in_eligible_activation_subspaces",
+      "rotation_count": null,
+      "rotation_specification": null,
+      "status": "candidate_interface_only"
+    },
+    {
+      "basis_family": "accounting_sensitivity",
+      "definition": "parameter_weighted_and_component_type_stratified_summaries",
+      "status": "accepted_direction"
+    }
+  ],
+  "basis_claim_boundary": {
+    "claims_limited_to_tested_bases": true,
+    "universal_basis_invariance_claim_permitted": false,
+    "exact_partition_seeds": null,
+    "exact_rotation_seeds": null,
+    "production_freeze_stage": "Stage 13"
+  },
+  "compatibility": {
+    "stage12p1_task_interface_required": true,
+    "stage12p1_phase_interface_required": true,
+    "stage4_identity_schema_rewritten": false,
+    "new_factors_are_versioned_references_not_stage4_identity_mutations": true
+  },
+  "endpoints": {
+    "endpoint1": {
+      "status": "primary",
+      "definition": "smallest_exactly_evaluated_component_proportion_satisfying_frozen_centred_logit_fidelity",
+      "intact_mask_always_included": true,
+      "procedure_relative_upper_bound": true,
+      "global_minimum_claim_permitted": false,
+      "primary_fidelity_threshold": null,
+      "fidelity_frontier": null,
+      "ledger_reuse_required_where_supported": true,
+      "budget_censoring_reportable": true
+    },
+    "endpoint2": {
+      "status": "key_secondary",
+      "co_primary_requires_preproduction_validation": true,
+      "procedure_relative_packing_lower_bound": true,
+      "mechanism_count_claim_permitted": false,
+      "component_cap": null,
+      "overlap_metric": null,
+      "overlap_cutoff": null,
+      "packing_solver": null
+    },
+    "production_freeze_stage": "Stage 13"
+  },
+  "discovery": {
+    "required_families": [
+      {
+        "family": "inherited_discrete",
+        "description": "greedy_deletion_and_diversity_machinery",
+        "production_version": null,
+        "native_budget": null,
+        "restart_rule": null
+      },
+      {
+        "family": "independent_continuous_or_stochastic",
+        "description": "algorithmically_distinct_sparse_mask_optimizer",
+        "production_algorithm": null,
+        "production_version": null,
+        "native_budget": null,
+        "restart_rule": null
+      }
+    ],
+    "algorithmic_independence_required": true,
+    "cosmetic_restart_of_inherited_method_acceptable": false,
+    "common_exact_evaluation_allowance": null,
+    "native_budgets_declared_equivalent": false,
+    "proposal_and_exact_ledgers_required": true,
+    "failure_and_budget_exhaustion_reportable": true,
+    "production_freeze_stage": "Stage 13"
+  },
+  "packing_calibration": {
+    "required_nulls": [
+      "combinatorial_size_and_type_matched_floor",
+      "ordinary_restart_baseline",
+      "local_fidelity_retaining_perturbation",
+      "tractable_feasible_region_calibration"
+    ],
+    "null_draw_counts": null,
+    "reportable_minimum_coverage": null,
+    "nulls_may_be_collapsed_into_one": false,
+    "tractable_model": {
+      "task_and_model": null,
+      "mask_universe": null,
+      "exactness_criterion": null,
+      "allowed_methods": [
+        "exhaustive_enumeration",
+        "branch_and_bound",
+        "audited_near_exact_alternative"
+      ],
+      "population_replicate": false
+    },
+    "production_freeze_stage": "Stage 13"
+  },
+  "fourier_interchange": {
+    "status": "registered_key_secondary",
+    "execute_regardless_of_primary_direction": true,
+    "pair_selection_may_use_candidate_outcomes": false,
+    "intervention_location": null,
+    "alignment_rule": null,
+    "capacity_matching_rule": null,
+    "outcome": null,
+    "trial_roster": null,
+    "required_controls": [
+      "wrong_fourier_mode",
+      "shuffled_coefficients",
+      "mismatched_input",
+      "equal_norm_random_state",
+      "unaligned_ordinary_activation_patching"
+    ],
+    "shared_abstraction_claim_requires_all_controls_outperformed": true,
+    "uniquely_identified_algorithm_claim_permitted": false,
+    "production_freeze_stage": "Stage 13"
+  },
+  "tiering": {
+    "literal_full_factorial": false,
+    "tier1": {
+      "status": "protected_primary",
+      "requirements": [
+        "full_eligible_teacher_seed_roster_and_primary_phase_contrasts",
+        "direct_teachers",
+        "canonical_matched_student_architecture",
+        "hard_and_soft_students",
+        "frozen_replication_and_failure_accounting",
+        "canonical_basis",
+        "both_required_discovery_families",
+        "endpoint1_and_endpoint2",
+        "core_packing_calibration"
+      ]
+    },
+    "tier2": {
+      "status": "protected_minimum",
+      "requirements": [
+        "balanced_additional_architectures",
+        "selected_basis_regranulation_and_rotations",
+        "fidelity_frontier",
+        "tractable_calibration",
+        "fourier_interchange_and_all_controls"
+      ],
+      "exact_minimum": null
+    },
+    "tier3": {
+      "status": "optional",
+      "priority_order": null,
+      "may_run_before_tier1_complete_and_tier2_minimum_secure": false
+    },
+    "production_freeze_stage": "Stage 13"
+  },
+  "resources": {
+    "primary_backend": "symbolica_if_qualified_and_available",
+    "symbolica_unavailable_branch_required": true,
+    "school_mac_branch_required": true,
+    "incomplete_campaign_recovery_branch_required": true,
+    "school_mac_priority": [
+      "protected_primary_recovery",
+      "reproduction_and_integrity",
+      "task2_after_protected_requirements",
+      "task3_only_after_completeness_gate"
+    ],
+    "reverse_priority_shedding": [
+      "tier3_optional_breadth",
+      "unprotected_tier2_work",
+      "protected_tier2_minimum",
+      "tier1_never_shed_for_optional_work"
+    ],
+    "cluster_concurrency": null,
+    "retry_caps": null,
+    "storage_quotas": null,
+    "final_audit_export_reserve": null,
+    "bounded_post_submission_rebuttal_reserve_required": true,
+    "rebuttal_reserve_amount": null,
+    "production_freeze_stages": [
+      "Stage 13",
+      "Stage 14"
+    ]
+  },
+  "planned_report_skeleton": {
+    "synthetic_only": true,
+    "scientific_values_present": false,
+    "sections": [
+      "attempt_eligibility_and_unavailability_accounting",
+      "direct_teacher_endpoint1",
+      "hard_student_endpoint1",
+      "soft_student_endpoint1",
+      "realization_and_teacher_student_contrasts",
+      "discovery_method_dependence",
+      "packing_and_null_calibration",
+      "architecture_external_validity",
+      "basis_sensitivity",
+      "fidelity_frontier",
+      "fourier_interchange_and_controls",
+      "claim_resolution"
+    ],
+    "numeric_placeholders": "forbidden_in_stage11",
+    "generation_stage": "Stage 13"
+  }
+}
