@@ -1,0 +1,145 @@
+{
+  "record_type": "post_red_team_open_decision_register",
+  "schema_version": 1,
+  "status": "prospective_open_decisions",
+  "created_date": "2026-08-29",
+  "scientific_execution": false,
+  "historical_stage2_register_mutated": false,
+  "historical_register": "followup/configs/stage2_unresolved_decisions_v1.json",
+  "governing_amendment": "docs/distillation_followup/post_red_team_protocol_amendment.md",
+  "implementation_order": "docs/distillation_followup/distillation_implementation_post_red_team.md",
+  "rules": {
+    "all_values_nonbinding_until_resolved": true,
+    "technical_stage5_through_stage10_values_nonbinding": true,
+    "comparative_followup_endpoints_must_not_inform_resolution": true,
+    "stage15_requires_all_production_blocking_items_resolved": true
+  },
+  "decisions": [
+    {
+      "decision_id": "RD-001",
+      "family": "Expanded teacher population and phase registry",
+      "historical_links": ["UD-001", "UD-002"],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Exact teacher-seed roster, training rule for added teachers, per-seed phase selection, unavailable-cell rule, and matched-primary eligibility.",
+      "working_direction": "Expand beyond five predecessor seeds, targeting approximately 15 matched teachers if prospectively constructible.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-002",
+      "family": "Student architecture panel",
+      "historical_links": ["UD-003"],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Exact architecture roster, initialization rules, parameter/component accounting, and balanced sparse assignment.",
+      "working_direction": "Canonical matched architecture plus a systematic panel of up to five architecture families for external validity.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-003",
+      "family": "Distillation training, eligibility, and replication",
+      "historical_links": ["UD-004", "UD-005", "UD-006"],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Hard and soft targets, losses, optimizers, schedules, stopping, tolerances, argmax rules, attempt caps, eligible target, replacement rule, and missing-cell minimum.",
+      "working_direction": "Retain exact hard eligibility, gauge-invariant soft matching, unconditional failure accounting, and no imputation.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-004",
+      "family": "Component bases and intervention sensitivity",
+      "historical_links": ["UD-003", "UD-008"],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Canonical basis, attention-coordinate definition, seeded balanced neuron blocks, orthogonal rotations, intervention semantics, assignment, and weighted/type-stratified summaries.",
+      "working_direction": "Test a limited predeclared set of granularity and orientation changes rather than claim universal basis invariance.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-005",
+      "family": "Centred-logit fidelity and frontier",
+      "historical_links": ["UD-007"],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Formula implementation, precision, denominator guard, primary threshold, frontier grid, and ledger-reuse rule.",
+      "working_direction": "One primary centred-logit setting plus a prospectively declared fidelity frontier.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-006",
+      "family": "Endpoint hierarchy and packing definition",
+      "historical_links": ["UD-008", "UD-011"],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Endpoint 2 status, component cap, overlap metric/cutoff, packing solver, censoring, and permitted claims.",
+      "working_direction": "Endpoint 1 primary; packing key secondary unless preproduction validation justifies co-primary status.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-007",
+      "family": "Discovery roster and budgets",
+      "historical_links": ["UD-009", "UD-010"],
+      "resolution_stage": "Stage 12 and Stage 13",
+      "required_resolution": "Inherited method version, algorithmically distinct continuous/stochastic method, native budgets, common exact allowance, restarts, termination, failure, and backend determinism.",
+      "working_direction": "At least two genuinely different discovery families with primarily within-method interpretation.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-008",
+      "family": "Packing null calibration",
+      "historical_links": ["UD-008", "UD-009"],
+      "resolution_stage": "Stage 12 and Stage 13",
+      "required_resolution": "Combinatorial, ordinary-restart, local-perturbation, and feasible-region null algorithms, draw counts, budgets, and minimum reportable coverage.",
+      "working_direction": "Use all four layers because they answer different questions.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-009",
+      "family": "Tractable exact or near-exact calibration",
+      "historical_links": ["UD-009"],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Calibration task/model, mask universe, exact or near-exact algorithm, stopping certificate, and transfer limitations.",
+      "working_direction": "Calibrate search suboptimality and feasible packing on a deliberately small instance.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-010",
+      "family": "Hierarchical analysis and required outputs",
+      "historical_links": ["UD-011", "UD-012"],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Primary contrasts, student-cell summary, realization dispersion, architecture/basis/method factors, population model, missing-cell rule, failure tables, figures, and outcome-category resolution.",
+      "working_direction": "Paired teacher-seed inference with raw seed values and unconditional attempt accounting.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-011",
+      "family": "Fourier causal interchange",
+      "historical_links": [],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Pair selection, layer/location, alignment, information-capacity match, outcomes, trial roster, all controls, and success criterion.",
+      "working_direction": "Registered key secondary executed regardless of the primary result direction.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-012",
+      "family": "Tiered definitive scope and priority",
+      "historical_links": ["UD-014"],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Protected Tier 1 matrix, protected Tier 2 minimum, optional Tier 3 list, balance rules, partial-completion interpretation, and fixed shedding order.",
+      "working_direction": "Sparse tiered crossing; no literal full factorial and no duplication of ledger-derived reducer settings.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-013",
+      "family": "Production backend qualification",
+      "historical_links": ["UD-013"],
+      "resolution_stage": "Stage 14",
+      "required_resolution": "CPU/CUDA qualification, permitted numerical drift, resume equivalence, environment lock, resource classes, and abort rule.",
+      "working_direction": "Definitive execution on qualified CPU/CUDA workers; prior MPS evidence remains technical only unless separately qualified.",
+      "status": "open"
+    },
+    {
+      "decision_id": "RD-014",
+      "family": "Stage 15 orchestration, storage, and export",
+      "historical_links": ["UD-013", "UD-014"],
+      "resolution_stage": "Stage 13 and Stage 14",
+      "required_resolution": "Dependency DAG, concurrency, isolation, retries, compact formats, scratch/persistent quotas, monitoring, three human gates, final audit window, and verified export.",
+      "working_direction": "One automated campaign with launch, primary-completeness, and exit gates.",
+      "status": "open"
+    }
+  ]
+}
