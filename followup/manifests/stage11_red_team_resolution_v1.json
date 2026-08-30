@@ -1,0 +1,843 @@
+{
+  "record_type": "stage11_red_team_resolution",
+  "schema_version": 1,
+  "stage": 11,
+  "status": "candidate_design_coverage",
+  "implementation_base": "7dcda33b10185681efa66c4d63e15cd6d7e3c4b9",
+  "scientific_execution": false,
+  "definitive_outcomes_consulted": false,
+  "historical_stage2_register_mutated": false,
+  "full_factorial_required": false,
+  "authority": {
+    "red_team_matrix": {
+      "repository_path": "docs/distillation_followup/red_team/red_team_resolution_matrix.md",
+      "sha256": "7a7eb9f812582dcee55f00f48d15e3387c914b4a40267359f32c02ca125f5fed"
+    },
+    "open_decisions": {
+      "repository_path": "followup/configs/post_red_team_open_decisions_v1.json",
+      "sha256": "7d28f921a294745b4eb231ff5cb91f430cd0de24db76ac2fee578c38d5a935de"
+    }
+  },
+  "historical_stage2_guard": {
+    "repository_path": "followup/configs/stage2_unresolved_decisions_v1.json",
+    "sha256": "56e229671b7f35b8430e0e079805e9a3ed9a4534f6aa2b9e274a7d7cf41c08dc",
+    "mutation_permitted": false
+  },
+  "coverage": {
+    "red_team_row_count": 20,
+    "rd_count": 14,
+    "rd_expected_ids": [
+      "RD-001",
+      "RD-002",
+      "RD-003",
+      "RD-004",
+      "RD-005",
+      "RD-006",
+      "RD-007",
+      "RD-008",
+      "RD-009",
+      "RD-010",
+      "RD-011",
+      "RD-012",
+      "RD-013",
+      "RD-014"
+    ],
+    "all_accepted_items_have_implementation_consequence": true,
+    "rejected_claims_remain_prohibited": true,
+    "production_blocking_rd_requires_later_resolution": true
+  },
+  "red_team_items": [
+    {
+      "item_id": "RT-001",
+      "issue": "Too few population replicates",
+      "disposition": "Accepted",
+      "protocol_consequence": "Expand beyond five predecessor teacher seeds; preserve teacher seed as the inference unit",
+      "remaining_decision": "Exact roster, target approximately 15, phase availability",
+      "scientific_reason": "Teacher seeds, not students or masks, define the population-level replication for phase/function claims; five predecessor seeds are therefore a limited population base.",
+      "required_implementation_packages": [
+        "stage12_task_teacher_foundation",
+        "stage13_protocol_manifest_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Primary paired summaries use teacher seed as the population unit and expose matched-seed availability.",
+      "permitted_claim": "Teacher-seed-level evidence may be reported for eligible matched teachers under the frozen roster.",
+      "prohibited_claim": "Students, masks, methods, thresholds, or jobs may be counted as independent population replicates.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-002",
+      "issue": "Architecture-specific finding",
+      "disposition": "Accepted with modification",
+      "protocol_consequence": "Add a balanced multi-architecture student panel for external validity",
+      "remaining_decision": "Exact roster, assignment, accounting denominators",
+      "scientific_reason": "A predecessor-matched architecture alone cannot establish that a recoverability pattern extends beyond that architecture.",
+      "required_implementation_packages": [
+        "stage12_multi_architecture_students",
+        "stage13_protocol_manifest_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Architecture is a conditional repeated factor with parameter and searchable-component accounting.",
+      "permitted_claim": "External-validity evidence may be reported across the predeclared architecture panel.",
+      "prohibited_claim": "A heterogeneous architecture panel isolates a causal depth or width effect.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-003",
+      "issue": "Architecture panel identifies causal depth/width effects",
+      "disposition": "Rejected as stated",
+      "protocol_consequence": "Do not interpret a heterogeneous panel as isolating one architectural variable",
+      "remaining_decision": "Any causal architecture comparison needs a separately matched design",
+      "scientific_reason": "Architectures that differ in multiple properties do not identify a single architectural causal contrast.",
+      "required_implementation_packages": [
+        "stage13_analysis_claim_rules"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Architecture-panel results are interpreted conditionally rather than as isolated depth/width effects.",
+      "permitted_claim": "Observed dependence on tested architecture families may be described conditionally.",
+      "prohibited_claim": "The heterogeneous panel estimates the isolated causal effect of depth or width.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": false
+    },
+    {
+      "item_id": "RT-004",
+      "issue": "Discovery result may be an optimizer artifact",
+      "disposition": "Accepted",
+      "protocol_consequence": "Require an algorithmically distinct continuous/stochastic sparse-mask method",
+      "remaining_decision": "Exact algorithm, version, native budget, restarts",
+      "scientific_reason": "Agreement from one search family can reflect proposal dynamics rather than the underlying feasible mask region.",
+      "required_implementation_packages": [
+        "stage12_independent_sparse_mask_discovery",
+        "stage13_protocol_manifest_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Discovery-method dependence is a reported result and comparisons are primarily within method.",
+      "permitted_claim": "Agreement or disagreement between genuinely distinct discovery families may qualify recoverability conclusions.",
+      "prohibited_claim": "One optimizer's recovered masks enumerate the scientifically relevant mask region.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-005",
+      "issue": "Search quality is unknown",
+      "disposition": "Accepted",
+      "protocol_consequence": "Add exact/near-exact tractable calibration",
+      "remaining_decision": "Calibration model, exactness criterion, transfer limits",
+      "scientific_reason": "Main-scale search cannot by itself reveal how far the recovered solution is from the exact or near-exact feasible optimum.",
+      "required_implementation_packages": [
+        "stage12_tractable_calibration",
+        "stage13_protocol_manifest_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Search-quality claims are calibrated against a deliberately tractable excluded technical problem.",
+      "permitted_claim": "Search suboptimality may be calibrated on the prospectively defined tractable model.",
+      "prohibited_claim": "Tractable-model exactness proves global optimality on the primary production models.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-006",
+      "issue": "Packing lacks a null model",
+      "disposition": "Accepted",
+      "protocol_consequence": "Add combinatorial, restart, local-perturbation, and feasible-region calibrations",
+      "remaining_decision": "Null algorithms, draw counts, reportable minimum",
+      "scientific_reason": "Mask separation can arise from combinatorics, ordinary restart variation, local flatness, or broader feasible-region multiplicity.",
+      "required_implementation_packages": [
+        "stage12_packing_nulls_and_calibration",
+        "stage13_protocol_manifest_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Packing is reported beside distinct null layers rather than against a single collapsed null.",
+      "permitted_claim": "Packing separation may be interpreted relative to each registered null's specific role.",
+      "prohibited_claim": "A single null distribution establishes the total multiplicity of mechanisms.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-007",
+      "issue": "Packing count equals number of mechanisms",
+      "disposition": "Rejected",
+      "protocol_consequence": "Use procedure-relative packing-lower-bound language only",
+      "remaining_decision": "None; this remains prohibited",
+      "scientific_reason": "Recovered pairwise-separated qualifying masks do not enumerate all mechanisms or determine a true packing number.",
+      "required_implementation_packages": [
+        "stage13_analysis_claim_rules"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Endpoint 2 is described only as a procedure-relative recovered packing lower bound.",
+      "permitted_claim": "A procedure-relative packing lower bound may be reported.",
+      "prohibited_claim": "The recovered packing count equals the number of mechanisms.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": false
+    },
+    {
+      "item_id": "RT-008",
+      "issue": "One 0.99 fidelity threshold is brittle",
+      "disposition": "Accepted",
+      "protocol_consequence": "Freeze one primary setting and a centred-logit fidelity frontier",
+      "remaining_decision": "Exact primary threshold and frontier grid",
+      "scientific_reason": "A single fidelity threshold can make conclusions depend on one prospective numerical setting.",
+      "required_implementation_packages": [
+        "stage13_fidelity_freeze",
+        "stage13_ledger_reducer_plan"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "The primary threshold is accompanied by a predeclared centred-logit fidelity frontier derived from reusable ledgers where valid.",
+      "permitted_claim": "Recoverability may be reported at the frozen primary threshold and across the registered fidelity frontier.",
+      "prohibited_claim": "A favorable single fidelity threshold alone establishes the scientific conclusion.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-009",
+      "issue": "Eligibility conditioning hides failures",
+      "disposition": "Accepted",
+      "protocol_consequence": "Report all attempts and eligibility failures unconditionally",
+      "remaining_decision": "Attempt caps and missing-cell rule",
+      "scientific_reason": "Conditioning analysis on eligible students alone can hide training and matching failures.",
+      "required_implementation_packages": [
+        "stage12_student_attempt_records",
+        "stage13_missing_cell_and_attempt_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Attempt failures, eligibility failures, and unresolved cells remain visible before endpoint summaries.",
+      "permitted_claim": "Endpoint results may be interpreted alongside unconditional attempt and eligibility accounting.",
+      "prohibited_claim": "Headline inference may silently condition away failed or ineligible student attempts.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-010",
+      "issue": "Fixed neuron/head basis may manufacture sparsity",
+      "disposition": "Accepted",
+      "protocol_consequence": "Add pre-output attention coordinates, seeded neuron blocks, rotations, and weighted/type-stratified summaries",
+      "remaining_decision": "Exact bases, seeds, assignment, rotation count",
+      "scientific_reason": "Sparse recovery can depend on component granularity and orientation under the intervention basis.",
+      "required_implementation_packages": [
+        "stage12_basis_sensitivity",
+        "stage13_basis_assignment_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Canonical, re-granulated, rotated, parameter-weighted, and type-stratified summaries qualify basis dependence.",
+      "permitted_claim": "Basis sensitivity may be described only for the tested bases, partitions, and rotations.",
+      "prohibited_claim": "Sparse recoverability is universally invariant to component basis or orientation.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-011",
+      "issue": "Component fractions compare unlike architectures cleanly",
+      "disposition": "Rejected",
+      "protocol_consequence": "Report parameter-weighted and type-stratified sensitivities; limit raw comparisons",
+      "remaining_decision": "Exact cross-architecture estimand",
+      "scientific_reason": "Raw component fractions have different meanings when component types and parameter coverage differ across architectures.",
+      "required_implementation_packages": [
+        "stage12_component_accounting",
+        "stage13_analysis_claim_rules"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Cross-architecture summaries include parameter-weighted and component-type-stratified sensitivities.",
+      "permitted_claim": "Cross-architecture differences may be reported with explicit accounting denominators and type stratification.",
+      "prohibited_claim": "Raw component fractions are directly comparable across unlike architectures without qualification.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-012",
+      "issue": "Fourier causal work is optional",
+      "disposition": "Accepted criticism",
+      "protocol_consequence": "Promote registered Fourier interchange to key secondary and run it regardless of primary direction",
+      "remaining_decision": "Pairs, intervention, alignment, controls, outcome",
+      "scientific_reason": "Output-level agreement alone does not test whether matched systems share a causally interchangeable internal abstraction.",
+      "required_implementation_packages": [
+        "stage12_fourier_interchange_runner",
+        "stage13_fourier_registration_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Fourier interchange is a registered key secondary analysis executed regardless of primary direction.",
+      "permitted_claim": "A shared causal abstraction may be supported only under the registered interchange success criterion and controls.",
+      "prohibited_claim": "Fourier causal work may be omitted because the primary result is unfavorable or null.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-013",
+      "issue": "Output agreement establishes the same algorithm",
+      "disposition": "Rejected",
+      "protocol_consequence": "Distinguish outputs, representations, causal variables, and algorithmic abstraction",
+      "remaining_decision": "Fourier experiment addresses only a specified abstraction",
+      "scientific_reason": "Matching outputs does not identify representations, causal variables, or a unique algorithm.",
+      "required_implementation_packages": [
+        "stage13_fourier_claim_rules"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Fourier conclusions are limited to the registered causal abstraction tested by the intervention.",
+      "permitted_claim": "Registered intervention evidence may support a specified shared causal abstraction.",
+      "prohibited_claim": "Output agreement or Fourier interchange uniquely identifies the same algorithm.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": false
+    },
+    {
+      "item_id": "RT-014",
+      "issue": "Modular addition alone proves generality",
+      "disposition": "Rejected",
+      "protocol_consequence": "Architecture breadth and mechanistic calibration qualify scope; broad cross-task expansion remains gated",
+      "remaining_decision": "Whether one compact additional task is affordable after protected work",
+      "scientific_reason": "One modular-addition task does not by itself establish broad cross-task generality.",
+      "required_implementation_packages": [
+        "stage11_task_scope_interface",
+        "stage13_task_scope_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Task breadth is reported explicitly and any added tasks remain bounded by the protected tier design.",
+      "permitted_claim": "Scope may be qualified using the prospectively declared compact task replications actually completed.",
+      "prohibited_claim": "Modular addition alone proves generality across tasks.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-015",
+      "issue": "Generic entropy explains function complexity",
+      "disposition": "Rejected as core",
+      "protocol_consequence": "Do not use generic output entropy as a mechanistic mediator",
+      "remaining_decision": "Optional task-structured descriptive metric only",
+      "scientific_reason": "Generic output entropy is not established as the mechanistic quantity mediating recoverable circuit structure.",
+      "required_implementation_packages": [
+        "stage13_analysis_claim_rules"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Generic entropy is excluded as a core mediator; only a separately registered task-structured descriptive metric may be exploratory.",
+      "permitted_claim": "A prospectively specified task-structured descriptive metric may be reported as descriptive only.",
+      "prohibited_claim": "Generic output entropy mechanistically explains function complexity or circuit recoverability.",
+      "failure_or_unavailability_reportable": false,
+      "blocks_stage15": false
+    },
+    {
+      "item_id": "RT-016",
+      "issue": "Endpoint 2 should be co-primary automatically",
+      "disposition": "Rejected",
+      "protocol_consequence": "Treat packing as key secondary unless preproduction validation earns co-primary status",
+      "remaining_decision": "Status fixed at Stage 13",
+      "scientific_reason": "Packing requires additional search and null calibration before it can support primary-endpoint status.",
+      "required_implementation_packages": [
+        "stage12_packing_calibration",
+        "stage13_endpoint_hierarchy_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Endpoint 1 remains primary; Endpoint 2 remains key secondary unless preproduction validation prospectively earns co-primary status.",
+      "permitted_claim": "Endpoint 2 may be reported as a key secondary procedure-relative packing lower bound.",
+      "prohibited_claim": "Endpoint 2 is automatically co-primary without prospective preproduction validation.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-017",
+      "issue": "Full factorial gives maximum rigor",
+      "disposition": "Rejected",
+      "protocol_consequence": "Use a sparse tiered crossing; derive reducer sensitivities from shared ledgers",
+      "remaining_decision": "Protected Tier 1, Tier 2 minimum, Tier 3 priority",
+      "scientific_reason": "A literal crossing of every lower-level factor wastes compute and creates pseudo-replication without increasing teacher-level n.",
+      "required_implementation_packages": [
+        "stage11_tier_interface",
+        "stage13_sparse_assignment_and_priority_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Protected Tier 1, protected Tier 2 minimum, and optional Tier 3 replace the literal full factorial.",
+      "permitted_claim": "Inference may use the frozen sparse tiered crossing with explicit conditional repeated factors.",
+      "prohibited_claim": "A literal full factorial is required for rigor.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-018",
+      "issue": "More lower-level jobs repair low teacher n",
+      "disposition": "Rejected",
+      "protocol_consequence": "Population inference remains at teacher-seed level",
+      "remaining_decision": "Exact teacher roster and matched availability",
+      "scientific_reason": "Additional lower-level searches or students do not create new independent teacher-seed population units.",
+      "required_implementation_packages": [
+        "stage13_hierarchical_analysis_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Effective sample size for teacher-phase contrasts is the number of eligible matched teacher seeds.",
+      "permitted_claim": "Lower-level replication may characterize conditional variability without inflating teacher-level sample size.",
+      "prohibited_claim": "More students, masks, methods, or jobs repair a low number of teacher seeds.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-019",
+      "issue": "Negative or corrective outcomes weaken the study beyond use",
+      "disposition": "Rejected",
+      "protocol_consequence": "Preserve outcome-neutral categories and report method/fidelity dependence as results",
+      "remaining_decision": "Claim-resolution table frozen prospectively",
+      "scientific_reason": "Method dependence, null effects, failures, and corrective outcomes are scientifically informative under a prospective design.",
+      "required_implementation_packages": [
+        "stage13_outcome_neutral_claim_resolution"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "The planned report includes outcome-neutral categories for null, method-dependent, basis-dependent, failed, and unavailable results.",
+      "permitted_claim": "Negative, corrective, or method-dependent outcomes may be reported as results under the frozen interpretation rules.",
+      "prohibited_claim": "Negative or corrective outcomes may be hidden because they weaken the preferred story.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true
+    },
+    {
+      "item_id": "RT-020",
+      "issue": "Independent review ritual is itself a scientific contribution",
+      "disposition": "Rejected",
+      "protocol_consequence": "Review is quality control; internal exact-SHA double-check is acceptable when needed",
+      "remaining_decision": "Reviewer availability does not block preparation",
+      "scientific_reason": "Independent review is a quality-control mechanism rather than a scientific estimand or experimental contribution.",
+      "required_implementation_packages": [
+        "stage11_exact_sha_internal_double_check"
+      ],
+      "required_freeze_stages": [
+        "Stage 11"
+      ],
+      "analysis_consequence": "Review findings are reported separately from scientific evidence.",
+      "permitted_claim": "A fresh-checkout exact-SHA internal double-check may establish implementation quality control.",
+      "prohibited_claim": "Independent review itself is a scientific contribution or population replicate.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": false
+    }
+  ],
+  "rd_items": [
+    {
+      "decision_id": "RD-001",
+      "family": "Expanded teacher population and phase registry",
+      "historical_links": [
+        "UD-001",
+        "UD-002"
+      ],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Exact teacher-seed roster, training rule for added teachers, per-seed phase selection, unavailable-cell rule, and matched-primary eligibility.",
+      "working_direction": "Expand beyond five predecessor seeds, targeting approximately 15 matched teachers if prospectively constructible.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Population replication must be expanded while teacher seed remains the sole population unit and phase selection remains training-metric-only.",
+      "required_implementation_packages": [
+        "stage12_task_teacher_foundation",
+        "stage13_teacher_roster_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Teacher-seed matched availability determines population-level phase contrasts; unavailable cells remain visible.",
+      "permitted_claim": "Teacher-seed-level paired evidence may be reported for the frozen eligible roster.",
+      "prohibited_claim": "Checkpoint availability may be fabricated or lower-level replicates may substitute for teacher seeds.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-002",
+      "family": "Student architecture panel",
+      "historical_links": [
+        "UD-003"
+      ],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Exact architecture roster, initialization rules, parameter/component accounting, and balanced sparse assignment.",
+      "working_direction": "Canonical matched architecture plus a systematic panel of up to five architecture families for external validity.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Architecture breadth is required for external validity, but a heterogeneous panel does not isolate a single architectural cause.",
+      "required_implementation_packages": [
+        "stage12_multi_architecture_students",
+        "stage13_architecture_assignment_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Architecture remains a conditional factor with explicit component and parameter accounting.",
+      "permitted_claim": "Dependence across tested architecture families may be reported as conditional external-validity evidence.",
+      "prohibited_claim": "The heterogeneous architecture panel identifies an isolated causal effect of depth or width.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-003",
+      "family": "Distillation training, eligibility, and replication",
+      "historical_links": [
+        "UD-004",
+        "UD-005",
+        "UD-006"
+      ],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Hard and soft targets, losses, optimizers, schedules, stopping, tolerances, argmax rules, attempt caps, eligible target, replacement rule, and missing-cell minimum.",
+      "working_direction": "Retain exact hard eligibility, gauge-invariant soft matching, unconditional failure accounting, and no imputation.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Hard and soft estimands require explicit training, eligibility, replication, attempt, and missing-cell rules before production.",
+      "required_implementation_packages": [
+        "stage12_student_training_and_eligibility",
+        "stage13_training_policy_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Hard and soft remain separate estimands and all attempts remain in failure accounting.",
+      "permitted_claim": "Eligible hard and soft student results may be reported separately under their frozen policies.",
+      "prohibited_claim": "Failed attempts may be silently discarded or hard and soft students may be pooled as one estimand.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "production_value_still_open"
+    },
+    {
+      "decision_id": "RD-004",
+      "family": "Component bases and intervention sensitivity",
+      "historical_links": [
+        "UD-003",
+        "UD-008"
+      ],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Canonical basis, attention-coordinate definition, seeded balanced neuron blocks, orthogonal rotations, intervention semantics, assignment, and weighted/type-stratified summaries.",
+      "working_direction": "Test a limited predeclared set of granularity and orientation changes rather than claim universal basis invariance.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Recoverability can depend on component granularity and orientation, so selected basis sensitivity is required.",
+      "required_implementation_packages": [
+        "stage12_basis_sensitivity",
+        "stage13_basis_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Conclusions are qualified by tested basis, partition, rotation, and accounting definitions.",
+      "permitted_claim": "Basis dependence or robustness may be reported for the tested predeclared bases only.",
+      "prohibited_claim": "Basis invariance may be claimed beyond tested bases, partitions, or rotations.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-005",
+      "family": "Centred-logit fidelity and frontier",
+      "historical_links": [
+        "UD-007"
+      ],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Formula implementation, precision, denominator guard, primary threshold, frontier grid, and ledger-reuse rule.",
+      "working_direction": "One primary centred-logit setting plus a prospectively declared fidelity frontier.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Centred-logit fidelity requires one primary prospective setting and a frontier rather than a favorable single threshold.",
+      "required_implementation_packages": [
+        "stage13_fidelity_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Primary fidelity and frontier sensitivity are reported from exact ledger evidence where reducer reuse is valid.",
+      "permitted_claim": "Procedure-relative recoverability may be reported under the frozen centred-logit fidelity contract.",
+      "prohibited_claim": "Technical Stage 5-10 fidelity values are automatically production policy.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "production_value_still_open"
+    },
+    {
+      "decision_id": "RD-006",
+      "family": "Endpoint hierarchy and packing definition",
+      "historical_links": [
+        "UD-008",
+        "UD-011"
+      ],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Endpoint 2 status, component cap, overlap metric/cutoff, packing solver, censoring, and permitted claims.",
+      "working_direction": "Endpoint 1 primary; packing key secondary unless preproduction validation justifies co-primary status.",
+      "status": "open",
+      "disposition": "accepted_endpoint_hierarchy_with_production_values_open",
+      "scientific_reason": "Endpoint 1 is stable enough to remain primary while packing requires additional preproduction calibration.",
+      "required_implementation_packages": [
+        "stage12_packing_calibration",
+        "stage13_endpoint_hierarchy_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Endpoint 1 is analyzed first; Endpoint 2 qualifies interpretation as key secondary unless prospectively promoted.",
+      "permitted_claim": "Endpoint 1 is a procedure-relative recovered upper bound and Endpoint 2 a procedure-relative packing lower bound.",
+      "prohibited_claim": "Endpoint 1 is the global minimum circuit size or Endpoint 2 is the true packing number.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "accepted_direction_only"
+    },
+    {
+      "decision_id": "RD-007",
+      "family": "Discovery roster and budgets",
+      "historical_links": [
+        "UD-009",
+        "UD-010"
+      ],
+      "resolution_stage": "Stage 12 and Stage 13",
+      "required_resolution": "Inherited method version, algorithmically distinct continuous/stochastic method, native budgets, common exact allowance, restarts, termination, failure, and backend determinism.",
+      "working_direction": "At least two genuinely different discovery families with primarily within-method interpretation.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "The protected experiment requires algorithmically distinct search families with separate native accounting and a common exact allowance.",
+      "required_implementation_packages": [
+        "stage12_independent_sparse_mask_discovery",
+        "stage13_discovery_budget_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Within-method interpretation is primary and cross-method agreement or disagreement is itself reportable.",
+      "permitted_claim": "Method dependence may qualify procedure-relative recoverability.",
+      "prohibited_claim": "Unlike native budgets may be described as equal compute merely because they share an exact-evaluation allowance.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-008",
+      "family": "Packing null calibration",
+      "historical_links": [
+        "UD-008",
+        "UD-009"
+      ],
+      "resolution_stage": "Stage 12 and Stage 13",
+      "required_resolution": "Combinatorial, ordinary-restart, local-perturbation, and feasible-region null algorithms, draw counts, budgets, and minimum reportable coverage.",
+      "working_direction": "Use all four layers because they answer different questions.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "Packing requires four distinct calibration layers because they address different sources of apparent multiplicity.",
+      "required_implementation_packages": [
+        "stage12_packing_nulls_and_calibration",
+        "stage13_null_budget_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Packing is interpreted against combinatorial, restart, local, and feasible-region calibration separately.",
+      "permitted_claim": "Each null may support only the interpretation corresponding to its registered role.",
+      "prohibited_claim": "Packing nulls enumerate mechanisms or establish a true packing number.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-009",
+      "family": "Tractable exact or near-exact calibration",
+      "historical_links": [
+        "UD-009"
+      ],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Calibration task/model, mask universe, exact or near-exact algorithm, stopping certificate, and transfer limitations.",
+      "working_direction": "Calibrate search suboptimality and feasible packing on a deliberately small instance.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "A tractable exact or certified near-exact problem is required to measure search suboptimality and feasible packing recovery.",
+      "required_implementation_packages": [
+        "stage12_tractable_calibration",
+        "stage13_calibration_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Calibration quantifies method performance on the small declared problem without becoming a population replicate.",
+      "permitted_claim": "Search recovery may be benchmarked against the known or certified feasible region of the calibration problem.",
+      "prohibited_claim": "Calibration exactness transfers automatically to the primary model.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-010",
+      "family": "Hierarchical analysis and required outputs",
+      "historical_links": [
+        "UD-011",
+        "UD-012"
+      ],
+      "resolution_stage": "Stage 13",
+      "required_resolution": "Primary contrasts, student-cell summary, realization dispersion, architecture/basis/method factors, population model, missing-cell rule, failure tables, figures, and outcome-category resolution.",
+      "working_direction": "Paired teacher-seed inference with raw seed values and unconditional attempt accounting.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "The analysis must respect teacher-seed hierarchy, unconditional failure accounting, separate estimands, and prospective outputs.",
+      "required_implementation_packages": [
+        "stage13_hierarchical_analysis_freeze",
+        "stage13_planned_report_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 13"
+      ],
+      "analysis_consequence": "Primary contrasts, missing cells, dispersion, conditional factors, and outcome categories are locked before definitive outcomes.",
+      "permitted_claim": "Population summaries may be made at teacher-seed level under the frozen hierarchical model.",
+      "prohibited_claim": "Students, architectures, masks, methods, or null draws inflate the population sample size.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "production_value_still_open"
+    },
+    {
+      "decision_id": "RD-011",
+      "family": "Fourier causal interchange",
+      "historical_links": [],
+      "resolution_stage": "Stage 11 through Stage 13",
+      "required_resolution": "Pair selection, layer/location, alignment, information-capacity match, outcomes, trial roster, all controls, and success criterion.",
+      "working_direction": "Registered key secondary executed regardless of the primary result direction.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "A registered controlled causal interchange is needed to distinguish output agreement from a shared internal abstraction.",
+      "required_implementation_packages": [
+        "stage12_fourier_interchange_runner",
+        "stage13_fourier_registration_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 12",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Fourier interchange is run regardless of primary direction and must outperform every matched control to support the abstraction claim.",
+      "permitted_claim": "Evidence may support the registered shared causal abstraction if all matched controls are outperformed.",
+      "prohibited_claim": "Fourier interchange establishes a uniquely identified algorithm.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-012",
+      "family": "Tiered definitive scope and priority",
+      "historical_links": [
+        "UD-014"
+      ],
+      "resolution_stage": "Stage 11 and Stage 13",
+      "required_resolution": "Protected Tier 1 matrix, protected Tier 2 minimum, optional Tier 3 list, balance rules, partial-completion interpretation, and fixed shedding order.",
+      "working_direction": "Sparse tiered crossing; no literal full factorial and no duplication of ledger-derived reducer settings.",
+      "status": "open",
+      "disposition": "accepted_sparse_tiering_with_production_values_open",
+      "scientific_reason": "Protected sparse tiers preserve teacher-level replication and interpretability while avoiding an infeasible pseudo-replicated factorial.",
+      "required_implementation_packages": [
+        "stage12_resource_neutral_campaign_dag",
+        "stage13_tier_assignment_freeze"
+      ],
+      "required_freeze_stages": [
+        "Stage 11",
+        "Stage 13"
+      ],
+      "analysis_consequence": "Partial lower-priority work is interpreted under frozen tier and workload-shedding rules.",
+      "permitted_claim": "The protected sparse tier design may be analyzed with explicit conditional factors and incomplete optional work.",
+      "prohibited_claim": "A literal full factorial is required or optional work may displace protected Tier 1.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    },
+    {
+      "decision_id": "RD-013",
+      "family": "Production backend qualification",
+      "historical_links": [
+        "UD-013"
+      ],
+      "resolution_stage": "Stage 14",
+      "required_resolution": "CPU/CUDA qualification, permitted numerical drift, resume equivalence, environment lock, resource classes, and abort rule.",
+      "working_direction": "Definitive execution on qualified CPU/CUDA workers; prior MPS evidence remains technical only unless separately qualified.",
+      "status": "open",
+      "disposition": "accepted_direction_with_backend_values_open",
+      "scientific_reason": "Definitive execution requires backend-specific qualification rather than assuming technical CPU, MPS, or future CUDA behavior transfers.",
+      "required_implementation_packages": [
+        "stage14_cluster_qualification"
+      ],
+      "required_freeze_stages": [
+        "Stage 14"
+      ],
+      "analysis_consequence": "Only qualified backends may contribute definitive outputs and permitted numerical drift must be recorded prospectively.",
+      "permitted_claim": "Definitive results may use workers that pass the frozen backend qualification contract.",
+      "prohibited_claim": "Technical MPS or unmeasured CUDA evidence automatically qualifies a definitive backend.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "production_value_still_open"
+    },
+    {
+      "decision_id": "RD-014",
+      "family": "Stage 15 orchestration, storage, and export",
+      "historical_links": [
+        "UD-013",
+        "UD-014"
+      ],
+      "resolution_stage": "Stage 13 and Stage 14",
+      "required_resolution": "Dependency DAG, concurrency, isolation, retries, compact formats, scratch/persistent quotas, monitoring, three human gates, final audit window, and verified export.",
+      "working_direction": "One automated campaign with launch, primary-completeness, and exit gates.",
+      "status": "open",
+      "disposition": "accepted_direction_with_production_values_open",
+      "scientific_reason": "One dependency-driven campaign with bounded retries, compact storage, fixed priorities, and verified export prevents manual outcome-responsive redesign.",
+      "required_implementation_packages": [
+        "stage12_resource_neutral_campaign_dag",
+        "stage12_compact_storage_export",
+        "stage13_campaign_manifest_freeze",
+        "stage14_cluster_rehearsal"
+      ],
+      "required_freeze_stages": [
+        "Stage 13",
+        "Stage 14"
+      ],
+      "analysis_consequence": "Every protected job resolves to a sealed result or predeclared terminal state before post-run integrity analysis.",
+      "permitted_claim": "Operational incompleteness and terminal failures may be reported under the frozen campaign manifest.",
+      "prohibited_claim": "Resources may be reallocated after inspecting comparative scientific outcome direction.",
+      "failure_or_unavailability_reportable": true,
+      "blocks_stage15": true,
+      "stage11_resolution_state": "candidate_interface_only"
+    }
+  ]
+}
