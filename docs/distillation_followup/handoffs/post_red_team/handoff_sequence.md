@@ -143,6 +143,8 @@ status, and generic job-array adapters.
 
 ### Austin 4 — Stage 12-P4: Compact artifacts, quotas, and verified export
 
+**File:** `austin_04_stage12p4_compact_storage_export.md`
+
 **Syllabus:** Implement compact mask/metric ledgers, bounded rolling
 checkpoints, quota enforcement, deterministic merge, compression, resumable
 export, destination hash verification, and partial/stale/conflicting object
