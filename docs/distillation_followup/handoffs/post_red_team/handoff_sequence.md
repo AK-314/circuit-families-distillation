@@ -66,6 +66,8 @@ reducers. Test intervention identity and invalid cross-basis comparisons.
 
 ### Alex 4 — Stage 12-R3: Packing nulls and tractable calibration
 
+**File:** `alex_04_stage12r3_packing_calibration.md`
+
 **Syllabus:** Implement the combinatorial floor, ordinary-restart baseline,
 local fidelity-retaining perturbations, and feasible-region calibration. Add a
 small exact or certified near-exact calibration problem and compare search
