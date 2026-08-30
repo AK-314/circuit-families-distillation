@@ -128,6 +128,8 @@ production policies remain injected.
 
 ### Austin 3 — Stage 12-P3: Resource-neutral campaign DAG and resumption
 
+**File:** `austin_03_stage12p3_resource_neutral_dag.md`
+
 **Syllabus:** Extend the Stage 5C/7 orchestration into a production DAG with
 dependencies, resource classes, priorities, isolated outputs, job claiming,
 bounded retries, terminal failures, resume, workload shedding, operational-only
