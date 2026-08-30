@@ -2,12 +2,13 @@ from __future__ import annotations
 
 import os
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = ROOT / "scripts/validate_stage12p2_multi_architecture.py"
-PYTHON = ROOT / ".venv/bin/python"
+PYTHON = Path(sys.executable)
 
 
 def _run(cwd: Path, *, seed: str = "1") -> subprocess.CompletedProcess[str]:
