@@ -40,6 +40,8 @@ the rebuttal reserve. Do not freeze unsupported numeric values or run science.
 
 ### Alex 2 — Stage 12-R1: Independent sparse-mask discovery
 
+**File:** `alex_02_stage12r1_independent_discovery.md`
+
 **Syllabus:** Implement the genuinely independent continuous/stochastic sparse
 mask method, shared exact-ledger bridge, method-native budgets, restarts,
 resume, failures, deduplication, and deterministic identity. Validate on
@@ -110,6 +112,8 @@ teacher roster or run real teachers.
 **Output:** policy-neutral task/teacher foundation PR.
 
 ### Austin 2 — Stage 12-P2: Multi-architecture student training and eligibility
+
+**File:** `austin_02_stage12p2_multi_architecture_students.md`
 
 **Syllabus:** Implement the architecture registry, student builders, searchable
 component accounting, hard/soft shared trainer compatibility, rolling resume,
