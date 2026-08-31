@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "experiment_type": "phase1_e2_random_mask_fidelity_null",
+  "analysis_id": "phase1-e2-random-mask-fidelity-v1",
+  "comparison_registry": {
+    "path": "configs/phase1_e1_jaccard_null.json",
+    "sha256": "c4f80cc75e3c8f5d7d4b52ec479b81e3eaabf1c7b6c28ddc741b231fd2889b81"
+  },
+  "checkpoint_sources": [
+    {
+      "model_seed": 0,
+      "run_id": "stage18-main-training-s0-58b8c1235464",
+      "checkpoint_manifest": "manifests/stage18_checkpoints_seed_0.json",
+      "checkpoint_manifest_sha256": "f9e61f6efc4b621e526062aa3383815b774413e8e696f8b0b1199eb15b8c94c7",
+      "checkpoint_path": "checkpoints/stage18-main-training-s0-58b8c1235464/step_00009050.pt",
+      "checkpoint_sha256": "dc57f5324433b188acee3417b3de25016e82f69db211f7a917c14f84769e351a"
+    },
+    {
+      "model_seed": 1,
+      "run_id": "modular-addition-training-s1-5f1bc9dee7ab",
+      "checkpoint_manifest": "manifests/checkpoints_seed_1.json",
+      "checkpoint_manifest_sha256": "a33b856e07b9223d6ee552810d8b4eb6f20ae2eb74427934933ef022ba48fd23",
+      "checkpoint_path": "checkpoints/modular-addition-training-s1-5f1bc9dee7ab/step_00009050.pt",
+      "checkpoint_sha256": "5b449db5ff9a62d5b621450c013bc25949499ed767e6db1723561a4e87ab8d70"
+    },
+    {
+      "model_seed": 2,
+      "run_id": "stage18-main-training-s2-c70f62c0fa7c",
+      "checkpoint_manifest": "manifests/stage18_checkpoints_seed_2.json",
+      "checkpoint_manifest_sha256": "02a003a225d472afa255d4eee4435e35d799b06f38a29b1c25f90d46d83f4389",
+      "checkpoint_path": "checkpoints/stage18-main-training-s2-c70f62c0fa7c/step_00009050.pt",
+      "checkpoint_sha256": "17505f71b05064da164d1f4ad0af83a1df287602aa0f9383beee580fee2a6594"
+    },
+    {
+      "model_seed": 4,
+      "run_id": "stage18-main-training-s4-c2881c226349",
+      "checkpoint_manifest": "manifests/stage18_checkpoints_seed_4.json",
+      "checkpoint_manifest_sha256": "eaab8c37154244bed2196237fb5a7b2eeb242b045350f3ca4956f4296d6080a2",
+      "checkpoint_path": "checkpoints/stage18-main-training-s4-c2881c226349/step_00009050.pt",
+      "checkpoint_sha256": "5e21615bae171fdb508b16d9a83d58dc6a0e6910702b136d6e2d7df3576412f2"
+    }
+  ],
+  "dataset": {
+    "path": "data/generated/modular_addition_m113.npz",
+    "sha256": "76c499f9d90d8561d12186f8cc7080f8c5cf7460c9f471c1e7b327b0b15337c5",
+    "example_count": 12769
+  },
+  "fidelity": {
+    "definition": "exact_top1_prediction_agreement_with_unablated_model_over_full_domain",
+    "threshold_numerator": 99,
+    "threshold_denominator": 100,
+    "minimum_agreement_count": 12642
+  },
+  "null_models": [
+    "size_matched",
+    "basis_stratified"
+  ],
+  "sampling": {
+    "replicates_per_unique_seed_composition_profile": 100,
+    "profile_deduplication": "model_seed_retained_head_count_retained_mlp_neuron_count",
+    "bit_generator": "numpy.random.PCG64",
+    "seed_material_template": "circuit-families|phase1-e2-random-mask-fidelity|analysis_id={analysis_id}|model_seed={model_seed}|checkpoint_step={checkpoint_step}|retained_heads={retained_heads}|retained_neurons={retained_neurons}|null_model={null_model}|replicates={replicates}",
+    "digest_algorithm": "sha256",
+    "integer_seed_derivation": "first_8_digest_bytes_interpreted_as_unsigned_big_endian_integer",
+    "duplicate_policy": "independent_draws_duplicates_retained_and_counted"
+  },
+  "inference": {
+    "confidence_level": 0.95,
+    "binomial_interval": "two_sided_clopper_pearson",
+    "pooled_mask_inference": false
+  },
+  "execution": {
+    "checkpoint_step": 9050,
+    "evaluation_batch_size": 256,
+    "device": "cpu"
+  },
+  "outputs": {
+    "evaluations": "random_mask_fidelity_evaluations.csv",
+    "profile_summary": "random_mask_fidelity_profile_summary.csv",
+    "circuit_summary": "random_mask_fidelity_circuit_summary.csv",
+    "seed_summary": "random_mask_fidelity_seed_summary.csv",
+    "runtime": "random_mask_fidelity_runtime.csv",
+    "manifest": "phase1_e2_random_mask_fidelity_manifest.json"
+  }
+}
