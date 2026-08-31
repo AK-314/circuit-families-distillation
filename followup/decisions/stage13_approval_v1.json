@@ -1,0 +1,13 @@
+{
+  "approval_date": "2026-08-31",
+  "approval_text": "I approve `stage13-package-a-protected-core-optional-five-task/v3` exactly as described in the Stage 13 v3 decision dossier with SHA-256 `642118fe30e1c435fc05c656ac6167446c76a445c9a1efd376d5a7c23410b1f4`; Parts C\u2013H may proceed subject to the Stage 14 protected-core launch gate.",
+  "approved_package_id": "stage13-package-a-protected-core-optional-five-task/v3",
+  "authority": "Alex",
+  "definitive_execution_started": false,
+  "dossier_file_sha256": "642118fe30e1c435fc05c656ac6167446c76a445c9a1efd376d5a7c23410b1f4",
+  "dossier_path": "followup/decisions/stage13_decision_dossier_v3.json",
+  "production_eligible": false,
+  "schema_version": "stage13-approval/v1",
+  "scientific_data": false,
+  "scope": "Parts C-H may proceed subject to the Stage 14 protected-core launch gate"
+}

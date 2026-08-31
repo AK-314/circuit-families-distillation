@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "approval_sha256",
+    "definitive_execution_started",
+    "excluded_classes",
+    "forbidden_uses",
+    "production_eligible",
+    "registered_or_private_artifacts_accessed",
+    "schema_version",
+    "scientific_data",
+    "scientific_jobs_executed"
+  ],
+  "properties": {
+    "approval_sha256": {},
+    "definitive_execution_started": {},
+    "excluded_classes": {},
+    "forbidden_uses": {},
+    "production_eligible": {},
+    "registered_or_private_artifacts_accessed": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "scientific_jobs_executed": {}
+  }
+}

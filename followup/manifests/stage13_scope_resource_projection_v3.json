@@ -1,0 +1,766 @@
+{
+  "classification": "prospective non-scientific planning evidence",
+  "definitive_execution_started": false,
+  "launch_rule": "if no verified configuration completes the protected core within H_science, block launch pending prospective amendment",
+  "no_fixed_provider_or_hardware_assumption": true,
+  "production_eligible": false,
+  "prohibited_assumptions": [
+    "Symbolica availability",
+    "Eton availability",
+    "16 GPUs",
+    "256 CPU cores",
+    "MPS qualification",
+    "uninterrupted access"
+  ],
+  "schema_version": "stage13-scope-resource-projection/v3",
+  "school_mac_parameterized_branch": {
+    "capacity_equations": [
+      "training_capacity = sum over machines and intervals of qualified_training_rate * usable_interval_seconds * measured_efficiency",
+      "hard_concrete_capacity = analogous sum using model-in-loop rate",
+      "exact_capacity = analogous sum using standalone CPU exact rate",
+      "host CPU support reservations are subtracted before standalone CPU capacity is computed"
+    ],
+    "hardware_classes": "class k records machine count M_k, CPU cores, RAM, optional MPS device, and disk quotas",
+    "machine_count": "M, bound by Stage 14",
+    "optional_rule": "after protected completion is secure, admit Task 3, then Task 4, then Task 5 only when measured remaining interval capacity can finish the entire next increment",
+    "pass_rule": "protected core must finish within H_science with memory/storage quotas and audit reserve intact; otherwise launch blocks",
+    "permitted_hours": "availability intervals I_{k,m}; capacity is integrated over intervals, never count*nominal wall time",
+    "qualified_rates": "r_train_cpu[k], r_hc_cpu[k], r_exact_cpu[k], and optional r_train_mps[k]/r_hc_mps[k] only after exact and semantic MPS qualification",
+    "schedule_rule": "run the dependency-closed protected DAG against actual intervals; CPU-only is mandatory when MPS is absent or unqualified"
+  },
+  "scientific_data": false,
+  "scientific_window": {
+    "audit_reserve_hours": 12,
+    "science_hours": "H_science = max(0, H_total - 12)",
+    "stage14_binding": "H_total = total qualified permitted hours across verified availability intervals",
+    "uninterrupted_access_assumed": false
+  },
+  "scopes": {
+    "optional_task_3_increment": {
+      "launch_required": false,
+      "manifest": {
+        "dataset_sha256": "674dc5807374a2da8da3732eb3224e15959e24e946fd6945122d7c0e6e41b6ae",
+        "file_sha256": "b8797e72cceec09c5be3e1870dab9909c4140fc4e08df9ed4e76050cff9b88ff",
+        "path": "followup/manifests/stage13_optional_tasks/task3_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task3_increment_v1.json.sha256",
+        "task_config_sha256": "b1696fb0be4c7da5cc6f171bdc915a8c73f0e57f8d35150359cf8fe7c6b8281d",
+        "task_identity_sha256": "df5e9285cd2c9985ae2866282d534f738b598e3caf13bdc14dc84828360733eb"
+      },
+      "order": 1,
+      "scenarios": [
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.035,
+            "planning_efficiency": 0.85,
+            "training_seconds_per_canonical_equivalent_update": 0.018544916,
+            "training_updates_per_attempt": 5000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 0.706,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 5.833,
+              "student_training": 0.515,
+              "teacher_training": 0.129
+            },
+            "gpu_device_hours": 6.477,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "6.477 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 0.6,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 0.5,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 0.25
+            },
+            "standalone_cpu_core_hours": 0.628,
+            "training_canonical_equivalent_updates": 125000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 20,
+            "teacher_training": 5
+          },
+          "scenario": "lower",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.368,
+            "peak_active_scratch_formula_gib": "0.25*G_active + 0.05*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 1,
+            "requested_scratch_safety_quota_gib": 4,
+            "uncompressed_staging_retry_worst_case_gib": 2.042
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.14,
+            "planning_efficiency": 0.7,
+            "training_seconds_per_canonical_equivalent_update": 0.035,
+            "training_updates_per_attempt": 20000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 2.262,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 23.333,
+              "student_training": 5.833,
+              "teacher_training": 0.972
+            },
+            "gpu_device_hours": 30.139,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "30.139 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 1.583,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 1.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 1.0
+            },
+            "standalone_cpu_core_hours": 1.378,
+            "training_canonical_equivalent_updates": 700000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 30,
+            "teacher_training": 5
+          },
+          "scenario": "central",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.807,
+            "peak_active_scratch_formula_gib": "0.5*G_active + 0.1*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 2,
+            "requested_scratch_safety_quota_gib": 8,
+            "uncompressed_staging_retry_worst_case_gib": 4.215
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.28,
+            "planning_efficiency": 0.5,
+            "training_seconds_per_canonical_equivalent_update": 0.141523208,
+            "training_updates_per_attempt": 40000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 13.068,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 46.667,
+              "student_training": 62.899,
+              "teacher_training": 7.862
+            },
+            "gpu_device_hours": 117.428,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "117.428 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 6.534,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 3.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 4.0
+            },
+            "standalone_cpu_core_hours": 4.378,
+            "training_canonical_equivalent_updates": 1800000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 40,
+            "teacher_training": 5
+          },
+          "scenario": "conservative",
+          "storage": {
+            "expected_retained_compact_output_gib": 1.976,
+            "peak_active_scratch_formula_gib": "1.0*G_active + 0.25*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 4,
+            "requested_scratch_safety_quota_gib": 16,
+            "uncompressed_staging_retry_worst_case_gib": 9.417
+          }
+        }
+      ]
+    },
+    "optional_task_4_increment": {
+      "launch_required": false,
+      "manifest": {
+        "dataset_sha256": "0aad6a608e7aa1ca712487ec70db60674356b15ee29e6994cb2571c2b8440837",
+        "file_sha256": "7490e47485204d82745f2bda47acd6d3ca37c28e85c153e82694bcbdf53c4758",
+        "path": "followup/manifests/stage13_optional_tasks/task4_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task4_increment_v1.json.sha256",
+        "task_config_sha256": "1192f07c9318964861556916ad71daf06b6662b1ecdc875d1a09045facd1868d",
+        "task_identity_sha256": "fef2f01e151ce8324f149acee17e5d5d7f9038db65e4e9c3a20d226ca7d6bc86"
+      },
+      "order": 2,
+      "scenarios": [
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.035,
+            "planning_efficiency": 0.85,
+            "training_seconds_per_canonical_equivalent_update": 0.018544916,
+            "training_updates_per_attempt": 5000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 0.706,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 5.833,
+              "student_training": 0.515,
+              "teacher_training": 0.129
+            },
+            "gpu_device_hours": 6.477,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "6.477 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 0.6,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 0.5,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 0.25
+            },
+            "standalone_cpu_core_hours": 0.628,
+            "training_canonical_equivalent_updates": 125000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 20,
+            "teacher_training": 5
+          },
+          "scenario": "lower",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.368,
+            "peak_active_scratch_formula_gib": "0.25*G_active + 0.05*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 1,
+            "requested_scratch_safety_quota_gib": 4,
+            "uncompressed_staging_retry_worst_case_gib": 2.042
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.14,
+            "planning_efficiency": 0.7,
+            "training_seconds_per_canonical_equivalent_update": 0.035,
+            "training_updates_per_attempt": 20000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 2.262,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 23.333,
+              "student_training": 5.833,
+              "teacher_training": 0.972
+            },
+            "gpu_device_hours": 30.139,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "30.139 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 1.583,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 1.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 1.0
+            },
+            "standalone_cpu_core_hours": 1.378,
+            "training_canonical_equivalent_updates": 700000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 30,
+            "teacher_training": 5
+          },
+          "scenario": "central",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.807,
+            "peak_active_scratch_formula_gib": "0.5*G_active + 0.1*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 2,
+            "requested_scratch_safety_quota_gib": 8,
+            "uncompressed_staging_retry_worst_case_gib": 4.215
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.28,
+            "planning_efficiency": 0.5,
+            "training_seconds_per_canonical_equivalent_update": 0.141523208,
+            "training_updates_per_attempt": 40000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 13.068,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 46.667,
+              "student_training": 62.899,
+              "teacher_training": 7.862
+            },
+            "gpu_device_hours": 117.428,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "117.428 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 6.534,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 3.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 4.0
+            },
+            "standalone_cpu_core_hours": 4.378,
+            "training_canonical_equivalent_updates": 1800000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 40,
+            "teacher_training": 5
+          },
+          "scenario": "conservative",
+          "storage": {
+            "expected_retained_compact_output_gib": 1.976,
+            "peak_active_scratch_formula_gib": "1.0*G_active + 0.25*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 4,
+            "requested_scratch_safety_quota_gib": 16,
+            "uncompressed_staging_retry_worst_case_gib": 9.417
+          }
+        }
+      ]
+    },
+    "optional_task_5_increment": {
+      "launch_required": false,
+      "manifest": {
+        "dataset_sha256": "3b664b5e50bb6ce09c02cff307a8f42e3e274da1be427910075518a01ef4e63c",
+        "file_sha256": "cf784b526eb801c8a6032cc0addb45c8376190139e5a324c9c37d9c0db6e1b87",
+        "path": "followup/manifests/stage13_optional_tasks/task5_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task5_increment_v1.json.sha256",
+        "task_config_sha256": "ef35a64422e444383477c75c8ce9c6526ce1bb831b76e9297b83b098c79c7ca9",
+        "task_identity_sha256": "59ee026362f1a21e991cb4c5957b60b23d320847d01f0e613f74434e5620a619"
+      },
+      "order": 3,
+      "scenarios": [
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.035,
+            "planning_efficiency": 0.85,
+            "training_seconds_per_canonical_equivalent_update": 0.018544916,
+            "training_updates_per_attempt": 5000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 0.706,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 5.833,
+              "student_training": 0.515,
+              "teacher_training": 0.129
+            },
+            "gpu_device_hours": 6.477,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "6.477 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 0.6,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 0.5,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 0.25
+            },
+            "standalone_cpu_core_hours": 0.628,
+            "training_canonical_equivalent_updates": 125000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 20,
+            "teacher_training": 5
+          },
+          "scenario": "lower",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.368,
+            "peak_active_scratch_formula_gib": "0.25*G_active + 0.05*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 1,
+            "requested_scratch_safety_quota_gib": 4,
+            "uncompressed_staging_retry_worst_case_gib": 2.042
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.14,
+            "planning_efficiency": 0.7,
+            "training_seconds_per_canonical_equivalent_update": 0.035,
+            "training_updates_per_attempt": 20000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 2.262,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 23.333,
+              "student_training": 5.833,
+              "teacher_training": 0.972
+            },
+            "gpu_device_hours": 30.139,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "30.139 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 1.583,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 1.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 1.0
+            },
+            "standalone_cpu_core_hours": 1.378,
+            "training_canonical_equivalent_updates": 700000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 30,
+            "teacher_training": 5
+          },
+          "scenario": "central",
+          "storage": {
+            "expected_retained_compact_output_gib": 0.807,
+            "peak_active_scratch_formula_gib": "0.5*G_active + 0.1*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 2,
+            "requested_scratch_safety_quota_gib": 8,
+            "uncompressed_staging_retry_worst_case_gib": 4.215
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.28,
+            "planning_efficiency": 0.5,
+            "training_seconds_per_canonical_equivalent_update": 0.141523208,
+            "training_updates_per_attempt": 40000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 13.068,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 46.667,
+              "student_training": 62.899,
+              "teacher_training": 7.862
+            },
+            "gpu_device_hours": 117.428,
+            "hard_concrete_model_in_loop_steps": 600000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "117.428 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 6.534,
+            "maximum_useful_accelerator_concurrency": 120,
+            "maximum_useful_standalone_cpu_concurrency": 60,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 3.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0,
+              "exact_evaluation_and_calibration": 0.377,
+              "fourier": 0,
+              "greedy_ranking": 0.001,
+              "reduction_report_merge_export": 4.0
+            },
+            "standalone_cpu_core_hours": 4.378,
+            "training_canonical_equivalent_updates": 1800000
+          },
+          "jobs": {
+            "exact_evaluations": 15360,
+            "fourier_input_condition_trials": 0,
+            "greedy_discovery_ledgers": 30,
+            "hard_concrete_discovery_ledgers": 30,
+            "hard_concrete_restart_runs": 120,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 0,
+            "student_attempts": 40,
+            "teacher_training": 5
+          },
+          "scenario": "conservative",
+          "storage": {
+            "expected_retained_compact_output_gib": 1.976,
+            "peak_active_scratch_formula_gib": "1.0*G_active + 0.25*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 4,
+            "requested_scratch_safety_quota_gib": 16,
+            "uncompressed_staging_retry_worst_case_gib": 9.417
+          }
+        }
+      ]
+    },
+    "protected_core": {
+      "includes": [
+        "Tier 1 Task 1 fixed seeds 0-14",
+        "protected Tier 2 Task 2 modular multiplication",
+        "paired architecture and basis panels",
+        "exact 2^18 calibration",
+        "Fourier aligned condition and all five controls",
+        "both discovery methods, Endpoint 1, packing, frontier, and protected null calibration"
+      ],
+      "launch_required": true,
+      "scenarios": [
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.035,
+            "planning_efficiency": 0.85,
+            "training_seconds_per_canonical_equivalent_update": 0.018544916,
+            "training_updates_per_attempt": 5000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 2.484,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 148.75,
+              "student_training": 13.302,
+              "teacher_training": 0.541
+            },
+            "gpu_device_hours": 162.593,
+            "hard_concrete_model_in_loop_steps": 15300000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "162.593 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 2.112,
+            "maximum_useful_accelerator_concurrency": 2580,
+            "maximum_useful_standalone_cpu_concurrency": 256,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 2.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0.0,
+              "exact_evaluation_and_calibration": 8.716,
+              "fourier": 0.019,
+              "greedy_ranking": 0.024,
+              "reduction_report_merge_export": 4.0
+            },
+            "standalone_cpu_core_hours": 12.759,
+            "training_canonical_equivalent_updates": 2687240
+          },
+          "jobs": {
+            "exact_evaluations": 615424,
+            "fourier_input_condition_trials": 92160,
+            "greedy_discovery_ledgers": 645,
+            "hard_concrete_discovery_ledgers": 645,
+            "hard_concrete_restart_runs": 2580,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 960,
+            "student_attempts": 470,
+            "teacher_training": 21
+          },
+          "scenario": "lower",
+          "storage": {
+            "expected_retained_compact_output_gib": 6.334,
+            "peak_active_scratch_formula_gib": "0.25*G_active + 0.05*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 8,
+            "requested_scratch_safety_quota_gib": 64,
+            "uncompressed_staging_retry_worst_case_gib": 39.828
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.14,
+            "planning_efficiency": 0.7,
+            "training_seconds_per_canonical_equivalent_update": 0.035,
+            "training_updates_per_attempt": 20000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 8.057,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 595.0,
+              "student_training": 141.881,
+              "teacher_training": 4.083
+            },
+            "gpu_device_hours": 740.964,
+            "hard_concrete_model_in_loop_steps": 15300000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "740.964 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 5.64,
+            "maximum_useful_accelerator_concurrency": 2580,
+            "maximum_useful_standalone_cpu_concurrency": 256,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 5.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0.003,
+              "exact_evaluation_and_calibration": 9.044,
+              "fourier": 0.179,
+              "greedy_ranking": 0.024,
+              "reduction_report_merge_export": 16.0
+            },
+            "standalone_cpu_core_hours": 25.249,
+            "training_canonical_equivalent_updates": 15013440
+          },
+          "jobs": {
+            "exact_evaluations": 615424,
+            "fourier_input_condition_trials": 92160,
+            "greedy_discovery_ledgers": 645,
+            "hard_concrete_discovery_ledgers": 645,
+            "hard_concrete_restart_runs": 2580,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 960,
+            "student_attempts": 660,
+            "teacher_training": 21
+          },
+          "scenario": "central",
+          "storage": {
+            "expected_retained_compact_output_gib": 14.658,
+            "peak_active_scratch_formula_gib": "0.5*G_active + 0.1*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 32,
+            "requested_scratch_safety_quota_gib": 128,
+            "uncompressed_staging_retry_worst_case_gib": 83.75
+          }
+        },
+        {
+          "assumptions": {
+            "actual_rates_and_efficiency_must_be_replaced_by_stage14_measurements": true,
+            "model_in_loop_hard_concrete_seconds_per_step": 0.28,
+            "planning_efficiency": 0.5,
+            "training_seconds_per_canonical_equivalent_update": 0.141523208,
+            "training_updates_per_attempt": 40000
+          },
+          "compute": {
+            "efficiency_adjusted_formula": "replace each denominator by denominator*Stage14_measured_efficiency and divide serial critical path by measured weak-path efficiency; validate against actual availability intervals rather than assuming uninterrupted access",
+            "efficiency_adjusted_wall_hours_at_maximum_useful_concurrency": 31.523,
+            "gpu_device_hour_breakdown": {
+              "hard_concrete_main_and_ordinary": 1190.0,
+              "student_training": 1624.208,
+              "teacher_training": 33.022
+            },
+            "gpu_device_hours": 2847.23,
+            "hard_concrete_model_in_loop_steps": 15300000,
+            "host_cpu_core_hours_reserved_for_gpu_jobs": "2847.23 * h_support, where Stage 14 binds host cores reserved per active accelerator",
+            "ideal_wall_formula": "teacher_device_h/min(G,teacher_jobs) + student_device_h/min(G,student_attempts) + hard_concrete_device_h/min(G,hard_restart_runs) + max(standalone_CPU_core_h/min(C,max_useful_CPU), serial_CPU_critical_h)",
+            "ideal_wall_hours_at_maximum_useful_concurrency": 15.762,
+            "maximum_useful_accelerator_concurrency": 2580,
+            "maximum_useful_standalone_cpu_concurrency": 256,
+            "serial_or_weakly_parallel_cpu_critical_path_hours": 12.0,
+            "standalone_cpu_breakdown": {
+              "combinatorial_null": 0.033,
+              "exact_evaluation_and_calibration": 15.12,
+              "fourier": 1.166,
+              "greedy_ranking": 0.024,
+              "reduction_report_merge_export": 64.0
+            },
+            "standalone_cpu_core_hours": 80.343,
+            "training_canonical_equivalent_updates": 42155840
+          },
+          "jobs": {
+            "exact_evaluations": 615424,
+            "fourier_input_condition_trials": 92160,
+            "greedy_discovery_ledgers": 645,
+            "hard_concrete_discovery_ledgers": 645,
+            "hard_concrete_restart_runs": 2580,
+            "merge_export": 1,
+            "ordinary_restart_subjobs": 960,
+            "student_attempts": 940,
+            "teacher_training": 21
+          },
+          "scenario": "conservative",
+          "storage": {
+            "expected_retained_compact_output_gib": 41.272,
+            "peak_active_scratch_formula_gib": "1.0*G_active + 0.25*C_active + one measured merge staging set; G_active/C_active are Stage 14 bindings",
+            "quota_rule": "requested quota is the next power of two at or above projected demand/0.80; Stage 14 must request at least this amount or recompute from measured artifact sizes",
+            "requested_persistent_safety_quota_gib": 64,
+            "requested_scratch_safety_quota_gib": 256,
+            "uncompressed_staging_retry_worst_case_gib": 203.731
+          }
+        }
+      ]
+    }
+  },
+  "stage14_required_bindings": [
+    "provider/scheduler and account only if actually available",
+    "machine count and hardware class for every worker",
+    "qualified CPU, CUDA, or MPS status per hardware class",
+    "minimum-of-three post-warmup training, model-loop hard-concrete, and exact-evaluation throughput",
+    "host CPU cores reserved per active accelerator",
+    "per-machine RAM/VRAM and active scratch",
+    "per-machine availability intervals and permitted hours",
+    "queue latency, preemption behavior, and measured scheduling efficiency",
+    "persistent/scratch quotas and merge/export throughput"
+  ]
+}

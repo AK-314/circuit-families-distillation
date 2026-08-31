@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "coverage",
+    "fourier_cases",
+    "production_eligible",
+    "schema_version",
+    "scientific_data",
+    "terminal_cases"
+  ],
+  "properties": {
+    "coverage": {},
+    "fourier_cases": {},
+    "production_eligible": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "terminal_cases": {}
+  }
+}

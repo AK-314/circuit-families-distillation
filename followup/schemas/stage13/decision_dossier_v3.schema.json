@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage13-decision-dossier/v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "created_date", "implementation_base",
+    "authority_owner", "scientific_data", "production_eligible",
+    "definitive_execution_started", "evidence_firewall", "approval",
+    "recommended_package_id", "decisions", "deferred_decisions",
+    "package_alternatives", "supersedes", "benchmark_evidence",
+    "resource_projection", "accepted_in_principle_unchanged_from_v2",
+    "final_amendment_scope", "optional_task_increment_manifests",
+    "approval_sentence_template"
+  ],
+  "properties": {
+    "schema_version": {"const": "stage13-decision-dossier/v3"},
+    "status": {"const": "recommended_package_pending_alex_approval"},
+    "created_date": {"type": "string", "format": "date"},
+    "implementation_base": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "authority_owner": {"const": "Alex"},
+    "scientific_data": {"const": false},
+    "production_eligible": {"const": false},
+    "definitive_execution_started": {"const": false},
+    "evidence_firewall": {"type": "object"},
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "required_approver", "approved_package_id", "approval_date", "approval_text", "dossier_sha256"],
+      "properties": {
+        "status": {"const": "pending"},
+        "required_approver": {"const": "Alex"},
+        "approved_package_id": {"const": null},
+        "approval_date": {"const": null},
+        "approval_text": {"const": null},
+        "dossier_sha256": {"const": null}
+      }
+    },
+    "recommended_package_id": {"const": "stage13-package-a-protected-core-optional-five-task/v3"},
+    "decisions": {"type": "array", "minItems": 13, "maxItems": 13},
+    "deferred_decisions": {"type": "array", "minItems": 1, "maxItems": 1},
+    "package_alternatives": {"type": "array", "minItems": 1, "maxItems": 1},
+    "supersedes": {"type": "object"},
+    "benchmark_evidence": {"type": "object"},
+    "resource_projection": {"type": "object"},
+    "accepted_in_principle_unchanged_from_v2": {"type": "array", "minItems": 9, "maxItems": 9},
+    "final_amendment_scope": {"type": "object"},
+    "optional_task_increment_manifests": {"type": "array", "minItems": 3, "maxItems": 3},
+    "approval_sentence_template": {"type": "string"}
+  }
+}

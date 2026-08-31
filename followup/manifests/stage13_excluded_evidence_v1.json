@@ -1,0 +1,60 @@
+{
+  "approval_sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336",
+  "definitive_execution_started": false,
+  "excluded_classes": [
+    {
+      "class": "development",
+      "examples": [
+        "Stage 8-10 diagnostics",
+        "method-development outputs"
+      ],
+      "reason": "technical development only"
+    },
+    {
+      "class": "synthetic",
+      "examples": [
+        "Stage 12 synthetic fixtures",
+        "Stage 13 complete-report fixture"
+      ],
+      "reason": "topology/correctness only"
+    },
+    {
+      "class": "red_team",
+      "examples": [
+        "red-team briefing and evidence dossier"
+      ],
+      "reason": "design authority, never endpoint evidence"
+    },
+    {
+      "class": "benchmark",
+      "examples": [
+        "Stage 9/10 timing",
+        "Stage 13 constructed timing"
+      ],
+      "reason": "feasibility only"
+    },
+    {
+      "class": "registered_or_private",
+      "examples": [
+        "registered checkpoints",
+        "dense-output caches",
+        "unpublished local results"
+      ],
+      "reason": "firewall prohibition"
+    }
+  ],
+  "forbidden_uses": [
+    "select threshold",
+    "select basis",
+    "select method",
+    "select phase",
+    "select pair",
+    "choose favorable analysis",
+    "make definitive inference"
+  ],
+  "production_eligible": false,
+  "registered_or_private_artifacts_accessed": false,
+  "schema_version": "stage13-excluded-evidence-output-register/v1",
+  "scientific_data": false,
+  "scientific_jobs_executed": false
+}

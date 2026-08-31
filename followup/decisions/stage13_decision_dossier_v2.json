@@ -1,0 +1,1408 @@
+{
+  "approval": {
+    "approval_date": null,
+    "approval_text": null,
+    "approved_package_id": null,
+    "dossier_sha256": null,
+    "required_approver": "Alex",
+    "status": "pending"
+  },
+  "authority_owner": "Alex",
+  "benchmark_evidence": {
+    "classification": "constructed non-scientific evidence",
+    "file_sha256": "fca4f4d7915a36fb18e82e34159d53ad67708e34d4505c74d194987617a37ced",
+    "hard_concrete_profile": "516 components, 5000 steps, checkpoint every 50, retention 2; median 2623.751 native steps/s",
+    "ordinary_restart_profile": "16 restarts, 256 exact allowance including intact; median 0.667390 s for bridge mechanics",
+    "path": "followup/benchmarks/stage13_search_profile_benchmark_v1.json",
+    "scope_limit": "does not benchmark model forward/backward work, CUDA, or campaign concurrency"
+  },
+  "created_date": "2026-08-31",
+  "decisions": [
+    {
+      "amendment_consequence": "Changing seeds, task formula, or matched rule after approval requires a prospective amendment before Stage 15 and invalidates all affected manifest hashes.",
+      "decision_id": "RD-001",
+      "downstream_consequences": [
+        "population sample size",
+        "teacher and student job counts",
+        "paired phase estimands",
+        "explicit unavailable-cell accounting"
+      ],
+      "invalid_options": [
+        "replace an unavailable seed after seeing circuit endpoints",
+        "impute a missing phase",
+        "treat the historical 15-cell Stage 3 roster as the new answer",
+        "choose Task 3 from outcome direction"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "45 fixed Task 1 teacher-phase cells before unavailability; three phases for each of 15 seeds.",
+        "tier2": "Task 2 uses fixed seeds 0-4 at pre and stable-post phases.",
+        "tier3": "Task 3 is the fixed polynomial task and runs only after protected completeness."
+      },
+      "question": "Which teachers, tasks, phases, and matched-primary inclusion rule define the population?",
+      "rationale": "A fixed roster and algebraically fixed breadth tasks are outcome-independent; 15 teachers directly addresses the population critique while explicit unavailability preserves honesty.",
+      "recommendation": {
+        "matched_primary_rule": "teacher seed must have both primary phase landmarks; the 50% cell may be absent without invalidating the primary pair",
+        "option": "A",
+        "phase_rule": "historical-stage3-phase-selection/stage3-frozen/v1 using training metrics only",
+        "phases": [
+          "pre-grokking",
+          "50%",
+          "stable post-grokking"
+        ],
+        "primary_phase_contrast": [
+          "pre-grokking",
+          "stable post-grokking"
+        ],
+        "replacement_rule": "none",
+        "task1": {
+          "domain": "full 113x113",
+          "family": "modular_addition",
+          "modulus": 113
+        },
+        "task2": {
+          "domain": "full 59x59",
+          "family": "modular_multiplication",
+          "modulus": 59,
+          "role": "protected Tier 2 external validity"
+        },
+        "task3": {
+          "domain": "full 59x59",
+          "family": "modular_polynomial",
+          "formula": "(x^2 + x*y + y^2) mod 59",
+          "modulus": 59,
+          "role": "optional Tier 3"
+        },
+        "teacher_seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "teacher_training": "canonical predecessor architecture and configs/model.yaml plus configs/training.yaml, trained from scratch for at most 40000 updates"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Expand beyond five predecessor seeds toward approximately fifteen; Task 1 is protected mod-113 addition, Task 2 is reduced multiplication, and Task 3 is capacity-contingent polynomial breadth.",
+      "stage12_evidence": "P1 can construct all three task families, train/resume teachers, apply the historical metric-only phase rule, and emit unavailable cells without scientific execution.",
+      "uncertainty": "The fixed roster may yield fewer than 15 matched seeds and Task 2/3 training feasibility remains to be qualified operationally.",
+      "viable_options": [
+        {
+          "description": "Fixed seeds 0-14 with no replacement; three metric-selected phases; paired primary uses seeds with both pre and stable-post phases.",
+          "option": "A",
+          "tradeoff": "Exactly prospective and simple, but fewer than 15 matched units if a seed lacks a phase."
+        },
+        {
+          "description": "Fixed seeds 0-19 and retain the first 15 complete seeds by seed order.",
+          "option": "B",
+          "tradeoff": "More likely to reach 15 matched units, but adds training and a phase-availability selection layer."
+        },
+        {
+          "description": "Retain the five predecessor teachers only.",
+          "option": "C",
+          "tradeoff": "Cheapest but does not repair the red-team population limitation."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Any roster or assignment change after approval requires a prospective amendment and re-sealing of affected scientific and manifest profiles.",
+      "decision_id": "RD-002",
+      "downstream_consequences": [
+        "student training volume",
+        "component denominators",
+        "basis compatibility",
+        "conditional architecture summaries"
+      ],
+      "invalid_options": [
+        "infer architecture from checkpoint shape",
+        "count architectures as population replicates",
+        "full factorial",
+        "reassign after endpoint inspection"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Canonical architecture only.",
+        "tier2": "All four alternates share anchor seeds 0-4, pre/stable phases, both conditions, and two eligible students per cell; 80 cells and 160 eligible-student targets.",
+        "tier3": "Additional architecture-seed crossings only in fixed priority order."
+      },
+      "question": "Which student architectures and initialization assignments form the canonical and external-validity panel?",
+      "rationale": "Every alternate is connected to canonical through the same teacher checkpoints, so architecture contrasts no longer confound architecture with teacher seed.",
+      "recommendation": {
+        "architectures": [
+          {
+            "d_head": 32,
+            "d_mlp": 512,
+            "d_model": 128,
+            "id": "predecessor-matched/v1",
+            "n_heads": 4,
+            "n_layers": 1,
+            "role": "canonical"
+          },
+          {
+            "d_head": 32,
+            "d_mlp": 512,
+            "d_model": 128,
+            "id": "depth-2-matched-width/v1",
+            "n_heads": 4,
+            "n_layers": 2,
+            "role": "alternate"
+          },
+          {
+            "d_head": 16,
+            "d_mlp": 512,
+            "d_model": 128,
+            "id": "heads-8-matched-width/v1",
+            "n_heads": 8,
+            "n_layers": 1,
+            "role": "alternate"
+          },
+          {
+            "d_head": 32,
+            "d_mlp": 256,
+            "d_model": 128,
+            "id": "mlp-256-matched-residual/v1",
+            "n_heads": 4,
+            "n_layers": 1,
+            "role": "alternate"
+          },
+          {
+            "d_head": 32,
+            "d_mlp": 1024,
+            "d_model": 128,
+            "id": "mlp-1024-matched-residual/v1",
+            "n_heads": 4,
+            "n_layers": 1,
+            "role": "alternate"
+          }
+        ],
+        "initialization_rule": "domain-separated seed from full condition identity and fixed initialization slot; no opportunistic substitution",
+        "option": "A",
+        "permitted_contrasts": "Within the identical teacher seed, phase, and condition, alternate-architecture student-cell median minus canonical-architecture student-cell median; aggregate only complete pairs over teacher seeds. Architecture results are conditional external-validity contrasts, not isolated causal effects of depth, heads, or width.",
+        "tier2_assignment": {
+          "anchor_teacher_seeds": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "architectures_on_every_anchor": [
+            "depth-2-matched-width/v1",
+            "heads-8-matched-width/v1",
+            "mlp-256-matched-residual/v1",
+            "mlp-1024-matched-residual/v1"
+          ],
+          "assignment_type": "complete shared fixed-anchor block",
+          "conditions": [
+            "hard",
+            "soft"
+          ],
+          "phases": [
+            "pre-grokking",
+            "stable post-grokking"
+          ],
+          "unavailable_rule": "retain unavailable; no seed or checkpoint replacement"
+        }
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Canonical predecessor-matched architecture plus at most five families in a balanced sparse assignment; no isolated causal architecture claim.",
+      "stage12_evidence": "P2 validates injected multi-layer architectures, architecture-bound identities, parameter/component accounting, checkpoint resume, eligibility, and sealing. The v1 disjoint-seed allocation was not contrast-identifiable and is superseded.",
+      "uncertainty": "Architecture training eligibility may differ; those differences remain reportable rather than repaired by reassignment.",
+      "viable_options": [
+        {
+          "description": "Five-family panel: canonical plus depth, head-granularity, narrow-MLP, and wide-MLP variants, all crossed with the same fixed anchor seeds 0-4.",
+          "option": "A",
+          "tradeoff": "Broad external validity with bounded Tier 2 cost."
+        },
+        {
+          "description": "Canonical plus two alternates only.",
+          "option": "B",
+          "tradeoff": "Cheaper but narrower response to the architecture critique."
+        },
+        {
+          "description": "Full five-family factorial.",
+          "option": "C",
+          "tradeoff": "Maximum coverage but prohibited and computationally wasteful."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Changing tolerance, attempt cap, or eligibility after approval is a scientific amendment and requires rebuilding the campaign before execution.",
+      "decision_id": "RD-003",
+      "downstream_consequences": [
+        "eligible model count",
+        "attempt ceiling",
+        "missing student cells",
+        "training compute"
+      ],
+      "invalid_options": [
+        "pool hard and soft",
+        "continue attempts beyond cap",
+        "drop failed attempts",
+        "condition eligibility on circuit results",
+        "impute missing students"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "90 Task 1 phase-condition cells target 270 eligible students and permit at most 540 attempts.",
+        "tier2": "External-validity cells target two eligible and permit four attempts.",
+        "tier3": "No attempt may displace Tier 1 or protected Tier 2."
+      },
+      "question": "What exact hard/soft training, eligibility, replication, and failure policy applies?",
+      "rationale": "The replication counts inherit the prospectively recommended design and the soft rule is gauge-invariant and stricter than decision agreement alone; neither uses circuit outcomes.",
+      "recommendation": {
+        "hard": {
+          "eligibility": "exact argmax agreement on every input",
+          "loss": "mean cross entropy",
+          "targets": "teacher argmax over complete domain"
+        },
+        "option": "A",
+        "replacement_rule": "none outside the predeclared attempt slots",
+        "shared_optimizer": {
+          "batch_mode": "full_training_set",
+          "beta1": 0.9,
+          "beta2": 0.98,
+          "checkpoint_interval": 50,
+          "epsilon": 1e-08,
+          "evaluation_interval": 50,
+          "learning_rate": 0.001,
+          "max_steps": 40000,
+          "name": "AdamW",
+          "precision": "float32",
+          "schedule": "constant",
+          "warmup_steps": 0,
+          "weight_decay": 1.0
+        },
+        "soft": {
+          "argmax_requirement": "exact agreement on every input",
+          "eligibility_tolerance": 0.0001,
+          "loss": "mean squared centered-logit error",
+          "normalization": "none beyond class centering",
+          "targets": "per-input class-centered teacher logits",
+          "temperature": 1.0
+        },
+        "stop_rule": "stop after eligible target is reached or all fixed slots resolve; retain every earlier failure",
+        "tier1": {
+          "attempt_cap": 6,
+          "eligible_target": 3,
+          "minimum_reportable_eligible": 3
+        },
+        "tier2": {
+          "attempt_cap": 4,
+          "eligible_target": 2,
+          "minimum_reportable_eligible": 2
+        }
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Exact hard agreement, gauge-invariant soft matching, unconditional failure accounting, and no imputation.",
+      "stage12_evidence": "P2 and Stage 6B/6C implement injected optimizers, exact hard eligibility, centered-logit soft discrepancy, optional argmax requirement, attempts, resume, and failure states. Stage 9 measured deterministic CPU behavior and planning costs but did not freeze policy.",
+      "uncertainty": "The 1e-4 soft tolerance has interface support but no production convergence evidence; Stage 14 can block launch, not relax it.",
+      "viable_options": [
+        {
+          "description": "Three eligible students per Tier 1 cell, six fixed attempts, minimum three; soft centered-logit MSE <=1e-4 plus exact argmax.",
+          "option": "A",
+          "tradeoff": "Strong realization sensitivity and strict functional match, with a maximum of 540 Task 1 attempts."
+        },
+        {
+          "description": "Two eligible students, four attempts, minimum two; soft tolerance 1e-3.",
+          "option": "B",
+          "tradeoff": "Lower cost but weaker dispersion estimates and looser soft matching."
+        },
+        {
+          "description": "One eligible student per cell.",
+          "option": "C",
+          "tradeoff": "Cannot estimate within-cell realization sensitivity adequately."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Changing a coordinate definition, transform, partition seed, or assignment changes mask meaning and requires a new version plus manifest regeneration.",
+      "decision_id": "RD-004",
+      "downstream_consequences": [
+        "component universes",
+        "mask identities",
+        "cross-basis reportability",
+        "Tier 2 discovery volume"
+      ],
+      "invalid_options": [
+        "reuse masks across incompatible bases",
+        "compare raw counts without denominators",
+        "choose seeds from outcomes",
+        "claim universal basis invariance"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Canonical heads plus individual MLP neurons for every protected model-method cell.",
+        "tier2": "One attention-coordinate basis, one block partition, and two rotations on the fixed basis panel.",
+        "tier3": "Additional partitions then additional rotations."
+      },
+      "question": "Which component bases, interventions, assignments, and denominators are tested?",
+      "rationale": "Every basis is evaluated on the same fixed model/checkpoint identities, making all permitted comparisons paired and connected across teacher seeds.",
+      "recommendation": {
+        "assignment": {
+          "alternative_basis_ledgers_per_method": 120,
+          "anchor_teacher_seeds": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "assignment_type": "complete shared anchor/checkpoint panel",
+          "bases_on_every_available_model": [
+            "canonical heads-plus-neurons",
+            "attention-coordinate refinement",
+            "balanced 32-neuron blocks partition-0",
+            "MLP rotation-0",
+            "MLP rotation-1"
+          ],
+          "maximum_model_checkpoint_identities": 30,
+          "model_roles_per_checkpoint": [
+            "direct teacher",
+            "lowest fixed eligible canonical hard student",
+            "lowest fixed eligible canonical soft student"
+          ],
+          "phases": [
+            "pre-grokking",
+            "stable post-grokking"
+          ],
+          "unavailable_rule": "retain unavailable and compare only exact checkpoint pairs; no replacement"
+        },
+        "attention_refinement": "each coordinate of blocks.{layer}.attn.hook_z before W_O is a component; zero in that coordinate system",
+        "canonical": "attention heads plus individual MLP neurons with activation zeroing",
+        "mlp_blocks": {
+          "block_size": 32,
+          "policy": "balanced canonical-order partition after a deterministic Fisher-Yates permutation",
+          "seed_domain": "stage13/basis/mlp-block/partition-0"
+        },
+        "option": "A",
+        "permitted_contrasts": "For the same model/checkpoint, discovery method, phase, condition, and teacher seed, compare each alternative-basis Endpoint 1 and packing reduction with its canonical-basis reduction. Aggregate paired differences by teacher seed; raw component counts are never compared without raw, parameter-weighted, and component-type denominators.",
+        "rotations": {
+          "algorithm": "float64 Gaussian matrix, QR, positive diagonal sign convention, then cast to model dtype",
+          "count": 2,
+          "intervention": "rotate, zero declared coordinates, inverse rotate",
+          "seed_domains": [
+            "stage13/basis/rotation-0",
+            "stage13/basis/rotation-1"
+          ],
+          "subspace": "each eligible layer MLP post-activation vector"
+        },
+        "summaries": [
+          "raw retained proportion",
+          "parameter-weighted retained proportion",
+          "component-type-stratified retained proportion"
+        ]
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Canonical heads plus neurons, attention refinement, balanced MLP blocks, fixed rotations, and parameter/type accounting.",
+      "stage12_evidence": "R2 implements canonical round trips, pre-output attention coordinates, seeded balanced blocks, seeded orthogonal rotations, cross-basis lifecycle checks, and parameter/type accounting. The v1 family-balanced but disjoint assignment is superseded.",
+      "uncertainty": "Rotated-coordinate interventions may be more expensive and architecture-specific; incompatibility is an unavailable cell, not a semantic adapter.",
+      "viable_options": [
+        {
+          "description": "Canonical Tier 1; one balanced 32-neuron block partition, attention coordinates, and two rotations in protected Tier 2.",
+          "option": "A",
+          "tradeoff": "Covers every required family with a limited panel."
+        },
+        {
+          "description": "Canonical plus attention coordinates and one rotation only.",
+          "option": "B",
+          "tradeoff": "Cheaper but omits the required coarse-block family."
+        },
+        {
+          "description": "Many partitions and rotations.",
+          "option": "C",
+          "tradeoff": "More sensitivity breadth but belongs in optional Tier 3."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Any formula, threshold, frontier, gauge, or guard change after approval is a scientific amendment requiring new profile and report hashes.",
+      "decision_id": "RD-005",
+      "downstream_consequences": [
+        "mask qualification",
+        "Endpoint 1",
+        "packing inputs",
+        "frontier sensitivity"
+      ],
+      "invalid_options": [
+        "select threshold from phase contrast",
+        "rerun discovery for reducer-only settings when the ledger suffices",
+        "accept nonfinite metrics",
+        "omit intact mask"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Discovery is optimized under primary 0.99 and always exactly evaluates the intact mask.",
+        "tier2": "All five thresholds are reduced from each sealed ledger without duplicate discovery.",
+        "tier3": "No additional threshold search unless prospectively amended."
+      },
+      "question": "What exact centered-logit fidelity implementation, primary threshold, frontier, and denominator guard apply?",
+      "rationale": "0.99 was prospectively recommended before definitive work; the frontier prevents a single favorable threshold from carrying interpretation.",
+      "recommendation": {
+        "accumulation_dtype": "float64",
+        "accumulation_order": "canonical example order then class order",
+        "denominator_guard": "denominator exactly zero is undefined and rejected; every positive finite denominator is valid",
+        "formula": "1 - sum((center(masked_logits)-center(full_logits))^2) / sum(center(full_logits)^2)",
+        "frontier": [
+          0.9,
+          0.95,
+          0.975,
+          0.99,
+          0.995
+        ],
+        "gauge": "subtract the per-input class mean",
+        "input_dtype": "model output dtype float32",
+        "ledger_reuse": "reducer-only for all masks already present; never duplicate a discovery job",
+        "nonfinite_policy": "reject record",
+        "option": "A",
+        "primary_threshold": 0.99
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "One primary centered-logit threshold plus a prospective frontier, with ledger reuse.",
+      "stage12_evidence": "Stage 5A validates class centering, canonical ordering, float64 accumulation, nonfinite rejection, and exact-zero denominator handling; Stage 10 confirms reducer-only frontier reuse for masks already in sealed ledgers.",
+      "uncertainty": "A discovery trajectory optimized at 0.99 may not contain masks useful at every frontier point; that limitation is reported, not repaired by rerunning.",
+      "viable_options": [
+        {
+          "description": "Primary 0.99 with frontier 0.90, 0.95, 0.975, 0.99, 0.995; exact-zero guard.",
+          "option": "A",
+          "tradeoff": "Matches the draft recommendation and shows threshold dependence."
+        },
+        {
+          "description": "Primary 0.95 with the same frontier.",
+          "option": "B",
+          "tradeoff": "Less stringent and may recover smaller circuits, but departs from the prospective recommendation."
+        },
+        {
+          "description": "Near-zero epsilon guard.",
+          "option": "C",
+          "tradeoff": "Requires an arbitrary scale rule not supported by current evidence."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Promotion, cap, overlap, or solver changes after approval require an amendment and new reducer/report hashes; no new search is allowed when sealed-ledger reuse suffices.",
+      "decision_id": "RD-006",
+      "downstream_consequences": [
+        "packing eligibility",
+        "solver load",
+        "claim hierarchy",
+        "censoring language"
+      ],
+      "invalid_options": [
+        "call packing a mechanism count",
+        "call the recovered value the true packing number",
+        "compare unlike methods as resource matched",
+        "hide zero or censored outcomes"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Packing reduced for every canonical model-method ledger at primary fidelity.",
+        "tier2": "The complete 3 x 4 component-cap/overlap grid is recomputed from every applicable sealed exact ledger; all 12 cells are descriptive sensitivities.",
+        "tier3": "Additional candidate generation only under fixed optional priority."
+      },
+      "question": "What is Endpoint 2's status and exact packing rule?",
+      "rationale": "Endpoint 1 remains the sole primary. The key-secondary packing setting is fixed, and the full Cartesian sensitivity grid measures procedure dependence without creating new search opportunities.",
+      "recommendation": {
+        "censoring_rule": "budget exhaustion or incomplete candidate inventory is procedure-censored",
+        "claim": "procedure-relative packing lower bound only",
+        "component_cap": 0.25,
+        "failure_rule": "retain zero from valid empty qualification; distinguish solver/search failure from zero",
+        "maximum_pairwise_overlap": 0.25,
+        "no_qualifying_masks": "packing lower bound 0",
+        "option": "A",
+        "overlap_metric": "Jaccard overlap of retained components in the declared basis",
+        "sensitivity_grid": {
+          "cartesian_cell_count": 12,
+          "cells": [
+            {
+              "component_cap": 0.125,
+              "maximum_pairwise_overlap": 0.0
+            },
+            {
+              "component_cap": 0.125,
+              "maximum_pairwise_overlap": 0.125
+            },
+            {
+              "component_cap": 0.125,
+              "maximum_pairwise_overlap": 0.25
+            },
+            {
+              "component_cap": 0.125,
+              "maximum_pairwise_overlap": 0.5
+            },
+            {
+              "component_cap": 0.25,
+              "maximum_pairwise_overlap": 0.0
+            },
+            {
+              "component_cap": 0.25,
+              "maximum_pairwise_overlap": 0.125
+            },
+            {
+              "component_cap": 0.25,
+              "maximum_pairwise_overlap": 0.25
+            },
+            {
+              "component_cap": 0.25,
+              "maximum_pairwise_overlap": 0.5
+            },
+            {
+              "component_cap": 0.375,
+              "maximum_pairwise_overlap": 0.0
+            },
+            {
+              "component_cap": 0.375,
+              "maximum_pairwise_overlap": 0.125
+            },
+            {
+              "component_cap": 0.375,
+              "maximum_pairwise_overlap": 0.25
+            },
+            {
+              "component_cap": 0.375,
+              "maximum_pairwise_overlap": 0.5
+            }
+          ],
+          "component_cap_proportions": [
+            0.125,
+            0.25,
+            0.375
+          ],
+          "execution": "reducer-only from masks and exact fidelities already present in each sealed ledger; no rediscovery, new model inference, new exact evaluation, or ledger mutation",
+          "hierarchy": {
+            "descriptive_sensitivity": "the other 11 grid cells",
+            "key_secondary": "packing at component cap 0.25 and maximum Jaccard overlap 0.25",
+            "primary": "Endpoint 1 only"
+          },
+          "ledger_limit": "if a mask is absent from the sealed ledger, no sensitivity cell may generate or evaluate it",
+          "maximum_pairwise_jaccard_overlaps": [
+            0.0,
+            0.125,
+            0.25,
+            0.5
+          ]
+        },
+        "solver": "exact maximum compatible subset with lexicographically smallest mask-identity tuple tie-break",
+        "status": "key_secondary"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Endpoint 1 primary; packing remains a procedure-relative key secondary unless preproduction evidence justifies co-primary status.",
+      "stage12_evidence": "Stage 6E and R3 validate size/fidelity qualification, Jaccard overlap, exact maximum compatible subset with proof, zero packing, censoring, and four calibration layers. They do not justify promotion.",
+      "uncertainty": "The recovered candidate set can be incomplete even when the finite packing solver is exact.",
+      "viable_options": [
+        {
+          "description": "Key secondary; maximum component proportion 0.25; retained-component Jaccard <=0.25; exact maximum-compatible-subset solver.",
+          "option": "A",
+          "tradeoff": "Conservative small/separated circuits with auditable exact packing over recovered candidates."
+        },
+        {
+          "description": "Key secondary with cap 0.375 and overlap 0.25.",
+          "option": "B",
+          "tradeoff": "Includes larger recovered circuits and follows the technical fixture cap, but that fixture is nonbinding."
+        },
+        {
+          "description": "Promote to co-primary.",
+          "option": "C",
+          "tradeoff": "Not supported by current preproduction validation."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Method, budget, proposal, or restart changes after approval require a prospective amendment and new config/manifest hashes.",
+      "decision_id": "RD-007",
+      "downstream_consequences": [
+        "search compute",
+        "candidate coverage",
+        "method-stratified estimands",
+        "packing inputs"
+      ],
+      "invalid_options": [
+        "declare unlike native units equal",
+        "use surrogate fidelity as final evidence",
+        "transfer unused budget between cells",
+        "select restarts from observed endpoints"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Two method jobs per released model; exact allowance is 256 per method-model ledger, plus the mandatory intact evaluation under the common rule.",
+        "tier2": "Same methods on the fixed architecture/basis/task panels.",
+        "tier3": "Additional ordinary restarts only after protected completeness."
+      },
+      "question": "Which two discovery families, versions, native budgets, exact allowance, restarts, and failure rules apply?",
+      "rationale": "The pair is genuinely algorithmically distinct and uses auditable, non-equated native budgets with a common finite exact allowance.",
+      "recommendation": {
+        "backend_determinism": "Stage 14 must qualify the actual CPU/CUDA backend; no MPS production authority",
+        "common_exact_evaluation_allowance": 256,
+        "exact_allowance_semantics": "256 total exact evaluations per model-method ledger, including the mandatory intact mask; duplicate requests reuse evidence and do not recharge the ledger",
+        "failure_rules": [
+          "nonfinite optimization is terminal numerical failure",
+          "budget exhaustion is censored, not success",
+          "interruption resumes from a hash-bound checkpoint",
+          "within-method interpretation is primary"
+        ],
+        "intact_mask": "always included and exactly evaluated so Endpoint 1 is defined up to 1.0",
+        "methods": [
+          {
+            "family": "inherited_discrete",
+            "id": "greedy-deletion-centred-logit/v1",
+            "maximum_restarts": 0,
+            "native_budget": 516,
+            "native_budget_unit": "ranked_component_proposal",
+            "termination": "all ranked proposals consumed, exact allowance exhausted, or explicit failure"
+          },
+          {
+            "family": "continuous_stochastic_gates",
+            "gate": {
+              "lower_stretch": -0.1,
+              "temperature": 0.6666666666666666,
+              "upper_stretch": 1.1
+            },
+            "id": "hard-concrete-gates-centred-logit/v1",
+            "native_budget_per_restart": 5000,
+            "native_budget_unit": "optimizer_step",
+            "optimizer": {
+              "beta1": 0.9,
+              "beta2": 0.999,
+              "epsilon": 1e-08,
+              "learning_rate": 0.01,
+              "name": "Adam",
+              "sparsity_coefficient": 0.001
+            },
+            "proposal_rules": {
+              "maximum_unique_proposals": 256,
+              "probability_thresholds": [
+                0.1,
+                0.2,
+                0.3,
+                0.4,
+                0.5,
+                0.6,
+                0.7,
+                0.8,
+                0.9
+              ],
+              "stochastic_draws_per_restart": 32,
+              "top_k_sizes": [
+                0,
+                8,
+                16,
+                32,
+                64,
+                96,
+                128,
+                192,
+                256,
+                384,
+                516
+              ]
+            },
+            "restarts": 4
+          }
+        ],
+        "option": "A"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "One inherited discrete family plus an algorithmically independent continuous/stochastic family, with separate native units and a common exact allowance.",
+      "stage12_evidence": "Stage 6D provides inherited adapters and budget ledgers; R1 provides continuous stochastic gates, optimizer resume, proposal extraction, and exact bridge. Stage 10 measured exact evaluation at 0.088445375 seconds on the technical CPU fixture. The constructed Stage 13 profile measured 5000 native gate steps at median 1.905668 seconds and the 16-restart bridge at median 0.667390 seconds; model-in-the-loop CUDA cost remains unbenchmarked.",
+      "uncertainty": "Native mechanics are benchmarked, but the production objective forward/backward pass and CUDA concurrency are not; Stage 14 must pass a frozen complete-branch throughput equation or block launch.",
+      "viable_options": [
+        {
+          "description": "Greedy deletion plus hard-concrete gates; common exact allowance 256; 516 discrete proposals and four 5000-step continuous restarts.",
+          "option": "A",
+          "tradeoff": "Substantial bounded search with tractable exact-evaluation cost, but R1 native runtime remains uncertain."
+        },
+        {
+          "description": "Common exact allowance 128 and two 2500-step continuous restarts.",
+          "option": "B",
+          "tradeoff": "Lower cost and lower candidate coverage."
+        },
+        {
+          "description": "Greedy plus diversity-forced only.",
+          "option": "C",
+          "tradeoff": "Fails the algorithmic-independence requirement."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Changing draws, budgets, radii, or minimum coverage after approval requires an amendment and affected manifest/report regeneration.",
+      "decision_id": "RD-008",
+      "downstream_consequences": [
+        "calibration compute",
+        "null precision",
+        "packing interpretation",
+        "reportable missingness"
+      ],
+      "invalid_options": [
+        "use surrogate local fidelity",
+        "seed local search from an unqualified mask",
+        "call ordinary restarts an independent method",
+        "transfer calibration exact budget to discovery"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "A fixed 60-slot canonical anchor calibration panel: seeds 0-4 x pre/stable x direct/lowest-hard/lowest-soft x two methods; unavailable slots remain unavailable.",
+        "tier2": "Tractable exact report and fixed basis/architecture calibration summaries.",
+        "tier3": "More draws, restarts, or radii in that order."
+      },
+      "question": "What exact algorithms, draws, budgets, and coverage rules apply to all four packing calibration layers?",
+      "rationale": "The recommended counts are independent of effect direction and large enough for stable descriptive null summaries while remaining small relative to the intended cluster envelope.",
+      "recommendation": {
+        "combinatorial": {
+          "draws": 10000,
+          "exact_evaluations": 0,
+          "matching": "exact retained size and component-type counts",
+          "replacement": "independent seeded draws with duplicates retained and reported"
+        },
+        "local_perturbation": {
+          "common_exact_allowance": 128,
+          "maximum_radius": 2,
+          "minimum_completed": 96,
+          "moves": [
+            "drop_one",
+            "add_one",
+            "swap_one"
+          ],
+          "proposal_budget": 128,
+          "seed_masks": "up to four lexicographically first exactly qualified masks"
+        },
+        "minimum_reportable_coverage": 0.9,
+        "option": "A",
+        "ordinary_restart": {
+          "exact_allowance_semantics": "256 total including intact in Package A/C; 128 total including intact in Package B",
+          "method": "same discovery family without diversity pressure or packing-aware feedback",
+          "minimum_completed": 12,
+          "restarts": 16
+        },
+        "panel_assignment": {
+          "discovery_methods": [
+            "greedy-deletion-centred-logit/v1",
+            "hard-concrete-gates-centred-logit/v1"
+          ],
+          "maximum_profile_slots": 60,
+          "model_roles": [
+            "direct teacher",
+            "lowest fixed eligible canonical hard student",
+            "lowest fixed eligible canonical soft student"
+          ],
+          "phases": [
+            "pre-grokking",
+            "stable post-grokking"
+          ],
+          "replacement": "none",
+          "teacher_seeds": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "tractable": {
+          "layer": "exact feasible-region calibration from RD-009",
+          "minimum_coverage": 1.0
+        },
+        "undercoverage": "report layer as incomplete/unavailable; do not impute or collapse"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Retain combinatorial, ordinary-restart, local-perturbation, and tractable feasible-region layers because they answer different questions.",
+      "stage12_evidence": "R3 validates deterministic size/type matching, same-family ordinary restarts, exact local perturbations, exact feasible-region calibration, and layer-specific failure/censoring records.",
+      "uncertainty": "Actual R1 restart cost and the number of qualifying seed masks are unknown before production.",
+      "viable_options": [
+        {
+          "description": "10000 combinatorial draws, 16 ordinary restarts, 128 local exact proposals around four seed masks, and exact tractable enumeration; 90% minimum operational coverage.",
+          "option": "A",
+          "tradeoff": "Stable descriptive calibration with bounded exact work."
+        },
+        {
+          "description": "2000 draws, 8 restarts, 64 local proposals.",
+          "option": "B",
+          "tradeoff": "Cheaper but noisier and more fragile to failures."
+        },
+        {
+          "description": "Collapse layers into one null.",
+          "option": "C",
+          "tradeoff": "Scientifically invalid because the layers have distinct interpretations."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Changing task, model, universe, or certificate after approval requires a prospective amendment and invalidates the calibration manifest/report.",
+      "decision_id": "RD-009",
+      "downstream_consequences": [
+        "exact enumeration size",
+        "search-gap interpretation",
+        "calibration runtime",
+        "transfer limitations"
+      ],
+      "invalid_options": [
+        "infer main-scale exactness from calibration",
+        "count calibration as a teacher replicate",
+        "claim exact with incomplete certificate",
+        "choose model from favorable search gaps"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "No per-cell tractable enumeration.",
+        "tier2": "One protected exact calibration profile run for both discovery methods and the packing solver.",
+        "tier3": "Optional second seed only after protected completeness."
+      },
+      "question": "Which small task/model/mask universe and certificate define tractable exact calibration?",
+      "rationale": "The complete mask universe is finite, modest, and uses the same canonical component semantics and reducers as the main study.",
+      "recommendation": {
+        "algorithm": "canonical-order exhaustive enumeration",
+        "certificate": "exhaustive feasible inventory hash plus exact Endpoint 1 and maximum-compatible-subset proof",
+        "exactness": "every mask has one sealed exact fidelity record and the inventory count/hash matches 262144",
+        "mask_count": 262144,
+        "mask_universe": "2 attention heads plus 16 individual MLP neurons",
+        "model": {
+          "d_head": 8,
+          "d_mlp": 16,
+          "d_model": 16,
+          "initialization_seed": 0,
+          "n_heads": 2,
+          "n_layers": 1
+        },
+        "option": "A",
+        "task": {
+          "domain": "full 7x7",
+          "family": "modular_addition",
+          "modulus": 7
+        },
+        "transfer_limit": "calibrates procedure behavior only on this small instance; no automatic main-scale error bound"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Use a deliberately small problem for exact or certified near-exact search calibration; never count it as a population replicate.",
+      "stage12_evidence": "R3 supports exhaustive inventories and certificates with recovered-versus-feasible Endpoint 1 and packing gaps.",
+      "uncertainty": "Training the tiny model to the required teacher phase and enumerating all exact evaluations must still fit the actual Stage 14 backend envelope.",
+      "viable_options": [
+        {
+          "description": "Modular addition mod 7, one-layer d_model 16, two heads, d_mlp 16, canonical 18-component universe; enumerate all 2^18 masks.",
+          "option": "A",
+          "tradeoff": "262144 masks, exact and portable enough for a protected calibration job."
+        },
+        {
+          "description": "A 24-component universe with branch-and-bound.",
+          "option": "B",
+          "tradeoff": "Closer to main scale but certificate/runtime risk is higher."
+        },
+        {
+          "description": "Certified near-exact main-scale subset.",
+          "option": "C",
+          "tradeoff": "Less transparent and cannot be called exact with nonzero gap."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Any estimand, minimum, model, multiplicity, or category mapping change after approval is a scientific amendment and invalidates report hashes.",
+      "decision_id": "RD-010",
+      "downstream_consequences": [
+        "population claims",
+        "report topology",
+        "minimum reportability",
+        "claim resolution"
+      ],
+      "invalid_options": [
+        "pool students or masks as population replicates",
+        "pool hard and soft",
+        "impute unavailable cells",
+        "replace failed cells opportunistically",
+        "suppress unfavorable categories"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Primary pre versus stable-post paired teacher-seed contrasts, separately for direct teachers, hard students, soft students, and discovery method.",
+        "tier2": "Conditional architecture/basis/Fourier/task summaries with no population-size inflation.",
+        "tier3": "Descriptive only unless a separately frozen estimand exists."
+      },
+      "question": "What hierarchy, estimands, uncertainty, multiplicity, missingness, outputs, and outcome-category rules govern analysis?",
+      "rationale": "The plan respects teacher-seed replication, keeps model-heavy alternatives out, and forces all failure/missingness and raw values into the report.",
+      "recommendation": {
+        "category_rule": "each category is resolved from its complete predeclared inputs as met, not_met, indeterminate, or unavailable; categories may overlap and are not success criteria",
+        "descriptive_summaries": [
+          "median paired difference",
+          "range",
+          "sign count",
+          "raw seed table"
+        ],
+        "direct_student_contrast": "student-cell median minus direct-teacher value for same seed, phase, and method",
+        "mid_phase": "descriptive trajectory only, not a substitute for either primary landmark",
+        "minimum_matched_teacher_seeds": 10,
+        "minimum_student_cell": "RD-003 minimum for its tier",
+        "missing_rule": "no imputation; below-minimum population results are partial descriptive outputs with inferential fields unavailable",
+        "multiplicity": "Holm adjustment within each endpoint x hard/soft family; architecture, basis, method-disagreement, null, and frontier results are explicitly descriptive",
+        "option": "A",
+        "outcome_categories": [
+          "teacher phase effect persists in both student conditions",
+          "students of one teacher vary materially",
+          "all distilled students become similarly compressible",
+          "results depend strongly on discovery method or fidelity definition",
+          "stable functions enable recovery while realization controls packing",
+          "the predecessor transition disappears under predictive fidelity"
+        ],
+        "population_estimand": "arithmetic mean of within-seed paired differences over the fixed matched population",
+        "population_unit": "teacher_seed",
+        "primary_contrast": "stable post-grokking minus pre-grokking within teacher seed",
+        "realization_dispersion": [
+          "range",
+          "median absolute deviation",
+          "all raw eligible values"
+        ],
+        "student_cell_summary": "median across eligible initializations",
+        "tests": "two-sided exact sign-flip test for each four-cell primary family when matched n <=20; Monte Carlo 100000 fixed draws otherwise",
+        "uncertainty": "95% teacher-seed bootstrap percentile interval with 10000 domain-separated resamples"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Paired teacher-seed inference, raw seed reporting, robust student-cell summaries, hard/soft separation, and unconditional failures.",
+      "stage12_evidence": "Stage 5D validates teacher-seed population normalization, conditional repeated factors, missing cells, contrasts, and deterministic output records.",
+      "uncertainty": "The fixed minimum of 10 may yield descriptive-only primary output if phase or eligibility failure is high.",
+      "viable_options": [
+        {
+          "description": "Teacher-seed paired mean as estimand, median student-cell summary, mean/median/raw differences, exact sign-flip tests with Holm correction, and bootstrap sensitivity.",
+          "option": "A",
+          "tradeoff": "Transparent population unit and bounded formal inference."
+        },
+        {
+          "description": "Bayesian multilevel model.",
+          "option": "B",
+          "tradeoff": "Can share information but adds prior and convergence choices not determined by existing authorities."
+        },
+        {
+          "description": "Purely descriptive raw seeds only.",
+          "option": "C",
+          "tradeoff": "Robust but leaves the expanded population design underused."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Any pair, mode, location, alignment, capacity, outcome, or success-rule change after approval is a scientific amendment requiring new trial and report hashes.",
+      "decision_id": "RD-011",
+      "downstream_consequences": [
+        "pair count",
+        "activation compatibility",
+        "capacity matching",
+        "shared-abstraction claim eligibility"
+      ],
+      "invalid_options": [
+        "omit a control",
+        "reroll a failed control",
+        "hide identifiers or alignment data as free side information",
+        "refit on trial outcomes",
+        "claim algorithmic uniqueness"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "No Fourier jobs block Endpoint 1 completeness.",
+        "tier2": "Up to 60 comparison sets (seed 0-14 x pre/stable x hard/soft), each with aligned intervention plus all five capacity-matched controls and 256 fixed recipient/source trials per condition.",
+        "tier3": "Additional architecture or mid-phase pairs only after protected minimum."
+      },
+      "question": "Which Fourier pairs, representation, modes, location, alignment boundary, capacity, trials, outcomes, controls, and success rule apply?",
+      "rationale": "Diagonal Fourier characters are the algebraic support of modular sum, and replacing that code before the MLP output projection asks the recipient's downstream computation to realize a donor abstract value as its own counterfactual behavior.",
+      "recommendation": {
+        "aggregation": "within comparison set, aligned minus each control on the primary outcome; then teacher-seed paired summaries separately by phase and hard/soft condition",
+        "alignment": "fit source and recipient linear task-code subspaces and an orthogonal Procrustes map in float64 on the fixed training-domain split only; deterministic SVD/sign convention; no test trials or outcome logits enter fitting",
+        "capacity": "same ordered support of four complex modes/eight real degrees of freedom with identical conjugate bookkeeping, fitted rank, float32 write precision, recipient write budget, identifier count, and side-information bytes for aligned plus all five controls",
+        "conditions": [
+          "aligned_fourier_interchange",
+          "wrong_fourier_mode",
+          "shuffled_coefficients",
+          "mismatched_input",
+          "equal_norm_random_state",
+          "unaligned_ordinary_activation_patching"
+        ],
+        "expected_behavior": "the intervened recipient should move from its intact base behavior toward its own intact behavior on the canonical counterfactual input, changing the predicted result from s to s_d while preserving the recipient network's centered-logit pattern for that counterfactual",
+        "interchanged_variable": "the projected internal code for the modular sum s=(x+y) mod p on the four primary diagonal harmonics",
+        "internal_location": "final-token blocks.0.mlp.hook_post, after the nonlinear MLP activation and before W_out writes into the residual stream",
+        "intervention_formula": "h_rec_intervened = h_rec_base - P_rec(h_rec_base) + A(P_src(h_src_donor)), at the frozen MLP-post location; P_rec and P_src are fixed fitted task-code projections and A is the fixed capacity-bounded source-to-recipient alignment",
+        "location_justification": "modular-addition task variables are expected to be synthesized in nonlinear MLP features; intervention before W_out tests an internal causal state and leaves the recipient's W_out, residual addition, normalization, and unembedding to translate that state into behavior",
+        "maximum_pair_count": 60,
+        "mode_justification": "for any function g(x+y mod p), the 2-D Fourier transform is supported on the diagonal frequency pairs (k,k) under the frozen negative-exponent DFT convention because character_k(x+y)=character_k(x) character_k(y); the first four nonzero diagonal harmonics are fixed without observing activations or outcomes",
+        "option": "A",
+        "pair_rule": "for each seed 0-14, each primary phase, and each hard/soft condition, source is the direct teacher and recipient is the lowest fixed initialization slot that is eligible; if none is eligible the pair is unavailable and is not replaced",
+        "primary_outcome": {
+          "centering": "C subtracts the per-input class mean",
+          "formula": "1 - ||C(logits_intervened)-C(logits_recipient_counterfactual)||^2 / ||C(logits_recipient_base)-C(logits_recipient_counterfactual)||^2",
+          "interpretation": "1 is exact recipient-counterfactual behavior; 0 is no displacement from intact base; negative values are retained",
+          "name": "counterfactual_centered_logit_displacement_fidelity",
+          "zero_denominator": "trial unavailable and reported, never epsilon-regularized"
+        },
+        "primary_task_modes": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "representation": "unitary 2-D DFT over the ordered modular input grid; complex coefficients stored as ordered real/imaginary pairs with conjugate partners implied by real activations",
+        "secondary_outcomes": [
+          "counterfactual argmax success",
+          "base-behavior preservation on matched no-change trials",
+          "nonfinite/failure/censoring diagnostics"
+        ],
+        "success_rule": "shared-causal-abstraction claim eligible only when aligned exceeds every one of the five controls under the predeclared teacher-seed interval rule, counterfactual argmax is favorable, no-change preservation passes, and the comparison inventory is complete; otherwise not_met, indeterminate, or unavailable",
+        "trial_construction": "recipient base input is (x,y); donor input is (x_d,y_d) with donor sum s_d different from base sum s; the canonical recipient counterfactual is (x, (s_d-x) mod p), preserving the recipient first operand while changing only the abstract sum to s_d",
+        "trial_inputs": "256 fixed canonically ordered recipient/donor trials per comparison set and condition; no replacement",
+        "uniqueness_claim": false,
+        "why_causal_abstraction": "the donor contributes only an internal sum-code variable; the recipient's downstream weights must causally realize the donor sum as the recipient's own counterfactual behavior. Matching donor output logits or patching the final residual is neither the intervention nor the target.",
+        "wrong_mode_control_support": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            2,
+            -2
+          ]
+        ],
+        "wrong_mode_separation": "off-diagonal support is disjoint from the primary diagonal support, has the same number of complex modes and real degrees of freedom, and is never used to fit, rank, or amend the primary mode subspace"
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Registered key secondary regardless of primary direction; aligned must outperform all five capacity-matched controls; uniqueness claims prohibited.",
+      "stage12_evidence": "P5 validates typed pair/trial/location contracts, Fourier transforms, fitted alignment, explicit side-information/rank/support capacity, all six conditions, interruption/resume, and complete unfavorable/failure records.",
+      "uncertainty": "The fixed internal location or first four harmonics may be insufficient; that is a registered negative result, not permission to move the hook, add modes, or select trials.",
+      "viable_options": [
+        {
+          "description": "Teacher-to-canonical-student pairs on a fixed internal MLP-post location; diagonal modular-sum Fourier characters; disjoint-fit alignment; counterfactual centered-logit displacement fidelity.",
+          "option": "A",
+          "tradeoff": "Outcome-independent and comprehensive, but can be unavailable when the deterministic student slot is ineligible."
+        },
+        {
+          "description": "Stable-post pairs only.",
+          "option": "B",
+          "tradeoff": "Half the pair volume but cannot compare interchange across the primary phase contrast."
+        },
+        {
+          "description": "Select modes or pairs by candidate interchange performance.",
+          "option": "C",
+          "tradeoff": "Prohibited outcome-informed selection."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Changing protected membership, balance, or shedding after approval requires an amendment; operational incompleteness alone does not authorize it.",
+      "decision_id": "RD-012",
+      "downstream_consequences": [
+        "protected job count",
+        "capacity blocker",
+        "partial-completion interpretation",
+        "school-Mac recovery order"
+      ],
+      "invalid_options": [
+        "shed Tier 1 for breadth",
+        "change priority from endpoint direction",
+        "duplicate discovery for frontier/cap/overlap reducers",
+        "assume school-Mac availability"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "All RD-001 Task 1 fixed teachers, direct models, canonical hard/soft students, canonical basis, both methods, endpoints, and core calibration.",
+        "tier2": "Fixed alternate architectures, basis panel, Task 2, fidelity frontier, tractable exact calibration, and all Fourier controls.",
+        "tier3": "Task 3, additional crossings, partitions, rotations, restarts, and descriptive trajectories."
+      },
+      "question": "What exact protected Tier 1 matrix, protected Tier 2 minimum, optional Tier 3 order, balance rule, and shedding policy apply?",
+      "rationale": "The package protects every accepted repair in a finite sparse design and makes resource shortfall visible rather than silently narrowing the estimand.",
+      "recommendation": {
+        "additional_capacity_rule": "unused capacity may run only the next preordered optional item and may not add or change a primary estimand",
+        "balance_rule": "fixed assignments are balanced by seed order, phase, condition, and architecture/basis; unavailable cells remain unavailable with no replacement",
+        "option": "A",
+        "school_mac_order": [
+          "Tier 1 recovery",
+          "reproduction and integrity",
+          "protected Tier 2 recovery",
+          "Task 2 additions",
+          "Task 3 only after primary-completeness gate"
+        ],
+        "shedding_order": [
+          "tier3 from last listed item backward",
+          "unprotected Tier 2 additions",
+          "protected Tier 2 only if the campaign must close incomplete",
+          "Tier 1 is never shed for optional work"
+        ],
+        "tier1": [
+          "Task 1 seeds 0-14 and three phases",
+          "direct teachers",
+          "canonical architecture hard and soft students under RD-003",
+          "canonical basis",
+          "both RD-007 methods",
+          "Endpoint 1 and key-secondary Endpoint 2",
+          "combinatorial, ordinary-restart, and local calibration minimum"
+        ],
+        "tier2_protected_minimum": [
+          "RD-002 all four alternates on the shared anchor seeds 0-4 at pre/stable phases and both conditions",
+          "RD-004 every alternative basis on the same seed-0-4 direct/hard/soft model-checkpoint panel",
+          "full RD-005 frontier from sealed ledgers",
+          "Task 2 seeds 0-4 at pre/stable phases with canonical architecture and two eligible students per condition",
+          "one RD-009 exact calibration",
+          "all RD-011 comparison sets and five controls"
+        ],
+        "tier3_order": [
+          "Task 3 fixed panel",
+          "additional architecture-seed crossings",
+          "additional MLP partitions",
+          "additional rotations",
+          "additional null draws",
+          "additional ordinary restarts",
+          "broader 50%-phase external-validity trajectories",
+          "task-structured descriptive metrics"
+        ]
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "Sparse tiered crossing; no full factorial; optional work never displaces protected work.",
+      "stage12_evidence": "P3 validates injected tiers, priorities, dependencies, protected shedding, resource-neutral execution, retries, and incomplete campaign records.",
+      "uncertainty": "The complete package counts and scenarios are now projected. Package A/C central cases are near the envelope and every package's conservative case exceeds it; Stage 14 complete-branch qualification is therefore a launch blocker.",
+      "viable_options": [
+        {
+          "description": "Large protected Task 1 canonical matrix plus a bounded architecture/basis/Task 2/tractable/Fourier Tier 2 minimum.",
+          "option": "A",
+          "tradeoff": "Directly addresses every red-team repair but creates a visible launch blocker if the intended envelope is insufficient."
+        },
+        {
+          "description": "Protect only the canonical Task 1 matrix and make all external validity optional.",
+          "option": "B",
+          "tradeoff": "Cheaper but weakens accepted red-team repairs."
+        },
+        {
+          "description": "Full factorial.",
+          "option": "C",
+          "tradeoff": "Prohibited and pseudo-replicated."
+        }
+      ]
+    },
+    {
+      "amendment_consequence": "Stage 14 may bind only enumerated provider facts and qualified concurrency; changing scientific DAG, priority, retry semantics, retention, gates, or export verification requires a Stage 13 amendment.",
+      "decision_id": "RD-014",
+      "downstream_consequences": [
+        "job lifecycle",
+        "storage footprint",
+        "recovery behavior",
+        "launch blockers",
+        "verified export"
+      ],
+      "invalid_options": [
+        "retry a scientific failure with changed settings",
+        "delete the only recovery boundary",
+        "assume credentials or destinations",
+        "delete scratch before destination hash verification",
+        "inspect comparative endpoints at gates"
+      ],
+      "protected_tier_consequences": {
+        "tier1": "Highest priority and never shed for optional work; a capacity projection below Tier 1 blocks Stage 14 launch.",
+        "tier2": "Protected minimum released only under the primary-completeness gate.",
+        "tier3": "Runs only from remaining capacity in fixed order."
+      },
+      "question": "Which Stage 13 scientific DAG, retry, retention, gate, capacity-branch, and export policies are frozen before Stage 14 supplies provider facts?",
+      "rationale": "The policy freezes scientific orchestration while explicitly refusing to invent provider facts; transient retries cannot mutate logical scientific identity.",
+      "recommendation": {
+        "export": "sealed bundle to a Stage 14 verified destination, resumable transfer, independent byte/hash verification, and no source deletion",
+        "final_audit_reserve_hours": 12,
+        "gate_visibility": "only completeness, failures, resources, storage, and integrity; no comparative scientific direction",
+        "gates": [
+          "launch",
+          "primary-completeness",
+          "exit"
+        ],
+        "intended_envelope_branch_not_verified_grant": {
+          "continuous_hours": 96,
+          "cpu_cores": 256,
+          "cuda_gpus": 16,
+          "persistent_bytes": 1099511627776,
+          "science_execution_hours": 84,
+          "scratch_bytes": 4398046511104
+        },
+        "option": "A",
+        "retry_policy": {
+          "logical_identity_unchanged": true,
+          "maximum_attempts": 3,
+          "maximum_retries": 2,
+          "retryable_categories": [
+            "worker_error",
+            "resource_exhaustion",
+            "interruption",
+            "stale_claim",
+            "transfer_interruption"
+          ],
+          "scientific_or_validation_failure_retries": 0
+        },
+        "scientific_dag": "complete dependency-closed P3 manifest generated from approved RD-001 through RD-012 values",
+        "stage14_only_unknowns": [
+          "provider and scheduler",
+          "queue/account/project",
+          "CPU/GPU models and counts",
+          "container digest",
+          "scratch and persistent roots",
+          "actual quotas",
+          "credentials",
+          "export destination",
+          "safe measured concurrency",
+          "model-in-the-loop hard-concrete throughput",
+          "CUDA training throughput and VRAM",
+          "measured complete-branch wall-time equation"
+        ],
+        "stage14_throughput_branch_freeze": {
+          "E8_rate_floors_when_CPU_path_is_unchanged": {
+            "hard_concrete_model_in_loop_steps_per_second_per_gpu": 14.2857142857,
+            "training_canonical_equivalent_updates_per_second_per_gpu": 57.1428571429
+          },
+          "additional_pass_conditions": [
+            "all exact and semantic backend qualification checks pass",
+            "peak worker memory and aggregate host memory are <=80% of verified capacity",
+            "projected persistent and scratch bytes are <=80% of verified quotas",
+            "the final 12 hours remain unallocated to scientific jobs",
+            "provider queue latency and measured merge/export critical path are included"
+          ],
+          "branches": [
+            {
+              "complete_scope": "every logical job and sensitivity in the Alex-approved package; no tier, seed, method, control, or exact allowance changes",
+              "id": "E16",
+              "resources": "16 qualified CUDA workers plus up to 256 CPU workers",
+              "selection": "first preference when available and the frozen wall-time equation passes"
+            },
+            {
+              "complete_scope": "identical complete approved package; only concurrency and worker mapping differ",
+              "id": "E8",
+              "resources": "8 qualified CUDA workers plus up to 256 CPU workers",
+              "selection": "second preference if E16 is unavailable or fails but E8 passes"
+            },
+            {
+              "complete_scope": "identical complete approved package; no scientific shrinkage",
+              "id": "CPU256",
+              "resources": "up to 256 deterministic CPU workers",
+              "selection": "recovery branch only if its independently measured equation passes"
+            }
+          ],
+          "efficiency_haircut": 0.7,
+          "memory_and_storage_haircut": 0.8,
+          "package_workload_bindings": {
+            "A": {
+              "central_training_equivalent_updates": 15713440,
+              "fixed_orchestration_hours": 4,
+              "hard_concrete_steps": 15900000
+            },
+            "B": {
+              "central_training_equivalent_updates": 8842000,
+              "fixed_orchestration_hours": 4,
+              "hard_concrete_steps": 2675000
+            },
+            "C": {
+              "central_training_equivalent_updates": 15813440,
+              "fixed_orchestration_hours": 4,
+              "hard_concrete_steps": 15900000
+            }
+          },
+          "prohibited_fallback": "never switch package, reduce seeds, omit a method/control/sensitivity, lower exact 2^18 calibration, or consume audit reserve to make a branch pass",
+          "qualification_repeats": 3,
+          "rate_statistic": "minimum of three after one discarded warmup",
+          "reference_rate_floors_for_E16_central_projection": {
+            "exact_full_domain_evaluations_per_second_per_cpu_worker": 11.306431,
+            "hard_concrete_model_in_loop_steps_per_second_per_gpu": 7.1428571429,
+            "training_canonical_equivalent_updates_per_second_per_gpu": 28.5714285714
+          },
+          "selection_rule": "select the highest-preference complete branch that passes all conditions; if none passes, launch is blocked and a new Alex-approved Stage 13 amendment is required",
+          "wall_time_equation": "training_equivalent_updates/(workers*measured_training_updates_per_second*0.70) + hard_concrete_steps/(workers*measured_model_in_loop_steps_per_second*0.70) + measured_CPU_critical_path + fixed_orchestration_allowance <= 84 hours"
+        },
+        "storage": {
+          "checkpoint_retained_generations": 2,
+          "chunk_bytes": 67108864,
+          "codec": "deterministic gzip",
+          "compression_level": 6,
+          "ledger_encoding": "canonical-jsonl-row-array/v1",
+          "mask_encoding": "bitpack-msb0/v1",
+          "protect_final_and_latest_valid_recovery": true
+        }
+      },
+      "requires_alex_choice": true,
+      "stage11_direction": "One automated campaign with launch, primary-completeness, and exit gates; provider/container/path/quota facts remain Stage 14.",
+      "stage12_evidence": "P3 provides resource-neutral DAG/retry/state semantics; P4 provides deterministic gzip compact records, quotas, retention, merge, bundle, transfer resume, and destination verification.",
+      "uncertainty": "The grant and production hardware remain unverified. Package A projects to 72.991 science hours centrally but 383.213 conservatively; B to 21.072 and 152.751; C to 73.078 and 384.195. No package is feasible by assertion alone.",
+      "viable_options": [
+        {
+          "description": "Two infrastructure retries, rolling two-checkpoint recovery, 12-hour final audit reserve, and frozen complete-workload E16/E8/CPU256 branches selected only by measured Stage 14 thresholds.",
+          "option": "A",
+          "tradeoff": "Conservative and auditable; actual concurrency and paths remain a Stage 14 blocker."
+        },
+        {
+          "description": "No retries and 6-hour audit reserve.",
+          "option": "B",
+          "tradeoff": "Lower duplicate work but more fragile to transient infrastructure faults."
+        },
+        {
+          "description": "Embed assumed Symbolica queue/path/container values now.",
+          "option": "C",
+          "tradeoff": "Prohibited because none has been supplied and verified."
+        }
+      ]
+    }
+  ],
+  "deferred_decisions": [
+    {
+      "decision_id": "RD-013",
+      "reason": "Actual CPU/CUDA qualification, numerical drift, resume equivalence, environment lock, and abort rule require the real backend. Stage 9 CPU/MPS evidence is technical only and CUDA is unmeasured.",
+      "status": "pending_stage14"
+    }
+  ],
+  "definitive_execution_started": false,
+  "evidence_firewall": {
+    "excluded_evidence": [
+      "comparative Stage 15 or candidate definitive endpoints",
+      "registered-checkpoint exploratory endpoint results",
+      "unpublished directional local or chat results",
+      "synthetic effect directions",
+      "settings selected to strengthen a phase or distillation contrast"
+    ],
+    "permitted_evidence_used": [
+      "accepted red-team amendment and Stage 11 directions",
+      "historical Phase I context only where admitted by the protocol",
+      "Stage 9 and Stage 10 technical runtime, memory, determinism, and storage evidence",
+      "Stage 12 synthetic interface and failure-path validation",
+      "documented intended four-day resource envelope, explicitly not a verified grant"
+    ],
+    "registered_or_private_artifacts_accessed": false
+  },
+  "implementation_base": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+  "package_alternatives": [
+    {
+      "package_id": "stage13-package-a-conservative-protected/v2",
+      "summary": "Fixed Task 1 seeds 0-14 without replacement; 3-of-6 Tier 1 students; all four architectures on shared anchors 0-4; all four alternative bases on the same checkpoint panel; 256 exact evaluations per method ledger; four x 5000 hard-concrete restarts; full nulls/Fourier/exact 2^18 calibration. Central: 690 student attempts, 771.103 GPU-h, 25.628 CPU-core-h, 72.991 science wall h, 24.711 GiB persistent."
+    },
+    {
+      "package_id": "stage13-package-b-reduced-protected/v2",
+      "summary": "Same fixed Task 1 seeds and primary scientific definitions; 2-of-4 Tier 1 students; depth and eight-head variants on all shared anchors; three alternative basis families; 128 exact allowance; two x 2500 hard-concrete restarts; reduced null counts; exact 2^18 calibration retained. Central: 390 attempts, 189.992 GPU-h, 19.453 CPU-core-h, 21.072 science wall h, 12.231 GiB persistent."
+    },
+    {
+      "package_id": "stage13-package-c-expanded-roster/v2",
+      "summary": "Train Task 1 seeds 0-19 and prospectively select the first 15 complete by seed order, then run Package A unchanged on those 15; this changes the population roster rule and is not an automatic fallback. Central: 690 attempts, 772.075 GPU-h, 25.628 CPU-core-h, 73.078 science wall h, 24.763 GiB persistent."
+    }
+  ],
+  "production_eligible": false,
+  "recommended_package_id": "stage13-package-a-conservative-protected/v2",
+  "resource_projection": {
+    "conclusion": "A and C fit lower and central scenarios but not conservative; B fits lower and central but not conservative; no package may launch until a complete Stage 14 execution branch passes frozen throughput, memory, storage, and backend qualification",
+    "envelope": "96 hours total; 84 hours science plus an inviolate final 12-hour audit; 256 CPU cores; 16 CUDA GPUs; 4 TiB scratch; 1 TiB persistent; grant still unverified",
+    "file_sha256": "22297e3811bcea81bd98bec68fc5d59378b2e26a9e3eda5096a95fdc5170d585",
+    "path": "followup/manifests/stage13_package_resource_projection_v2.json"
+  },
+  "schema_version": "stage13-decision-dossier/v2",
+  "scientific_data": false,
+  "status": "recommended_package_pending_alex_approval",
+  "supersedes": {
+    "approval_status": "never_approved",
+    "file_sha256": "8bce11d84632e6bc8b3ae4f5abf30c0348ff91be651984fdea984a383d0dc5b7",
+    "path": "followup/decisions/stage13_decision_dossier_v1.json"
+  }
+}

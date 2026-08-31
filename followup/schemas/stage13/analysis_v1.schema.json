@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "approval_sha256",
+    "claim_rules",
+    "definitive_execution_started",
+    "every_terminal_dataset_maps_to_report",
+    "fourier",
+    "hierarchical_analysis",
+    "manual_setting_selection",
+    "orchestration_boundary",
+    "outcome_categories",
+    "production_eligible",
+    "production_profiles_sha256",
+    "report_surfaces",
+    "schema_version",
+    "scientific_data",
+    "scientific_protocol_sha256",
+    "tiering"
+  ],
+  "properties": {
+    "approval_sha256": {},
+    "claim_rules": {},
+    "definitive_execution_started": {},
+    "every_terminal_dataset_maps_to_report": {},
+    "fourier": {},
+    "hierarchical_analysis": {},
+    "manual_setting_selection": {},
+    "orchestration_boundary": {},
+    "outcome_categories": {},
+    "production_eligible": {},
+    "production_profiles_sha256": {},
+    "report_surfaces": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "scientific_protocol_sha256": {},
+    "tiering": {}
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "coverage": {
+    "architectures": [
+      "predecessor-matched/v1",
+      "depth-2-matched-width/v1",
+      "heads-8-matched-width/v1",
+      "mlp-256-matched-residual/v1",
+      "mlp-1024-matched-residual/v1"
+    ],
+    "bases": [
+      "canonical heads-plus-neurons",
+      "attention-coordinate refinement",
+      "balanced 32-neuron blocks partition-0",
+      "MLP rotation-0",
+      "MLP rotation-1"
+    ],
+    "campaign_completion": [
+      "tier1-intact-partial-tier2",
+      "partial-tier3",
+      "tier1-incomplete"
+    ],
+    "conditions": [
+      "hard",
+      "soft"
+    ],
+    "disagreements": [
+      "architecture",
+      "basis",
+      "method"
+    ],
+    "endpoints": [
+      "Endpoint 1",
+      "procedure-relative packing lower bound"
+    ],
+    "methods": [
+      "greedy-deletion-centred-logit/v1",
+      "hard-concrete-gates-centred-logit/v1"
+    ],
+    "optional_teacher_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "phases": [
+      "pre-grokking",
+      "50%",
+      "stable post-grokking"
+    ],
+    "task1_teacher_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "tasks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      "mod7-calibration"
+    ],
+    "tiers": [
+      "tier1",
+      "tier2-protected",
+      "tier3-task3",
+      "tier3-task4",
+      "tier3-task5"
+    ]
+  },
+  "fourier_cases": [
+    {
+      "case_id": "fourier-winning",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "winning"
+    },
+    {
+      "case_id": "fourier-tying",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "tying"
+    },
+    {
+      "case_id": "fourier-losing",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "losing"
+    },
+    {
+      "case_id": "fourier-failing",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "failing"
+    },
+    {
+      "case_id": "fourier-incomplete",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "incomplete"
+    }
+  ],
+  "production_eligible": false,
+  "schema_version": "stage13-synthetic-complete-fixture/v1",
+  "scientific_data": false,
+  "terminal_cases": [
+    {
+      "case_id": "eligible-hard",
+      "state": "eligible"
+    },
+    {
+      "case_id": "eligible-soft",
+      "state": "eligible"
+    },
+    {
+      "case_id": "attempt-failed",
+      "state": "failed_attempt"
+    },
+    {
+      "case_id": "student-insufficient",
+      "state": "insufficient_eligible"
+    },
+    {
+      "case_id": "teacher-unavailable",
+      "state": "teacher_unavailable"
+    },
+    {
+      "case_id": "phase-unavailable",
+      "state": "phase_unavailable"
+    },
+    {
+      "case_id": "budget-censored",
+      "state": "budget_exhausted"
+    },
+    {
+      "case_id": "search-failed",
+      "state": "search_failure"
+    },
+    {
+      "case_id": "packing-valid-zero",
+      "state": "packing_zero"
+    },
+    {
+      "case_id": "packing-lower-bound",
+      "state": "packing_lower_bound"
+    },
+    {
+      "case_id": "packing-censored",
+      "state": "packing_censored"
+    },
+    {
+      "case_id": "null-complete",
+      "state": "eligible"
+    },
+    {
+      "case_id": "tractable-complete",
+      "state": "eligible"
+    },
+    {
+      "case_id": "nonfinite",
+      "state": "nonfinite_rejected"
+    },
+    {
+      "case_id": "corrupt",
+      "state": "corrupted_rejected"
+    },
+    {
+      "case_id": "duplicate",
+      "state": "duplicate_rejected"
+    },
+    {
+      "case_id": "stale",
+      "state": "stale_rejected"
+    },
+    {
+      "case_id": "conflict",
+      "state": "conflicting_rejected"
+    }
+  ]
+}

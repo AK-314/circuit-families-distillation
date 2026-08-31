@@ -1,0 +1,207 @@
+{
+  "analysis_report_plan": {
+    "path": "followup/configs/stage13/analysis_report_plan_v1.json",
+    "sha256": "4f12fef3b5a25ef271e2532da4e3208d447a5d3981a2a9884cf788ac1ae4d082"
+  },
+  "approval": {
+    "path": "followup/decisions/stage13_approval_v1.json",
+    "sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336"
+  },
+  "approved_dossier": {
+    "path": "followup/decisions/stage13_decision_dossier_v3.json",
+    "sha256": "642118fe30e1c435fc05c656ac6167446c76a445c9a1efd376d5a7c23410b1f4"
+  },
+  "campaign_reference": "stage13-stage15-prospective-campaign/v1",
+  "coverage_counts": {
+    "each_optional_task_increment": {
+      "conditions": 2,
+      "discovery_ledgers_per_method": 30,
+      "methods": 2,
+      "phases": 2,
+      "student_attempt_maximum": 40,
+      "teacher_seeds": 5,
+      "teacher_training": 5
+    },
+    "protected_core": {
+      "conditions": {
+        "hard": "separate",
+        "soft": "separate"
+      },
+      "discovery_ledgers_per_method": {
+        "architecture_panel": 160,
+        "basis_direct": 40,
+        "basis_students": 80,
+        "task1_direct": 45,
+        "task1_students": 270,
+        "task2_direct": 10,
+        "task2_students": 40
+      },
+      "fourier_conditions": 6,
+      "frontier_thresholds": 5,
+      "methods": 2,
+      "packing_grid_cells": 12,
+      "phases": {
+        "architecture": 2,
+        "basis": 2,
+        "task1": 3,
+        "task2": 2
+      },
+      "student_attempt_maximum": {
+        "architecture_panel": 320,
+        "task1": 540,
+        "task2": 80
+      },
+      "teacher_seeds": {
+        "architecture_anchor": 5,
+        "basis_anchor": 5,
+        "task1": 15,
+        "task2": 5
+      },
+      "teacher_training": {
+        "task1": 15,
+        "task2": 5,
+        "tractable_calibration": 1
+      }
+    }
+  },
+  "definitive_execution_started": false,
+  "excluded_evidence": {
+    "path": "followup/manifests/stage13_excluded_evidence_v1.json",
+    "sha256": "ba57c9b2ad8636d727d787299f905bf5379cbf77d5314fe368a8307a0004cf43"
+  },
+  "expanded_manifest_seal": {
+    "canonical_members_sha256": "adbfb30694bb984de4d8ba582cee0efb468b8f9a2fce01f6a3654b5b78b1927b",
+    "logical_job_count": 8745,
+    "path": "followup/manifests/stage13_expanded_manifest_seal_v1.json",
+    "sha256": "7f1a189ad62503faa5bd8f013f77afba65a803f0f15962f01b61effaa648214a"
+  },
+  "implementation_base": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+  "job_array_spec": {
+    "path": "followup/manifests/stage13_job_array_spec_v1.json",
+    "sha256": "701b8cac0daaccae94f0bd243c04c293fed320bdd39230bc1f49995d92c70a58"
+  },
+  "operation_counts": {
+    "combinatorial_null_draws": 600000,
+    "endpoint1_reductions": 1470,
+    "exact_evaluations": 661504,
+    "fourier_condition_jobs": 360,
+    "fourier_input_condition_trials": 92160,
+    "frontier_reductions": 7350,
+    "greedy_discovery_ledgers": 735,
+    "hard_concrete_discovery_ledgers": 735,
+    "hard_concrete_optimizer_steps": 17100000,
+    "hard_concrete_restart_runs": 2940,
+    "merge_export": 4,
+    "ordinary_restart_subjobs": 960,
+    "packing_grid_reductions": 17640,
+    "report_reductions": 1,
+    "student_attempts": 1060,
+    "teacher_training": 36
+  },
+  "operation_counts_by_scope": {
+    "optional_task_3_increment": {
+      "endpoint1_reductions": 60,
+      "exact_evaluations": 15360,
+      "frontier_reductions": 300,
+      "greedy_discovery_ledgers": 30,
+      "hard_concrete_discovery_ledgers": 30,
+      "hard_concrete_optimizer_steps": 600000,
+      "hard_concrete_restart_runs": 120,
+      "merge_export": 1,
+      "packing_grid_reductions": 720,
+      "student_attempts": 40,
+      "teacher_training": 5
+    },
+    "optional_task_4_increment": {
+      "endpoint1_reductions": 60,
+      "exact_evaluations": 15360,
+      "frontier_reductions": 300,
+      "greedy_discovery_ledgers": 30,
+      "hard_concrete_discovery_ledgers": 30,
+      "hard_concrete_optimizer_steps": 600000,
+      "hard_concrete_restart_runs": 120,
+      "merge_export": 1,
+      "packing_grid_reductions": 720,
+      "student_attempts": 40,
+      "teacher_training": 5
+    },
+    "optional_task_5_increment": {
+      "endpoint1_reductions": 60,
+      "exact_evaluations": 15360,
+      "frontier_reductions": 300,
+      "greedy_discovery_ledgers": 30,
+      "hard_concrete_discovery_ledgers": 30,
+      "hard_concrete_optimizer_steps": 600000,
+      "hard_concrete_restart_runs": 120,
+      "merge_export": 1,
+      "packing_grid_reductions": 720,
+      "student_attempts": 40,
+      "teacher_training": 5
+    },
+    "protected_core": {
+      "combinatorial_null_draws": 600000,
+      "endpoint1_reductions": 1290,
+      "exact_evaluations": 615424,
+      "fourier_condition_jobs": 360,
+      "fourier_input_condition_trials": 92160,
+      "frontier_reductions": 6450,
+      "greedy_discovery_ledgers": 645,
+      "hard_concrete_discovery_ledgers": 645,
+      "hard_concrete_optimizer_steps": 15300000,
+      "hard_concrete_restart_runs": 2580,
+      "merge_export": 1,
+      "ordinary_restart_subjobs": 960,
+      "packing_grid_reductions": 15480,
+      "report_reductions": 1,
+      "student_attempts": 940,
+      "teacher_training": 21
+    }
+  },
+  "optional_order": [
+    3,
+    4,
+    5
+  ],
+  "production_eligible": false,
+  "production_profiles": {
+    "path": "followup/configs/stage13/production_profiles_v1.json",
+    "sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d"
+  },
+  "registered_or_private_artifacts_accessed": false,
+  "resource_gate": "Stage 14 must bind actual qualified resources; if no verified configuration completes the protected core within H_science, launch blocks pending prospective amendment",
+  "resource_projection": {
+    "path": "followup/manifests/stage13_scope_resource_projection_v3.json",
+    "sha256": "7f43b4560f63bd81b63f20e97cc152dedc09fae412c600f4eafc699f80b06186"
+  },
+  "schema_version": "stage13-campaign-root-manifest/v1",
+  "scientific_data": false,
+  "scientific_jobs_executed": false,
+  "scientific_protocol": {
+    "path": "followup/configs/stage13/frozen_scientific_protocol_v1.json",
+    "sha256": "da7ed31537727f92a66f72319711786e0b60b51d2a08646a2010c779ecdeca9f"
+  },
+  "scope_job_counts": {
+    "optional_task_3_increment": 287,
+    "optional_task_4_increment": 287,
+    "optional_task_5_increment": 287,
+    "protected_core": 7884
+  },
+  "stage14_started": false,
+  "stage15_started": false,
+  "synthetic_fixture": {
+    "path": "followup/fixtures/stage13/synthetic_complete_fixture_v1.json",
+    "sha256": "e90c39d931d87985759aa1cba43854cdcd4e144765177496f821aa93459380a9"
+  },
+  "synthetic_report": {
+    "canonical_sha256": "75d9c65b8b3e6476e84598ca3361036ef17e64ba649e2d79a16e59e8d091801b",
+    "path": "followup/reports/stage13_synthetic_complete_report_v1.json",
+    "sha256": "d66b652f27cab03e3b90e1be0bf0f3557b9fa6244f96413c27c2bd54ad74a096"
+  },
+  "tier_job_counts": {
+    "tier1": 3748,
+    "tier2-protected": 4136,
+    "tier3-task3": 287,
+    "tier3-task4": 287,
+    "tier3-task5": 287
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "schema_version": "stage13-compatibility-inventory/v1",
+  "stage": 13,
+  "implementation_base": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false,
+  "registered_or_private_artifacts_accessed": false,
+  "accepted_heads": [
+    {"lane": "stage11_design", "sha": "6e027a8c22e5228dadad8707f3a262e78028f855", "merge_pr": 18},
+    {"lane": "stage12p1_task_teacher", "sha": "0ba93daece3328d9bc2aa5ad2296f200a92f26fb", "merge_pr": 17},
+    {"lane": "stage12r1_discovery", "sha": "b11c32aa0ef2328a86f41096f188a7a055352fd8", "merge_pr": 20},
+    {"lane": "stage12p2_architectures", "sha": "c4065c2977f2d4e0cd09a54014f60f993f08aceb", "merge_pr": 22},
+    {"lane": "stage12r2_bases", "sha": "21d80d72376f004656d827069fc53bf55864ce61", "merge_pr": 24},
+    {"lane": "stage12p3_campaign_dag", "sha": "955d357609f8916797d2ea929f924e8f120e2334", "merge_pr": 25},
+    {"lane": "stage12p4_storage_export", "sha": "464904c19c3f4bafdd0fc424aa7be4fb3350a831", "merge_pr": 29},
+    {"lane": "stage12r3_packing_calibration", "sha": "ed4d9f3c8dc334a8dd80f8439dbd75826fd75e0f", "merge_pr": 31},
+    {"lane": "stage12p5_fourier", "sha": "528ee302b5659f7848d098d27bb60d1d26c397eb", "merge_pr": 32}
+  ],
+  "contracts": [
+    {
+      "requirement": "task_teacher_phase_identity",
+      "producer": "circuit_families.stage12p1",
+      "serializer": "canonical_foundation_record_bytes and foundation_record_sha256",
+      "consumer": "Stage 13 population/task/phase planner",
+      "tests": ["scripts/validate_stage12p1_teacher_foundation.py", "tests/test_stage12p1_tasks.py", "tests/test_stage12p1_phase.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "student_architecture_identity_and_components",
+      "producer": "circuit_families.stage12p2",
+      "serializer": "ArchitectureRecord and canonical_architecture_sha256",
+      "consumer": "Stage 13 student roster, basis assignment, and model accounting",
+      "tests": ["scripts/validate_stage12p2_multi_architecture.py", "tests/test_stage12p2_architecture.py", "tests/test_stage12p2_components.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "hard_soft_eligibility_and_attempt_failure",
+      "producer": "circuit_families.stage12p2 plus stage6b/stage6c",
+      "serializer": "HardEligibilityRecord, SoftEligibilityRecord, AttemptFailureRecord, and sealing records",
+      "consumer": "Stage 13 unconditional attempt accounting and discovery release gate",
+      "tests": ["tests/test_stage12p2_eligibility.py", "tests/test_stage6b_hard_attempt_records.py", "tests/test_stage6c_soft_eligibility_records.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "independent_discovery_and_exact_bridge",
+      "producer": "circuit_families.stage12r1",
+      "serializer": "Stage12R1LifecycleRecord and Stage 6A exact ledger",
+      "consumer": "Stage 13 discovery profiles and shared Endpoint 1/2 reducers",
+      "tests": ["scripts/validate_stage12r1_independent_discovery.py", "tests/test_stage12r1_contracts.py", "tests/test_stage12r1_records.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "canonical_and_sensitivity_bases",
+      "producer": "circuit_families.stage12r2",
+      "serializer": "BasisContract, BasisMask, BasisRelationship, and canonical_sha256",
+      "consumer": "Stage 13 basis panel and parameter/type accounting",
+      "tests": ["scripts/validate_stage12r2_basis_sensitivity.py", "tests/test_stage12r2_contracts.py", "tests/test_stage12r2_blocks_accounting.py", "tests/test_stage12r2_rotation.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "fidelity_and_exact_endpoint_reduction",
+      "producer": "Stage 5A centred-logit accumulator and Stage 6A ledger/reducer",
+      "serializer": "CentredLogitPredictiveMetricRecord and Endpoint1Result",
+      "consumer": "Stage 13 fidelity profile, frontier reducer, and Endpoint 1 report",
+      "tests": ["tests/test_stage5a_centred_logit_fidelity.py", "tests/test_stage6a_contracts.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "packing_graph_solver_and_proof",
+      "producer": "circuit_families.stage6e",
+      "serializer": "Endpoint2ResultRecord and PackingProofRecord",
+      "consumer": "Stage 13 Endpoint 2 and overlap/cap reducer panel",
+      "tests": ["tests/test_stage6e_endpoint2.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "four_layer_packing_calibration",
+      "producer": "circuit_families.stage12r3",
+      "serializer": "Stage12R3CalibrationContract and layer-specific result records",
+      "consumer": "Stage 13 null/calibration profiles and report surfaces",
+      "tests": ["scripts/validate_stage12r3_packing_calibration.py", "tests/test_stage12r3_combinatorial.py", "tests/test_stage12r3_ordinary_restart.py", "tests/test_stage12r3_local_exact.py", "tests/test_stage12r3_tractable.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "campaign_identity_dependencies_retries_and_states",
+      "producer": "circuit_families.stage12p3",
+      "serializer": "CampaignManifest, LogicalJobSpec, OutputContract, and canonical_sha256",
+      "consumer": "Stage 13 complete declarative Stage 15 manifest",
+      "tests": ["scripts/validate_stage12p3.py", "tests/test_stage12p3_contracts.py", "tests/test_stage12p3_resume.py", "tests/test_stage12p3_state.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "compact_storage_merge_retention_and_export",
+      "producer": "circuit_families.stage12p4",
+      "serializer": "StorageObjectContract, compact ledgers/masks, bundle manifest, and destination verification",
+      "consumer": "Stage 13 retention/export plan and Stage 15 output contracts",
+      "tests": ["scripts/validate_stage12p4.py", "tests/test_stage12p4_contracts_compact.py", "tests/test_stage12p4_quota_merge.py", "tests/test_stage12p4_export_cli.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "fourier_trial_capacity_controls_and_failures",
+      "producer": "circuit_families.stage12p5",
+      "serializer": "TrialContract, ComparisonSetResult, capacity accounting, and P3/P4 seal",
+      "consumer": "Stage 13 Fourier registration and complete comparison-set report",
+      "tests": ["scripts/validate_stage12p5.py", "tests/test_stage12p5_contracts_capacity.py", "tests/test_stage12p5_fourier_runner.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "canonical_condition_identity",
+      "producer": "circuit_families.stage4_condition_identity",
+      "serializer": "Stage 4 versioned condition identity grammar",
+      "consumer": "Every Stage 13 job and report row",
+      "tests": ["tests/test_stage4_condition_identity.py", "tests/test_stage4_condition_identity_adversarial.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "domain_separated_seed_derivation",
+      "producer": "circuit_families.stage4_seed_derivation",
+      "serializer": "canonical seed-material record",
+      "consumer": "Stage 13 planners and all stochastic/retry/null/Fourier streams",
+      "tests": ["tests/test_stage4_seed_derivation.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "teacher_seed_population_and_missing_cells",
+      "producer": "circuit_families.stage5d",
+      "serializer": "teacher-seed inventory, student-cell summary, and analysis profiles",
+      "consumer": "Stage 13 hierarchical analysis/report plan",
+      "tests": ["tests/test_stage5d_population.py", "tests/test_stage5d_cells.py", "tests/test_stage5d_outputs.py"],
+      "compatibility": "closed"
+    },
+    {
+      "requirement": "lifecycle_reproduction_inventory_boundary",
+      "producer": "circuit_families.stage7",
+      "serializer": "lifecycle, reproduction, inventory, and failure records",
+      "consumer": "Stage 13 validation, terminal accounting, and audit",
+      "tests": ["tests/test_stage7_technical_integration.py", "tests/test_stage7_integration_readiness.py"],
+      "compatibility": "closed"
+    }
+  ],
+  "collision_audit": {
+    "identity_contracts_duplicated": false,
+    "seed_contracts_duplicated": false,
+    "mask_semantics_altered": false,
+    "ledger_semantics_altered": false,
+    "failure_semantics_altered": false,
+    "lifecycle_semantics_altered": false,
+    "manifest_semantics_altered": false,
+    "blocking_incompatibilities": []
+  }
+}

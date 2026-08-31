@@ -1,0 +1,2253 @@
+{
+  "analysis_plan_sha256": "4f12fef3b5a25ef271e2532da4e3208d447a5d3981a2a9884cf788ac1ae4d082",
+  "approval_sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336",
+  "arrays": [
+    {
+      "array_id": "gate-approval",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [],
+      "dimensions": {},
+      "family": "human-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/protected_core/gate-approval/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "stage14-qualification",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "gate-approval"
+      ],
+      "dimensions": {},
+      "family": "qualification-prerequisite",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/protected_core/stage14-qualification/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "gate-launch",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "stage14-qualification"
+      ],
+      "dimensions": {},
+      "family": "human-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/protected_core/gate-launch/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task1-teachers",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 15,
+      "dependencies": [
+        "gate-launch"
+      ],
+      "dimensions": {
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "task": 1
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/protected_core/task1-teachers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task2-teachers",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 5,
+      "dependencies": [
+        "gate-launch"
+      ],
+      "dimensions": {
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "task": 2
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/protected_core/task2-teachers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "tractable-teacher",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "gate-launch"
+      ],
+      "dimensions": {
+        "seeds": [
+          0
+        ],
+        "task": "mod7-exact-calibration"
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/protected_core/tractable-teacher/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task1-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 540,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "conditions": 2,
+        "phases": 3,
+        "seeds": 15,
+        "slots": 6,
+        "task": 1
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/protected_core/task1-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task2-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "task2-teachers"
+      ],
+      "dimensions": {
+        "conditions": 2,
+        "phases": 2,
+        "seeds": 5,
+        "slots": 4,
+        "task": 2
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/protected_core/task2-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "architecture-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 320,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "architectures": 4,
+        "conditions": 2,
+        "phases": 2,
+        "seeds": 5,
+        "slots": 4
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/protected_core/architecture-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-task1-direct",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 45,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "models": "15 seeds x 3 phases"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-task1-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-task1-direct",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 180,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "models": "15 seeds x 3 phases",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-task1-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-task1-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 45,
+      "dependencies": [
+        "hard-restarts-task1-direct"
+      ],
+      "dimensions": {
+        "models": "15 seeds x 3 phases"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-task1-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-task1-student",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 270,
+      "dependencies": [
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "models": "15 x 3 x 2 conditions x 3 eligible ranks"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-task1-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-task1-student",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1080,
+      "dependencies": [
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "models": "15 x 3 x 2 conditions x 3 eligible ranks",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-task1-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-task1-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 270,
+      "dependencies": [
+        "hard-restarts-task1-student"
+      ],
+      "dimensions": {
+        "models": "15 x 3 x 2 conditions x 3 eligible ranks"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-task1-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-task2-direct",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task2-teachers"
+      ],
+      "dimensions": {
+        "models": "5 x 2 phases"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-task2-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-task2-direct",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task2-teachers"
+      ],
+      "dimensions": {
+        "models": "5 x 2 phases",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-task2-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-task2-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "hard-restarts-task2-direct"
+      ],
+      "dimensions": {
+        "models": "5 x 2 phases"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-task2-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-task2-student",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task2-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 conditions x 2 eligible ranks"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-task2-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-task2-student",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 160,
+      "dependencies": [
+        "task2-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 conditions x 2 eligible ranks",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-task2-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-task2-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "hard-restarts-task2-student"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 conditions x 2 eligible ranks"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-task2-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-architecture",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 160,
+      "dependencies": [
+        "architecture-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 x 4 alternates x 2 eligible ranks"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-architecture/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-architecture",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 640,
+      "dependencies": [
+        "architecture-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 x 4 alternates x 2 eligible ranks",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-architecture/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-architecture",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 160,
+      "dependencies": [
+        "hard-restarts-architecture"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x 2 x 4 alternates x 2 eligible ranks"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-architecture/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-basis-direct",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x direct x 4 alternate bases"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-basis-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-basis-direct",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 160,
+      "dependencies": [
+        "task1-teachers"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x direct x 4 alternate bases",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-basis-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-basis-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "hard-restarts-basis-direct"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x direct x 4 alternate bases"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-basis-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "greedy-basis-student",
+      "concurrency_group": "discovery-greedy/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x hard/soft x 4 alternate bases"
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/greedy-basis-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-restarts-basis-student",
+      "concurrency_group": "discovery-hard-concrete/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 320,
+      "dependencies": [
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x hard/soft x 4 alternate bases",
+        "restarts_per_ledger": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/protected_core/hard-restarts-basis-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "hard-ledgers-basis-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "hard-restarts-basis-student"
+      ],
+      "dimensions": {
+        "models": "5 x 2 x hard/soft x 4 alternate bases"
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/protected_core/hard-ledgers-basis-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "endpoint-reducers",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1290,
+      "dependencies": [
+        "greedy-task1-direct",
+        "greedy-task1-student",
+        "greedy-task2-direct",
+        "greedy-task2-student",
+        "greedy-architecture",
+        "greedy-basis-direct",
+        "greedy-basis-student",
+        "hard-ledgers-task1-direct",
+        "hard-ledgers-task1-student",
+        "hard-ledgers-task2-direct",
+        "hard-ledgers-task2-student",
+        "hard-ledgers-architecture",
+        "hard-ledgers-basis-direct",
+        "hard-ledgers-basis-student"
+      ],
+      "dimensions": {
+        "ledgers_per_method": 645,
+        "methods": 2
+      },
+      "family": "sealed-ledger-endpoint-reducer",
+      "operation_counts_per_member": {
+        "endpoint1_reductions": 1,
+        "frontier_reductions": 5,
+        "packing_grid_reductions": 12
+      },
+      "output_template": "stage15/protected_core/endpoint-reducers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage6a-stage6e-reducer/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "ordinary-restart-greedy-subjobs",
+      "concurrency_group": "calibration-ordinary/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 480,
+      "dependencies": [
+        "task1-teachers",
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "method": "greedy",
+        "profiles": 30,
+        "restarts": 16
+      },
+      "family": "ordinary-restart",
+      "operation_counts_per_member": {
+        "ordinary_restart_subjobs": 1
+      },
+      "output_template": "stage15/protected_core/ordinary-restart-greedy-subjobs/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-ordinary-restart/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "ordinary-restart-hard-subjobs",
+      "concurrency_group": "calibration-ordinary/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 480,
+      "dependencies": [
+        "task1-teachers",
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "method": "hard-concrete",
+        "profiles": 30,
+        "restarts": 16
+      },
+      "family": "ordinary-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "ordinary_restart_subjobs": 1
+      },
+      "output_template": "stage15/protected_core/ordinary-restart-hard-subjobs/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-ordinary-restart/v1",
+      "protected": true,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "ordinary-restart-ledgers",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "ordinary-restart-greedy-subjobs",
+        "ordinary-restart-hard-subjobs"
+      ],
+      "dimensions": {
+        "profiles": 60
+      },
+      "family": "ordinary-restart-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256
+      },
+      "output_template": "stage15/protected_core/ordinary-restart-ledgers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-ordinary-restart/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "combinatorial-nulls",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "endpoint-reducers"
+      ],
+      "dimensions": {
+        "profiles": 60
+      },
+      "family": "combinatorial-null",
+      "operation_counts_per_member": {
+        "combinatorial_null_draws": 10000
+      },
+      "output_template": "stage15/protected_core/combinatorial-nulls/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-combinatorial/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "local-perturbation-nulls",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "endpoint-reducers"
+      ],
+      "dimensions": {
+        "maximum_radius": 2,
+        "profiles": 60
+      },
+      "family": "local-perturbation-null",
+      "operation_counts_per_member": {
+        "exact_evaluations": 128
+      },
+      "output_template": "stage15/protected_core/local-perturbation-nulls/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-local-exact/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "tractable-calibration-shards",
+      "concurrency_group": "calibration-exact/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 256,
+      "dependencies": [
+        "tractable-teacher"
+      ],
+      "dimensions": {
+        "shard_size": 1024,
+        "total_masks": 262144
+      },
+      "family": "tractable-exact-calibration",
+      "operation_counts_per_member": {
+        "exact_evaluations": 1024
+      },
+      "output_template": "stage15/protected_core/tractable-calibration-shards/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r3-tractable/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "fourier-condition-jobs",
+      "concurrency_group": "fourier/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 360,
+      "dependencies": [
+        "task1-teachers",
+        "task1-student-attempts"
+      ],
+      "dimensions": {
+        "comparison_sets": 60,
+        "conditions": 6,
+        "trials": 256
+      },
+      "family": "fourier-interchange-condition",
+      "operation_counts_per_member": {
+        "fourier_condition_jobs": 1,
+        "fourier_input_condition_trials": 256
+      },
+      "output_template": "stage15/protected_core/fourier-condition-jobs/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p5-fourier-runner/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier2-protected",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "protected-report-reduction",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "endpoint-reducers",
+        "ordinary-restart-ledgers",
+        "combinatorial-nulls",
+        "local-perturbation-nulls",
+        "tractable-calibration-shards",
+        "fourier-condition-jobs"
+      ],
+      "dimensions": {},
+      "family": "analysis-report-reduction",
+      "operation_counts_per_member": {
+        "report_reductions": 1
+      },
+      "output_template": "stage15/protected_core/protected-report-reduction/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage5d-hierarchical-output/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "gate-primary-completeness",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "protected-report-reduction"
+      ],
+      "dimensions": {},
+      "family": "human-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/protected_core/gate-primary-completeness/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "protected-merge-export",
+      "concurrency_group": "serial-merge/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "gate-primary-completeness"
+      ],
+      "dimensions": {},
+      "family": "compact-merge-export",
+      "operation_counts_per_member": {
+        "merge_export": 1
+      },
+      "output_template": "stage15/protected_core/protected-merge-export/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p4-compact-export/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "gate-exit",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "protected-merge-export"
+      ],
+      "dimensions": {},
+      "family": "human-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/protected_core/gate-exit/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": true,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "protected_core",
+      "shedding": "never",
+      "tier": "tier1",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-admission",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "gate-primary-completeness"
+      ],
+      "dimensions": {},
+      "family": "optional-capacity-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/optional_task_3_increment/task3-admission/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-teachers",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 5,
+      "dependencies": [
+        "task3-admission"
+      ],
+      "dimensions": {
+        "seeds": 5,
+        "task": 3
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-teachers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task3-teachers"
+      ],
+      "dimensions": {
+        "conditions": 2,
+        "phases": 2,
+        "seeds": 5,
+        "slots": 2,
+        "task": 3
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-greedy-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task3-teachers"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 3
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-greedy-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-greedy-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task3-student-attempts"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 3
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-greedy-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-hard-restarts-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task3-teachers"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "role": "direct",
+        "task": 3
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-hard-restarts-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-hard-restarts-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "task3-student-attempts"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 3
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-hard-restarts-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-hard-ledgers-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task3-hard-restarts-direct"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 3
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-hard-ledgers-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-hard-ledgers-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task3-hard-restarts-student"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 3
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-hard-ledgers-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-endpoint-reducers",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "task3-greedy-direct",
+        "task3-greedy-student",
+        "task3-hard-ledgers-direct",
+        "task3-hard-ledgers-student"
+      ],
+      "dimensions": {
+        "methods": 2,
+        "models": 30,
+        "task": 3
+      },
+      "family": "sealed-ledger-endpoint-reducer",
+      "operation_counts_per_member": {
+        "endpoint1_reductions": 1,
+        "frontier_reductions": 5,
+        "packing_grid_reductions": 12
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-endpoint-reducers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage6a-stage6e-reducer/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task3-merge-export",
+      "concurrency_group": "serial-merge/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "task3-endpoint-reducers"
+      ],
+      "dimensions": {
+        "task": 3
+      },
+      "family": "compact-merge-export",
+      "operation_counts_per_member": {
+        "merge_export": 1
+      },
+      "output_template": "stage15/optional_task_3_increment/task3-merge-export/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p4-compact-export/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_3_increment",
+      "shedding": "not-admitted-before-task-3",
+      "tier": "tier3-task3",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-admission",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "task3-merge-export"
+      ],
+      "dimensions": {},
+      "family": "optional-capacity-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/optional_task_4_increment/task4-admission/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-teachers",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 5,
+      "dependencies": [
+        "task4-admission"
+      ],
+      "dimensions": {
+        "seeds": 5,
+        "task": 4
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-teachers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task4-teachers"
+      ],
+      "dimensions": {
+        "conditions": 2,
+        "phases": 2,
+        "seeds": 5,
+        "slots": 2,
+        "task": 4
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-greedy-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task4-teachers"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 4
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-greedy-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-greedy-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task4-student-attempts"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 4
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-greedy-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-hard-restarts-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task4-teachers"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "role": "direct",
+        "task": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-hard-restarts-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-hard-restarts-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "task4-student-attempts"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 4
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-hard-restarts-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-hard-ledgers-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task4-hard-restarts-direct"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 4
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-hard-ledgers-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-hard-ledgers-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task4-hard-restarts-student"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 4
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-hard-ledgers-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-endpoint-reducers",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "task4-greedy-direct",
+        "task4-greedy-student",
+        "task4-hard-ledgers-direct",
+        "task4-hard-ledgers-student"
+      ],
+      "dimensions": {
+        "methods": 2,
+        "models": 30,
+        "task": 4
+      },
+      "family": "sealed-ledger-endpoint-reducer",
+      "operation_counts_per_member": {
+        "endpoint1_reductions": 1,
+        "frontier_reductions": 5,
+        "packing_grid_reductions": 12
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-endpoint-reducers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage6a-stage6e-reducer/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task4-merge-export",
+      "concurrency_group": "serial-merge/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "task4-endpoint-reducers"
+      ],
+      "dimensions": {
+        "task": 4
+      },
+      "family": "compact-merge-export",
+      "operation_counts_per_member": {
+        "merge_export": 1
+      },
+      "output_template": "stage15/optional_task_4_increment/task4-merge-export/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p4-compact-export/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_4_increment",
+      "shedding": "not-admitted-before-task-4",
+      "tier": "tier3-task4",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-admission",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "task4-merge-export"
+      ],
+      "dimensions": {},
+      "family": "optional-capacity-gate",
+      "operation_counts_per_member": {},
+      "output_template": "stage15/optional_task_5_increment/task5-admission/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-teachers",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 5,
+      "dependencies": [
+        "task5-admission"
+      ],
+      "dimensions": {
+        "seeds": 5,
+        "task": 5
+      },
+      "family": "teacher-training",
+      "operation_counts_per_member": {
+        "teacher_training": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-teachers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-student-attempts",
+      "concurrency_group": "training/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task5-teachers"
+      ],
+      "dimensions": {
+        "conditions": 2,
+        "phases": 2,
+        "seeds": 5,
+        "slots": 2,
+        "task": 5
+      },
+      "family": "student-attempt",
+      "operation_counts_per_member": {
+        "student_attempts": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-student-attempts/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p3-contract/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-greedy-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task5-teachers"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 5
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-greedy-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-greedy-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task5-student-attempts"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 5
+      },
+      "family": "greedy-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "greedy_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-greedy-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-hard-restarts-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 40,
+      "dependencies": [
+        "task5-teachers"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "role": "direct",
+        "task": 5
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-hard-restarts-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-hard-restarts-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 80,
+      "dependencies": [
+        "task5-student-attempts"
+      ],
+      "dimensions": {
+        "restarts": 4,
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 5
+      },
+      "family": "hard-concrete-restart",
+      "operation_counts_per_member": {
+        "hard_concrete_optimizer_steps": 5000,
+        "hard_concrete_restart_runs": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-hard-restarts-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-hard-ledgers-direct",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 10,
+      "dependencies": [
+        "task5-hard-restarts-direct"
+      ],
+      "dimensions": {
+        "role": "direct",
+        "task": 5
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-hard-ledgers-direct/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-hard-ledgers-student",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 20,
+      "dependencies": [
+        "task5-hard-restarts-student"
+      ],
+      "dimensions": {
+        "roles": [
+          "lowest-hard",
+          "lowest-soft"
+        ],
+        "task": 5
+      },
+      "family": "hard-concrete-discovery-ledger",
+      "operation_counts_per_member": {
+        "exact_evaluations": 256,
+        "hard_concrete_discovery_ledgers": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-hard-ledgers-student/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12r1-independent-discovery/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-endpoint-reducers",
+      "concurrency_group": "cpu-independent/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 60,
+      "dependencies": [
+        "task5-greedy-direct",
+        "task5-greedy-student",
+        "task5-hard-ledgers-direct",
+        "task5-hard-ledgers-student"
+      ],
+      "dimensions": {
+        "methods": 2,
+        "models": 30,
+        "task": 5
+      },
+      "family": "sealed-ledger-endpoint-reducer",
+      "operation_counts_per_member": {
+        "endpoint1_reductions": 1,
+        "frontier_reductions": 5,
+        "packing_grid_reductions": 12
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-endpoint-reducers/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage6a-stage6e-reducer/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    },
+    {
+      "array_id": "task5-merge-export",
+      "concurrency_group": "serial-merge/v1",
+      "config_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+      "count": 1,
+      "dependencies": [
+        "task5-endpoint-reducers"
+      ],
+      "dimensions": {
+        "task": 5
+      },
+      "family": "compact-merge-export",
+      "operation_counts_per_member": {
+        "merge_export": 1
+      },
+      "output_template": "stage15/optional_task_5_increment/task5-merge-export/{index}.json",
+      "priority": 10,
+      "producer_interface": "stage12p4-compact-export/v1",
+      "protected": false,
+      "resource_class": "qualified-cpu/v1",
+      "retention": "final-plus-latest-valid-recovery/v1",
+      "retry_class": "stage13-fixed-logical-identity-max-three-attempts/v1",
+      "scope": "optional_task_5_increment",
+      "shedding": "not-admitted-before-task-5",
+      "tier": "tier3-task5",
+      "unavailable_consequence": "retain-terminal-state-no-imputation-no-replacement"
+    }
+  ],
+  "definitive_execution_started": false,
+  "human_gates": [
+    "approval",
+    "Stage 14 protected-core launch",
+    "primary completeness/exit"
+  ],
+  "production_eligible": false,
+  "resource_classes": [
+    {
+      "id": "qualified-accelerator-or-cpu/v1",
+      "memory": "measured per hardware class",
+      "provider": null,
+      "runtime": "minimum-of-three qualified throughput",
+      "scratch": "measured active worker plus staging",
+      "stage14_binding_required": true
+    },
+    {
+      "id": "qualified-cpu/v1",
+      "memory": "measured per hardware class",
+      "provider": null,
+      "runtime": "minimum-of-three qualified throughput",
+      "scratch": "measured active worker plus staging",
+      "stage14_binding_required": true
+    }
+  ],
+  "resource_projection_sha256": "7f43b4560f63bd81b63f20e97cc152dedc09fae412c600f4eafc699f80b06186",
+  "retry_policy": {
+    "logical_identity_unchanged": true,
+    "maximum_attempts": 3,
+    "maximum_retries": 2,
+    "nonretryable": [
+      "scientific_failure",
+      "validation_failure"
+    ],
+    "retryable": [
+      "worker_error",
+      "resource_exhaustion",
+      "interruption",
+      "stale_claim",
+      "transfer_interruption"
+    ]
+  },
+  "schema_version": "stage13-job-array-spec/v1",
+  "scientific_data": false,
+  "scientific_profile_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+  "seed_derivation": "stage4-domain-separated-seed/v1",
+  "terminal_states": [
+    "sealed_success",
+    "failed",
+    "unavailable",
+    "censored",
+    "not_admitted"
+  ]
+}
