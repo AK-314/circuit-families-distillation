@@ -1,0 +1,85 @@
+{
+  "schema_version": "stage13-part-a-evidence/v1",
+  "captured_date": "2026-08-31",
+  "repository": {
+    "remote": "https://github.com/AK-314/circuit-families-distillation.git",
+    "branch": "feat/stage-13-protocol-manifest-freeze",
+    "head": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+    "implementation_base": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+    "local_main_at_capture": "4596ef78113f5184652f361d7515dcc74a348df4",
+    "origin_main_at_capture": "7976c98cc83a6df098ae0ef8c59b56027a7f4899",
+    "tracked_tree_clean_before_stage13_changes": true,
+    "isolated_worktree_used": true,
+    "original_checkout_untracked_files_preserved": [
+      "docs/distillation_followup/presentations/circuit_families_phase2_red_team_briefing.pptx",
+      "docs/distillation_followup/red_team/circuit_families_red_team_evidence_dossier.docx"
+    ]
+  },
+  "ancestry": {
+    "integrated_stage12_floor": {"sha": "b843323122207c472f3a19edd502c01b266b991b", "ancestor_of_origin_main": true, "merge_pr": 32},
+    "accepted_heads": [
+      {"sha": "6e027a8c22e5228dadad8707f3a262e78028f855", "ancestor_of_origin_main": true, "merge_pr": 18},
+      {"sha": "0ba93daece3328d9bc2aa5ad2296f200a92f26fb", "ancestor_of_origin_main": true, "merge_pr": 17},
+      {"sha": "b11c32aa0ef2328a86f41096f188a7a055352fd8", "ancestor_of_origin_main": true, "merge_pr": 20},
+      {"sha": "c4065c2977f2d4e0cd09a54014f60f993f08aceb", "ancestor_of_origin_main": true, "merge_pr": 22},
+      {"sha": "21d80d72376f004656d827069fc53bf55864ce61", "ancestor_of_origin_main": true, "merge_pr": 24},
+      {"sha": "955d357609f8916797d2ea929f924e8f120e2334", "ancestor_of_origin_main": true, "merge_pr": 25},
+      {"sha": "464904c19c3f4bafdd0fc424aa7be4fb3350a831", "ancestor_of_origin_main": true, "merge_pr": 29},
+      {"sha": "ed4d9f3c8dc334a8dd80f8439dbd75826fd75e0f", "ancestor_of_origin_main": true, "merge_pr": 31},
+      {"sha": "528ee302b5659f7848d098d27bb60d1d26c397eb", "ancestor_of_origin_main": true, "merge_pr": 32}
+    ]
+  },
+  "stage12_import_audit": {
+    "stage12p1": {"export_count": 45, "missing_exports": [], "validate_only": "PASS"},
+    "stage12r1": {"export_count": 42, "missing_exports": [], "validate_only": "PASS"},
+    "stage12p2": {"export_count": 70, "missing_exports": [], "validate_only": "PASS"},
+    "stage12r2": {"export_count": 50, "missing_exports": [], "validate_only": "PASS"},
+    "stage12p3": {"export_count": 39, "missing_exports": [], "validate_only": "PASS"},
+    "stage12p4": {"export_count": 32, "missing_exports": [], "validate_only": "PASS"},
+    "stage12r3": {"export_count": 49, "missing_exports": [], "validate_only": "PASS"},
+    "stage12p5": {"export_count": 38, "missing_exports": [], "validate_only": "PASS"}
+  },
+  "open_decision_register": {
+    "path": "followup/configs/post_red_team_open_decisions_v1.json",
+    "sha256": "7d28f921a294745b4eb231ff5cb91f430cd0de24db76ac2fee578c38d5a935de",
+    "decision_ids": ["RD-001", "RD-002", "RD-003", "RD-004", "RD-005", "RD-006", "RD-007", "RD-008", "RD-009", "RD-010", "RD-011", "RD-012", "RD-013", "RD-014"],
+    "all_statuses_at_capture": "open"
+  },
+  "historical_stage3_context_not_stage13_answer": {
+    "registry_path": "followup/manifests/stage3_teacher_registry_v1.json",
+    "registry_sha256": "36656fe848f7cb980cd9178f1d48cbbee74bb410135746e079cae11440b6ff0d",
+    "table_path": "followup/tables/stage3_teacher_phase_selection_v1.csv",
+    "table_sha256": "56c215efa4902a5b34da9e75f3593d6e5a324dcd8690c4308e76f133be128647",
+    "teacher_seeds": [0, 1, 2, 3, 4],
+    "phase_order": ["pre-grokking", "50%", "stable post-grokking"],
+    "planned_cells": 15,
+    "selected_cells": 13,
+    "unavailable_cells": [
+      {"teacher_seed": 0, "phase": "pre-grokking", "reason": "no saved checkpoint satisfies the frozen pre-grokking rule"},
+      {"teacher_seed": 0, "phase": "50%", "reason": "selected pre-grokking bound is unavailable"}
+    ]
+  },
+  "scope_guard": {
+    "new_stage13_freeze_artifacts_present_before_branch_work": false,
+    "post_red_team_stage14_or_stage15_work_present": false,
+    "historical_files_named_stage13_or_stage14_are_distinct_predecessor_work": true,
+    "active_scientific_or_stage14_stage15_process_found": false,
+    "registered_or_private_artifacts_accessed": false
+  },
+  "resource_facts": {
+    "verified_technical_facts": [
+      "Stage 9 CPU fixture was bitwise reproducible",
+      "Stage 9 MPS fixture was not bitwise reproducible and is development-only",
+      "Stage 9 observed about 0.90-0.92 GB peak RSS for one training process",
+      "Stage 10 observed about 0.52 GB peak RSS and recommended one worker on the measured Mac",
+      "Stage 10 measured a full-domain exact evaluation at about 0.088 seconds on its technical CPU fixture"
+    ],
+    "documented_intended_envelope_not_a_grant": {"continuous_hours": 96, "cpu_cores_range": [128, 256], "cuda_gpus_range": [8, 16], "scratch_bytes": 4398046511104, "persistent_bytes": 1099511627776, "final_audit_hours_range": [6, 12]},
+    "unknown_until_stage14": ["provider", "scheduler", "queue/account/project", "actual CPU/GPU models and counts", "container digest", "filesystem roots", "actual quotas", "credentials", "export destination", "safe measured concurrency", "CUDA numerical qualification"]
+  },
+  "compatibility_inventory": "followup/manifests/stage13_compatibility_inventory_v1.json",
+  "blocking_incompatibilities": [],
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false
+}
