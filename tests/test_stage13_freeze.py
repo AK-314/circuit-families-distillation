@@ -52,11 +52,8 @@ def test_analysis_rejects_missing_fourier_control_and_global_minimum_claim() -> 
         validate_analysis(missing, dossier)
     global_claim = copy.deepcopy(analysis)
     global_claim["claim_rules"]["endpoint1"] = "global minimum"
-    with pytest.raises(Stage13FreezeError, match="fields mismatch|post-approval|Endpoint"):
-        # The top-level claim rules are also bound by the integrated validator;
-        # this direct check demonstrates that arbitrary scientific edits are not accepted.
-        if "global minimum" in global_claim["claim_rules"]["endpoint1"]:
-            raise Stage13FreezeError("Endpoint global-minimum claim forbidden")
+    with pytest.raises(Stage13FreezeError, match="claim boundary"):
+        validate_analysis(global_claim, dossier)
 
 
 def test_manifest_rejects_cycle_identity_collision_and_provider_assumption() -> None:

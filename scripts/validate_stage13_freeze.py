@@ -214,6 +214,19 @@ def validate_analysis(value: dict[str, Any], dossier: dict[str, Any]) -> None:
         raise Stage13FreezeError("optional order changed")
     if len(value["outcome_categories"]) != 6 or not value["every_terminal_dataset_maps_to_report"]:
         raise Stage13FreezeError("terminal outcome mapping is incomplete")
+    expected_claim_rules = {
+        "endpoint1": "procedure-relative primary; never global minimum",
+        "packing": "procedure-relative lower bound and key secondary",
+        "nulls": "calibration diagnostics only",
+        "tractable": "small-instance procedure calibration only",
+        "basis": "paired conditional sensitivity",
+        "method": "within-method primary; cross-method descriptive",
+        "fourier": (
+            "shared abstraction only under full six-condition success rule; uniqueness prohibited"
+        ),
+    }
+    if value["claim_rules"] != expected_claim_rules:
+        raise Stage13FreezeError("claim boundary changed")
     _boundary(value, label="analysis plan")
 
 
