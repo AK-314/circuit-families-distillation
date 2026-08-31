@@ -1,0 +1,784 @@
+{
+  "benchmark_bindings": {
+    "stage10_exact": "followup/benchmarks/stage10_discovery_compute_benchmark_m5max_v1.json",
+    "stage13_constructed_search": "followup/benchmarks/stage13_search_profile_benchmark_v1.json",
+    "stage9_training": "followup/benchmarks/stage9_training_backend_benchmark_m5max_v1.json"
+  },
+  "classification": "prospective non-scientific planning evidence",
+  "definitive_execution_started": false,
+  "envelope": {
+    "cpu_cores": 256,
+    "cuda_gpus": 16,
+    "final_audit_reserve_hours": 12,
+    "grant_verified": false,
+    "persistent_tib": 1,
+    "science_execution_hours": 84,
+    "scratch_tib": 4,
+    "total_hours": 96
+  },
+  "packages": {
+    "A": {
+      "job_counts": {
+        "all_exact_evaluations": 630784,
+        "architecture_panel_discovery_ledgers_both_methods_subset": 320,
+        "architecture_student_attempt_jobs_by_scenario": {
+          "central": 240,
+          "conservative": 320,
+          "lower": 160
+        },
+        "basis_panel_discovery_ledgers_both_methods_subset": 240,
+        "combinatorial_null_draws": 600000,
+        "discovery_exact_evaluations_including_intact": 345600,
+        "exact_calibration_enumeration_jobs": 1,
+        "exact_calibration_masks": 262144,
+        "export_jobs": 1,
+        "fourier_comparison_sets": 60,
+        "fourier_condition_jobs": 360,
+        "fourier_input_condition_trials": 92160,
+        "greedy_discovery_ledger_jobs": 675,
+        "hard_concrete_discovery_ledger_jobs": 675,
+        "hard_concrete_native_restart_runs": 2700,
+        "local_null_exact_evaluations": 7680,
+        "merge_jobs": 1,
+        "ordinary_restart_exact_evaluations_including_intact": 15360,
+        "ordinary_restart_profile_jobs": 60,
+        "ordinary_restart_subjobs": 960,
+        "student_attempt_jobs_by_scenario": {
+          "central": 690,
+          "conservative": 980,
+          "lower": 490
+        },
+        "teacher_training_jobs": 26
+      },
+      "package_id": "stage13-package-a-conservative-protected/v2",
+      "scenarios": [
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.85,
+            "gpu_scheduling_efficiency": 0.85,
+            "seconds_per_canonical_equivalent_training_update": 0.018544916,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.035,
+            "updates_per_training_attempt": 5000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 2812240.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.06,
+            "capacity_lower_bound_gpu_wall_hours": 12.432,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 5.317,
+              "canonical_student_training_gpu_hours": 8.5,
+              "combinatorial_null_cpu_core_hours": 0.0,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 0.036,
+              "fourier_cpu_core_hours": 0.018,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 131.25,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 4.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 23.333,
+              "teacher_training_gpu_hours": 0.67
+            },
+            "exact_evaluation_cpu_core_hours": 9.093,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 154.583,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 4.0,
+            "orchestration_dependency_allowance_hours": 1.0,
+            "other_cpu_core_hours": 0.043,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 5.317,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 13.492,
+            "projected_total_wall_hours": 25.492,
+            "total_cpu_core_hours": 13.136,
+            "total_gpu_hours": 169.07,
+            "training_gpu_hours": 14.487
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.482,
+            "per_training_or_hard_concrete_worker_gib": 0.861,
+            "sixteen_training_workers_aggregate_gib": 13.776,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 123.392
+          },
+          "scenario": "lower",
+          "storage": {
+            "exact_ledgers_gib": 0.301,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.044,
+            "persistent_total_gib": 12.054,
+            "reports_and_export_metadata_gib": 0.931,
+            "scratch_peak_gib": 18.081,
+            "search_checkpoints_gib": 6.693,
+            "training_artifacts_gib": 4.084
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.7,
+            "gpu_scheduling_efficiency": 0.7,
+            "seconds_per_canonical_equivalent_training_update": 0.035,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.14,
+            "updates_per_training_attempt": 20000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 15713440.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.143,
+            "capacity_lower_bound_gpu_wall_hours": 68.848,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 60.214,
+              "canonical_student_training_gpu_hours": 87.5,
+              "combinatorial_null_cpu_core_hours": 0.003,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 0.364,
+              "fourier_cpu_core_hours": 0.179,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 525.0,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 16.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 93.333,
+              "teacher_training_gpu_hours": 5.056
+            },
+            "exact_evaluation_cpu_core_hours": 9.421,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 618.333,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 16.0,
+            "orchestration_dependency_allowance_hours": 4.0,
+            "other_cpu_core_hours": 0.207,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 60.214,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 72.991,
+            "projected_total_wall_hours": 84.991,
+            "total_cpu_core_hours": 25.628,
+            "total_gpu_hours": 771.103,
+            "training_gpu_hours": 152.77
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.75,
+            "per_training_or_hard_concrete_worker_gib": 1.72,
+            "sixteen_training_workers_aggregate_gib": 27.52,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 192.0
+          },
+          "scenario": "central",
+          "storage": {
+            "exact_ledgers_gib": 0.602,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.088,
+            "persistent_total_gib": 24.711,
+            "reports_and_export_metadata_gib": 2.794,
+            "scratch_peak_gib": 49.421,
+            "search_checkpoints_gib": 13.386,
+            "training_artifacts_gib": 7.841
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.5,
+            "gpu_scheduling_efficiency": 0.5,
+            "seconds_per_canonical_equivalent_training_update": 0.141523208,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.28,
+            "updates_per_training_attempt": 40000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 43955840.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.63,
+            "capacity_lower_bound_gpu_wall_hours": 370.582,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 649.271,
+              "canonical_student_training_gpu_hours": 1037.837,
+              "combinatorial_null_cpu_core_hours": 0.033,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 6.44,
+              "fourier_cpu_core_hours": 1.128,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 1050.0,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 64.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 186.667,
+              "teacher_training_gpu_hours": 40.884
+            },
+            "exact_evaluation_cpu_core_hours": 15.497,
+            "fits_84_hour_science_window": false,
+            "fits_96_hour_total_window": false,
+            "hard_concrete_gpu_hours": 1236.667,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 64.0,
+            "orchestration_dependency_allowance_hours": 12.0,
+            "other_cpu_core_hours": 1.186,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 649.271,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 383.213,
+            "projected_total_wall_hours": 395.213,
+            "total_cpu_core_hours": 80.683,
+            "total_gpu_hours": 2964.659,
+            "training_gpu_hours": 1727.992
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 1.0,
+            "per_training_or_hard_concrete_worker_gib": 3.44,
+            "sixteen_training_workers_aggregate_gib": 55.04,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 256.0
+          },
+          "scenario": "conservative",
+          "storage": {
+            "exact_ledgers_gib": 1.203,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.176,
+            "persistent_total_gib": 57.584,
+            "reports_and_export_metadata_gib": 7.451,
+            "scratch_peak_gib": 172.753,
+            "search_checkpoints_gib": 26.773,
+            "training_artifacts_gib": 21.982
+          }
+        }
+      ]
+    },
+    "B": {
+      "job_counts": {
+        "all_exact_evaluations": 379904,
+        "architecture_panel_discovery_ledgers_both_methods_subset": 80,
+        "architecture_student_attempt_jobs_by_scenario": {
+          "central": 60,
+          "conservative": 80,
+          "lower": 40
+        },
+        "basis_panel_discovery_ledgers_both_methods_subset": 180,
+        "combinatorial_null_draws": 120000,
+        "discovery_exact_evaluations_including_intact": 106240,
+        "exact_calibration_enumeration_jobs": 1,
+        "exact_calibration_masks": 262144,
+        "export_jobs": 1,
+        "fourier_comparison_sets": 60,
+        "fourier_condition_jobs": 360,
+        "fourier_input_condition_trials": 92160,
+        "greedy_discovery_ledger_jobs": 415,
+        "hard_concrete_discovery_ledger_jobs": 415,
+        "hard_concrete_native_restart_runs": 830,
+        "local_null_exact_evaluations": 3840,
+        "merge_jobs": 1,
+        "ordinary_restart_exact_evaluations_including_intact": 7680,
+        "ordinary_restart_profile_jobs": 60,
+        "ordinary_restart_subjobs": 480,
+        "student_attempt_jobs_by_scenario": {
+          "central": 390,
+          "conservative": 520,
+          "lower": 260
+        },
+        "teacher_training_jobs": 26
+      },
+      "package_id": "stage13-package-b-reduced-protected/v2",
+      "scenarios": [
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.85,
+            "gpu_scheduling_efficiency": 0.85,
+            "seconds_per_canonical_equivalent_training_update": 0.018544916,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.035,
+            "updates_per_training_attempt": 5000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 1517000.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.032,
+            "capacity_lower_bound_gpu_wall_hours": 2.487,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 1.478,
+              "canonical_student_training_gpu_hours": 5.667,
+              "combinatorial_null_cpu_core_hours": 0.0,
+              "discovery_exact_evaluation_cpu_core_hours": 2.61,
+              "exact_2pow18_calibration_cpu_core_hours": 0.036,
+              "fourier_cpu_core_hours": 0.018,
+              "greedy_discovery_ranking_cpu_core_hours": 0.015,
+              "hard_concrete_main_gpu_hours": 20.174,
+              "local_null_exact_cpu_core_hours": 0.094,
+              "merge_and_export_cpu_core_hours": 4.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.189,
+              "ordinary_restart_hard_concrete_gpu_hours": 5.833,
+              "teacher_training_gpu_hours": 0.67
+            },
+            "exact_evaluation_cpu_core_hours": 2.93,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 26.007,
+            "hard_concrete_optimizer_steps": 2675000,
+            "merge_export_cpu_core_hours": 4.0,
+            "orchestration_dependency_allowance_hours": 1.0,
+            "other_cpu_core_hours": 0.033,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 80,
+              "architecture_exact_evaluations": 10240,
+              "architecture_hard_concrete_steps": 200000,
+              "architecture_training_gpu_hours": 1.478,
+              "basis_discovery_ledgers_both_methods": 180,
+              "basis_exact_evaluations": 23040,
+              "basis_hard_concrete_steps": 450000
+            },
+            "projected_science_wall_hours": 3.519,
+            "projected_total_wall_hours": 15.519,
+            "total_cpu_core_hours": 6.963,
+            "total_gpu_hours": 33.822,
+            "training_gpu_hours": 7.815
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.482,
+            "per_training_or_hard_concrete_worker_gib": 0.861,
+            "sixteen_training_workers_aggregate_gib": 13.776,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 123.392
+          },
+          "scenario": "lower",
+          "storage": {
+            "exact_ledgers_gib": 0.181,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.044,
+            "persistent_total_gib": 5.672,
+            "reports_and_export_metadata_gib": 0.931,
+            "scratch_peak_gib": 8.509,
+            "search_checkpoints_gib": 2.252,
+            "training_artifacts_gib": 2.264
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.7,
+            "gpu_scheduling_efficiency": 0.7,
+            "seconds_per_canonical_equivalent_training_update": 0.035,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.14,
+            "updates_per_training_attempt": 20000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 8842000.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.109,
+            "capacity_lower_bound_gpu_wall_hours": 16.964,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 16.742,
+              "canonical_student_training_gpu_hours": 64.167,
+              "combinatorial_null_cpu_core_hours": 0.001,
+              "discovery_exact_evaluation_cpu_core_hours": 2.61,
+              "exact_2pow18_calibration_cpu_core_hours": 0.364,
+              "fourier_cpu_core_hours": 0.179,
+              "greedy_discovery_ranking_cpu_core_hours": 0.015,
+              "hard_concrete_main_gpu_hours": 80.694,
+              "local_null_exact_cpu_core_hours": 0.094,
+              "merge_and_export_cpu_core_hours": 16.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.189,
+              "ordinary_restart_hard_concrete_gpu_hours": 23.333,
+              "teacher_training_gpu_hours": 5.056
+            },
+            "exact_evaluation_cpu_core_hours": 3.257,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 104.028,
+            "hard_concrete_optimizer_steps": 2675000,
+            "merge_export_cpu_core_hours": 16.0,
+            "orchestration_dependency_allowance_hours": 4.0,
+            "other_cpu_core_hours": 0.195,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 80,
+              "architecture_exact_evaluations": 10240,
+              "architecture_hard_concrete_steps": 200000,
+              "architecture_training_gpu_hours": 16.742,
+              "basis_discovery_ledgers_both_methods": 180,
+              "basis_exact_evaluations": 23040,
+              "basis_hard_concrete_steps": 450000
+            },
+            "projected_science_wall_hours": 21.072,
+            "projected_total_wall_hours": 33.072,
+            "total_cpu_core_hours": 19.453,
+            "total_gpu_hours": 189.992,
+            "training_gpu_hours": 85.964
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.75,
+            "per_training_or_hard_concrete_worker_gib": 1.72,
+            "sixteen_training_workers_aggregate_gib": 27.52,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 192.0
+          },
+          "scenario": "central",
+          "storage": {
+            "exact_ledgers_gib": 0.362,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.088,
+            "persistent_total_gib": 12.231,
+            "reports_and_export_metadata_gib": 2.794,
+            "scratch_peak_gib": 24.462,
+            "search_checkpoints_gib": 4.504,
+            "training_artifacts_gib": 4.482
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.5,
+            "gpu_scheduling_efficiency": 0.5,
+            "seconds_per_canonical_equivalent_training_update": 0.141523208,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.28,
+            "updates_per_training_attempt": 40000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 23232000.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.582,
+            "capacity_lower_bound_gpu_wall_hours": 140.169,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 180.521,
+              "canonical_student_training_gpu_hours": 691.891,
+              "combinatorial_null_cpu_core_hours": 0.007,
+              "discovery_exact_evaluation_cpu_core_hours": 2.61,
+              "exact_2pow18_calibration_cpu_core_hours": 6.44,
+              "fourier_cpu_core_hours": 1.128,
+              "greedy_discovery_ranking_cpu_core_hours": 0.015,
+              "hard_concrete_main_gpu_hours": 161.389,
+              "local_null_exact_cpu_core_hours": 0.094,
+              "merge_and_export_cpu_core_hours": 64.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.189,
+              "ordinary_restart_hard_concrete_gpu_hours": 46.667,
+              "teacher_training_gpu_hours": 40.884
+            },
+            "exact_evaluation_cpu_core_hours": 9.334,
+            "fits_84_hour_science_window": false,
+            "fits_96_hour_total_window": false,
+            "hard_concrete_gpu_hours": 208.056,
+            "hard_concrete_optimizer_steps": 2675000,
+            "merge_export_cpu_core_hours": 64.0,
+            "orchestration_dependency_allowance_hours": 12.0,
+            "other_cpu_core_hours": 1.15,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 80,
+              "architecture_exact_evaluations": 10240,
+              "architecture_hard_concrete_steps": 200000,
+              "architecture_training_gpu_hours": 180.521,
+              "basis_discovery_ledgers_both_methods": 180,
+              "basis_exact_evaluations": 23040,
+              "basis_hard_concrete_steps": 450000
+            },
+            "projected_science_wall_hours": 152.751,
+            "projected_total_wall_hours": 164.751,
+            "total_cpu_core_hours": 74.483,
+            "total_gpu_hours": 1121.352,
+            "training_gpu_hours": 913.296
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 1.0,
+            "per_training_or_hard_concrete_worker_gib": 3.44,
+            "sixteen_training_workers_aggregate_gib": 55.04,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 256.0
+          },
+          "scenario": "conservative",
+          "storage": {
+            "exact_ledgers_gib": 0.725,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.176,
+            "persistent_total_gib": 29.131,
+            "reports_and_export_metadata_gib": 7.451,
+            "scratch_peak_gib": 87.394,
+            "search_checkpoints_gib": 9.008,
+            "training_artifacts_gib": 11.772
+          }
+        }
+      ]
+    },
+    "C": {
+      "job_counts": {
+        "all_exact_evaluations": 630784,
+        "architecture_panel_discovery_ledgers_both_methods_subset": 320,
+        "architecture_student_attempt_jobs_by_scenario": {
+          "central": 240,
+          "conservative": 320,
+          "lower": 160
+        },
+        "basis_panel_discovery_ledgers_both_methods_subset": 240,
+        "combinatorial_null_draws": 600000,
+        "discovery_exact_evaluations_including_intact": 345600,
+        "exact_calibration_enumeration_jobs": 1,
+        "exact_calibration_masks": 262144,
+        "export_jobs": 1,
+        "fourier_comparison_sets": 60,
+        "fourier_condition_jobs": 360,
+        "fourier_input_condition_trials": 92160,
+        "greedy_discovery_ledger_jobs": 675,
+        "hard_concrete_discovery_ledger_jobs": 675,
+        "hard_concrete_native_restart_runs": 2700,
+        "local_null_exact_evaluations": 7680,
+        "merge_jobs": 1,
+        "ordinary_restart_exact_evaluations_including_intact": 15360,
+        "ordinary_restart_profile_jobs": 60,
+        "ordinary_restart_subjobs": 960,
+        "student_attempt_jobs_by_scenario": {
+          "central": 690,
+          "conservative": 980,
+          "lower": 490
+        },
+        "teacher_training_jobs": 31
+      },
+      "package_id": "stage13-package-c-expanded-roster/v2",
+      "scenarios": [
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.85,
+            "gpu_scheduling_efficiency": 0.85,
+            "seconds_per_canonical_equivalent_training_update": 0.018544916,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.035,
+            "updates_per_training_attempt": 5000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 2837240.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.06,
+            "capacity_lower_bound_gpu_wall_hours": 12.441,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 5.317,
+              "canonical_student_training_gpu_hours": 8.5,
+              "combinatorial_null_cpu_core_hours": 0.0,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 0.036,
+              "fourier_cpu_core_hours": 0.018,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 131.25,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 4.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 23.333,
+              "teacher_training_gpu_hours": 0.798
+            },
+            "exact_evaluation_cpu_core_hours": 9.093,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 154.583,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 4.0,
+            "orchestration_dependency_allowance_hours": 1.0,
+            "other_cpu_core_hours": 0.043,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 5.317,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 13.501,
+            "projected_total_wall_hours": 25.501,
+            "total_cpu_core_hours": 13.136,
+            "total_gpu_hours": 169.199,
+            "training_gpu_hours": 14.616
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.482,
+            "per_training_or_hard_concrete_worker_gib": 0.861,
+            "sixteen_training_workers_aggregate_gib": 13.776,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 123.392
+          },
+          "scenario": "lower",
+          "storage": {
+            "exact_ledgers_gib": 0.301,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.044,
+            "persistent_total_gib": 12.093,
+            "reports_and_export_metadata_gib": 0.931,
+            "scratch_peak_gib": 18.14,
+            "search_checkpoints_gib": 6.693,
+            "training_artifacts_gib": 4.124
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.7,
+            "gpu_scheduling_efficiency": 0.7,
+            "seconds_per_canonical_equivalent_training_update": 0.035,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.14,
+            "updates_per_training_attempt": 20000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 15813440.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.143,
+            "capacity_lower_bound_gpu_wall_hours": 68.935,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 60.214,
+              "canonical_student_training_gpu_hours": 87.5,
+              "combinatorial_null_cpu_core_hours": 0.003,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 0.364,
+              "fourier_cpu_core_hours": 0.179,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 525.0,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 16.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 93.333,
+              "teacher_training_gpu_hours": 6.028
+            },
+            "exact_evaluation_cpu_core_hours": 9.421,
+            "fits_84_hour_science_window": true,
+            "fits_96_hour_total_window": true,
+            "hard_concrete_gpu_hours": 618.333,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 16.0,
+            "orchestration_dependency_allowance_hours": 4.0,
+            "other_cpu_core_hours": 0.207,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 60.214,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 73.078,
+            "projected_total_wall_hours": 85.078,
+            "total_cpu_core_hours": 25.628,
+            "total_gpu_hours": 772.075,
+            "training_gpu_hours": 153.742
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 0.75,
+            "per_training_or_hard_concrete_worker_gib": 1.72,
+            "sixteen_training_workers_aggregate_gib": 27.52,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 192.0
+          },
+          "scenario": "central",
+          "storage": {
+            "exact_ledgers_gib": 0.602,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.088,
+            "persistent_total_gib": 24.763,
+            "reports_and_export_metadata_gib": 2.794,
+            "scratch_peak_gib": 49.526,
+            "search_checkpoints_gib": 13.386,
+            "training_artifacts_gib": 7.893
+          }
+        },
+        {
+          "assumptions": {
+            "cpu_scheduling_efficiency": 0.5,
+            "gpu_scheduling_efficiency": 0.5,
+            "seconds_per_canonical_equivalent_training_update": 0.141523208,
+            "seconds_per_model_in_loop_hard_concrete_step": 0.28,
+            "updates_per_training_attempt": 40000
+          },
+          "compute": {
+            "audit_reserve_hours": 12,
+            "canonical_equivalent_training_updates": 44155840.0,
+            "capacity_lower_bound_cpu_wall_hours": 0.63,
+            "capacity_lower_bound_gpu_wall_hours": 371.565,
+            "category_breakdown_additive": {
+              "architecture_student_training_gpu_hours": 649.271,
+              "canonical_student_training_gpu_hours": 1037.837,
+              "combinatorial_null_cpu_core_hours": 0.033,
+              "discovery_exact_evaluation_cpu_core_hours": 8.491,
+              "exact_2pow18_calibration_cpu_core_hours": 6.44,
+              "fourier_cpu_core_hours": 1.128,
+              "greedy_discovery_ranking_cpu_core_hours": 0.025,
+              "hard_concrete_main_gpu_hours": 1050.0,
+              "local_null_exact_cpu_core_hours": 0.189,
+              "merge_and_export_cpu_core_hours": 64.0,
+              "ordinary_restart_exact_cpu_core_hours": 0.377,
+              "ordinary_restart_hard_concrete_gpu_hours": 186.667,
+              "teacher_training_gpu_hours": 48.747
+            },
+            "exact_evaluation_cpu_core_hours": 15.497,
+            "fits_84_hour_science_window": false,
+            "fits_96_hour_total_window": false,
+            "hard_concrete_gpu_hours": 1236.667,
+            "hard_concrete_optimizer_steps": 15900000,
+            "merge_export_cpu_core_hours": 64.0,
+            "orchestration_dependency_allowance_hours": 12.0,
+            "other_cpu_core_hours": 1.186,
+            "panel_subset_attribution_nonadditive": {
+              "architecture_discovery_ledgers_both_methods": 320,
+              "architecture_exact_evaluations": 81920,
+              "architecture_hard_concrete_steps": 3200000,
+              "architecture_training_gpu_hours": 649.271,
+              "basis_discovery_ledgers_both_methods": 240,
+              "basis_exact_evaluations": 61440,
+              "basis_hard_concrete_steps": 2400000
+            },
+            "projected_science_wall_hours": 384.195,
+            "projected_total_wall_hours": 396.195,
+            "total_cpu_core_hours": 80.683,
+            "total_gpu_hours": 2972.521,
+            "training_gpu_hours": 1735.854
+          },
+          "memory": {
+            "gpu_vram_requirement": "unbenchmarked; Stage 14 qualification threshold applies",
+            "per_exact_or_reducer_cpu_worker_gib": 1.0,
+            "per_training_or_hard_concrete_worker_gib": 3.44,
+            "sixteen_training_workers_aggregate_gib": 55.04,
+            "two_hundred_fifty_six_cpu_workers_aggregate_gib": 256.0
+          },
+          "scenario": "conservative",
+          "storage": {
+            "exact_ledgers_gib": 1.203,
+            "fits_1_tib_persistent": true,
+            "fits_4_tib_scratch": true,
+            "fourier_records_gib": 0.176,
+            "persistent_total_gib": 57.689,
+            "reports_and_export_metadata_gib": 7.451,
+            "scratch_peak_gib": 173.066,
+            "search_checkpoints_gib": 26.773,
+            "training_artifacts_gib": 22.086
+          }
+        }
+      ]
+    }
+  },
+  "production_eligible": false,
+  "schema_version": "stage13-package-resource-projection/v2",
+  "scientific_data": false,
+  "unbenchmarked_quantities": [
+    "CUDA teacher and student training update throughput and VRAM",
+    "model-in-the-loop hard-concrete objective step throughput and VRAM",
+    "concurrent filesystem and scheduler efficiency at 16 GPU / 256 CPU scale",
+    "alternate-architecture throughput beyond parameter-count scaling",
+    "Fourier activation capture, alignment, and intervention throughput",
+    "tiny mod-7 exact-enumeration throughput",
+    "production merge compression and verified export throughput",
+    "actual provider hardware, quotas, paths, and queue latency"
+  ]
+}

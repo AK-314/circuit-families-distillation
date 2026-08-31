@@ -1,0 +1,67 @@
+{
+  "exclusions": [
+    "teacher or student forward/backward passes",
+    "production CUDA throughput",
+    "production exact fidelity evaluation",
+    "filesystem contention under campaign concurrency"
+  ],
+  "hard_concrete_native_mechanics": {
+    "elapsed_seconds": [
+      1.9587229590397328,
+      1.9056684579700232,
+      1.8490452909609303
+    ],
+    "median_seconds": 1.9056684579700232,
+    "median_steps_per_second": 2623.7512506903504,
+    "profile": {
+      "checkpoint_every": 50,
+      "checkpoint_retention": 2,
+      "component_count": 516,
+      "dtype": "float32",
+      "repetitions": 3,
+      "steps_per_run": 5000
+    },
+    "retained_checkpoint_bytes": [
+      2260665,
+      2260154,
+      2259659
+    ]
+  },
+  "host": {
+    "cuda_available": false,
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.11.15",
+    "torch": "2.13.0",
+    "torch_num_threads": 6
+  },
+  "inputs": {
+    "constructed_only": true,
+    "policy_path": "followup/configs/stage6e/technical_endpoint2_policy_v1.json",
+    "policy_sha256": "0a438bce6f04fd9841be10e17255342969d465db762a9edf627ea5b238916cef",
+    "registered_models": 0
+  },
+  "ordinary_restart_bridge": {
+    "elapsed_seconds": [
+      0.6458338750526309,
+      0.6876599170500413,
+      0.667390082962811
+    ],
+    "median_restarts_per_second": 23.973985242587982,
+    "median_seconds": 0.667390082962811,
+    "profile": {
+      "common_exact_allowance_including_intact": 256,
+      "declared_native_units_per_restart": 5000,
+      "proposals_per_restart": 16,
+      "repetitions": 3,
+      "restarts": 16
+    }
+  },
+  "peak_process_rss_mib": 460.953125,
+  "production_eligible": false,
+  "purpose": "non-scientific feasibility evidence only",
+  "registered_or_private_artifacts_accessed": false,
+  "schema_version": "stage13-search-profile-benchmark/v1",
+  "scientific_data": false,
+  "total_elapsed_seconds": 7.736747832968831
+}

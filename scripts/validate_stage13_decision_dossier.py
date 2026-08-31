@@ -10,10 +10,12 @@ from pathlib import Path
 from typing import Any
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
-DOSSIER = REPOSITORY_ROOT / "followup/decisions/stage13_decision_dossier_v1.json"
-SCHEMA = REPOSITORY_ROOT / "followup/schemas/stage13/decision_dossier_v1.schema.json"
+DOSSIER = REPOSITORY_ROOT / "followup/decisions/stage13_decision_dossier_v2.json"
+SCHEMA = REPOSITORY_ROOT / "followup/schemas/stage13/decision_dossier_v2.schema.json"
 INVENTORY = REPOSITORY_ROOT / "followup/manifests/stage13_compatibility_inventory_v1.json"
 PART_A = REPOSITORY_ROOT / "followup/manifests/stage13_part_a_evidence_v1.json"
+BENCHMARK = REPOSITORY_ROOT / "followup/benchmarks/stage13_search_profile_benchmark_v1.json"
+PROJECTION = REPOSITORY_ROOT / "followup/manifests/stage13_package_resource_projection_v2.json"
 
 EXPECTED_DECISIONS = tuple([f"RD-{index:03d}" for index in range(1, 13)] + ["RD-014"])
 EXPECTED_HEADS = {
@@ -42,6 +44,9 @@ ROOT_FIELDS = {
     "decisions",
     "deferred_decisions",
     "package_alternatives",
+    "supersedes",
+    "benchmark_evidence",
+    "resource_projection",
 }
 DECISION_FIELDS = {
     "decision_id",
@@ -74,7 +79,7 @@ def _sha256(path: Path) -> str:
 def validate_dossier_mapping(dossier: dict[str, Any]) -> None:
     if set(dossier) != ROOT_FIELDS:
         raise ValueError("dossier root fields do not match the closed schema")
-    if dossier["schema_version"] != "stage13-decision-dossier/v1":
+    if dossier["schema_version"] != "stage13-decision-dossier/v2":
         raise ValueError("unsupported dossier schema version")
     if dossier["status"] != "recommended_package_pending_alex_approval":
         raise ValueError("pre-approval dossier has an invalid status")
@@ -82,6 +87,8 @@ def validate_dossier_mapping(dossier: dict[str, Any]) -> None:
         raise ValueError("implementation base changed")
     if dossier["authority_owner"] != "Alex":
         raise ValueError("authority owner changed")
+    if dossier["recommended_package_id"] != "stage13-package-a-conservative-protected/v2":
+        raise ValueError("recommended package identifier changed")
     firewall = dossier["evidence_firewall"]
     if set(firewall) != {
         "permitted_evidence_used",
@@ -158,6 +165,57 @@ def validate() -> dict[str, Any]:
 
     inventory = _load(INVENTORY)
     part_a = _load(PART_A)
+    benchmark = _load(BENCHMARK)
+    projection = _load(PROJECTION)
+    if dossier["benchmark_evidence"]["file_sha256"] != _sha256(BENCHMARK):
+        raise ValueError("dossier benchmark binding mismatch")
+    if dossier["resource_projection"]["file_sha256"] != _sha256(PROJECTION):
+        raise ValueError("dossier projection binding mismatch")
+    if benchmark["scientific_data"] is not False or benchmark["production_eligible"] is not False:
+        raise ValueError("benchmark evidence crossed the scientific boundary")
+    if benchmark["registered_or_private_artifacts_accessed"] is not False:
+        raise ValueError("benchmark accessed prohibited artifacts")
+    if projection["envelope"] != {
+        "total_hours": 96,
+        "science_execution_hours": 84,
+        "final_audit_reserve_hours": 12,
+        "cpu_cores": 256,
+        "cuda_gpus": 16,
+        "scratch_tib": 4,
+        "persistent_tib": 1,
+        "grant_verified": False,
+    }:
+        raise ValueError("resource envelope changed")
+    if set(projection["packages"]) != {"A", "B", "C"}:
+        raise ValueError("resource projection package roster changed")
+    for package in projection["packages"].values():
+        if [item["scenario"] for item in package["scenarios"]] != [
+            "lower", "central", "conservative"
+        ]:
+            raise ValueError("resource scenarios are incomplete")
+        if package["job_counts"]["exact_calibration_masks"] != 2**18:
+            raise ValueError("exact calibration count changed")
+    decision_map = {item["decision_id"]: item for item in dossier["decisions"]}
+    architecture_anchors = decision_map["RD-002"]["recommendation"][
+        "tier2_assignment"
+    ]["anchor_teacher_seeds"]
+    if architecture_anchors != [0, 1, 2, 3, 4]:
+        raise ValueError("architecture anchor panel changed")
+    basis_anchors = decision_map["RD-004"]["recommendation"]["assignment"][
+        "anchor_teacher_seeds"
+    ]
+    if basis_anchors != [0, 1, 2, 3, 4]:
+        raise ValueError("basis anchor panel changed")
+    grid = decision_map["RD-006"]["recommendation"]["sensitivity_grid"]
+    if grid["cartesian_cell_count"] != 12 or len(grid["cells"]) != 12:
+        raise ValueError("packing sensitivity grid is incomplete")
+    rd11 = decision_map["RD-011"]["recommendation"]
+    if rd11["primary_task_modes"] != [[1, 1], [2, 2], [3, 3], [4, 4]]:
+        raise ValueError("Fourier task-mode support changed")
+    if len(rd11["conditions"]) != 6 or rd11["uniqueness_claim"] is not False:
+        raise ValueError("Fourier controls or claim boundary changed")
+    if decision_map["RD-014"]["recommendation"]["final_audit_reserve_hours"] != 12:
+        raise ValueError("audit reserve changed")
     if inventory["implementation_base"] != dossier["implementation_base"]:
         raise ValueError("inventory and dossier implementation bases differ")
     if part_a["repository"]["implementation_base"] != dossier["implementation_base"]:
@@ -185,13 +243,15 @@ def validate() -> dict[str, Any]:
             raise ValueError("definitive execution boundary violated")
 
     return {
-        "schema_version": "stage13-decision-dossier-validation/v1",
+        "schema_version": "stage13-decision-dossier-validation/v2",
         "implementation_base": dossier["implementation_base"],
         "decision_ids": list(decision_ids),
         "dossier_file_sha256": _sha256(DOSSIER),
         "dossier_canonical_sha256": canonical_sha256,
         "compatibility_inventory_sha256": _sha256(INVENTORY),
         "part_a_evidence_sha256": _sha256(PART_A),
+        "search_profile_benchmark_sha256": _sha256(BENCHMARK),
+        "package_resource_projection_sha256": _sha256(PROJECTION),
         "compatibility_contract_count": len(inventory["contracts"]),
         "approval_status": "pending",
         "scientific_data": False,
