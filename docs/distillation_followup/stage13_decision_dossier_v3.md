@@ -1,9 +1,9 @@
 # Stage 13 final amended decision dossier — approval gate
 
-**Status:** pending Alex approval  
-**Package:** `stage13-package-a-protected-core-optional-five-task/v3`  
-**Implementation base:** `7976c98cc83a6df098ae0ef8c59b56027a7f4899`  
-**Machine authority:** `followup/decisions/stage13_decision_dossier_v3.json`  
+**Status:** pending Alex approval
+**Package:** `stage13-package-a-protected-core-optional-five-task/v3`
+**Implementation base:** `7976c98cc83a6df098ae0ef8c59b56027a7f4899`
+**Machine authority:** `followup/decisions/stage13_decision_dossier_v3.json`
 **Dossier SHA-256:** `642118fe30e1c435fc05c656ac6167446c76a445c9a1efd376d5a7c23410b1f4`
 
 The v3 amendment changes RD-001, RD-012, RD-014, and only the backend-authority

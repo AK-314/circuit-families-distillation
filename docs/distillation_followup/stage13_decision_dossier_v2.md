@@ -1,9 +1,9 @@
 # Stage 13 revised decision dossier — approval gate
 
-**Status:** Packages A, B, and C pending Alex approval; Parts C–H not begun  
-**Implementation base:** `7976c98cc83a6df098ae0ef8c59b56027a7f4899`  
-**Scientific data / production eligibility:** false / false  
-**Machine-readable authority:** `followup/decisions/stage13_decision_dossier_v2.json`  
+**Status:** Packages A, B, and C pending Alex approval; Parts C–H not begun
+**Implementation base:** `7976c98cc83a6df098ae0ef8c59b56027a7f4899`
+**Scientific data / production eligibility:** false / false
+**Machine-readable authority:** `followup/decisions/stage13_decision_dossier_v2.json`
 **Supersedes:** unapproved v1 SHA-256 `8bce11d84632e6bc8b3ae4f5abf30c0348ff91be651984fdea984a383d0dc5b7`
 
 This revision uses only admitted Phase I context, accepted Stage 11/12 contracts,
