@@ -79,6 +79,8 @@ recovery with the known feasible set on technical fixtures.
 
 ### Alex 5 — Stage 13: Protocol, analysis, and production-manifest freeze
 
+**File:** `alex_05_stage13_protocol_manifest_freeze.md`
+
 **Syllabus:** Integrate all Alex/Austin Stage 12 packages. Resolve every
 production-blocking RD item, freeze exact configs, sparse assignments,
 hierarchical analysis, missing-cell rules, resource branches, Tier 1/Tier 2/Tier
