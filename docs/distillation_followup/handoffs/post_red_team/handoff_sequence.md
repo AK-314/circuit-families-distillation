@@ -172,6 +172,8 @@ from Austin 2.
 
 ### Austin 6 — Stage 14-B: Cluster package and exact-SHA double-check
 
+**File:** `austin_06_stage14b_cluster_package_rehearsal.md`
+
 **Syllabus:** Produce the container, input staging, hardware/CPU/CUDA
 qualification, scheduler adapter, one-command launch/status/stop/resume/audit/
 export operations, monitoring, and final-window reservation. Run the reduced
