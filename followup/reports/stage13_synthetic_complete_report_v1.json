@@ -1,0 +1,861 @@
+{
+  "analysis_plan_sha256": "abc55668d10b9dc686345b24dd088b96f65576140c196ba9ae8cdab09d097630",
+  "claim_resolution_categories": [
+    {
+      "category": "teacher phase effect persists in both student conditions",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "met"
+    },
+    {
+      "category": "students of one teacher vary materially",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "not_met"
+    },
+    {
+      "category": "all distilled students become similarly compressible",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "indeterminate"
+    },
+    {
+      "category": "results depend strongly on discovery method or fidelity definition",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "unavailable"
+    },
+    {
+      "category": "stable functions enable recovery while realization controls packing",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "not_met"
+    },
+    {
+      "category": "the predecessor transition disappears under predictive fidelity",
+      "reason": "synthetic topology exercise only",
+      "scientific_conclusion": null,
+      "synthetic_status": "indeterminate"
+    }
+  ],
+  "coverage": {
+    "architectures": [
+      "predecessor-matched/v1",
+      "depth-2-matched-width/v1",
+      "heads-8-matched-width/v1",
+      "mlp-256-matched-residual/v1",
+      "mlp-1024-matched-residual/v1"
+    ],
+    "bases": [
+      "canonical heads-plus-neurons",
+      "attention-coordinate refinement",
+      "balanced 32-neuron blocks partition-0",
+      "MLP rotation-0",
+      "MLP rotation-1"
+    ],
+    "campaign_completion": [
+      "tier1-intact-partial-tier2",
+      "partial-tier3",
+      "tier1-incomplete"
+    ],
+    "conditions": [
+      "hard",
+      "soft"
+    ],
+    "disagreements": [
+      "architecture",
+      "basis",
+      "method"
+    ],
+    "endpoints": [
+      "Endpoint 1",
+      "procedure-relative packing lower bound"
+    ],
+    "methods": [
+      "greedy-deletion-centred-logit/v1",
+      "hard-concrete-gates-centred-logit/v1"
+    ],
+    "optional_teacher_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "phases": [
+      "pre-grokking",
+      "50%",
+      "stable post-grokking"
+    ],
+    "task1_teacher_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "tasks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      "mod7-calibration"
+    ],
+    "tiers": [
+      "tier1",
+      "tier2-protected",
+      "tier3-task3",
+      "tier3-task4",
+      "tier3-task5"
+    ]
+  },
+  "definitive_execution_started": false,
+  "fixture_sha256": "50ba2cbe09ffa0d28d98b1aea5a27c298ed38664b4284c013049c29af0a2a6ec",
+  "fourier_case_inventory": [
+    {
+      "case_id": "fourier-winning",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "winning"
+    },
+    {
+      "case_id": "fourier-tying",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "tying"
+    },
+    {
+      "case_id": "fourier-losing",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "losing"
+    },
+    {
+      "case_id": "fourier-failing",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "failing"
+    },
+    {
+      "case_id": "fourier-incomplete",
+      "controls": [
+        "aligned_fourier_interchange",
+        "wrong_fourier_mode",
+        "shuffled_coefficients",
+        "mismatched_input",
+        "equal_norm_random_state",
+        "unaligned_ordinary_activation_patching"
+      ],
+      "outcome": "incomplete"
+    }
+  ],
+  "manual_editing_required": false,
+  "production_eligible": false,
+  "rejections_are_excluded_from_estimands": true,
+  "report_surfaces": [
+    {
+      "denominators": [
+        "planned",
+        "available"
+      ],
+      "dimensions": [
+        "task",
+        "seed",
+        "phase",
+        "availability"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 1,
+      "surface_id": "population-inventory",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "teacher_seed"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "method",
+        "endpoint"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 2,
+      "surface_id": "raw-teacher-seed",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "all_fixed_attempts"
+      ],
+      "dimensions": [
+        "condition",
+        "slot",
+        "terminal_state"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 3,
+      "surface_id": "student-attempt-inventory",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "eligible_initializations"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "architecture"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 4,
+      "surface_id": "student-cell-summary",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "matched_teacher_seeds"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "method"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 5,
+      "surface_id": "endpoint1-primary",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "sealed_ledger_masks"
+      ],
+      "dimensions": [
+        "cap",
+        "overlap",
+        "method",
+        "censoring"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 6,
+      "surface_id": "packing-key-secondary",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "sealed_ledger_masks"
+      ],
+      "dimensions": [
+        "threshold",
+        "phase",
+        "condition",
+        "method"
+      ],
+      "kind": "figure_data",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 7,
+      "surface_id": "fidelity-frontier",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "complete_checkpoint_pairs"
+      ],
+      "dimensions": [
+        "anchor_seed",
+        "architecture",
+        "phase",
+        "condition"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 8,
+      "surface_id": "architecture-contrast",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "complete_checkpoint_pairs"
+      ],
+      "dimensions": [
+        "anchor_seed",
+        "basis",
+        "phase",
+        "condition"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 9,
+      "surface_id": "basis-contrast",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "within_method_first"
+      ],
+      "dimensions": [
+        "seed",
+        "method",
+        "endpoint"
+      ],
+      "kind": "figure_data",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 10,
+      "surface_id": "method-disagreement",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "predeclared_profiles"
+      ],
+      "dimensions": [
+        "layer",
+        "coverage",
+        "terminal_state"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 11,
+      "surface_id": "null-calibration",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "262144_masks"
+      ],
+      "dimensions": [
+        "mask_identity",
+        "fidelity",
+        "proof"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 12,
+      "surface_id": "tractable-calibration",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "complete_comparison_sets"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "control",
+        "outcome"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 13,
+      "surface_id": "fourier-comparison",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "all_planned_jobs"
+      ],
+      "dimensions": [
+        "family",
+        "reason",
+        "tier",
+        "count"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 14,
+      "surface_id": "failure-and-unavailable",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "planned_operations"
+      ],
+      "dimensions": [
+        "scope",
+        "scenario",
+        "resource_kind"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 15,
+      "surface_id": "resource-accounting",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "complete_predeclared_inputs"
+      ],
+      "dimensions": [
+        "category",
+        "status",
+        "reason"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 16,
+      "surface_id": "claim-resolution",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    },
+    {
+      "denominators": [
+        "declared_units"
+      ],
+      "dimensions": [
+        "estimand_id",
+        "unit_id",
+        "value",
+        "status"
+      ],
+      "kind": "tidy_output",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "order": 17,
+      "surface_id": "tidy-machine-output",
+      "synthetic_case_ids": [
+        "eligible-hard",
+        "eligible-soft",
+        "attempt-failed",
+        "student-insufficient",
+        "teacher-unavailable",
+        "phase-unavailable",
+        "budget-censored",
+        "search-failed",
+        "packing-valid-zero",
+        "packing-lower-bound",
+        "packing-censored",
+        "null-complete",
+        "tractable-complete",
+        "nonfinite",
+        "corrupt",
+        "duplicate",
+        "stale",
+        "conflict"
+      ]
+    }
+  ],
+  "schema_version": "stage13-synthetic-complete-report/v1",
+  "scientific_claim": null,
+  "scientific_data": false,
+  "terminal_case_inventory": [
+    {
+      "case_id": "eligible-hard",
+      "state": "eligible"
+    },
+    {
+      "case_id": "eligible-soft",
+      "state": "eligible"
+    },
+    {
+      "case_id": "attempt-failed",
+      "state": "failed_attempt"
+    },
+    {
+      "case_id": "student-insufficient",
+      "state": "insufficient_eligible"
+    },
+    {
+      "case_id": "teacher-unavailable",
+      "state": "teacher_unavailable"
+    },
+    {
+      "case_id": "phase-unavailable",
+      "state": "phase_unavailable"
+    },
+    {
+      "case_id": "budget-censored",
+      "state": "budget_exhausted"
+    },
+    {
+      "case_id": "search-failed",
+      "state": "search_failure"
+    },
+    {
+      "case_id": "packing-valid-zero",
+      "state": "packing_zero"
+    },
+    {
+      "case_id": "packing-lower-bound",
+      "state": "packing_lower_bound"
+    },
+    {
+      "case_id": "packing-censored",
+      "state": "packing_censored"
+    },
+    {
+      "case_id": "null-complete",
+      "state": "eligible"
+    },
+    {
+      "case_id": "tractable-complete",
+      "state": "eligible"
+    },
+    {
+      "case_id": "nonfinite",
+      "state": "nonfinite_rejected"
+    },
+    {
+      "case_id": "corrupt",
+      "state": "corrupted_rejected"
+    },
+    {
+      "case_id": "duplicate",
+      "state": "duplicate_rejected"
+    },
+    {
+      "case_id": "stale",
+      "state": "stale_rejected"
+    },
+    {
+      "case_id": "conflict",
+      "state": "conflicting_rejected"
+    }
+  ]
+}

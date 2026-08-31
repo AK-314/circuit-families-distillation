@@ -1,0 +1,594 @@
+{
+  "approval_sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336",
+  "approved_dossier_sha256": "642118fe30e1c435fc05c656ac6167446c76a445c9a1efd376d5a7c23410b1f4",
+  "architecture": {
+    "architectures": [
+      {
+        "d_head": 32,
+        "d_mlp": 512,
+        "d_model": 128,
+        "id": "predecessor-matched/v1",
+        "n_heads": 4,
+        "n_layers": 1,
+        "role": "canonical"
+      },
+      {
+        "d_head": 32,
+        "d_mlp": 512,
+        "d_model": 128,
+        "id": "depth-2-matched-width/v1",
+        "n_heads": 4,
+        "n_layers": 2,
+        "role": "alternate"
+      },
+      {
+        "d_head": 16,
+        "d_mlp": 512,
+        "d_model": 128,
+        "id": "heads-8-matched-width/v1",
+        "n_heads": 8,
+        "n_layers": 1,
+        "role": "alternate"
+      },
+      {
+        "d_head": 32,
+        "d_mlp": 256,
+        "d_model": 128,
+        "id": "mlp-256-matched-residual/v1",
+        "n_heads": 4,
+        "n_layers": 1,
+        "role": "alternate"
+      },
+      {
+        "d_head": 32,
+        "d_mlp": 1024,
+        "d_model": 128,
+        "id": "mlp-1024-matched-residual/v1",
+        "n_heads": 4,
+        "n_layers": 1,
+        "role": "alternate"
+      }
+    ],
+    "initialization_rule": "domain-separated seed from full condition identity and fixed initialization slot; no opportunistic substitution",
+    "option": "A",
+    "permitted_contrasts": "Within the identical teacher seed, phase, and condition, alternate-architecture student-cell median minus canonical-architecture student-cell median; aggregate only complete pairs over teacher seeds. Architecture results are conditional external-validity contrasts, not isolated causal effects of depth, heads, or width.",
+    "tier2_assignment": {
+      "anchor_teacher_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "architectures_on_every_anchor": [
+        "depth-2-matched-width/v1",
+        "heads-8-matched-width/v1",
+        "mlp-256-matched-residual/v1",
+        "mlp-1024-matched-residual/v1"
+      ],
+      "assignment_type": "complete shared fixed-anchor block",
+      "conditions": [
+        "hard",
+        "soft"
+      ],
+      "phases": [
+        "pre-grokking",
+        "stable post-grokking"
+      ],
+      "unavailable_rule": "retain unavailable; no seed or checkpoint replacement"
+    }
+  },
+  "basis": {
+    "assignment": {
+      "alternative_basis_ledgers_per_method": 120,
+      "anchor_teacher_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assignment_type": "complete shared anchor/checkpoint panel",
+      "bases_on_every_available_model": [
+        "canonical heads-plus-neurons",
+        "attention-coordinate refinement",
+        "balanced 32-neuron blocks partition-0",
+        "MLP rotation-0",
+        "MLP rotation-1"
+      ],
+      "maximum_model_checkpoint_identities": 30,
+      "model_roles_per_checkpoint": [
+        "direct teacher",
+        "lowest fixed eligible canonical hard student",
+        "lowest fixed eligible canonical soft student"
+      ],
+      "phases": [
+        "pre-grokking",
+        "stable post-grokking"
+      ],
+      "unavailable_rule": "retain unavailable and compare only exact checkpoint pairs; no replacement"
+    },
+    "attention_refinement": "each coordinate of blocks.{layer}.attn.hook_z before W_O is a component; zero in that coordinate system",
+    "canonical": "attention heads plus individual MLP neurons with activation zeroing",
+    "mlp_blocks": {
+      "block_size": 32,
+      "policy": "balanced canonical-order partition after a deterministic Fisher-Yates permutation",
+      "seed_domain": "stage13/basis/mlp-block/partition-0"
+    },
+    "option": "A",
+    "permitted_contrasts": "For the same model/checkpoint, discovery method, phase, condition, and teacher seed, compare each alternative-basis Endpoint 1 and packing reduction with its canonical-basis reduction. Aggregate paired differences by teacher seed; raw component counts are never compared without raw, parameter-weighted, and component-type denominators.",
+    "rotations": {
+      "algorithm": "float64 Gaussian matrix, QR, positive diagonal sign convention, then cast to model dtype",
+      "count": 2,
+      "intervention": "rotate, zero declared coordinates, inverse rotate",
+      "seed_domains": [
+        "stage13/basis/rotation-0",
+        "stage13/basis/rotation-1"
+      ],
+      "subspace": "each eligible layer MLP post-activation vector"
+    },
+    "summaries": [
+      "raw retained proportion",
+      "parameter-weighted retained proportion",
+      "component-type-stratified retained proportion"
+    ]
+  },
+  "calibration": {
+    "algorithm": "canonical-order exhaustive enumeration",
+    "certificate": "exhaustive feasible inventory hash plus exact Endpoint 1 and maximum-compatible-subset proof",
+    "exactness": "every mask has one sealed exact fidelity record and the inventory count/hash matches 262144",
+    "mask_count": 262144,
+    "mask_universe": "2 attention heads plus 16 individual MLP neurons",
+    "model": {
+      "d_head": 8,
+      "d_mlp": 16,
+      "d_model": 16,
+      "initialization_seed": 0,
+      "n_heads": 2,
+      "n_layers": 1
+    },
+    "option": "A",
+    "task": {
+      "domain": "full 7x7",
+      "family": "modular_addition",
+      "modulus": 7
+    },
+    "transfer_limit": "calibrates procedure behavior only on this small instance; no automatic main-scale error bound"
+  },
+  "definitive_execution_started": false,
+  "discovery": {
+    "backend_determinism": "Stage 14 must qualify the actual CPU/CUDA/MPS backend. MPS has no presumed authority; a school-Mac MPS class becomes eligible only after exact and semantic qualification on that class, otherwise its qualified MPS throughput is zero and CPU is used.",
+    "common_exact_evaluation_allowance": 256,
+    "exact_allowance_semantics": "256 total exact evaluations per model-method ledger, including the mandatory intact mask; duplicate requests reuse evidence and do not recharge the ledger",
+    "failure_rules": [
+      "nonfinite optimization is terminal numerical failure",
+      "budget exhaustion is censored, not success",
+      "interruption resumes from a hash-bound checkpoint",
+      "within-method interpretation is primary"
+    ],
+    "intact_mask": "always included and exactly evaluated so Endpoint 1 is defined up to 1.0",
+    "methods": [
+      {
+        "family": "inherited_discrete",
+        "id": "greedy-deletion-centred-logit/v1",
+        "maximum_restarts": 0,
+        "native_budget": 516,
+        "native_budget_unit": "ranked_component_proposal",
+        "termination": "all ranked proposals consumed, exact allowance exhausted, or explicit failure"
+      },
+      {
+        "family": "continuous_stochastic_gates",
+        "gate": {
+          "lower_stretch": -0.1,
+          "temperature": 0.6666666666666666,
+          "upper_stretch": 1.1
+        },
+        "id": "hard-concrete-gates-centred-logit/v1",
+        "native_budget_per_restart": 5000,
+        "native_budget_unit": "optimizer_step",
+        "optimizer": {
+          "beta1": 0.9,
+          "beta2": 0.999,
+          "epsilon": 1e-08,
+          "learning_rate": 0.01,
+          "name": "Adam",
+          "sparsity_coefficient": 0.001
+        },
+        "proposal_rules": {
+          "maximum_unique_proposals": 256,
+          "probability_thresholds": [
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "stochastic_draws_per_restart": 32,
+          "top_k_sizes": [
+            0,
+            8,
+            16,
+            32,
+            64,
+            96,
+            128,
+            192,
+            256,
+            384,
+            516
+          ]
+        },
+        "restarts": 4
+      }
+    ],
+    "option": "A"
+  },
+  "endpoints": {
+    "censoring_rule": "budget exhaustion or incomplete candidate inventory is procedure-censored",
+    "claim": "procedure-relative packing lower bound only",
+    "component_cap": 0.25,
+    "failure_rule": "retain zero from valid empty qualification; distinguish solver/search failure from zero",
+    "maximum_pairwise_overlap": 0.25,
+    "no_qualifying_masks": "packing lower bound 0",
+    "option": "A",
+    "overlap_metric": "Jaccard overlap of retained components in the declared basis",
+    "sensitivity_grid": {
+      "cartesian_cell_count": 12,
+      "cells": [
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.5
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.5
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.5
+        }
+      ],
+      "component_cap_proportions": [
+        0.125,
+        0.25,
+        0.375
+      ],
+      "execution": "reducer-only from masks and exact fidelities already present in each sealed ledger; no rediscovery, new model inference, new exact evaluation, or ledger mutation",
+      "hierarchy": {
+        "descriptive_sensitivity": "the other 11 grid cells",
+        "key_secondary": "packing at component cap 0.25 and maximum Jaccard overlap 0.25",
+        "primary": "Endpoint 1 only"
+      },
+      "ledger_limit": "if a mask is absent from the sealed ledger, no sensitivity cell may generate or evaluate it",
+      "maximum_pairwise_jaccard_overlaps": [
+        0.0,
+        0.125,
+        0.25,
+        0.5
+      ]
+    },
+    "solver": "exact maximum compatible subset with lexicographically smallest mask-identity tuple tie-break",
+    "status": "key_secondary"
+  },
+  "fidelity": {
+    "accumulation_dtype": "float64",
+    "accumulation_order": "canonical example order then class order",
+    "denominator_guard": "denominator exactly zero is undefined and rejected; every positive finite denominator is valid",
+    "formula": "1 - sum((center(masked_logits)-center(full_logits))^2) / sum(center(full_logits)^2)",
+    "frontier": [
+      0.9,
+      0.95,
+      0.975,
+      0.99,
+      0.995
+    ],
+    "gauge": "subtract the per-input class mean",
+    "input_dtype": "model output dtype float32",
+    "ledger_reuse": "reducer-only for all masks already present; never duplicate a discovery job",
+    "nonfinite_policy": "reject record",
+    "option": "A",
+    "primary_threshold": 0.99
+  },
+  "interpretation_units": {
+    "hard_soft_pooling": false,
+    "population_unit": "teacher_seed",
+    "student_initialization": "conditional_realization_sensitivity",
+    "tasks_as_population_replicates": false
+  },
+  "nulls": {
+    "combinatorial": {
+      "draws": 10000,
+      "exact_evaluations": 0,
+      "matching": "exact retained size and component-type counts",
+      "replacement": "independent seeded draws with duplicates retained and reported"
+    },
+    "local_perturbation": {
+      "common_exact_allowance": 128,
+      "maximum_radius": 2,
+      "minimum_completed": 96,
+      "moves": [
+        "drop_one",
+        "add_one",
+        "swap_one"
+      ],
+      "proposal_budget": 128,
+      "seed_masks": "up to four lexicographically first exactly qualified masks"
+    },
+    "minimum_reportable_coverage": 0.9,
+    "option": "A",
+    "ordinary_restart": {
+      "exact_allowance_semantics": "256 total including intact in Package A/C; 128 total including intact in Package B",
+      "method": "same discovery family without diversity pressure or packing-aware feedback",
+      "minimum_completed": 12,
+      "restarts": 16
+    },
+    "panel_assignment": {
+      "discovery_methods": [
+        "greedy-deletion-centred-logit/v1",
+        "hard-concrete-gates-centred-logit/v1"
+      ],
+      "maximum_profile_slots": 60,
+      "model_roles": [
+        "direct teacher",
+        "lowest fixed eligible canonical hard student",
+        "lowest fixed eligible canonical soft student"
+      ],
+      "phases": [
+        "pre-grokking",
+        "stable post-grokking"
+      ],
+      "replacement": "none",
+      "teacher_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "tractable": {
+      "layer": "exact feasible-region calibration from RD-009",
+      "minimum_coverage": 1.0
+    },
+    "undercoverage": "report layer as incomplete/unavailable; do not impute or collapse"
+  },
+  "optional_tier3_attempt_policy": {
+    "derivation": "approved lowest-eligible singular roster and approved 20/30/40 attempt projection",
+    "eligible_target_per_condition": 1,
+    "fixed_attempt_slots_per_condition": 2,
+    "replacement": "none",
+    "stop_after_first_eligible": true
+  },
+  "package_id": "stage13-package-a-protected-core-optional-five-task/v3",
+  "population_and_tasks": {
+    "matched_primary_rule": "teacher seed must have both primary phase landmarks; the 50% cell may be absent without invalidating the primary pair",
+    "option": "A",
+    "optional_task_common_panel": {
+      "architecture": "canonical",
+      "basis": "canonical",
+      "discovery_methods": [
+        "greedy-deletion-centred-logit/v1",
+        "hard-concrete-gates-centred-logit/v1"
+      ],
+      "model_roles": [
+        "direct teacher",
+        "lowest eligible hard student",
+        "lowest eligible soft student"
+      ],
+      "phases": [
+        "pre-grokking",
+        "stable post-grokking"
+      ],
+      "population_interpretation": "tasks are not independent population replicates; report task-indexed descriptive external validity",
+      "replacement": "none",
+      "tasks": [
+        3,
+        4,
+        5
+      ],
+      "teacher_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "package_c_phase_complete_selection": "prohibited",
+    "phase_rule": "historical-stage3-phase-selection/stage3-frozen/v1 using training metrics only",
+    "phases": [
+      "pre-grokking",
+      "50%",
+      "stable post-grokking"
+    ],
+    "primary_phase_contrast": [
+      "pre-grokking",
+      "stable post-grokking"
+    ],
+    "replacement_rule": "no replacement of task, teacher seed, phase, or failed training/student slot beyond its existing fixed cap",
+    "task1": {
+      "domain": "full 113x113",
+      "family": "modular_addition",
+      "modulus": 113
+    },
+    "task2": {
+      "domain": "full 59x59",
+      "family": "modular_multiplication",
+      "modulus": 59,
+      "role": "protected Tier 2 external validity"
+    },
+    "task3": {
+      "domain": "full 59x59",
+      "family": "modular_polynomial",
+      "formula": "(x^2 + x*y + y^2) mod 59",
+      "manifest": {
+        "dataset_sha256": "674dc5807374a2da8da3732eb3224e15959e24e946fd6945122d7c0e6e41b6ae",
+        "file_sha256": "b8797e72cceec09c5be3e1870dab9909c4140fc4e08df9ed4e76050cff9b88ff",
+        "path": "followup/manifests/stage13_optional_tasks/task3_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task3_increment_v1.json.sha256",
+        "task_config_sha256": "b1696fb0be4c7da5cc6f171bdc915a8c73f0e57f8d35150359cf8fe7c6b8281d",
+        "task_identity_sha256": "df5e9285cd2c9985ae2866282d534f738b598e3caf13bdc14dc84828360733eb"
+      },
+      "modulus": 59,
+      "optional_order": 1,
+      "role": "optional Tier 3",
+      "task_id": "stage13-task3-symmetric-quadratic-m59/v1"
+    },
+    "task4": {
+      "domain": "full 59x59",
+      "family": "modular_polynomial",
+      "formula": "(x^3 + y^2) mod 59",
+      "justification": "an asymmetric separable polynomial with unequal degrees and no interaction term; unlike subtraction, it is not a linear relabelling of Task 1, and unlike Task 2/3 it is neither bilinear nor homogeneous quadratic",
+      "manifest": {
+        "dataset_sha256": "0aad6a608e7aa1ca712487ec70db60674356b15ee29e6994cb2571c2b8440837",
+        "file_sha256": "7490e47485204d82745f2bda47acd6d3ca37c28e85c153e82694bcbdf53c4758",
+        "path": "followup/manifests/stage13_optional_tasks/task4_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task4_increment_v1.json.sha256",
+        "task_config_sha256": "1192f07c9318964861556916ad71daf06b6662b1ecdc875d1a09045facd1868d",
+        "task_identity_sha256": "fef2f01e151ce8324f149acee17e5d5d7f9038db65e4e9c3a20d226ca7d6bc86"
+      },
+      "modulus": 59,
+      "optional_order": 2,
+      "role": "optional Tier 3",
+      "task_id": "stage13-task4-asymmetric-separable-mixed-degree-m59/v1"
+    },
+    "task5": {
+      "domain": "full 59x59",
+      "family": "modular_polynomial",
+      "formula": "(x^2*y + x*y^2) mod 59 = x*y*(x+y) mod 59",
+      "justification": "a homogeneous degree-3 coupled interaction with no pure monomials; it differs from separable Task 4, degree-2 Task 3, and single-monomial multiplication",
+      "manifest": {
+        "dataset_sha256": "3b664b5e50bb6ce09c02cff307a8f42e3e274da1be427910075518a01ef4e63c",
+        "file_sha256": "cf784b526eb801c8a6032cc0addb45c8376190139e5a324c9c37d9c0db6e1b87",
+        "path": "followup/manifests/stage13_optional_tasks/task5_increment_v1.json",
+        "sidecar_path": "followup/manifests/stage13_optional_tasks/task5_increment_v1.json.sha256",
+        "task_config_sha256": "ef35a64422e444383477c75c8ce9c6526ce1bb831b76e9297b83b098c79c7ca9",
+        "task_identity_sha256": "59ee026362f1a21e991cb4c5957b60b23d320847d01f0e613f74434e5620a619"
+      },
+      "modulus": 59,
+      "optional_order": 3,
+      "role": "optional Tier 3",
+      "task_id": "stage13-task5-coupled-homogeneous-cubic-m59/v1"
+    },
+    "teacher_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "teacher_training": "canonical predecessor architecture and configs/model.yaml plus configs/training.yaml, trained from scratch for at most 40000 updates"
+  },
+  "production_eligible": false,
+  "resolution_status": {
+    "RD-001": "resolved",
+    "RD-002": "resolved",
+    "RD-003": "resolved",
+    "RD-004": "resolved",
+    "RD-005": "resolved",
+    "RD-006": "resolved",
+    "RD-007": "resolved",
+    "RD-008": "resolved",
+    "RD-009": "resolved",
+    "RD-010": "resolved",
+    "RD-011": "resolved",
+    "RD-012": "resolved",
+    "RD-013": "pending_stage14",
+    "RD-014": "stage13_portion_resolved_stage14_bindings_pending"
+  },
+  "schema_version": "stage13-frozen-scientific-protocol/v1",
+  "scientific_data": false,
+  "students_and_training": {
+    "hard": {
+      "eligibility": "exact argmax agreement on every input",
+      "loss": "mean cross entropy",
+      "targets": "teacher argmax over complete domain"
+    },
+    "option": "A",
+    "replacement_rule": "none outside the predeclared attempt slots",
+    "shared_optimizer": {
+      "batch_mode": "full_training_set",
+      "beta1": 0.9,
+      "beta2": 0.98,
+      "checkpoint_interval": 50,
+      "epsilon": 1e-08,
+      "evaluation_interval": 50,
+      "learning_rate": 0.001,
+      "max_steps": 40000,
+      "name": "AdamW",
+      "precision": "float32",
+      "schedule": "constant",
+      "warmup_steps": 0,
+      "weight_decay": 1.0
+    },
+    "soft": {
+      "argmax_requirement": "exact agreement on every input",
+      "eligibility_tolerance": 0.0001,
+      "loss": "mean squared centered-logit error",
+      "normalization": "none beyond class centering",
+      "targets": "per-input class-centered teacher logits",
+      "temperature": 1.0
+    },
+    "stop_rule": "stop after eligible target is reached or all fixed slots resolve; retain every earlier failure",
+    "tier1": {
+      "attempt_cap": 6,
+      "eligible_target": 3,
+      "minimum_reportable_eligible": 3
+    },
+    "tier2": {
+      "attempt_cap": 4,
+      "eligible_target": 2,
+      "minimum_reportable_eligible": 2
+    }
+  }
+}

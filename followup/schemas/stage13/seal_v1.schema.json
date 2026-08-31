@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "array_seals",
+    "canonical_members_sha256",
+    "counts_by_family",
+    "counts_by_scope",
+    "counts_by_tier",
+    "logical_job_count",
+    "ordered_identity_sha256",
+    "production_eligible",
+    "schema_version",
+    "scientific_data",
+    "scientific_operation_counts",
+    "scientific_operation_counts_by_scope"
+  ],
+  "properties": {
+    "array_seals": {},
+    "canonical_members_sha256": {},
+    "counts_by_family": {},
+    "counts_by_scope": {},
+    "counts_by_tier": {},
+    "logical_job_count": {},
+    "ordered_identity_sha256": {},
+    "production_eligible": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "scientific_operation_counts": {},
+    "scientific_operation_counts_by_scope": {}
+  }
+}

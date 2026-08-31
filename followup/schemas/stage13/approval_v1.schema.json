@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "approval_date",
+    "approval_text",
+    "approved_package_id",
+    "authority",
+    "definitive_execution_started",
+    "dossier_file_sha256",
+    "dossier_path",
+    "production_eligible",
+    "schema_version",
+    "scientific_data",
+    "scope"
+  ],
+  "properties": {
+    "approval_date": {},
+    "approval_text": {},
+    "approved_package_id": {},
+    "authority": {},
+    "definitive_execution_started": {},
+    "dossier_file_sha256": {},
+    "dossier_path": {},
+    "production_eligible": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "scope": {}
+  }
+}

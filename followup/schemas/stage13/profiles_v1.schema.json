@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "approval_sha256",
+    "calibration_profile",
+    "definitive_execution_started",
+    "discovery_profiles",
+    "endpoint_profile",
+    "fidelity_profile",
+    "hidden_defaults_permitted",
+    "null_profiles",
+    "production_eligible",
+    "schema_version",
+    "scientific_data",
+    "scientific_protocol_sha256",
+    "storage_retry_export_profile",
+    "terminal_states",
+    "training_profile"
+  ],
+  "properties": {
+    "approval_sha256": {},
+    "calibration_profile": {},
+    "definitive_execution_started": {},
+    "discovery_profiles": {},
+    "endpoint_profile": {},
+    "fidelity_profile": {},
+    "hidden_defaults_permitted": {},
+    "null_profiles": {},
+    "production_eligible": {},
+    "schema_version": {},
+    "scientific_data": {},
+    "scientific_protocol_sha256": {},
+    "storage_retry_export_profile": {},
+    "terminal_states": {},
+    "training_profile": {}
+  }
+}

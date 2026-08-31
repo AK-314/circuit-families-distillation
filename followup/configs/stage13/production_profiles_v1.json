@@ -1,0 +1,402 @@
+{
+  "approval_sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336",
+  "calibration_profile": {
+    "algorithm": "canonical-order exhaustive enumeration",
+    "certificate": "exhaustive feasible inventory hash plus exact Endpoint 1 and maximum-compatible-subset proof",
+    "exactness": "every mask has one sealed exact fidelity record and the inventory count/hash matches 262144",
+    "mask_count": 262144,
+    "mask_universe": "2 attention heads plus 16 individual MLP neurons",
+    "model": {
+      "d_head": 8,
+      "d_mlp": 16,
+      "d_model": 16,
+      "initialization_seed": 0,
+      "n_heads": 2,
+      "n_layers": 1
+    },
+    "option": "A",
+    "task": {
+      "domain": "full 7x7",
+      "family": "modular_addition",
+      "modulus": 7
+    },
+    "transfer_limit": "calibrates procedure behavior only on this small instance; no automatic main-scale error bound"
+  },
+  "definitive_execution_started": false,
+  "discovery_profiles": {
+    "backend_determinism": "Stage 14 must qualify the actual CPU/CUDA/MPS backend. MPS has no presumed authority; a school-Mac MPS class becomes eligible only after exact and semantic qualification on that class, otherwise its qualified MPS throughput is zero and CPU is used.",
+    "common_exact_evaluation_allowance": 256,
+    "exact_allowance_semantics": "256 total exact evaluations per model-method ledger, including the mandatory intact mask; duplicate requests reuse evidence and do not recharge the ledger",
+    "failure_rules": [
+      "nonfinite optimization is terminal numerical failure",
+      "budget exhaustion is censored, not success",
+      "interruption resumes from a hash-bound checkpoint",
+      "within-method interpretation is primary"
+    ],
+    "intact_mask": "always included and exactly evaluated so Endpoint 1 is defined up to 1.0",
+    "methods": [
+      {
+        "family": "inherited_discrete",
+        "id": "greedy-deletion-centred-logit/v1",
+        "maximum_restarts": 0,
+        "native_budget": 516,
+        "native_budget_unit": "ranked_component_proposal",
+        "termination": "all ranked proposals consumed, exact allowance exhausted, or explicit failure"
+      },
+      {
+        "family": "continuous_stochastic_gates",
+        "gate": {
+          "lower_stretch": -0.1,
+          "temperature": 0.6666666666666666,
+          "upper_stretch": 1.1
+        },
+        "id": "hard-concrete-gates-centred-logit/v1",
+        "native_budget_per_restart": 5000,
+        "native_budget_unit": "optimizer_step",
+        "optimizer": {
+          "beta1": 0.9,
+          "beta2": 0.999,
+          "epsilon": 1e-08,
+          "learning_rate": 0.01,
+          "name": "Adam",
+          "sparsity_coefficient": 0.001
+        },
+        "proposal_rules": {
+          "maximum_unique_proposals": 256,
+          "probability_thresholds": [
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "stochastic_draws_per_restart": 32,
+          "top_k_sizes": [
+            0,
+            8,
+            16,
+            32,
+            64,
+            96,
+            128,
+            192,
+            256,
+            384,
+            516
+          ]
+        },
+        "restarts": 4
+      }
+    ],
+    "option": "A"
+  },
+  "endpoint_profile": {
+    "censoring_rule": "budget exhaustion or incomplete candidate inventory is procedure-censored",
+    "claim": "procedure-relative packing lower bound only",
+    "component_cap": 0.25,
+    "failure_rule": "retain zero from valid empty qualification; distinguish solver/search failure from zero",
+    "maximum_pairwise_overlap": 0.25,
+    "no_qualifying_masks": "packing lower bound 0",
+    "option": "A",
+    "overlap_metric": "Jaccard overlap of retained components in the declared basis",
+    "sensitivity_grid": {
+      "cartesian_cell_count": 12,
+      "cells": [
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.125,
+          "maximum_pairwise_overlap": 0.5
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.25,
+          "maximum_pairwise_overlap": 0.5
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.0
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.125
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.25
+        },
+        {
+          "component_cap": 0.375,
+          "maximum_pairwise_overlap": 0.5
+        }
+      ],
+      "component_cap_proportions": [
+        0.125,
+        0.25,
+        0.375
+      ],
+      "execution": "reducer-only from masks and exact fidelities already present in each sealed ledger; no rediscovery, new model inference, new exact evaluation, or ledger mutation",
+      "hierarchy": {
+        "descriptive_sensitivity": "the other 11 grid cells",
+        "key_secondary": "packing at component cap 0.25 and maximum Jaccard overlap 0.25",
+        "primary": "Endpoint 1 only"
+      },
+      "ledger_limit": "if a mask is absent from the sealed ledger, no sensitivity cell may generate or evaluate it",
+      "maximum_pairwise_jaccard_overlaps": [
+        0.0,
+        0.125,
+        0.25,
+        0.5
+      ]
+    },
+    "solver": "exact maximum compatible subset with lexicographically smallest mask-identity tuple tie-break",
+    "status": "key_secondary"
+  },
+  "fidelity_profile": {
+    "accumulation_dtype": "float64",
+    "accumulation_order": "canonical example order then class order",
+    "denominator_guard": "denominator exactly zero is undefined and rejected; every positive finite denominator is valid",
+    "formula": "1 - sum((center(masked_logits)-center(full_logits))^2) / sum(center(full_logits)^2)",
+    "frontier": [
+      0.9,
+      0.95,
+      0.975,
+      0.99,
+      0.995
+    ],
+    "gauge": "subtract the per-input class mean",
+    "input_dtype": "model output dtype float32",
+    "ledger_reuse": "reducer-only for all masks already present; never duplicate a discovery job",
+    "nonfinite_policy": "reject record",
+    "option": "A",
+    "primary_threshold": 0.99
+  },
+  "hidden_defaults_permitted": false,
+  "null_profiles": {
+    "combinatorial": {
+      "draws": 10000,
+      "exact_evaluations": 0,
+      "matching": "exact retained size and component-type counts",
+      "replacement": "independent seeded draws with duplicates retained and reported"
+    },
+    "local_perturbation": {
+      "common_exact_allowance": 128,
+      "maximum_radius": 2,
+      "minimum_completed": 96,
+      "moves": [
+        "drop_one",
+        "add_one",
+        "swap_one"
+      ],
+      "proposal_budget": 128,
+      "seed_masks": "up to four lexicographically first exactly qualified masks"
+    },
+    "minimum_reportable_coverage": 0.9,
+    "option": "A",
+    "ordinary_restart": {
+      "exact_allowance_semantics": "256 total including intact in Package A/C; 128 total including intact in Package B",
+      "method": "same discovery family without diversity pressure or packing-aware feedback",
+      "minimum_completed": 12,
+      "restarts": 16
+    },
+    "panel_assignment": {
+      "discovery_methods": [
+        "greedy-deletion-centred-logit/v1",
+        "hard-concrete-gates-centred-logit/v1"
+      ],
+      "maximum_profile_slots": 60,
+      "model_roles": [
+        "direct teacher",
+        "lowest fixed eligible canonical hard student",
+        "lowest fixed eligible canonical soft student"
+      ],
+      "phases": [
+        "pre-grokking",
+        "stable post-grokking"
+      ],
+      "replacement": "none",
+      "teacher_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "tractable": {
+      "layer": "exact feasible-region calibration from RD-009",
+      "minimum_coverage": 1.0
+    },
+    "undercoverage": "report layer as incomplete/unavailable; do not impute or collapse"
+  },
+  "production_eligible": false,
+  "schema_version": "stage13-production-profiles/v1",
+  "scientific_data": false,
+  "scientific_protocol_sha256": "da7ed31537727f92a66f72319711786e0b60b51d2a08646a2010c779ecdeca9f",
+  "storage_retry_export_profile": {
+    "actual_resource_binding": [
+      "provider/scheduler and account only if actually available",
+      "machine count and hardware class for every worker",
+      "qualified CPU, CUDA, or MPS status per hardware class",
+      "minimum-of-three post-warmup training, model-loop hard-concrete, and exact-evaluation throughput",
+      "host CPU cores reserved per active accelerator",
+      "per-machine RAM/VRAM and active scratch",
+      "per-machine availability intervals and permitted hours",
+      "queue latency, preemption behavior, and measured scheduling efficiency",
+      "persistent/scratch quotas and merge/export throughput"
+    ],
+    "export": "sealed bundle to a Stage 14 verified destination, resumable transfer, independent byte/hash verification, and no source deletion",
+    "final_audit_reserve_hours": 12,
+    "gate_visibility": "only completeness, failures, resources, storage, and integrity; no comparative scientific direction",
+    "gates": [
+      "launch",
+      "primary-completeness",
+      "exit"
+    ],
+    "launch_blocker": "if no verified configuration completes the protected core within H_science, block launch pending prospective amendment",
+    "launch_scope": "Tier 1 plus protected Tier 2 only",
+    "option": "A",
+    "optional_admission": "Task 3, then Task 4, then Task 5; only after protected completion is secure and only when the entire next manifest increment fits measured remaining capacity",
+    "prohibited_assumptions": [
+      "Symbolica availability",
+      "Eton availability",
+      "16 GPUs",
+      "256 CPU cores",
+      "MPS qualification",
+      "uninterrupted access"
+    ],
+    "retry_policy": {
+      "logical_identity_unchanged": true,
+      "maximum_attempts": 3,
+      "maximum_retries": 2,
+      "retryable_categories": [
+        "worker_error",
+        "resource_exhaustion",
+        "interruption",
+        "stale_claim",
+        "transfer_interruption"
+      ],
+      "scientific_or_validation_failure_retries": 0
+    },
+    "school_mac_branch": {
+      "capacity_equations": [
+        "training_capacity = sum over machines and intervals of qualified_training_rate * usable_interval_seconds * measured_efficiency",
+        "hard_concrete_capacity = analogous sum using model-in-loop rate",
+        "exact_capacity = analogous sum using standalone CPU exact rate",
+        "host CPU support reservations are subtracted before standalone CPU capacity is computed"
+      ],
+      "hardware_classes": "class k records machine count M_k, CPU cores, RAM, optional MPS device, and disk quotas",
+      "machine_count": "M, bound by Stage 14",
+      "optional_rule": "after protected completion is secure, admit Task 3, then Task 4, then Task 5 only when measured remaining interval capacity can finish the entire next increment",
+      "pass_rule": "protected core must finish within H_science with memory/storage quotas and audit reserve intact; otherwise launch blocks",
+      "permitted_hours": "availability intervals I_{k,m}; capacity is integrated over intervals, never count*nominal wall time",
+      "qualified_rates": "r_train_cpu[k], r_hc_cpu[k], r_exact_cpu[k], and optional r_train_mps[k]/r_hc_mps[k] only after exact and semantic MPS qualification",
+      "schedule_rule": "run the dependency-closed protected DAG against actual intervals; CPU-only is mandatory when MPS is absent or unqualified"
+    },
+    "scientific_dag": "complete dependency-closed P3 manifest generated from approved RD-001 through RD-012 values",
+    "scientific_window": {
+      "audit_reserve_hours": 12,
+      "science_hours": "H_science = max(0, H_total - 12)",
+      "stage14_binding": "H_total = total qualified permitted hours across verified availability intervals",
+      "uninterrupted_access_assumed": false
+    },
+    "stage14_only_unknowns": [
+      "provider and scheduler",
+      "queue/account/project",
+      "CPU/GPU models and counts",
+      "container digest",
+      "scratch and persistent roots",
+      "actual quotas",
+      "credentials",
+      "export destination",
+      "safe measured concurrency",
+      "model-in-the-loop hard-concrete throughput",
+      "CUDA training throughput and VRAM",
+      "measured complete-branch wall-time equation"
+    ],
+    "storage": {
+      "checkpoint_retained_generations": 2,
+      "chunk_bytes": 67108864,
+      "codec": "deterministic gzip",
+      "compression_level": 6,
+      "ledger_encoding": "canonical-jsonl-row-array/v1",
+      "mask_encoding": "bitpack-msb0/v1",
+      "protect_final_and_latest_valid_recovery": true
+    }
+  },
+  "terminal_states": [
+    "sealed_success",
+    "failed",
+    "unavailable",
+    "censored",
+    "not_admitted"
+  ],
+  "training_profile": {
+    "hard": {
+      "eligibility": "exact argmax agreement on every input",
+      "loss": "mean cross entropy",
+      "targets": "teacher argmax over complete domain"
+    },
+    "option": "A",
+    "replacement_rule": "none outside the predeclared attempt slots",
+    "shared_optimizer": {
+      "batch_mode": "full_training_set",
+      "beta1": 0.9,
+      "beta2": 0.98,
+      "checkpoint_interval": 50,
+      "epsilon": 1e-08,
+      "evaluation_interval": 50,
+      "learning_rate": 0.001,
+      "max_steps": 40000,
+      "name": "AdamW",
+      "precision": "float32",
+      "schedule": "constant",
+      "warmup_steps": 0,
+      "weight_decay": 1.0
+    },
+    "soft": {
+      "argmax_requirement": "exact agreement on every input",
+      "eligibility_tolerance": 0.0001,
+      "loss": "mean squared centered-logit error",
+      "normalization": "none beyond class centering",
+      "targets": "per-input class-centered teacher logits",
+      "temperature": 1.0
+    },
+    "stop_rule": "stop after eligible target is reached or all fixed slots resolve; retain every earlier failure",
+    "tier1": {
+      "attempt_cap": 6,
+      "eligible_target": 3,
+      "minimum_reportable_eligible": 3
+    },
+    "tier2": {
+      "attempt_cap": 4,
+      "eligible_target": 2,
+      "minimum_reportable_eligible": 2
+    }
+  }
+}

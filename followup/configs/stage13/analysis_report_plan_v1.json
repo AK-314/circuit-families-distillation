@@ -1,0 +1,520 @@
+{
+  "approval_sha256": "acd34de34ee94f943ddfb2d088572196d74c5bde9eae8474e691b5f8ef89d336",
+  "claim_rules": {
+    "basis": "paired conditional sensitivity",
+    "endpoint1": "procedure-relative primary; never global minimum",
+    "fourier": "shared abstraction only under full six-condition success rule; uniqueness prohibited",
+    "method": "within-method primary; cross-method descriptive",
+    "nulls": "calibration diagnostics only",
+    "packing": "procedure-relative lower bound and key secondary",
+    "tractable": "small-instance procedure calibration only"
+  },
+  "definitive_execution_started": false,
+  "every_terminal_dataset_maps_to_report": true,
+  "fourier": {
+    "aggregation": "within comparison set, aligned minus each control on the primary outcome; then teacher-seed paired summaries separately by phase and hard/soft condition",
+    "alignment": "fit source and recipient linear task-code subspaces and an orthogonal Procrustes map in float64 on the fixed training-domain split only; deterministic SVD/sign convention; no test trials or outcome logits enter fitting",
+    "capacity": "same ordered support of four complex modes/eight real degrees of freedom with identical conjugate bookkeeping, fitted rank, float32 write precision, recipient write budget, identifier count, and side-information bytes for aligned plus all five controls",
+    "conditions": [
+      "aligned_fourier_interchange",
+      "wrong_fourier_mode",
+      "shuffled_coefficients",
+      "mismatched_input",
+      "equal_norm_random_state",
+      "unaligned_ordinary_activation_patching"
+    ],
+    "expected_behavior": "the intervened recipient should move from its intact base behavior toward its own intact behavior on the canonical counterfactual input, changing the predicted result from s to s_d while preserving the recipient network's centered-logit pattern for that counterfactual",
+    "interchanged_variable": "the projected internal code for the modular sum s=(x+y) mod p on the four primary diagonal harmonics",
+    "internal_location": "final-token blocks.0.mlp.hook_post, after the nonlinear MLP activation and before W_out writes into the residual stream",
+    "intervention_formula": "h_rec_intervened = h_rec_base - P_rec(h_rec_base) + A(P_src(h_src_donor)), at the frozen MLP-post location; P_rec and P_src are fixed fitted task-code projections and A is the fixed capacity-bounded source-to-recipient alignment",
+    "location_justification": "modular-addition task variables are expected to be synthesized in nonlinear MLP features; intervention before W_out tests an internal causal state and leaves the recipient's W_out, residual addition, normalization, and unembedding to translate that state into behavior",
+    "maximum_pair_count": 60,
+    "mode_justification": "for any function g(x+y mod p), the 2-D Fourier transform is supported on the diagonal frequency pairs (k,k) under the frozen negative-exponent DFT convention because character_k(x+y)=character_k(x) character_k(y); the first four nonzero diagonal harmonics are fixed without observing activations or outcomes",
+    "option": "A",
+    "pair_rule": "for each seed 0-14, each primary phase, and each hard/soft condition, source is the direct teacher and recipient is the lowest fixed initialization slot that is eligible; if none is eligible the pair is unavailable and is not replaced",
+    "primary_outcome": {
+      "centering": "C subtracts the per-input class mean",
+      "formula": "1 - ||C(logits_intervened)-C(logits_recipient_counterfactual)||^2 / ||C(logits_recipient_base)-C(logits_recipient_counterfactual)||^2",
+      "interpretation": "1 is exact recipient-counterfactual behavior; 0 is no displacement from intact base; negative values are retained",
+      "name": "counterfactual_centered_logit_displacement_fidelity",
+      "zero_denominator": "trial unavailable and reported, never epsilon-regularized"
+    },
+    "primary_task_modes": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        4
+      ]
+    ],
+    "representation": "unitary 2-D DFT over the ordered modular input grid; complex coefficients stored as ordered real/imaginary pairs with conjugate partners implied by real activations",
+    "secondary_outcomes": [
+      "counterfactual argmax success",
+      "base-behavior preservation on matched no-change trials",
+      "nonfinite/failure/censoring diagnostics"
+    ],
+    "success_rule": "shared-causal-abstraction claim eligible only when aligned exceeds every one of the five controls under the predeclared teacher-seed interval rule, counterfactual argmax is favorable, no-change preservation passes, and the comparison inventory is complete; otherwise not_met, indeterminate, or unavailable",
+    "trial_construction": "recipient base input is (x,y); donor input is (x_d,y_d) with donor sum s_d different from base sum s; the canonical recipient counterfactual is (x, (s_d-x) mod p), preserving the recipient first operand while changing only the abstract sum to s_d",
+    "trial_inputs": "256 fixed canonically ordered recipient/donor trials per comparison set and condition; no replacement",
+    "uniqueness_claim": false,
+    "why_causal_abstraction": "the donor contributes only an internal sum-code variable; the recipient's downstream weights must causally realize the donor sum as the recipient's own counterfactual behavior. Matching donor output logits or patching the final residual is neither the intervention nor the target.",
+    "wrong_mode_control_support": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -2
+      ]
+    ],
+    "wrong_mode_separation": "off-diagonal support is disjoint from the primary diagonal support, has the same number of complex modes and real degrees of freedom, and is never used to fit, rank, or amend the primary mode subspace"
+  },
+  "hierarchical_analysis": {
+    "category_rule": "each category is resolved from its complete predeclared inputs as met, not_met, indeterminate, or unavailable; categories may overlap and are not success criteria",
+    "descriptive_summaries": [
+      "median paired difference",
+      "range",
+      "sign count",
+      "raw seed table"
+    ],
+    "direct_student_contrast": "student-cell median minus direct-teacher value for same seed, phase, and method",
+    "mid_phase": "descriptive trajectory only, not a substitute for either primary landmark",
+    "minimum_matched_teacher_seeds": 10,
+    "minimum_student_cell": "RD-003 minimum for its tier",
+    "missing_rule": "no imputation; below-minimum population results are partial descriptive outputs with inferential fields unavailable",
+    "multiplicity": "Holm adjustment within each endpoint x hard/soft family; architecture, basis, method-disagreement, null, and frontier results are explicitly descriptive",
+    "option": "A",
+    "outcome_categories": [
+      "teacher phase effect persists in both student conditions",
+      "students of one teacher vary materially",
+      "all distilled students become similarly compressible",
+      "results depend strongly on discovery method or fidelity definition",
+      "stable functions enable recovery while realization controls packing",
+      "the predecessor transition disappears under predictive fidelity"
+    ],
+    "population_estimand": "arithmetic mean of within-seed paired differences over the fixed matched population",
+    "population_unit": "teacher_seed",
+    "primary_contrast": "stable post-grokking minus pre-grokking within teacher seed",
+    "realization_dispersion": [
+      "range",
+      "median absolute deviation",
+      "all raw eligible values"
+    ],
+    "student_cell_summary": "median across eligible initializations",
+    "tests": "two-sided exact sign-flip test for each four-cell primary family when matched n <=20; Monte Carlo 100000 fixed draws otherwise",
+    "uncertainty": "95% teacher-seed bootstrap percentile interval with 10000 domain-separated resamples"
+  },
+  "manual_setting_selection": false,
+  "orchestration_boundary": {
+    "actual_resource_binding": [
+      "provider/scheduler and account only if actually available",
+      "machine count and hardware class for every worker",
+      "qualified CPU, CUDA, or MPS status per hardware class",
+      "minimum-of-three post-warmup training, model-loop hard-concrete, and exact-evaluation throughput",
+      "host CPU cores reserved per active accelerator",
+      "per-machine RAM/VRAM and active scratch",
+      "per-machine availability intervals and permitted hours",
+      "queue latency, preemption behavior, and measured scheduling efficiency",
+      "persistent/scratch quotas and merge/export throughput"
+    ],
+    "export": "sealed bundle to a Stage 14 verified destination, resumable transfer, independent byte/hash verification, and no source deletion",
+    "final_audit_reserve_hours": 12,
+    "gate_visibility": "only completeness, failures, resources, storage, and integrity; no comparative scientific direction",
+    "gates": [
+      "launch",
+      "primary-completeness",
+      "exit"
+    ],
+    "launch_blocker": "if no verified configuration completes the protected core within H_science, block launch pending prospective amendment",
+    "launch_scope": "Tier 1 plus protected Tier 2 only",
+    "option": "A",
+    "optional_admission": "Task 3, then Task 4, then Task 5; only after protected completion is secure and only when the entire next manifest increment fits measured remaining capacity",
+    "prohibited_assumptions": [
+      "Symbolica availability",
+      "Eton availability",
+      "16 GPUs",
+      "256 CPU cores",
+      "MPS qualification",
+      "uninterrupted access"
+    ],
+    "retry_policy": {
+      "logical_identity_unchanged": true,
+      "maximum_attempts": 3,
+      "maximum_retries": 2,
+      "retryable_categories": [
+        "worker_error",
+        "resource_exhaustion",
+        "interruption",
+        "stale_claim",
+        "transfer_interruption"
+      ],
+      "scientific_or_validation_failure_retries": 0
+    },
+    "school_mac_branch": {
+      "capacity_equations": [
+        "training_capacity = sum over machines and intervals of qualified_training_rate * usable_interval_seconds * measured_efficiency",
+        "hard_concrete_capacity = analogous sum using model-in-loop rate",
+        "exact_capacity = analogous sum using standalone CPU exact rate",
+        "host CPU support reservations are subtracted before standalone CPU capacity is computed"
+      ],
+      "hardware_classes": "class k records machine count M_k, CPU cores, RAM, optional MPS device, and disk quotas",
+      "machine_count": "M, bound by Stage 14",
+      "optional_rule": "after protected completion is secure, admit Task 3, then Task 4, then Task 5 only when measured remaining interval capacity can finish the entire next increment",
+      "pass_rule": "protected core must finish within H_science with memory/storage quotas and audit reserve intact; otherwise launch blocks",
+      "permitted_hours": "availability intervals I_{k,m}; capacity is integrated over intervals, never count*nominal wall time",
+      "qualified_rates": "r_train_cpu[k], r_hc_cpu[k], r_exact_cpu[k], and optional r_train_mps[k]/r_hc_mps[k] only after exact and semantic MPS qualification",
+      "schedule_rule": "run the dependency-closed protected DAG against actual intervals; CPU-only is mandatory when MPS is absent or unqualified"
+    },
+    "scientific_dag": "complete dependency-closed P3 manifest generated from approved RD-001 through RD-012 values",
+    "scientific_window": {
+      "audit_reserve_hours": 12,
+      "science_hours": "H_science = max(0, H_total - 12)",
+      "stage14_binding": "H_total = total qualified permitted hours across verified availability intervals",
+      "uninterrupted_access_assumed": false
+    },
+    "stage14_only_unknowns": [
+      "provider and scheduler",
+      "queue/account/project",
+      "CPU/GPU models and counts",
+      "container digest",
+      "scratch and persistent roots",
+      "actual quotas",
+      "credentials",
+      "export destination",
+      "safe measured concurrency",
+      "model-in-the-loop hard-concrete throughput",
+      "CUDA training throughput and VRAM",
+      "measured complete-branch wall-time equation"
+    ],
+    "storage": {
+      "checkpoint_retained_generations": 2,
+      "chunk_bytes": 67108864,
+      "codec": "deterministic gzip",
+      "compression_level": 6,
+      "ledger_encoding": "canonical-jsonl-row-array/v1",
+      "mask_encoding": "bitpack-msb0/v1",
+      "protect_final_and_latest_valid_recovery": true
+    }
+  },
+  "outcome_categories": [
+    "teacher phase effect persists in both student conditions",
+    "students of one teacher vary materially",
+    "all distilled students become similarly compressible",
+    "results depend strongly on discovery method or fidelity definition",
+    "stable functions enable recovery while realization controls packing",
+    "the predecessor transition disappears under predictive fidelity"
+  ],
+  "production_eligible": false,
+  "production_profiles_sha256": "c5f96f38bdbfb1b42419eda0b22ffce10748d14be91b2fc2673e16412e893b6d",
+  "report_surfaces": [
+    {
+      "denominators": [
+        "planned",
+        "available"
+      ],
+      "dimensions": [
+        "task",
+        "seed",
+        "phase",
+        "availability"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "population-inventory"
+    },
+    {
+      "denominators": [
+        "teacher_seed"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "method",
+        "endpoint"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "raw-teacher-seed"
+    },
+    {
+      "denominators": [
+        "all_fixed_attempts"
+      ],
+      "dimensions": [
+        "condition",
+        "slot",
+        "terminal_state"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "student-attempt-inventory"
+    },
+    {
+      "denominators": [
+        "eligible_initializations"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "architecture"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "student-cell-summary"
+    },
+    {
+      "denominators": [
+        "matched_teacher_seeds"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "method"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "endpoint1-primary"
+    },
+    {
+      "denominators": [
+        "sealed_ledger_masks"
+      ],
+      "dimensions": [
+        "cap",
+        "overlap",
+        "method",
+        "censoring"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "packing-key-secondary"
+    },
+    {
+      "denominators": [
+        "sealed_ledger_masks"
+      ],
+      "dimensions": [
+        "threshold",
+        "phase",
+        "condition",
+        "method"
+      ],
+      "kind": "figure_data",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "fidelity-frontier"
+    },
+    {
+      "denominators": [
+        "complete_checkpoint_pairs"
+      ],
+      "dimensions": [
+        "anchor_seed",
+        "architecture",
+        "phase",
+        "condition"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "architecture-contrast"
+    },
+    {
+      "denominators": [
+        "complete_checkpoint_pairs"
+      ],
+      "dimensions": [
+        "anchor_seed",
+        "basis",
+        "phase",
+        "condition"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "basis-contrast"
+    },
+    {
+      "denominators": [
+        "within_method_first"
+      ],
+      "dimensions": [
+        "seed",
+        "method",
+        "endpoint"
+      ],
+      "kind": "figure_data",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "method-disagreement"
+    },
+    {
+      "denominators": [
+        "predeclared_profiles"
+      ],
+      "dimensions": [
+        "layer",
+        "coverage",
+        "terminal_state"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "null-calibration"
+    },
+    {
+      "denominators": [
+        "262144_masks"
+      ],
+      "dimensions": [
+        "mask_identity",
+        "fidelity",
+        "proof"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "tractable-calibration"
+    },
+    {
+      "denominators": [
+        "complete_comparison_sets"
+      ],
+      "dimensions": [
+        "seed",
+        "phase",
+        "condition",
+        "control",
+        "outcome"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "fourier-comparison"
+    },
+    {
+      "denominators": [
+        "all_planned_jobs"
+      ],
+      "dimensions": [
+        "family",
+        "reason",
+        "tier",
+        "count"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "failure-and-unavailable"
+    },
+    {
+      "denominators": [
+        "planned_operations"
+      ],
+      "dimensions": [
+        "scope",
+        "scenario",
+        "resource_kind"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "resource-accounting"
+    },
+    {
+      "denominators": [
+        "complete_predeclared_inputs"
+      ],
+      "dimensions": [
+        "category",
+        "status",
+        "reason"
+      ],
+      "kind": "table",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "claim-resolution"
+    },
+    {
+      "denominators": [
+        "declared_units"
+      ],
+      "dimensions": [
+        "estimand_id",
+        "unit_id",
+        "value",
+        "status"
+      ],
+      "kind": "tidy_output",
+      "missingness": "explicit unavailable/indeterminate; never imputed",
+      "surface_id": "tidy-machine-output"
+    }
+  ],
+  "schema_version": "stage13-analysis-report-plan/v1",
+  "scientific_data": false,
+  "scientific_protocol_sha256": "da7ed31537727f92a66f72319711786e0b60b51d2a08646a2010c779ecdeca9f",
+  "tiering": {
+    "additional_capacity_rule": "unused capacity may run only the next preordered optional item and may not add or change a primary estimand",
+    "balance_rule": "fixed assignments are balanced by seed order, phase, condition, and architecture/basis; unavailable cells remain unavailable with no replacement",
+    "option": "A",
+    "optional_increment_rule": "each task increment has its own sealed manifest/hash; after protected completion is secure, admit only the next increment when measured remaining capacity can finish it; a terminal failure is retained and never replaced",
+    "protected_launch_scope": {
+      "definition": "Tier 1 plus protected Tier 2",
+      "includes": [
+        "Tier 1 Task 1 fixed seeds 0-14",
+        "protected Tier 2 Task 2 modular multiplication",
+        "paired architecture and basis panels",
+        "exact 2^18 calibration",
+        "Fourier aligned condition and all five controls",
+        "both discovery methods, Endpoint 1, packing, frontier, and protected null calibration"
+      ],
+      "launch_feasibility_must_cover": true
+    },
+    "school_mac_order": [
+      "protected core",
+      "Task 3 if whole-increment capacity passes",
+      "Task 4 if whole-increment capacity passes",
+      "Task 5 if whole-increment capacity passes"
+    ],
+    "shedding_order": [
+      "Task 5 not admitted",
+      "Task 4 not admitted",
+      "Task 3 not admitted",
+      "protected core is never shed"
+    ],
+    "tier1": [
+      "Task 1 seeds 0-14 and three phases",
+      "direct teachers",
+      "canonical architecture hard and soft students under RD-003",
+      "canonical basis",
+      "both RD-007 methods",
+      "Endpoint 1 and key-secondary Endpoint 2",
+      "combinatorial, ordinary-restart, and local calibration minimum"
+    ],
+    "tier2_protected_minimum": [
+      "RD-002 all four alternates on the shared anchor seeds 0-4 at pre/stable phases and both conditions",
+      "RD-004 every alternative basis on the same seed-0-4 direct/hard/soft model-checkpoint panel",
+      "full RD-005 frontier from sealed ledgers",
+      "Task 2 seeds 0-4 at pre/stable phases with canonical architecture and two eligible students per condition",
+      "one RD-009 exact calibration",
+      "all RD-011 comparison sets and five controls"
+    ],
+    "tier3_order": [
+      "Task 3 symmetric quadratic increment",
+      "Task 4 asymmetric separable mixed-degree increment",
+      "Task 5 coupled homogeneous cubic increment"
+    ]
+  }
+}
