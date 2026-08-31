@@ -156,6 +156,8 @@ detection. Explicitly prevent the predecessor's verbose-storage pattern.
 
 ### Austin 5 — Stage 12-P5: Fourier causal interchange runner and controls
 
+**File:** `austin_05_stage12p5_fourier_interchange_runner.md`
+
 **Syllabus:** Implement alignment/intervention execution, capacity matching,
 wrong-mode, shuffled, mismatched-input, equal-norm random, and unaligned
 patching controls, common trial contracts, deterministic identities, and
