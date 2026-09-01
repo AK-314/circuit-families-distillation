@@ -1,0 +1,16 @@
+{
+  "schema_version": "stage14b-qualification-policy/v1",
+  "prospective_absolute_tolerance": 0.000001,
+  "prospective_relative_tolerance": 0.00001,
+  "discarded_warmups": 1,
+  "measured_repeats": 3,
+  "cpu_reference_required": true,
+  "resume_semantic_equality_required": true,
+  "same_class_repeatability_required": true,
+  "production_pool_requires_explicit_binding": true,
+  "device_detection_is_qualification": false,
+  "mixed_hardware_classes_per_record": false,
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false
+}

@@ -1,0 +1,186 @@
+{
+  "schema_version": "stage14b-compatibility-inventory/v1",
+  "implementation_base": "19393dc345556fcec1564ef3918650d25b2b88ec",
+  "stage13_job_array_spec_sha256": "701b8cac0daaccae94f0bd243c04c293fed320bdd39230bc1f49995d92c70a58",
+  "canonical_members_sha256": "adbfb30694bb984de4d8ba582cee0efb468b8f9a2fce01f6a3654b5b78b1927b",
+  "job_families": [
+    {
+      "family": "qualification-prerequisite",
+      "runner": "circuit_families.stage14b.resources.qualify_backend",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "closed resource inventory and per-class qualification record",
+      "lifecycle_handler": "Stage 12-P3 sealed output plus Gate 15.1",
+      "compact_serializer": "canonical Stage 14-B JSON",
+      "recompute_path": "rerun excluded technical suite on the same class",
+      "rehearsal_fixture": "gate-15.1"
+    },
+    {
+      "family": "human-gate",
+      "runner": "circuit_families.stage14b.monitoring gate evaluators",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "closed gate record without scientific direction",
+      "lifecycle_handler": "Stage 12-P3 terminal gate state",
+      "compact_serializer": "canonical Stage 14-B JSON",
+      "recompute_path": "independent gate predicate evaluation",
+      "rehearsal_fixture": "gate-15.1, gate-15.2, gate-15.3"
+    },
+    {
+      "family": "teacher-training",
+      "runner": "circuit_families.stage12p1 teacher runner",
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "expected_output": "sealed teacher, phase, checkpoint and cache records",
+      "lifecycle_handler": "Stage 12-P3 claims/retries plus Stage 12-P1 resume",
+      "compact_serializer": "Stage 12-P4 storage object contract",
+      "recompute_path": "Stage 12-P1 frozen-seed resume/reproduction",
+      "rehearsal_fixture": "teacher-task1 through teacher-task5"
+    },
+    {
+      "family": "student-attempt",
+      "runner": "circuit_families.stage12p2 shared training engine",
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "expected_output": "sealed attempt, eligibility, failure and release records",
+      "lifecycle_handler": "Stage 12-P3 claims/retries plus Stage 12-P2 rolling resume",
+      "compact_serializer": "Stage 12-P4 rolling checkpoint and storage contract",
+      "recompute_path": "Stage 12-P2 fixed-attempt reproduction",
+      "rehearsal_fixture": "student-canonical and student-alternate-architecture"
+    },
+    {
+      "family": "greedy-discovery-ledger",
+      "runner": "Stage 6A greedy deletion runner",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "sealed exact-evaluation ledger and native budget record",
+      "lifecycle_handler": "Stage 12-R1 lifecycle bridge and Stage 12-P3 retries",
+      "compact_serializer": "Stage 12-P4 compact ledger",
+      "recompute_path": "Stage 6A exact ledger recomputation",
+      "rehearsal_fixture": "greedy-discovery"
+    },
+    {
+      "family": "hard-concrete-restart",
+      "runner": "circuit_families.stage12r1 hard-concrete optimizer",
+      "resource_class": "qualified-accelerator-or-cpu/v1",
+      "expected_output": "optimizer checkpoint, proposal and failure records",
+      "lifecycle_handler": "Stage 12-R1 lifecycle and Stage 12-P3 bounded retry",
+      "compact_serializer": "Stage 12-P4 rolling checkpoint contract",
+      "recompute_path": "Stage 12-R1 frozen native-budget restart",
+      "rehearsal_fixture": "hard-concrete"
+    },
+    {
+      "family": "hard-concrete-discovery-ledger",
+      "runner": "circuit_families.stage12r1 exact-ledger bridge",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "sealed exact-evaluation ledger and optimizer evidence",
+      "lifecycle_handler": "Stage 12-R1 sealing plus Stage 12-P3 terminal state",
+      "compact_serializer": "Stage 12-P4 compact ledger",
+      "recompute_path": "independent exact evaluation from sealed proposals",
+      "rehearsal_fixture": "hard-concrete and exact-ledger-bridge"
+    },
+    {
+      "family": "sealed-ledger-endpoint-reducer",
+      "runner": "Stage 6A Endpoint 1 and Stage 6E Endpoint 2 reducers",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "Endpoint 1, packing, frontier and sensitivity records",
+      "lifecycle_handler": "Stage 12-P3 dependency closure",
+      "compact_serializer": "Stage 12-P4 canonical result object",
+      "recompute_path": "reducer-only replay from sealed ledgers",
+      "rehearsal_fixture": "endpoint-1, endpoint-2, frontier-reuse, packing-grid-reuse"
+    },
+    {
+      "family": "ordinary-restart",
+      "runner": "circuit_families.stage12r3 ordinary restart runner",
+      "resource_class": "qualified-cpu/v1 or qualified-accelerator-or-cpu/v1 as frozen",
+      "expected_output": "restart proposal, budget and terminal records",
+      "lifecycle_handler": "Stage 12-R3 lifecycle plus Stage 12-P3 retry",
+      "compact_serializer": "Stage 12-P4 compact checkpoint/result",
+      "recompute_path": "frozen restart seed replay",
+      "rehearsal_fixture": "calibration-restart"
+    },
+    {
+      "family": "ordinary-restart-ledger",
+      "runner": "circuit_families.stage12r3 restart ledger reducer",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "sealed restart calibration ledger",
+      "lifecycle_handler": "Stage 12-P3 dependency closure",
+      "compact_serializer": "Stage 12-P4 compact ledger",
+      "recompute_path": "independent merge of sealed restart subjobs",
+      "rehearsal_fixture": "calibration-restart"
+    },
+    {
+      "family": "combinatorial-null",
+      "runner": "circuit_families.stage12r3 combinatorial runner",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "size/type-matched calibration record",
+      "lifecycle_handler": "Stage 12-P3 claims and terminal states",
+      "compact_serializer": "Stage 12-P4 canonical result object",
+      "recompute_path": "frozen null-seed replay",
+      "rehearsal_fixture": "calibration-combinatorial"
+    },
+    {
+      "family": "local-perturbation-null",
+      "runner": "circuit_families.stage12r3 local exact runner",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "local perturbation calibration record",
+      "lifecycle_handler": "Stage 12-P3 claims and terminal states",
+      "compact_serializer": "Stage 12-P4 canonical result object",
+      "recompute_path": "frozen local-neighborhood replay",
+      "rehearsal_fixture": "calibration-local"
+    },
+    {
+      "family": "tractable-exact-calibration",
+      "runner": "circuit_families.stage12r3 tractable exact runner",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "exact shard ledger and completeness certificate",
+      "lifecycle_handler": "Stage 12-P3 shard closure and terminal states",
+      "compact_serializer": "Stage 12-P4 compact exact ledger",
+      "recompute_path": "full 2^18 shard inventory and certificate replay",
+      "rehearsal_fixture": "calibration-tractable-shard and calibration-certificate"
+    },
+    {
+      "family": "fourier-interchange-condition",
+      "runner": "circuit_families.stage12p5 Fourier condition runner",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "trial, capacity, control and failure records",
+      "lifecycle_handler": "Stage 12-P5 P3/P4 seal",
+      "compact_serializer": "Stage 12-P4 canonical result object",
+      "recompute_path": "Stage 12-P5 frozen trial replay",
+      "rehearsal_fixture": "aligned Fourier plus all five named controls"
+    },
+    {
+      "family": "analysis-report-reduction",
+      "runner": "circuit_families.stage13_freeze synthetic-compatible report reducer",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "outcome-neutral planned report surfaces",
+      "lifecycle_handler": "Stage 12-P3 dependency closure",
+      "compact_serializer": "canonical Stage 13 report JSON",
+      "recompute_path": "independent reducer replay",
+      "rehearsal_fixture": "protected-report and independent-recompute"
+    },
+    {
+      "family": "optional-capacity-gate",
+      "runner": "circuit_families.stage14b.monitoring gate_15_2",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "whole-increment admission or not-admitted record",
+      "lifecycle_handler": "Stage 12-P3 not-admitted terminal state",
+      "compact_serializer": "canonical Stage 14-B JSON",
+      "recompute_path": "frozen protected-security predicate replay",
+      "rehearsal_fixture": "task3, task4 and task5 admission in exact order"
+    },
+    {
+      "family": "compact-merge-export",
+      "runner": "circuit_families.stage12p4 merge, bundle, export and verify",
+      "resource_class": "qualified-cpu/v1",
+      "expected_output": "deterministic compact bundle and destination verification",
+      "lifecycle_handler": "Stage 12-P4 resumable transfer and custody state",
+      "compact_serializer": "Stage 12-P4 deterministic USTAR/chunk contract",
+      "recompute_path": "independent merge, inventory and destination reread",
+      "rehearsal_fixture": "compact-merge, export and verify-export"
+    }
+  ],
+  "job_family_count": 17,
+  "missing_executors": [],
+  "semantic_mismatches": [],
+  "logical_identity_changed": false,
+  "stage13_scientific_artifacts_changed": false,
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false
+}
