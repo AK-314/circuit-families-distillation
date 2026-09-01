@@ -6,14 +6,25 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
-from circuit_families.stage13_freeze import expand_job_arrays
-from circuit_families.stage14b.environment import capture_environment, verify_environment
-from circuit_families.stage14b.feasibility import solve_feasibility
-from circuit_families.stage14b.inputs import plan_input_bundle, stage_input_bundle
-from circuit_families.stage14b.records import (
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from circuit_families.stage13_freeze import expand_job_arrays  # noqa: E402
+from circuit_families.stage14b.environment import (  # noqa: E402
+    capture_environment,
+    verify_environment,
+)
+from circuit_families.stage14b.feasibility import solve_feasibility  # noqa: E402
+from circuit_families.stage14b.inputs import (  # noqa: E402
+    plan_input_bundle,
+    stage_input_bundle,
+)
+from circuit_families.stage14b.records import (  # noqa: E402
     Stage14BError,
     atomic_write,
     canonical_json_bytes,
@@ -21,12 +32,16 @@ from circuit_families.stage14b.records import (
     file_sha256,
     with_boundary,
 )
-from circuit_families.stage14b.rehearsal import compare_rehearsals, run_rehearsal
-from circuit_families.stage14b.resources import inventory_resource_pool, qualify_backend
-from circuit_families.stage14b.scheduler import SlurmClassAdapter, SlurmConfig
-from scripts.validate_stage13_freeze import validate as validate_stage13
-
-ROOT = Path(__file__).resolve().parents[1]
+from circuit_families.stage14b.rehearsal import (  # noqa: E402
+    compare_rehearsals,
+    run_rehearsal,
+)
+from circuit_families.stage14b.resources import (  # noqa: E402
+    inventory_resource_pool,
+    qualify_backend,
+)
+from circuit_families.stage14b.scheduler import SlurmClassAdapter, SlurmConfig  # noqa: E402
+from scripts.validate_stage13_freeze import validate as validate_stage13  # noqa: E402
 
 
 def _git(*args: str) -> str:

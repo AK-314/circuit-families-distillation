@@ -166,7 +166,7 @@ The exact-SHA validator is cwd-independent and writes only below an explicit
 temporary output root:
 
 ```text
-.venv/bin/python -m scripts.validate_stage14b --validate-only --output-root <empty-technical-root>
+<repository>/.venv/bin/python <repository>/scripts/validate_stage14b.py --validate-only --output-root <empty-technical-root>
 ```
 
 It revalidates every frozen Stage 13 hash and all 8,745 identities, captures and
