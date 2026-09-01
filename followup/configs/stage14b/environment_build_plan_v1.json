@@ -1,0 +1,22 @@
+{
+  "schema_version": "stage14b-environment-build-plan/v1",
+  "implementation_base": "19393dc345556fcec1564ef3918650d25b2b88ec",
+  "python_version": "3.11",
+  "lock_path": "uv.lock",
+  "lock_sha256": "2f7895a13fa5d154e5b9bee3c3e637e21add1e6c15f2be29dcd7c7a71a4e5e37",
+  "install_command": "uv sync --frozen",
+  "container_recipe": "containers/stage14b.Containerfile",
+  "container_recipe_sha256": "48ec469dde55d82e82cc6f8caadc718538f495be780d60816b325edafe0f09d2",
+  "python_base_image": null,
+  "uv_base_image": null,
+  "built_image_id": null,
+  "immutable_image_digest": null,
+  "supported_runtime": null,
+  "build_provenance": null,
+  "waiting_for": "AUTHORIZED_COMPATIBLE_CONTAINER_BUILD_WITH_IMMUTABLE_BASE_AND_RESULT_DIGESTS",
+  "floating_tags_permitted": false,
+  "dirty_checkout_permitted": false,
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false
+}

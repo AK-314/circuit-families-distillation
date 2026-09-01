@@ -1,0 +1,37 @@
+{
+  "schema_version": "stage14b-resource-facts-waiting/v1",
+  "status": "WAITING_FOR_AUTHORIZED_RESOURCE_FACTS",
+  "implementation_base": "19393dc345556fcec1564ef3918650d25b2b88ec",
+  "symbolica": {
+    "intended_hours": 96,
+    "grant": null,
+    "scheduler_account_queue": null,
+    "hardware_classes_and_counts": null,
+    "permitted_interval": null,
+    "quotas_and_roots": null,
+    "container_support": null,
+    "transfer_destination": null,
+    "qualification_records": []
+  },
+  "eton": {
+    "approval": "pending",
+    "machine_classes_and_counts": null,
+    "availability_intervals": null,
+    "restrictions": null,
+    "storage_ceilings": null,
+    "cpu_mps_qualification_records": []
+  },
+  "local_current_host": {
+    "role": "provider-neutral technical rehearsal only",
+    "production_pool": false,
+    "container_runtime": null,
+    "slurm_commands": null,
+    "cuda": false,
+    "mps_usable": false
+  },
+  "protected_core_launch": "PROTECTED_CORE_LAUNCH_BLOCKED",
+  "salvage_package_activated": false,
+  "scientific_data": false,
+  "production_eligible": false,
+  "definitive_execution_started": false
+}
