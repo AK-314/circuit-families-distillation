@@ -71,4 +71,3 @@ and provides planning measurements. It does not prove two-node scaling, queue or
 filesystem behaviour, long-run throughput, or protected-core feasibility. Alex
 must inspect the returned evidence and complete the Stage 14 launch gate before
 any definitive execution.
-
