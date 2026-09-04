@@ -25,6 +25,7 @@ from .scheduler import (
     verify_launch_authorization,
     verify_mac_result_bundle,
 )
+from .symbolica_probe import run_symbolica_probe, validate_probe_report
 
 __all__ = [
     "FINAL_WINDOW_SECONDS",
@@ -51,10 +52,12 @@ __all__ = [
     "qualify_backend",
     "reduced_rehearsal_manifest",
     "run_rehearsal",
+    "run_symbolica_probe",
     "solve_feasibility",
     "stage_input_bundle",
     "verify_environment",
     "verify_input_root",
     "verify_launch_authorization",
     "verify_mac_result_bundle",
+    "validate_probe_report",
 ]
